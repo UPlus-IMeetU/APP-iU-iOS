@@ -65,6 +65,7 @@
 #import "UserDefultAccount.h"
 
 #import "DBCacheBiuBiu.h"
+#import "ModelUserMatch.h"
 #import "ModelUserListMatch.h"
 
 @interface ControllerBiuBiu ()<XMBiuCenterButtonDelegate, AppDelegateRemoteNotificationDelegate, ControllerBiuBiuSendDelegate, XMBiuFaceStarCollectionDelegate, ControllerBiuBiuReceiveDelegate, ControllerBiuPayBDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -76,7 +77,6 @@
 @property (nonatomic, assign) CGSize viewBiuBiuSize;
 @property (nonatomic, assign) CGPoint viewBiuBiuCenterPoint;
 @property (weak, nonatomic) IBOutlet UIView *viewBiuBiu;
-@property (weak, nonatomic) IBOutlet UIButton *btnBiuBi;
 @property (weak, nonatomic) IBOutlet UIView *viewMatchUserInfo;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelNameNick;
@@ -114,6 +114,10 @@
 @property (nonatomic,strong) ModelActivity *modelActivity;
 @property (nonatomic, assign) NSInteger umiCount;
 
+@property (nonatomic, strong) NSTimer *timerRefresh;
+@property (nonatomic, assign) NSInteger refreshTheCountdown;
+@property (nonatomic, assign) NSInteger refreshMaxInterval;
+@property (nonatomic, assign) BOOL isLoadingBiu;
 @end
 
 @implementation ControllerBiuBiu
@@ -174,6 +178,10 @@
     self.advertImageView.layer.cornerRadius = 5;
     self.advertImageView.clipsToBounds = YES;
     [self.view bringSubviewToFront:self.advertView];
+    
+    //清空数据库
+    DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
+    [cache cleanDB];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -203,10 +211,9 @@
     self.chooseButton.hidden = ![UserDefultAccount isLogin];
     
     if ([UserDefultAccount isLogin]) {
-        
+        [self timerRefreshLaunch];
     }else{
         [self updateUmiCount:0];
-        self.btnBiuBi.hidden = YES;
     }
     
 }
@@ -238,6 +245,8 @@
 - (void)viewDidDisappear:(BOOL)animated{
     self.isDisplayedInScreen = NO;
     [self.biuFaceStarCollection superViewDidDisappear:animated];
+    
+    [self timerRefreshShutdown];
 }
 
 
@@ -258,7 +267,6 @@
             if (self.profileState == 1 || self.profileState == 2 || self.profileState == 3 || self.profileState == 0){
                 ControllerBiuBiuSend *controller = [ControllerBiuBiuSend shareController];
                 controller.delegateBiuSender = self;
-//                [controller setHidesBottomBarWhenPushed:YES];
                 [self.navigationController pushViewController:controller animated:YES];
                 
             }else{
@@ -293,7 +301,7 @@
     httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"chat_id":model.biuID};
+    NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString]};
     [httpManager POST:[XMUrlHttp xmUpdateBiuMatchUserStatus] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         ModelResponse *response = [ModelResponse responselWithObject:responseObject];
         if (response.state == 200) {
@@ -310,25 +318,20 @@
 - (void)appDelegate:(AppDelegate *)appDelegate isEnterFromRemoteNotification:(BOOL)isEnterFromRemoteNotification remoteNotificationUserInfo:(ModelRemoteNotification *)userInfo{
     if (userInfo.typeNotifi == 0) {
         //检查超时，只有在不超时的情况下才会跳转页面
+        ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:userInfo];
+        
         if (userInfo.biuMatchTime > [NSDate currentTimeMillis]-3600*1000) {
-            ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:userInfo];
             if (isEnterFromRemoteNotification) {
                 ControllerBiuBiuReceive *controller = [ControllerBiuBiuReceive controllerWithFaceStar:faceStar delegate:self];
-                //[controller setHidesBottomBarWhenPushed:YES];
                 [self.navigationController pushViewController:controller animated:YES];
                 [AppDelegate shareAppDelegate].remoteNotificationUserInfo = nil;
             }else{
-                [self.biuFaceStarCollection  addNewFaceStarWithModel:faceStar];
                 //强制更新联系人列表
                 [[DBCacheBiuContact shareDAO] updateFromNetworkWithIsForced:YES block:nil];
-                if (self.isDisplayedInScreen) {
-                    //如果在主页，闪烁个人详细信息
-                    [self blinkMatchUserInfoWithModel:userInfo];
-                }
             }
-        }else{
-            [[MLToast toastInView:self.view content:@"biu已经消失..."] show];
         }
+        
+        [[DBCacheBiuBiu shareInstance] insertWithModelUserMatch:[faceStar getModelUserMatch]];
     }
     
     //只有在首先显示在当前屏幕上时才处理第一第二种通知
@@ -348,7 +351,9 @@
     if ([UserDefultAccount isLogin]) {
         [self refreshBiuMainInfo];
         
-        [self testDBMatchUser];
+        //清空数据库
+        DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
+        [cache cleanDB];
     }else{
         [self refreshBiuMainInfoNotLogin];
     }
@@ -438,7 +443,6 @@
             //登陆成功的情况下，可以进行点击的操作
             ModelBiuMainRefreshData *biuData = [ModelBiuMainRefreshData modelWithDictionary:response.data];
             [self updateUmiCount:biuData.virtualCurrency];
-            self.btnBiuBi.hidden = NO;
             
             self.umiCount = biuData.virtualCurrency;
             self.profileState = biuData.profileState;
@@ -572,19 +576,16 @@
     }];
 }
 
-- (void)blinkMatchUserInfoWithModel:(ModelRemoteNotification*)model{
-    [self.labelNameNick setText:model.biuUserName];
-    self.labelGender.text = model.biuUserGender==1?@"男生":@"女生";
-    self.labelAge.text = [NSString stringWithFormat:@"%lu", model.biuUserAge];
-    self.labelConstellation.text = model.biuUserConstellation;
-    
-    if (model.biuIsGraduated==1) {
-        self.labelSchoolProfession.text = [[DBSchools shareInstance] schoolNameWithID:[model.biuUserSchool integerValue]];
-    }else if(model.biuIsGraduated==2){
-        self.labelSchoolProfession.text = model.biuUserProfession;
-    }
-    
+- (void)blinkMatchUserInfoWithModel:(ModelBiuFaceStar*)model{
     self.viewMatchUserInfo.alpha = 0;
+    
+    [self.labelNameNick setText:model.userName];
+    self.labelGender.text = model.userGender==1?@"男生":@"女生";
+    self.labelAge.text = [NSString stringWithFormat:@"%lu", (long)model.userAge];
+    self.labelConstellation.text = model.userConstellation;
+    
+    self.labelSchoolProfession.text = [[DBSchools shareInstance] schoolNameWithID:[model.schoolId integerValue]];
+    
     [UIView animateWithDuration:0.3 animations:^{
         self.viewMatchUserInfo.alpha = 1;
     } completion:^(BOOL finished) {
@@ -611,16 +612,18 @@
 
 #pragma mark 底栏高度
 - (CGFloat)userInfoHeight{
+    CGFloat height = 0;
     if ([UIScreen is35Screen]) {
-        return 120;
+        height = 120;
     }else if ([UIScreen is40Screen]){
-        return 142;
+        height = 142;
     }else if ([UIScreen is47Screen]){
-        return 169;
+        height = 169;
     }else if ([UIScreen is55Screen]){
-        return 225;
+        height = 225;
     }
-    return 0;
+    height -= 48;
+    return height;
 }
 
 #pragma mark 轨道半径
@@ -639,7 +642,7 @@
 
 #pragma mark 轨道所在视图的尺寸
 - (CGSize)viewBiuBiuSize{
-    return CGSizeMake([UIScreen screenWidth], [UIScreen screenHeight]-self.userInfoHeight-self.navigationHeight);
+    return CGSizeMake([UIScreen screenWidth], [UIScreen screenHeight]-self.userInfoHeight-self.navigationHeight-48);
 }
 
 #pragma mark 中心视图的尺寸
@@ -651,7 +654,7 @@
 #pragma mark 中心视图
 - (XMBiuCenterView *)biuCenterButton{
     if (!_biuCenterButton) {
-        _biuCenterButton = [XMBiuCenterView biuCenterButtonWithOrigin:CGPointMake([UIScreen screenWidth]/2, ([UIScreen screenHeight]-self.userInfoHeight-self.navigationHeight)/2)];
+        _biuCenterButton = [XMBiuCenterView biuCenterButtonWithOrigin:self.viewBiuBiuCenterPoint];
     }
     return _biuCenterButton;
 }
@@ -811,7 +814,6 @@
 }
 
 - (void)updateUmiCount:(NSInteger)umiCount{
-    [self.btnBiuBi setTitle:[NSString stringWithFormat:@" %zi", umiCount] forState:UIControlStateNormal];
     [UserDefultAccount setCountUmi:umiCount];
 }
 
@@ -851,9 +853,74 @@
     DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
     
     [[XMHttpBiuBiu http] loadMatchUserWithCount:10 timestamp:0 callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"----->%@", response);
+        [cache cleanDB];
         [cache insertWithArrModelUserMatch:[ModelUserListMatch modelWithJSON:response].users];
     }];
+}
+
+- (void)timerRefreshLaunch{
+    if (self.timerRefresh) {
+        [self.timerRefresh invalidate];
+        self.timerRefresh = nil;
+    }
+    
+    self.timerRefresh = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshFaceStarCollectionView:) userInfo:nil repeats:YES];
+}
+
+- (void)timerRefreshShutdown{
+    [self.timerRefresh invalidate];
+    self.timerRefresh = nil;
+}
+
+- (void)refreshFaceStarCollectionView:(id)sender{
+    if (self.refreshTheCountdown < 1){
+        if (self.refreshMaxInterval) {
+            self.refreshTheCountdown = arc4random()%self.refreshMaxInterval;
+        }else{
+            self.refreshTheCountdown = 0;
+        }
+        
+        DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
+        ModelUserMatch *model = [cache selectLatestAndUnShow];
+        
+        if (model) {
+            [cache updateHaveBeenShownWithUserCode:model.userCode];
+            
+            ModelBiuFaceStar *modelBiuFaceStar = [ModelBiuFaceStar modelWithModelUserMatch:model];
+            [self.biuFaceStarCollection addNewFaceStarWithModel:modelBiuFaceStar];
+            [self blinkMatchUserInfoWithModel:modelBiuFaceStar];
+        }else{
+            self.refreshTheCountdown = 0;
+        }
+        
+        NSInteger countOfUnShow = [cache selectCountOfUnShow];
+        if (countOfUnShow < 3) {
+            [self loadMatchUser];
+        }
+    }
+    
+    self.refreshTheCountdown --;
+}
+
+- (void)loadMatchUser{
+    if (!self.isLoadingBiu) {
+        self.isLoadingBiu = YES;
+        
+        DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
+        ModelUserMatch *model = [cache selectLastBiu];
+        NSInteger timestamp = 0;
+        if (model) {
+            timestamp = model.timeSendBiu;
+        }
+        [[XMHttpBiuBiu http] loadMatchUserWithCount:10 timestamp:timestamp callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+            self.isLoadingBiu = NO;
+            ModelUserListMatch *models = [ModelUserListMatch modelWithJSON:response];
+            self.refreshMaxInterval = models.showIntervalMax;
+            
+            DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
+            [cache insertWithArrModelUserMatch:models.users];
+        }];
+    }
 }
 
 @end

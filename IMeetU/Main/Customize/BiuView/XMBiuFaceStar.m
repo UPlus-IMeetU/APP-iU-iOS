@@ -473,5 +473,4 @@
     
     return angle;
 }
-
 @end

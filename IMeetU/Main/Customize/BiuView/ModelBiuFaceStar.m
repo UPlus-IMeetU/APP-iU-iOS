@@ -22,12 +22,41 @@
     faceStar.schoolId = model.biuUserSchool;
     faceStar.company = model.biuUserCompany;
     faceStar.profession = model.biuUserProfession;
-    faceStar.biuID = model.biuCode;
-    faceStar.referenceId = model.referenceId;
     faceStar.userProfile = model.biuUserProfile;
     faceStar.matchTime = model.biuMatchTime;
     
     return faceStar;
+}
+
++ (instancetype)modelWithModelUserMatch:(ModelUserMatch *)model{
+    ModelBiuFaceStar *faceStar = [[ModelBiuFaceStar alloc] init];
+    faceStar.userCode = [NSString stringWithFormat:@"%lu", (long)model.userCode];
+    faceStar.userName = model.nameNick;
+    faceStar.userAge = model.age;
+    faceStar.userGender = model.gender;
+    faceStar.userProfile = model.urlProfileThumbnail;
+    faceStar.userConstellation = model.constellation;
+    faceStar.schoolId = [NSString stringWithFormat:@"%lu", (long)model.schoolID];
+    faceStar.haveSee = model.isShow;
+    faceStar.matchTime = model.timeSendBiu;
+    
+    return faceStar;
+}
+
+- (ModelUserMatch *)getModelUserMatch{
+    ModelUserMatch *model = [[ModelUserMatch alloc] init];
+    
+    model.userCode = [self.userCode integerValue];
+    model.nameNick = self.userName;
+    model.age = self.userAge;
+    model.gender = self.userGender;
+    model.urlProfileThumbnail = self.userProfile;
+    model.constellation = self.userConstellation;
+    model.schoolID = [self.schoolId integerValue];
+    model.isShow = self.haveSee;
+    model.timeSendBiu = self.matchTime;
+    
+    return model;
 }
 
 - (NSInteger)matchTime{

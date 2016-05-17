@@ -53,12 +53,12 @@
 }
 
 - (void)superViewDidAppear:(BOOL)animated{
-    self.timerCleanFaceStar = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onCleanFaceStar:) userInfo:nil repeats:YES];
+//    self.timerCleanFaceStar = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onCleanFaceStar:) userInfo:nil repeats:YES];
 }
 
 - (void)superViewDidDisappear:(BOOL)animated{
-    [self.timerCleanFaceStar invalidate];
-    self.timerCleanFaceStar = nil;
+//    [self.timerCleanFaceStar invalidate];
+//    self.timerCleanFaceStar = nil;
 }
 
 - (void)refreshWithModels:(NSArray *)models {
@@ -132,6 +132,24 @@
 }
 
 - (void)addNewFaceStarWithModel:(ModelBiuFaceStar*)model{
+    //过滤重复：如果屏幕上已经存在，抛弃
+    for (XMBiuFaceStar *biu in self.collectionArrInside) {
+        if ([biu isEqualWithUserCode:model.userCode]) {
+            return;
+        }
+    }
+    for (XMBiuFaceStar *biu in self.collectionArrCenter) {
+        if ([biu isEqualWithUserCode:model.userCode]) {
+            return;
+        }
+    }
+    for (XMBiuFaceStar *biu in self.collectionArrOutside) {
+        if ([biu isEqualWithUserCode:model.userCode]) {
+            return;
+        }
+    }
+    
+    
     
     if (self.collectionArrOutside.count >= self.collectionMaxCountOutside) {
         XMBiuFaceStar *olderOutsideFaceStar = self.collectionArrOutside[0];
@@ -212,13 +230,13 @@
  *
  *  @param timer 定时器
  */
-- (void)onCleanFaceStar:(NSTimer*)timer{
-    [self cleanFaceStarTrajectory0];
-    
-    [self cleanFaceStarTrajectory1];
-    
-    [self cleanFaceStarTrajectory2];
-}
+//- (void)onCleanFaceStar:(NSTimer*)timer{
+//    [self cleanFaceStarTrajectory0];
+//    
+//    [self cleanFaceStarTrajectory1];
+//    
+//    [self cleanFaceStarTrajectory2];
+//}
 
 /**
  *  清理第一圈超时头像

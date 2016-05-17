@@ -33,6 +33,7 @@
 - (BOOL)transferToNextTrajectoryWithTargetCollectionFaceStar:(NSArray *)collectionFaceStar;
 
 - (void)hiddenAndDestroy;
+
 @end
 @protocol XMBiuFaceStarDelegate <NSObject>
 @optional

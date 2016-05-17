@@ -26,6 +26,10 @@
  */
 - (ModelUserMatch*)selectLatestAndUnShow;
 /**
+ * 查询一条最旧的biubiu
+ */
+- (ModelUserMatch *)selectLastBiu;
+/**
  * 设置一条biubiu为已显示
  */
 - (void)updateHaveBeenShownWithUserCode:(NSInteger)userCode;

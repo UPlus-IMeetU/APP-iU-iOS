@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CellBiuBiuSend">
+            <rect key="frame" x="0.0" y="0.0" width="135" height="47"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="135" height="47"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biu_send_cell_chat_topic" translatesAutoresizingMaskIntoConstraints="NO" id="Drv-bd-m7s">
+                        <rect key="frame" x="0.0" y="0.0" width="135" height="47"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="话题" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y73-be-rfb">
+                        <rect key="frame" x="0.0" y="0.0" width="135" height="47"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.42352941176470588" green="0.81960784313725488" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="Drv-bd-m7s" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="49g-xX-rvn"/>
+                <constraint firstAttribute="trailing" secondItem="y73-be-rfb" secondAttribute="trailing" id="8bZ-UI-fCj"/>
+                <constraint firstItem="Drv-bd-m7s" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9ZY-2o-gyJ"/>
+                <constraint firstItem="y73-be-rfb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JpJ-Nv-EGL"/>
+                <constraint firstAttribute="bottom" secondItem="y73-be-rfb" secondAttribute="bottom" id="URf-k5-zJh"/>
+                <constraint firstAttribute="bottom" secondItem="Drv-bd-m7s" secondAttribute="bottom" id="mcQ-9i-p2v"/>
+                <constraint firstItem="y73-be-rfb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="qfr-pC-cbS"/>
+                <constraint firstAttribute="trailing" secondItem="Drv-bd-m7s" secondAttribute="trailing" id="ue0-Z6-DtM"/>
+            </constraints>
+            <size key="customSize" width="135" height="47"/>
+            <connections>
+                <outlet property="imgViewBG" destination="Drv-bd-m7s" id="8ur-Ov-sMq"/>
+                <outlet property="labelTopic" destination="y73-be-rfb" id="H6d-jL-J6i"/>
+            </connections>
+            <point key="canvasLocation" x="329.5" y="338.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="biu_send_cell_chat_topic" width="6" height="6"/>
+    </resources>
+</document>

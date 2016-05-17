@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ViewNewComerGuide">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2S-9i-yyb">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_comer_guide_bg_2" translatesAutoresizingMaskIntoConstraints="NO" id="aSc-YK-4IJ">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1L-rA-AX1">
+                            <rect key="frame" x="222" y="448" width="156" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="156" id="mmj-s7-C9t"/>
+                                <constraint firstAttribute="height" constant="45" id="yJR-fv-rY1"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="new_comer_guide_btn_end"/>
+                            <state key="highlighted" backgroundImage="new_comer_guide_btn_end_lighted"/>
+                            <connections>
+                                <action selector="onClickBtnThird:" destination="iN0-l3-epB" eventType="touchUpInside" id="y7b-JN-62L"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="aSc-YK-4IJ" secondAttribute="bottom" id="8zy-L9-r4P"/>
+                        <constraint firstAttribute="trailing" secondItem="aSc-YK-4IJ" secondAttribute="trailing" id="96r-Mo-QxC"/>
+                        <constraint firstItem="aSc-YK-4IJ" firstAttribute="top" secondItem="f2S-9i-yyb" secondAttribute="top" id="DUc-qS-eay"/>
+                        <constraint firstAttribute="bottom" secondItem="Z1L-rA-AX1" secondAttribute="bottom" constant="107" id="TJ7-5w-bOc"/>
+                        <constraint firstItem="aSc-YK-4IJ" firstAttribute="leading" secondItem="f2S-9i-yyb" secondAttribute="leading" id="a4c-fj-tz8"/>
+                        <constraint firstItem="Z1L-rA-AX1" firstAttribute="centerX" secondItem="f2S-9i-yyb" secondAttribute="centerX" id="mLw-8E-Ouu"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G0f-IX-jP7">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_comer_guide_bg_1" translatesAutoresizingMaskIntoConstraints="NO" id="ZVt-wu-yDj">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOr-WN-jS8">
+                            <rect key="frame" x="222" y="474" width="156" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="5ZA-Su-b4u"/>
+                                <constraint firstAttribute="width" constant="156" id="cYa-dA-iE8"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="new_comer_guide_btn"/>
+                            <state key="highlighted" backgroundImage="new_comer_guide_btn_lighted"/>
+                            <connections>
+                                <action selector="onClickBtnSecond:" destination="iN0-l3-epB" eventType="touchUpInside" id="M86-OK-sdb"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="ZVt-wu-yDj" firstAttribute="leading" secondItem="G0f-IX-jP7" secondAttribute="leading" id="5Rc-qx-iua"/>
+                        <constraint firstAttribute="bottom" secondItem="ZVt-wu-yDj" secondAttribute="bottom" id="5iI-mU-QNj"/>
+                        <constraint firstAttribute="trailing" secondItem="ZVt-wu-yDj" secondAttribute="trailing" id="Ltk-sh-dde"/>
+                        <constraint firstItem="ZVt-wu-yDj" firstAttribute="top" secondItem="G0f-IX-jP7" secondAttribute="top" id="hP6-he-zq4"/>
+                        <constraint firstAttribute="bottom" secondItem="WOr-WN-jS8" secondAttribute="bottom" constant="81" id="m9F-a3-rvX"/>
+                        <constraint firstItem="WOr-WN-jS8" firstAttribute="centerX" secondItem="G0f-IX-jP7" secondAttribute="centerX" id="uUR-aO-PLI"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kdt-IZ-tap">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_comer_guide_bg_0" translatesAutoresizingMaskIntoConstraints="NO" id="34x-90-fgs">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RI2-lY-sr3">
+                            <rect key="frame" x="222" y="389" width="156" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="7DZ-5O-o8F"/>
+                                <constraint firstAttribute="width" constant="156" id="QrD-DS-GHn"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="new_comer_guide_btn"/>
+                            <state key="highlighted" backgroundImage="new_comer_guide_btn_lighted"/>
+                            <connections>
+                                <action selector="onClickBtnFirst:" destination="iN0-l3-epB" eventType="touchUpInside" id="me8-ZP-25L"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="34x-90-fgs" secondAttribute="bottom" id="1hS-h5-aeR"/>
+                        <constraint firstItem="RI2-lY-sr3" firstAttribute="centerX" secondItem="kdt-IZ-tap" secondAttribute="centerX" id="9bi-oe-s3S"/>
+                        <constraint firstItem="34x-90-fgs" firstAttribute="leading" secondItem="kdt-IZ-tap" secondAttribute="leading" id="Z2R-KL-w25"/>
+                        <constraint firstItem="34x-90-fgs" firstAttribute="top" secondItem="kdt-IZ-tap" secondAttribute="top" id="aja-Mo-sIy"/>
+                        <constraint firstAttribute="bottom" secondItem="RI2-lY-sr3" secondAttribute="bottom" constant="166" id="o1m-AV-OvN"/>
+                        <constraint firstAttribute="trailing" secondItem="34x-90-fgs" secondAttribute="trailing" id="sgQ-A6-UxT"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="G0f-IX-jP7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="30N-fl-Yoc"/>
+                <constraint firstItem="f2S-9i-yyb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3tW-GB-vjK"/>
+                <constraint firstItem="kdt-IZ-tap" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6rg-ao-0a4"/>
+                <constraint firstAttribute="trailing" secondItem="kdt-IZ-tap" secondAttribute="trailing" id="Bzf-MR-KHy"/>
+                <constraint firstAttribute="trailing" secondItem="f2S-9i-yyb" secondAttribute="trailing" id="RP6-Wh-Ims"/>
+                <constraint firstAttribute="bottom" secondItem="f2S-9i-yyb" secondAttribute="bottom" id="bS9-JF-dnR"/>
+                <constraint firstAttribute="trailing" secondItem="G0f-IX-jP7" secondAttribute="trailing" id="cQO-Wp-MMN"/>
+                <constraint firstItem="G0f-IX-jP7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="enC-yV-11E"/>
+                <constraint firstAttribute="bottom" secondItem="kdt-IZ-tap" secondAttribute="bottom" id="hqK-2B-hmT"/>
+                <constraint firstItem="kdt-IZ-tap" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ky7-Ul-qhl"/>
+                <constraint firstAttribute="bottom" secondItem="G0f-IX-jP7" secondAttribute="bottom" id="y7x-XF-MXH"/>
+                <constraint firstItem="f2S-9i-yyb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zDF-PG-H1x"/>
+            </constraints>
+            <connections>
+                <outlet property="constraintBtnBottom" destination="o1m-AV-OvN" id="W2y-Wg-x23"/>
+                <outlet property="viewGuideFirst" destination="kdt-IZ-tap" id="ziH-2G-E0k"/>
+                <outlet property="viewGuideSecond" destination="G0f-IX-jP7" id="niT-wg-eOt"/>
+                <outlet property="viewGuideThird" destination="f2S-9i-yyb" id="gtF-QK-WVG"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="new_comer_guide_bg_0" width="375" height="667"/>
+        <image name="new_comer_guide_bg_1" width="375" height="667"/>
+        <image name="new_comer_guide_bg_2" width="375" height="667"/>
+        <image name="new_comer_guide_btn" width="156" height="45"/>
+        <image name="new_comer_guide_btn_end" width="156" height="45"/>
+        <image name="new_comer_guide_btn_end_lighted" width="156" height="45"/>
+        <image name="new_comer_guide_btn_lighted" width="157" height="45"/>
+    </resources>
+</document>

@@ -1,0 +1,53 @@
+//
+//  UIColor+Plug.h
+//  MeetU
+//
+//  Created by zhanghao on 15/8/17.
+//  Copyright (c) 2015年 U-Plus. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIColor(Plug)
+
++ (instancetype)colorWithString:(NSString*)colorStr alpha:(CGFloat)alpha;
+
+#pragma mark - 常用颜色
++ (instancetype)often_000000:(float)alpha;
+
++ (instancetype)often_007AFF:(float)alpha;
+
++ (instancetype)often_606366:(float)alpha;
+
++ (instancetype)often_33C6E5:(float)alpha;
+
++ (instancetype)often_A0A0A0:(float)alpha;
+
++ (instancetype)often_AAAAAA:(float)alpha;
+
++ (instancetype)often_BFBFBF:(float)alpha;
+
++ (instancetype)often_6CD1C9:(float)alpha;
+
++ (instancetype)often_CCCCCC:(float)alpha;
+
++ (instancetype)often_EEEEEE:(float)alpha;
+
++ (instancetype)often_FF5CFF:(float)alpha;
+
++ (instancetype)often_FFFFFF:(float)alpha;
+
++ (UIColor*)colorWithR:(CGFloat)r G:(CGFloat)g B:(CGFloat)b A:(CGFloat)a;
+
++ (UIColor*)colorWithR:(CGFloat)r G:(CGFloat)g B:(CGFloat)b;
+
+#pragma mark - 在色库内获取一个随机色
++ (UIColor*)getRandomColor;
+
+/**
+ *  获取UIColor的rgba色值
+ *
+ *  @return 包含rgba的字典
+ */
+- (NSDictionary*)currentRGBA;
+@end

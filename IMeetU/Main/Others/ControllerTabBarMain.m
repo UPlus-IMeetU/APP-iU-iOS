@@ -1,0 +1,98 @@
+//
+//  ControllerTabBarMain.m
+//  IMeetU
+//
+//  Created by zhanghao on 16/5/11.
+//  Copyright © 2016年 zhanghao. All rights reserved.
+//
+
+#import "ControllerTabBarMain.h"
+#import "UserDefultAccount.h"
+
+#import "ControllerNavi.h"
+
+#import "ControllerUserLoginOrRegister.h"
+#import "ControllerDrawerRight.h"
+#import "ControllerBiuBiu.h"
+#import "ControllerMineMain.h"
+
+@interface ControllerTabBarMain ()
+
+@property (nonatomic, strong) ControllerNavi *controllerNaviBiu;
+@property (nonatomic, strong) ControllerBiuBiu *controllerBiu;
+
+@property (nonatomic, strong) ControllerNavi *controllerNaviMsg;
+@property (nonatomic, strong) ControllerDrawerRight *controllerMsg;
+
+@property (nonatomic, strong) ControllerNavi *controllerNaviMine;
+@property (nonatomic, strong) ControllerMineMain *controllerMine;
+
+
+
+@end
+
+@implementation ControllerTabBarMain
+
++ (instancetype)shareController{
+    static ControllerTabBarMain *controller;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        controller = [[ControllerTabBarMain alloc] init];
+        [controller initial];
+    });
+    return controller;
+}
+
++ (void)setBadgeMsgWithCount:(NSInteger)badge{
+    ControllerTabBarMain *controller = [ControllerTabBarMain shareController];
+    UITabBarItem *tabBarItem = controller.controllerNaviMsg.tabBarItem;
+    
+    if (badge == 0) {
+        tabBarItem.badgeValue = nil;
+    }else if (badge > 0 && badge < 100){
+        tabBarItem.badgeValue = [NSString stringWithFormat:@"%lu", (long)badge];
+    }else if (badge > 99 && badge < NSIntegerMax){
+        tabBarItem.badgeValue = @"99+";
+    }else{
+        tabBarItem.badgeValue = @"";
+    }
+}
+
+- (void)initial{
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:self.tabBar.bounds];
+    bgView.backgroundColor = [UIColor  colorWithRed:50/255.0 green:64/255.0 blue:71/255.0 alpha:1];
+    [self.tabBar insertSubview:bgView atIndex:0];
+    self.tabBar.opaque = YES;
+    
+    self.controllerMsg = [ControllerDrawerRight controller];
+    self.controllerNaviMsg = [[ControllerNavi alloc] initWithRootViewController:self.controllerMsg];
+    self.controllerNaviMsg.tabBarItem.title = @"消息";
+    self.controllerNaviMsg.tabBarItem.image = [[UIImage imageNamed:@"main_tab_icon_mes_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.controllerNaviMsg.tabBarItem.selectedImage = [[UIImage imageNamed:@"main_tab_icon_mes_light"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    self.controllerBiu = [ControllerBiuBiu shareControllerBiuBiu];
+    self.controllerNaviBiu = [[ControllerNavi alloc] initWithRootViewController:self.controllerBiu];
+    //self.controllerNaviBiu.tabBarItem.title = @"BiuBiu";
+    self.controllerNaviBiu.tabBarItem.image = [[UIImage imageNamed:@"tab_icon_biu_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.controllerNaviBiu.tabBarItem.selectedImage = [[UIImage imageNamed:@"tab_icon_biu_light"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //设置tabBar中间按钮的编剧
+    self.controllerNaviBiu.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+    
+    self.controllerMine = [ControllerMineMain  controllerWithUserCode:nil getUserCodeFrom:MineMainGetUserCodeFromUserDefult];
+    self.controllerNaviMine = [[ControllerNavi alloc] initWithRootViewController:self.controllerMine];
+    self.controllerNaviMine.tabBarItem.title = @"我的";
+    self.controllerNaviMine.tabBarItem.image = [[UIImage imageNamed:@"main_tab_icon_mine_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.controllerNaviMine.tabBarItem.selectedImage = [[UIImage imageNamed:@"main_tab_icon_mine_light"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    self.viewControllers = @[self.controllerNaviMsg,self.controllerNaviBiu,self.controllerNaviMine];
+    //默认显示发送biubiu的页面
+    self.selectedIndex = 1;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+@end

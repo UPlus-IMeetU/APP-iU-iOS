@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="l0P-ip-N2s" customClass="ViewSelectSchoolSection">
+            <rect key="frame" x="0.0" y="0.0" width="365" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h9A-At-L3t">
+                    <rect key="frame" x="0.0" y="0.0" width="365" height="30"/>
+                    <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6bV-8f-fCb">
+                    <rect key="frame" x="30" y="13" width="4" height="4"/>
+                    <color key="backgroundColor" red="0.20000000000000001" green="0.77647058820000003" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="4" id="a36-9r-xbx"/>
+                        <constraint firstAttribute="height" constant="4" id="gq5-m1-zWl"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分组" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4n-5S-bSA">
+                    <rect key="frame" x="38" y="8" width="24" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.77647058823529413" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="h9A-At-L3t" secondAttribute="bottom" id="812-b9-76s"/>
+                <constraint firstItem="h9A-At-L3t" firstAttribute="leading" secondItem="l0P-ip-N2s" secondAttribute="leading" id="BmC-Av-7rN"/>
+                <constraint firstItem="h4n-5S-bSA" firstAttribute="leading" secondItem="6bV-8f-fCb" secondAttribute="trailing" constant="4" id="IT0-ST-TMH"/>
+                <constraint firstAttribute="trailing" secondItem="h9A-At-L3t" secondAttribute="trailing" id="NQM-RC-lHa"/>
+                <constraint firstItem="6bV-8f-fCb" firstAttribute="leading" secondItem="l0P-ip-N2s" secondAttribute="leading" constant="30" id="PaB-6k-34n"/>
+                <constraint firstItem="h4n-5S-bSA" firstAttribute="centerY" secondItem="l0P-ip-N2s" secondAttribute="centerY" id="gkt-f7-r56"/>
+                <constraint firstItem="h9A-At-L3t" firstAttribute="top" secondItem="l0P-ip-N2s" secondAttribute="top" id="jwH-FJ-AMq"/>
+                <constraint firstItem="6bV-8f-fCb" firstAttribute="centerY" secondItem="l0P-ip-N2s" secondAttribute="centerY" id="x5e-aH-di0"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="labelTitle" destination="h4n-5S-bSA" id="o0z-Wy-kgU"/>
+            </connections>
+            <point key="canvasLocation" x="121.5" y="228"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,16 @@
+//
+//  XMHttpBiuBiu.h
+//  IMeetU
+//
+//  Created by zhanghao on 16/5/14.
+//  Copyright © 2016年 zhanghao. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "XMHttp.h"
+
+@interface XMHttpBiuBiu : XMHttp
+
+- (void)loadMatchUserWithCount:(NSInteger)count timestamp:(NSInteger)timestamp callback:(XMHttpBlockStandard)callback;
+
+@end

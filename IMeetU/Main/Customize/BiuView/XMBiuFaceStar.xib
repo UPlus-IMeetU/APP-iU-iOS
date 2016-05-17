@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="XMBiuFaceStar">
+            <rect key="frame" x="0.0" y="0.0" width="109" height="110"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biu_waterwave" translatesAutoresizingMaskIntoConstraints="NO" id="rcO-Bp-Gf5">
+                    <rect key="frame" x="0.0" y="0.0" width="109" height="110"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biu_main_img_point_new_star_r1" translatesAutoresizingMaskIntoConstraints="NO" id="IIQ-hc-d4Q">
+                    <rect key="frame" x="31" y="32" width="46" height="46"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="NlI-2q-uVa"/>
+                        <constraint firstAttribute="height" constant="46" id="i4o-8a-xLv"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5wJ-SV-Q9a">
+                    <rect key="frame" x="32" y="33" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="Egg-M3-xyj"/>
+                        <constraint firstAttribute="height" constant="44" id="SOQ-GM-Oen"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="global_profile_defult">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onClickBtnProfile:" destination="iN0-l3-epB" eventType="touchUpInside" id="9pe-IJ-kpL"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biu_main_point_user_info" translatesAutoresizingMaskIntoConstraints="NO" id="f5B-0C-QHL">
+                    <rect key="frame" x="60.5" y="61" width="8" height="8"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="n3Y-Wv-mgb"/>
+                        <constraint firstAttribute="width" constant="8" id="zHe-KJ-i9A"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="IIQ-hc-d4Q" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="04z-5N-1hT"/>
+                <constraint firstAttribute="bottom" secondItem="rcO-Bp-Gf5" secondAttribute="bottom" id="3Nw-oz-6Uh"/>
+                <constraint firstItem="rcO-Bp-Gf5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Blo-ek-1Lf"/>
+                <constraint firstAttribute="trailing" secondItem="rcO-Bp-Gf5" secondAttribute="trailing" id="CO5-E4-PKj"/>
+                <constraint firstItem="5wJ-SV-Q9a" firstAttribute="top" secondItem="IIQ-hc-d4Q" secondAttribute="top" constant="1" id="F4B-VP-8Rb"/>
+                <constraint firstItem="5wJ-SV-Q9a" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IRT-PC-cZP"/>
+                <constraint firstItem="f5B-0C-QHL" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="10" id="LE4-PV-jfQ"/>
+                <constraint firstItem="5wJ-SV-Q9a" firstAttribute="trailing" secondItem="IIQ-hc-d4Q" secondAttribute="trailing" constant="-1" id="RZ5-Wh-aVq"/>
+                <constraint firstItem="IIQ-hc-d4Q" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="SLj-e3-NZE"/>
+                <constraint firstItem="5wJ-SV-Q9a" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="YEu-HS-Adr"/>
+                <constraint firstItem="f5B-0C-QHL" firstAttribute="trailing" secondItem="5wJ-SV-Q9a" secondAttribute="trailing" constant="-3" id="fuE-0U-nC7"/>
+                <constraint firstItem="5wJ-SV-Q9a" firstAttribute="leading" secondItem="IIQ-hc-d4Q" secondAttribute="leading" constant="1" id="inP-nz-r45"/>
+                <constraint firstItem="5wJ-SV-Q9a" firstAttribute="bottom" secondItem="IIQ-hc-d4Q" secondAttribute="bottom" constant="-1" id="lN3-Uy-OaX"/>
+                <constraint firstItem="f5B-0C-QHL" firstAttribute="bottom" secondItem="5wJ-SV-Q9a" secondAttribute="bottom" constant="-3" id="luc-n9-CQf"/>
+                <constraint firstItem="rcO-Bp-Gf5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qHR-gU-Kgm"/>
+                <constraint firstItem="f5B-0C-QHL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="10" id="toJ-s8-4no"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="F4B-VP-8Rb"/>
+                    <exclude reference="RZ5-Wh-aVq"/>
+                    <exclude reference="inP-nz-r45"/>
+                    <exclude reference="lN3-Uy-OaX"/>
+                    <exclude reference="fuE-0U-nC7"/>
+                    <exclude reference="luc-n9-CQf"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="btnProfile" destination="5wJ-SV-Q9a" id="Vf9-Vc-UQK"/>
+                <outlet property="constraintProfileBgHeight" destination="i4o-8a-xLv" id="KJZ-tB-I1j"/>
+                <outlet property="constraintProfileBgWidth" destination="NlI-2q-uVa" id="fTm-Fj-cp1"/>
+                <outlet property="constraintProfileHeight" destination="SOQ-GM-Oen" id="9en-mN-ZRy"/>
+                <outlet property="constraintProfileWidth" destination="Egg-M3-xyj" id="F9y-hV-yYK"/>
+                <outlet property="constraintTagPointHeight" destination="n3Y-Wv-mgb" id="rtJ-z8-5zd"/>
+                <outlet property="constraintTagPointOffsetX" destination="toJ-s8-4no" id="htM-h3-udp"/>
+                <outlet property="constraintTagPointOffsetY" destination="LE4-PV-jfQ" id="FoP-N6-U9O"/>
+                <outlet property="constraintTagPointWidth" destination="zHe-KJ-i9A" id="b0h-fe-meL"/>
+                <outlet property="imgProfileCircle" destination="IIQ-hc-d4Q" id="OzN-Xr-6y8"/>
+                <outlet property="imgViewPoint" destination="f5B-0C-QHL" id="AWk-Uw-dot"/>
+                <outlet property="imgViewWaterWave" destination="rcO-Bp-Gf5" id="agp-FL-6Xb"/>
+            </connections>
+            <point key="canvasLocation" x="450.5" y="414"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="biu_main_img_point_new_star_r1" width="25" height="25"/>
+        <image name="biu_main_point_user_info" width="5" height="5"/>
+        <image name="biu_waterwave" width="125" height="125"/>
+        <image name="global_profile_defult" width="80" height="80"/>
+    </resources>
+</document>

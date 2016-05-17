@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ViewMineMainAlterProfile">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tfM-dM-1Uu">
+                    <rect key="frame" x="290" y="290" width="20" height="20"/>
+                    <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dO-tk-uxO">
+                    <rect key="frame" x="240" y="470" width="120" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="WyN-4F-EeB"/>
+                    </constraints>
+                    <state key="normal" title="修改头像" backgroundImage="mine_main_alter_profile_btn">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="onClickBtnPrepareAlterProfile:" destination="iN0-l3-epB" eventType="touchUpInside" id="JUV-1A-JUS"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k62-OQ-evE">
+                    <rect key="frame" x="150" y="150" width="300" height="300"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="300" id="FON-X6-RCf"/>
+                        <constraint firstAttribute="width" constant="300" id="u3x-xO-gAv"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="2dO-tk-uxO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="34c-tc-znv"/>
+                <constraint firstItem="k62-OQ-evE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FQ5-Sv-LQJ"/>
+                <constraint firstItem="k62-OQ-evE" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="WPe-42-NCh"/>
+                <constraint firstItem="2dO-tk-uxO" firstAttribute="top" secondItem="k62-OQ-evE" secondAttribute="bottom" constant="20" id="chp-dk-UeR"/>
+                <constraint firstItem="tfM-dM-1Uu" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="dgd-vZ-oDd"/>
+                <constraint firstItem="tfM-dM-1Uu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="rqF-gL-9qL"/>
+            </constraints>
+            <connections>
+                <outlet property="btnAlterProfile" destination="2dO-tk-uxO" id="dIq-v2-rti"/>
+                <outlet property="constraintImgViewProfileHeight" destination="FON-X6-RCf" id="TrE-dS-JJU"/>
+                <outlet property="constraintImgViewProfileWidth" destination="u3x-xO-gAv" id="i1l-V0-Gtl"/>
+                <outlet property="imgViewProfile" destination="k62-OQ-evE" id="eQ6-mR-ZZY"/>
+                <outlet property="viewIndicatorLoading" destination="tfM-dM-1Uu" id="fIn-nF-6G6"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="mine_main_alter_profile_btn" width="42" height="42"/>
+    </resources>
+</document>

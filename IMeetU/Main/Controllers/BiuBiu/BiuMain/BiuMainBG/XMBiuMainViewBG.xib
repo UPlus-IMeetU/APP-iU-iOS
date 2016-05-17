@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="XMBiuMainViewBG">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biu_main_bg" translatesAutoresizingMaskIntoConstraints="NO" id="woF-Cf-ppj">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jRj-dv-tta">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XY5-sG-O0i">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NmT-r7-nxc">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gne-qz-SAM">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXp-1U-dJq">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V3P-AS-es8">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DNu-MR-uF5">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                    </subviews>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="57V-AI-a84">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8d5-XQ-Y1a">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vLA-8I-0C6">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EWz-dN-h71">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NmG-bh-8ce">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3yv-6Y-RMg">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                    </subviews>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KKw-NR-r8h">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tPS-4i-WmN">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BMH-1Z-EMv">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tm3-yE-chk">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bcD-bw-lVA">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WAy-18-iEi">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                    </subviews>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CrW-Kq-HqH">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KbZ-4E-jX8">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MbQ-Oy-gUh">
+                            <rect key="frame" x="180" y="236" width="240" height="128"/>
+                        </imageView>
+                    </subviews>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biu_main_bg_mountain" translatesAutoresizingMaskIntoConstraints="NO" id="WOW-rx-CU6">
+                    <rect key="frame" x="0.0" y="426" width="600" height="174"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="174" id="hSb-ah-5Ar"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="woF-Cf-ppj" secondAttribute="bottom" id="0B9-CC-mOk"/>
+                <constraint firstItem="jRj-dv-tta" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6mw-gA-179"/>
+                <constraint firstItem="CrW-Kq-HqH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9Eg-wv-sXb"/>
+                <constraint firstAttribute="trailing" secondItem="woF-Cf-ppj" secondAttribute="trailing" id="AMv-HI-DZi"/>
+                <constraint firstAttribute="bottom" secondItem="WOW-rx-CU6" secondAttribute="bottom" id="AoC-RJ-ece"/>
+                <constraint firstAttribute="bottom" secondItem="57V-AI-a84" secondAttribute="bottom" id="I7a-vV-OKt"/>
+                <constraint firstAttribute="bottom" secondItem="jRj-dv-tta" secondAttribute="bottom" id="IlT-rL-7Za"/>
+                <constraint firstItem="woF-Cf-ppj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="K9t-Xh-qv9"/>
+                <constraint firstAttribute="bottom" secondItem="CrW-Kq-HqH" secondAttribute="bottom" id="OfH-X1-YLs"/>
+                <constraint firstAttribute="trailing" secondItem="57V-AI-a84" secondAttribute="trailing" id="OsG-VY-nhh"/>
+                <constraint firstAttribute="trailing" secondItem="KKw-NR-r8h" secondAttribute="trailing" id="Ptf-IO-2Jc"/>
+                <constraint firstAttribute="trailing" secondItem="WOW-rx-CU6" secondAttribute="trailing" id="Qez-Dr-513"/>
+                <constraint firstItem="woF-Cf-ppj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Rju-Gz-B4I"/>
+                <constraint firstAttribute="trailing" secondItem="jRj-dv-tta" secondAttribute="trailing" id="Wqt-kD-Erz"/>
+                <constraint firstAttribute="bottom" secondItem="KKw-NR-r8h" secondAttribute="bottom" id="Yfs-CF-TuI"/>
+                <constraint firstItem="jRj-dv-tta" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eMh-km-1lg"/>
+                <constraint firstItem="WOW-rx-CU6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eNf-MW-B6v"/>
+                <constraint firstItem="KKw-NR-r8h" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jjb-8t-hhJ"/>
+                <constraint firstAttribute="trailing" secondItem="CrW-Kq-HqH" secondAttribute="trailing" id="qJB-yi-pIN"/>
+                <constraint firstItem="CrW-Kq-HqH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qSQ-bi-agU"/>
+                <constraint firstItem="57V-AI-a84" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qZL-Ea-LEg"/>
+                <constraint firstItem="57V-AI-a84" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="u10-Fw-Ijm"/>
+                <constraint firstItem="KKw-NR-r8h" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yWM-ij-Icl"/>
+            </constraints>
+            <connections>
+                <outlet property="constraintMountainHeight" destination="hSb-ah-5Ar" id="ZAS-5h-myC"/>
+                <outlet property="viewClouds" destination="KKw-NR-r8h" id="Wki-rM-ooG"/>
+                <outlet property="viewMonth" destination="MbQ-Oy-gUh" id="B3M-0P-hNn"/>
+                <outlet property="viewPoints" destination="jRj-dv-tta" id="VTR-u8-WTP"/>
+                <outlet property="viewStars" destination="57V-AI-a84" id="fAp-IM-wDm"/>
+                <outlet property="viewSun" destination="KbZ-4E-jX8" id="DDp-sN-sPN"/>
+                <outlet property="viewSunMonth" destination="CrW-Kq-HqH" id="65t-wD-WFb"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="biu_main_bg" width="621" height="1104"/>
+        <image name="biu_main_bg_mountain" width="621" height="266"/>
+    </resources>
+</document>

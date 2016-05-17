@@ -113,6 +113,7 @@
         }
         [textImgArray addObject:str];
     }
+    
     //
     [[MMEmotionCentre defaultCentre] fetchEmojisByType:MMFetchTypeAll codes:codes completionHandler:^(NSArray *emojis) {
         NSMutableAttributedString *mAStr = [[NSMutableAttributedString alloc] init];

@@ -20,5 +20,6 @@ pod 'MWPhotoBrowser'
 
 pod 'UMengAnalytics-NO-IDFA'
 pod 'UMengSocial', '~> 4.3'
+pod 'MJRefresh'
 
 pod 'BQMM', '~> 1.3.2'

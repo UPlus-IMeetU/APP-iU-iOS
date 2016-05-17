@@ -17,6 +17,7 @@
 #import "UIStoryboard+Plug.h"
 
 #import "YYKit/YYKit.h"
+#import <QuartzCore/QuartzCore.h>
 
 #import "ControllerDrawer.h"
 #import "AppDelegate.h"
@@ -66,6 +67,9 @@
 
 #import "DBCacheBiuBiu.h"
 #import "ModelUserListMatch.h"
+#import "MatchPeopleView.h"
+
+#import "ControllerBiuBiuReceive.h"
 
 @interface ControllerBiuBiu ()<XMBiuCenterButtonDelegate, AppDelegateRemoteNotificationDelegate, ControllerBiuBiuSendDelegate, XMBiuFaceStarCollectionDelegate, ControllerBiuBiuReceiveDelegate, ControllerBiuPayBDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -113,6 +117,7 @@
 
 @property (nonatomic,strong) ModelActivity *modelActivity;
 @property (nonatomic, assign) NSInteger umiCount;
+@property (nonatomic,strong) MatchPeopleView *matchPeopleView;
 
 @end
 
@@ -170,10 +175,16 @@
         [self refreshBiuMainInfoNotLogin];
     }
     //对于广告页进行相关的处理
+    _matchPeopleView = [[MatchPeopleView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen screenWidth], [UIScreen screenHeight] - 64 - 49)];
+    [self.view addSubview:_matchPeopleView];
+    _matchPeopleView.hidden = YES;
+
     self.advertView.backgroundColor = [UIColor colorWithR:0 G:0 B:0 A:0.5];
     self.advertImageView.layer.cornerRadius = 5;
     self.advertImageView.clipsToBounds = YES;
     [self.view bringSubviewToFront:self.advertView];
+    
+    //追加
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -232,6 +243,10 @@
             [self.biuViewBG launchAnimation];
         });
         self.biuViewBG.isAnimation = YES;
+    }
+    
+    if ([UserDefultAccount isLogin]) {
+        [_matchPeopleView initDataWithTime:0 withType:Refresh];
     }
 }
 
@@ -831,10 +846,26 @@
 
 #pragma mark 进入匹配列表
 - (IBAction)IntoMatchPeople:(id)sender {
-    MatchPeopleController *matchPeople = [[MatchPeopleController alloc] init];
-    [self.navigationController pushViewController:matchPeople animated:YES];
+//    MatchPeopleController *matchPeople = [[MatchPeopleController alloc] init];
+//    [self.navigationController pushViewController:matchPeople animated:YES];
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    [UIView beginAnimations:nil context:context];
+//    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+//    [UIView setAnimationDuration:1.0];
+//    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:_matchPeopleView cache:YES];
+//    [UIView setAnimationDelegate:self];
+//    [UIView setAnimationDidStopSelector:@selector(stop:)];
+//    [UIView commitAnimations];
+//    self.matchPeopleView.hidden = !self.matchPeopleView.hidden;
+#warning 进入收BiuBiu页面
+    ControllerBiuBiuReceive *controllerBiuBiuReceive = [ControllerBiuBiuReceive controllerWithFaceStar:nil delegate:self];
+    [self.navigationController pushViewController:controllerBiuBiuReceive animated:YES];
+    
 }
 
+- (void)stop:(id)sender{
+    NSLog(@"结束");
+}
 #pragma mark进入筛选页面
 - (IBAction)ChooseBtnClick:(id)sender {
     ControllerMatchSetting *matchSettingController = [ControllerMatchSetting controller];

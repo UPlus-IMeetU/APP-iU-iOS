@@ -9,16 +9,20 @@
 #import "MatchPeopleCell.h"
 #import "YYKit/YYKit.h"
 #import "DBSchools.h"
-#import "NSDate+plug.h"
+#import "NSDate+MJ.h"
+
+
+
 @interface MatchPeopleCell()
 @property (weak, nonatomic) IBOutlet UIImageView *headPortrait;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *userInfo;
 @property (weak, nonatomic) IBOutlet UIImageView *userSex;
-@property (weak, nonatomic) IBOutlet UILabel *biubiuInfoLabel;
+@property (weak, nonatomic) IBOutlet YYLabel *biubiuInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *matchLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *sexImageView;
 
 @end
 
@@ -29,56 +33,41 @@
     // Initialization code
 }
 
-- (void)setMatchPeople:(MatchPeople *)matchPeople{
+
+- (void)setMatchPeople:(ModelUserMatch *)matchPeople{
     _matchPeople = matchPeople;
-    //进行页面的初始化
-    [_headPortrait setImageWithURL:[NSURL URLWithString:_matchPeople.icon_thumbnailUrl] options:YYWebImageOptionShowNetworkActivity];
-    _userName.text = _matchPeople.nickname;
-    _biubiuInfoLabel.text = _matchPeople.chat_tags;
-    _timeLabel.text = [NSString stringWithFormat:@"%f",_matchPeople.time];
-    _distanceLabel.text = [NSString stringWithFormat:@"%d",_matchPeople.distance];
-    _matchLabel.text = [NSString stringWithFormat:@"%@%%",_matchPeople.matching_score];
+    [_headPortrait setImageWithURL:[NSURL URLWithString:_matchPeople.urlProfileThumbnail] options:YYWebImageOptionShowNetworkActivity];
+    _userName.text = _matchPeople.nameNick;
+    _biubiuInfoLabel.text = _matchPeople.topic;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_matchPeople.topic];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:2];//调整行间距
     
-    //查询学校
-    NSString *schoolName = [self searchSchoolNameWithID:[_matchPeople.school integerValue]];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_matchPeople.topic length])];
+    _biubiuInfoLabel.attributedText = attributedString;
+    [_biubiuInfoLabel sizeToFit];
+    _timeLabel.text = [self createdAt:_matchPeople.timeSendBiu];
+    _matchLabel.text = [NSString stringWithFormat:@"%ld%%",_matchPeople.matchScore];
+    NSString *schoolName = [self searchSchoolNameWithID:_matchPeople.schoolID];
     if (!schoolName) {
-        _userInfo.text = [NSString stringWithFormat:@"%d",_matchPeople.age];
+        _userInfo.text = [NSString stringWithFormat:@"%ld",(long)_matchPeople.age];
     }else{
-        _userInfo.text = [NSString stringWithFormat:@"%@  •  %d",schoolName,_matchPeople.age];
+        _userInfo.text = [NSString stringWithFormat:@"%@  •  %ld",schoolName,(long)_matchPeople.age];
     }
     
-    if (_matchPeople.distance < 1000) {
-        self.distanceLabel.text = [NSString stringWithFormat:@"%lum", (long)_matchPeople.distance];
+    if (_matchPeople.distanceToMe < 1000) {
+        self.distanceLabel.text = [NSString stringWithFormat:@"%lum", (long)_matchPeople.distanceToMe];
     }else{
-        self.distanceLabel.text = [NSString stringWithFormat:@"%.1fkm", _matchPeople.distance/1000.0];
+        self.distanceLabel.text = [NSString stringWithFormat:@"%.1fkm", _matchPeople.distanceToMe/1000.0];
     }
-    //    self.labelMatchScore.text = [NSString stringWithFormat:@"%lu%%", (long)mine.matchScore];
-    //    NSInteger time = ([NSDate currentTimeMillis]-mine.actyTime)/1000/60;
-    //    //NSLog(@"=====%lu", mine.matchScore)
-    //    if (time<60) {
-    //        self.labelActyTime.text = [NSString stringWithFormat:@"%lumin", (long)time];
-    //    }else if (time>60 && time<60*24){
-    //        self.labelActyTime.text = [NSString stringWithFormat:@"%ldh", time/60];
-    //    }else{
-    //        self.labelActyTime.text = [NSString stringWithFormat:@"%ld天", time/60/24];
-    //    }
-    //}
-    self.timeLabel.text = [self getTime:_matchPeople.time];
     
+    if (_matchPeople.gender == 1) {
+        [_sexImageView setImage:[UIImage imageNamed:@"biu_ago_icon_sex_boy"]];
+    }else{
+        [_sexImageView setImage:[UIImage imageNamed:@"biu_ago_sex_girl"]];
+    }
 }
 
-- (NSString *)getTime:(NSInteger *)time{
-    NSString *timeStr = @"";
-    NSInteger timeZone = fabs((([NSDate currentTimeMillis] - _matchPeople.time)/1000/60));
-    if (timeZone < 60) {
-        timeStr = [NSString stringWithFormat:@"%lumin", (long)time];
-    }else if (timeZone >60 && timeZone <60*24){
-        timeStr = [NSString stringWithFormat:@"%dh", timeZone/60];
-    }else{
-        timeStr = [NSString stringWithFormat:@"%d天", timeZone/60/24];
-    }
-    return timeStr;
-}
 
 //获取学校
 - (NSString *)searchSchoolNameWithID:(NSInteger)schoolID{
@@ -89,5 +78,40 @@
 - (void)Circular{
     _headPortrait.layer.cornerRadius = _headPortrait.frame.size.width * 0.25 ;
     _headPortrait.clipsToBounds = YES;
+}
+
+- (NSString *)createdAt:(NSInteger)time
+{
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    //2015-09-08 18:05:31
+    fmt.dateFormat = @"yyyyMMddHHmmss";
+    //#warning 真机调试的时候，必须加上这句
+    fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    
+    // 获得微博发布的具体时间
+    NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:(time/1000)];
+    // 判断是否为今年
+    if (createDate.isThisYear) {
+        NSDateComponents *cmps = [createDate deltaWithNow];
+        if (createDate.isToday) { // 今天
+            
+            if (cmps.hour >= 1) { // 至少是1小时前发的
+                return [NSString stringWithFormat:@"%ld小时前", (long)cmps.hour];
+            } else if (cmps.minute >= 1) { // 1~59分钟之前发的
+                return [NSString stringWithFormat:@"%ld分钟前", (long)cmps.minute];
+            } else { // 1分钟内发的
+                return @"刚刚";
+            }
+        } else if (cmps.day > 1 && cmps.day <= 7) { // 昨天
+            return [NSString stringWithFormat:@"%ld天前",(long)cmps.day];
+        } else if (cmps.day > 7){
+            fmt.dateFormat = @"MM月dd日";
+            return [fmt stringFromDate:createDate];
+        }
+    } else { // 非今年
+        fmt.dateFormat = @"yyyy年MM月dd日";
+        return [fmt stringFromDate:createDate];
+    }
+    return nil;
 }
 @end

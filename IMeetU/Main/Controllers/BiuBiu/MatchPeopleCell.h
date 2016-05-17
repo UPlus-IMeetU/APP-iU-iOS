@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MatchPeople.h"
+#import "ModelUserMatch.h"
 @interface MatchPeopleCell : UICollectionViewCell
-@property (nonatomic,strong) MatchPeople *matchPeople;
+@property (nonatomic,strong) ModelUserMatch *matchPeople;
 - (void)Circular;
 @end

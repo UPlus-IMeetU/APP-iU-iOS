@@ -103,7 +103,8 @@
     httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"user_code":self.modelFaceStar.userCode, @"chat_id":self.modelFaceStar.biuID, @"reference_id":self.modelFaceStar.referenceId};
+    NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"user_code":self.modelFaceStar.userCode};
+    
     [httpManager POST:[XMUrlHttp xmReceiveBiuDetails] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         ModelResponse *response = [ModelResponse responselWithObject:responseObject];
         if (response.state == 200) {
@@ -268,7 +269,7 @@
         httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
         httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
         
-        NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"chat_id":self.modelFaceStar.biuID, @"user_code":self.modelFaceStar.userCode};
+        NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"send_user_code":self.modelFaceStar.userCode};
         [httpManager POST:[XMUrlHttp xmReceiveBiuGrabBiu] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             ModelResponse *response = [ModelResponse responselWithObject:responseObject];
             if (response.state == 200) {

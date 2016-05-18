@@ -30,7 +30,7 @@
 
 - (void)creatTable{
     if ([self.db open]) {
-        NSString *sql = [NSString stringWithFormat:@"create table  if not exists %@(user_code INTEGER, name_nick TEXT, age INTEGER, gender INTEGER, profile_url TEXT, constellation TEXT, school_id INTEGER, time_biu_send INTEGER, is_show BOOL)", self.tableName];
+        NSString *sql = [NSString stringWithFormat:@"create table  if not exists %@(user_code INTEGER PRIMARY KEY, name_nick TEXT, age INTEGER, gender INTEGER, profile_url TEXT, constellation TEXT, school_id INTEGER, time_biu_send INTEGER, is_show BOOL)", self.tableName];
         [self.db executeUpdate:sql];
         [self.db close];
     }
@@ -49,7 +49,7 @@
         NSString *sql = [NSString stringWithFormat:@"select COUNT(*) from %@ where is_show=0", self.tableName];
         FMResultSet *set = [self.db executeQuery:sql];
         if (set.next) {
-            return [set longLongIntForColumnIndex:0];
+            return [set longForColumnIndex:0];
         }
         [self.db close];
     }
@@ -59,7 +59,7 @@
     ModelUserMatch *model = nil;
     
     if ([self.db open]) {
-        NSString *sql = [NSString stringWithFormat:@"select *from %@ where is_show=0 order by time_biu_send limit=1", self.tableName];
+        NSString *sql = [NSString stringWithFormat:@"select *from %@ where is_show=0 order by time_biu_send DESC limit 1", self.tableName];
         FMResultSet *set = [self.db executeQuery:sql];
         if (set.next) {
             model = [self modelWithSet:set];
@@ -69,6 +69,23 @@
     
     return model;
 }
+
+- (ModelUserMatch *)selectLastBiu{
+    ModelUserMatch *model = nil;
+    
+    if ([self.db open]) {
+        NSString *sql = [NSString stringWithFormat:@"select *from %@ order by time_biu_send limit 1", self.tableName];
+        FMResultSet *set = [self.db executeQuery:sql];
+        if (set.next) {
+            model = [self modelWithSet:set];
+        }
+        [self.db close];
+    }
+    
+    return model;
+}
+
+
 - (void)insertWithModelUserMatch:(ModelUserMatch*)model{
     if ([self.db open]) {
         [self justInsertWithModelUserMatch:model];
@@ -80,13 +97,12 @@
     if ([self.db open]) {
         for (ModelUserMatch *model in models) {
             [self justInsertWithModelUserMatch:model];
-            NSLog(@"------>%lu", model.userCode);
         }
         [self.db close];
     }
 }
 - (void)justInsertWithModelUserMatch:(ModelUserMatch*)model{
-    NSString *sql = [NSString stringWithFormat:@"insert into %@ (user_code, name_nick, age, gender, profile_url, constellation, school_id, time_biu_send, is_show)values(?,?,?,?,?,?,?,?,?)", self.tableName];
+    NSString *sql = [NSString stringWithFormat:@"insert or replace into %@ (user_code, name_nick, age, gender, profile_url, constellation, school_id, time_biu_send, is_show)values(?,?,?,?,?,?,?,?,?)", self.tableName];
     
     [self.db executeUpdate:sql, [NSNumber numberWithInteger:model.userCode], model.nameNick, [NSNumber numberWithInteger:model.age], [NSNumber numberWithInteger:model.gender], model.urlProfileThumbnail, model.constellation, [NSNumber numberWithInteger:model.schoolID], [NSNumber numberWithInteger:model.timeSendBiu], [NSNumber numberWithBool:NO]];
 }
@@ -110,7 +126,7 @@
 - (BOOL)haveBiuWithUserCode:(NSInteger)userCode{
     BOOL result = NO;
     if ([self.db open]) {
-        NSString *sql = [NSString stringWithFormat:@"select user_code from %@ where user_code=? limit=1", self.tableName];
+        NSString *sql = [NSString stringWithFormat:@"select user_code from %@ where user_code=? limit 1", self.tableName];
         FMResultSet *set = [self.db executeQuery:sql, [NSNumber numberWithInteger:userCode]];
         result = set.next;
         
@@ -121,7 +137,7 @@
 
 - (void)deleteWithUserCode:(NSInteger)userCode{
     if ([self.db open]) {
-        NSString *sql = [NSString stringWithFormat:@"delete from %@ where user_coed=?", self.tableName];
+        NSString *sql = [NSString stringWithFormat:@"delete from %@ where user_code=?", self.tableName];
         [self.db executeUpdate:sql, [NSNumber numberWithInteger:userCode]];
         
         [self.db close];
@@ -130,14 +146,14 @@
 
 - (ModelUserMatch*)modelWithSet:(FMResultSet*)set{
     ModelUserMatch *model = [[ModelUserMatch alloc] init];
-    model.userCode = [set stringForColumn:@"user_code"];
+    model.userCode = [set longForColumn:@"user_code"];
     model.nameNick = [set stringForColumn:@"name_nick"];
     model.age = [set intForColumn:@"age"];
     model.gender = [set intForColumn:@"gender"];
     model.urlProfileThumbnail = [set stringForColumn:@"profile_url"];
     model.constellation = [set stringForColumn:@"constellation"];
-    model.schoolID = [set stringForColumn:@"school_id"];
-    model.timeSendBiu = [set longLongIntForColumn:@"time_biu_send"];
+    model.schoolID = [set longForColumn:@"school_id"];
+    model.timeSendBiu = [set longForColumn:@"time_biu_send"];
     model.isShow = [set boolForColumn:@"is_show"];
     
     return model;

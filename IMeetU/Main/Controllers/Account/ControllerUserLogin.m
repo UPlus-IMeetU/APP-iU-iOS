@@ -169,11 +169,13 @@
             hud.mode = MBProgressHUDModeCustomView;
             hud.labelText = @"登录失败..";
             [hud hide:YES afterDelay:1];
+            
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         hud.mode = MBProgressHUDModeCustomView;
         hud.labelText = @"登录失败.";
         [hud hide:YES afterDelay:1];
+        
     }];
 }
 

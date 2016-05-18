@@ -51,7 +51,8 @@
 #define ReusableViewBiuReceiveFooterIdentifier @"ReusableViewBiuReceiveFooter"
 #define ReusableViewBiuReceiveFooterIdentifierBiuB @"ReusableViewBiuReceiveFooterBiuB"
 #define ReusableViewBiuReceiveSectionIdentifier @"ReusableViewBiuReceiveSection"
-
+#define Recharge 10001
+#define Consumption 10002
 
 @interface ControllerBiuBiuReceive ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ReusableViewBiuReceiveFooterBiuBDelegate, ReusableViewBiuReceiveFooterDelegate, ControllerBiuPayBDelegate, ReusableViewBiuReceiveHeaderDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -66,8 +67,8 @@
 
 @property (nonatomic, strong) UIImagePickerController *imgPickController;
 @property (nonatomic, assign) NSInteger profileState;
-
-@property (nonatomic, weak) id<ControllerBiuBiuReceiveDelegate> delegateReceiveBiu;
+@property (nonatomic, assign) BOOL isDropDown;
+@property (nonatomic, weak) id<ControllerBiuBiuReceiveDelegate,UIAlertViewDelegate> delegateReceiveBiu;
 @end
 
 @implementation ControllerBiuBiuReceive
@@ -76,7 +77,6 @@
     ControllerBiuBiuReceive *controller = [UIStoryboard xmControllerWithName:xmStoryboardNameBuiBui indentity:@"ControllerBiuBiuReceive"];
     controller.modelFaceStar = model;
     controller.delegateReceiveBiu = delegate;
-    
     return controller;
 }
 
@@ -94,8 +94,9 @@
     self.collectionViewMain.dataSource = self;
     self.collectionViewMain.delegate = self;
     self.collectionViewMain.showsVerticalScrollIndicator = NO;
-    
     self.collectionViewMain.backgroundColor = [UIColor whiteColor];
+    self.collectionViewMain.layer.cornerRadius = 10;
+    self.collectionViewMain.clipsToBounds = YES;
     
     self.modelBiuReceiveIsRequest = NO;
     MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"" animated:YES];
@@ -163,9 +164,16 @@
     if (section == 0) {
         return 0;
     }else if (section == 1){
-        return self.modelBiuReceive.characters.count;
+        if (!_isDropDown) {
+            return self.modelBiuReceive.characters.count;
+        }
+        return 0;
+        
     }else if (section == 2){
-        return self.modelBiuReceive.interests.count;
+        if (_isDropDown) {
+            return self.modelBiuReceive.interests.count;
+        }
+        return 0;
     }
     
     return 0;
@@ -189,19 +197,18 @@
             reusableView = viewSection;
         }
     }else if (kind == UICollectionElementKindSectionFooter){
+        // 网络请求完成之前，或网络请求成功后且biubiu币足够
+        //        if ((!self.modelBiuReceiveIsRequest) || (self.modelBiuReceive.biuAllCount > self.modelBiuReceive.biuUsedCountOnce)) {
+        ReusableViewBiuReceiveFooter *viewSection = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ReusableViewBiuReceiveFooterIdentifier forIndexPath:indexPath];
+        viewSection.delegateFooter = self;
+        [viewSection initWithIsGrabbed:self.modelBiuReceive.isGrabbbed];
         
-        //网络请求完成之前，或网络请求成功后且biubiu币足够
-        if ((!self.modelBiuReceiveIsRequest) || (self.modelBiuReceive.biuAllCount > self.modelBiuReceive.biuUsedCountOnce)) {
-            ReusableViewBiuReceiveFooter *viewSection = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ReusableViewBiuReceiveFooterIdentifier forIndexPath:indexPath];
-            viewSection.delegateFooter = self;
-            [viewSection initWithIsGrabbed:self.modelBiuReceive.isGrabbbed];
-            
-            reusableView = viewSection;
-        }else{
-            ReusableViewBiuReceiveFooterBiuB *reusableFooterBiuB = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ReusableViewBiuReceiveFooterIdentifierBiuB forIndexPath:indexPath];
-            reusableFooterBiuB.delegateFooter = self;
-            return reusableFooterBiuB;
-        }
+        reusableView = viewSection;
+        //        }else{
+        //            ReusableViewBiuReceiveFooterBiuB *reusableFooterBiuB = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ReusableViewBiuReceiveFooterIdentifierBiuB forIndexPath:indexPath];
+        //            reusableFooterBiuB.delegateFooter = self;
+        //            return reusableFooterBiuB;
+        //        }
     }
     
     return reusableView;
@@ -222,16 +229,35 @@
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(0, 57, 24, 57);
+    if(section == 0 ){
+        return UIEdgeInsetsZero;
+    }else if(section == 1){
+        if (self.modelBiuReceive.characters.count == 0) {
+            return  UIEdgeInsetsZero;
+        }
+        return UIEdgeInsetsMake(15, 20, 15, 20);
+    }else if(section == 2){
+        if (self.modelBiuReceive.interests.count == 0 || !_isDropDown) {
+            return UIEdgeInsetsMake(0, 0, 15, 0);
+        }
+        return UIEdgeInsetsMake(15, 20, 15, 20);
+    }
+    return UIEdgeInsetsZero;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return CGSizeMake([UIScreen screenWidth], 258);
+        return CGSizeMake([UIScreen screenWidth],440);
     }else if (section == 1){
-        return CGSizeMake([UIScreen screenWidth], 49);
+        if (_isDropDown) {
+            return CGSizeMake([UIScreen screenWidth], 20);
+        }
+        return CGSizeZero;
     }else if (section == 2){
-        return CGSizeMake([UIScreen screenWidth], 49);
+        if (_isDropDown) {
+            return CGSizeMake([UIScreen screenWidth], 20);
+        }
+        return CGSizeZero;
     }
     
     return CGSizeZero;
@@ -252,7 +278,6 @@
 - (void)reusableViewBiuReceiveFooterBiuBPay:(ReusableViewBiuReceiveFooterBiuB *)reusableView{
     ControllerBiuPayB *controller = [ControllerBiuPayB controllerWithUmiCount:0];
     controller.delegatePayUmi = self;
-    
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -261,7 +286,7 @@
 }
 
 #pragma mark - 抢biu回调
-- (void)reusableViewBiuReceiveFooterGrabBiu:(ReusableViewBiuReceiveFooter *)reusableView{
+- (void)reusableViewBiuReceiveFooterGrabBiu:(ReusableViewBiuReceiveFooter *)reusableView WithButton:(UIButton *)button{
     if (self.profileState == 1 || self.profileState == 2 || self.profileState == 3){
         MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"抢biu中..." animated:YES];
         
@@ -269,55 +294,79 @@
         httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
         httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
         
-        NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"send_user_code":self.modelFaceStar.userCode};
+        NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"send_user_code":self.modelFaceStar.userCode,@"virtual_currency":[NSNumber numberWithInt:0]};
         [httpManager POST:[XMUrlHttp xmReceiveBiuGrabBiu] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             ModelResponse *response = [ModelResponse responselWithObject:responseObject];
             if (response.state == 200) {
                 NSInteger status = [response.data[@"message"] integerValue];
+                NSInteger uMi = [response.data[@"virtual_currency"] integerValue];
+                //进行判断 message 1.
+                //2.biu币不足，请充值
                 
+                //4.需要扣biu币
+                //0.要抢的biu已结束
                 if (status == 0) {
-                    //biu币不足
-                    [hud xmSetCustomModeWithResult:NO label:@"biu币不足"];
-                    [hud hide:YES afterDelay:1];
-                }else if (status == 1){
-                    //抢biubiu成功
-                    [hud xmSetCustomModeWithResult:YES label:@"抢biu成功"];
-                    //将按钮置为不可抢状态
-                    self.modelBiuReceive.isGrabbbed = YES;
-                    [self.collectionViewMain reloadSections:[NSIndexSet indexSetWithIndex:2]];
-                    //抢biu成功后，消耗biu币
-                    self.modelBiuReceive.biuAllCount -= self.modelBiuReceive.biuUsedCountOnce;
-                    //强制更新联系人列表
-                    [[DBCacheBiuContact shareDAO] updateFromNetworkWithIsForced:YES block:nil];
-                    
-                    if (self.delegateReceiveBiu) {
-                        if ([self.delegateReceiveBiu respondsToSelector:@selector(controllerBiuBiuReceive:grabBiu:umiCount:)]) {
-                            [self.delegateReceiveBiu controllerBiuBiuReceive:self grabBiu:self.modelFaceStar umiCount:self.modelBiuReceive.biuAllCount];
-                        }
-                    }
-                    
-                    [MobClick event:@"biu_grab"];
-                    
-                    self.modelBiuReceive.isGrabbbed = YES;
-                    [self.collectionViewMain reloadData];
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                        //跳转聊天界面
-                        ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:self.modelBiuReceive.userCode conversationType:EMConversationTypeChat];
-                        [self setHidesBottomBarWhenPushed:YES];
-                        [self.navigationController pushViewController:controllerChat animated:YES];
-                        [hud hide:YES];
-                    });
-                }else if (status == 2){
-                    //biubiu已被抢
-                    self.modelBiuReceive.isGrabbbed = YES;
-                    [self.collectionViewMain reloadData];
-                    [hud xmSetCustomModeWithResult:NO label:@"biu已被抢"];
-                    [hud hide:YES afterDelay:1];
-                }else{
-                    //未知错误
-                    [hud xmSetCustomModeWithResult:NO label:@""];
-                    [hud hide:YES afterDelay:1];
+                    button.enabled = NO;
+                    [button setTitle:@"本次biubiu已结束" forState:UIControlStateNormal];
+                //3.已经被接受
+                }else if(status == 3){
+                    button.enabled = NO;
+                    [button setTitle:@"已收biu" forState:UIControlStateNormal];
+                //1.已经进入抢biu列表
+                }else if(status == 1){
+                    [self.navigationController popViewControllerAnimated:YES];
+                }else if(status == 2){
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"U米不足" message:@"U米不够啦，先去U米中心兑换吧" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"兑换U米", nil];
+                    alertView.tag = 1001;
+                    [alertView show];
+                }else if(status == 4){
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收biu" message:[NSString stringWithFormat:@"已经有%ld收了TA的biubiu继续收TA的将消耗%ldU米",uMi * 10,uMi] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                    alertView.tag = 1002;
+                    [alertView show];
                 }
+                //                if (status == 0) {
+                //                    //biu币不足
+                //                    [hud xmSetCustomModeWithResult:NO label:@"biu币不足"];
+                //                    [hud hide:YES afterDelay:1];
+                //                }else if (status == 1){
+                //                    //抢biubiu成功
+                //                    [hud xmSetCustomModeWithResult:YES label:@"抢biu成功"];
+                //                    //将按钮置为不可抢状态
+                //                    self.modelBiuReceive.isGrabbbed = YES;
+                //                    [self.collectionViewMain reloadSections:[NSIndexSet indexSetWithIndex:2]];
+                //                    //抢biu成功后，消耗biu币
+                //                    self.modelBiuReceive.biuAllCount -= self.modelBiuReceive.biuUsedCountOnce;
+                //                    //强制更新联系人列表
+                //                    [[DBCacheBiuContact shareDAO] updateFromNetworkWithIsForced:YES block:nil];
+                //
+                //                    if (self.delegateReceiveBiu) {
+                //                        if ([self.delegateReceiveBiu respondsToSelector:@selector(controllerBiuBiuReceive:grabBiu:umiCount:)]) {
+                //                            [self.delegateReceiveBiu controllerBiuBiuReceive:self grabBiu:self.modelFaceStar umiCount:self.modelBiuReceive.biuAllCount];
+                //                        }
+                //                    }
+                //
+                //                    [MobClick event:@"biu_grab"];
+                //
+                //                    self.modelBiuReceive.isGrabbbed = YES;
+                //                    [self.collectionViewMain reloadData];
+                //                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                //                        //跳转聊天界面
+                //                        ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:self.modelBiuReceive.userCode conversationType:EMConversationTypeChat];
+                //                        [self setHidesBottomBarWhenPushed:YES];
+                //                        [self.navigationController pushViewController:controllerChat animated:YES];
+                //                        [hud hide:YES];
+                //                    });
+                //                }else if (status == 2){
+                //                    //biubiu已被抢
+                //                    self.modelBiuReceive.isGrabbbed = YES;
+                //                    [self.collectionViewMain reloadData];
+                //                    [hud xmSetCustomModeWithResult:NO label:@"biu已被抢"];
+                //                    [hud hide:YES afterDelay:1];
+                //                }else{
+                //                    //未知错误
+                //                    [hud xmSetCustomModeWithResult:NO label:@""];
+                //                    [hud hide:YES afterDelay:1];
+                //                }
                 
             }else{
                 [hud xmSetCustomModeWithResult:NO label:@"没抢到biu"];
@@ -341,7 +390,25 @@
     }
 }
 
-- (void)reusableViewBiuReceiveFooterUnreceiveTA:(ReusableViewBiuReceiveFooter *)reusableView{
+
+#pragma mark UIAlertDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        [alertView setHidden:YES];
+    }else if(buttonIndex == 1){
+        if ((alertView.tag == Recharge)) {
+            //进行充值操作
+            NSInteger uMi = [UserDefultAccount countUmi];
+            ControllerBiuPayB *controller = [ControllerBiuPayB controllerWithUmiCount:uMi];
+            controller.delegatePayUmi = self;
+            [self.navigationController pushViewController:controller animated:YES];
+        }else if(alertView.tag == Consumption){
+            //进行消费,再调用接口
+            
+        }
+    }
+}
+- (void)reusableViewBiuReceiveFooterUnreceiveTA:(ReusableViewBiuReceiveFooter *)reusableView {
     MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"" animated:YES];
     
     AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
@@ -371,6 +438,32 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (void)resuableViewBiuReceiveHeader:(ReusableViewBiuReceiveHeader*)reusableView
+                     onClickDropDown:(UIButton *)btn{
+    _isDropDown = !_isDropDown;
+    [self rotate:btn];
+    
+    
+}
+
+
+- (void)rotate:(UIButton *)sender {
+    if (_isDropDown) {
+        [UIView animateWithDuration:0.5 animations:^{
+            sender.transform = CGAffineTransformMakeRotation(M_PI);
+        } completion:^(BOOL finished) {
+            [self.collectionViewMain reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 2)]];
+        }];
+    }
+    else {
+        [UIView animateWithDuration:0.5 animations:^{
+            sender.transform = CGAffineTransformMakeRotation(0);
+        } completion:^(BOOL finished) {
+            [self.collectionViewMain reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 2)]];
+        }];
+    }
+}
+
 - (void)controllerBiuPayB:(ControllerBiuPayB *)controller payRes:(BOOL)res umiCount:(NSInteger)count{
     if (res) {
         self.modelBiuReceive.biuAllCount = count;
@@ -393,11 +486,11 @@
     imgViewProfile.userInteractionEnabled = YES;
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
-       [UIView animateWithDuration:0.3 animations:^{
-           imgViewProfile.alpha = 0;
-       } completion:^(BOOL finished) {
-           [imgViewProfile removeFromSuperview];
-       }];
+        [UIView animateWithDuration:0.3 animations:^{
+            imgViewProfile.alpha = 0;
+        } completion:^(BOOL finished) {
+            [imgViewProfile removeFromSuperview];
+        }];
     }];
     [imgViewProfile addGestureRecognizer:tapGestureRecognizer];
     

@@ -37,6 +37,7 @@
 
 + (instancetype)often_FFFFFF:(float)alpha;
 
++ (UIColor *)oftenOrange;
 + (UIColor*)colorWithR:(CGFloat)r G:(CGFloat)g B:(CGFloat)b A:(CGFloat)a;
 
 + (UIColor*)colorWithR:(CGFloat)r G:(CGFloat)g B:(CGFloat)b;

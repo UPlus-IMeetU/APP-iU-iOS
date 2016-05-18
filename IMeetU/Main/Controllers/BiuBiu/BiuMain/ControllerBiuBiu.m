@@ -182,6 +182,13 @@
     _matchPeopleView = [[MatchPeopleView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen screenWidth], [UIScreen screenHeight] - 64 - 49)];
     [self.view addSubview:_matchPeopleView];
     _matchPeopleView.hidden = YES;
+    __weak typeof(self) weakSelf = self;
+    _matchPeopleView.RecieveBiuBiuSelectBlock = ^(ModelBiuFaceStar *modelBiuFaceStar){
+        //进行页面的跳转
+        ControllerBiuBiuReceive *controllerBiuBiuReceive = [ControllerBiuBiuReceive controllerWithFaceStar:modelBiuFaceStar delegate:weakSelf];
+        [weakSelf.navigationController pushViewController:controllerBiuBiuReceive animated:YES];
+        
+    };
 
     self.advertView.backgroundColor = [UIColor colorWithR:0 G:0 B:0 A:0.5];
     self.advertImageView.layer.cornerRadius = 5;
@@ -848,18 +855,16 @@
 - (IBAction)IntoMatchPeople:(id)sender {
 //    MatchPeopleController *matchPeople = [[MatchPeopleController alloc] init];
 //    [self.navigationController pushViewController:matchPeople animated:YES];
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    [UIView beginAnimations:nil context:context];
-//    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-//    [UIView setAnimationDuration:1.0];
-//    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:_matchPeopleView cache:YES];
-//    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationDidStopSelector:@selector(stop:)];
-//    [UIView commitAnimations];
-//    self.matchPeopleView.hidden = !self.matchPeopleView.hidden;
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [UIView beginAnimations:nil context:context];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:_matchPeopleView cache:YES];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(stop:)];
+    [UIView commitAnimations];
+    self.matchPeopleView.hidden = !self.matchPeopleView.hidden;
 #warning 进入收BiuBiu页面
-    ControllerBiuBiuReceive *controllerBiuBiuReceive = [ControllerBiuBiuReceive controllerWithFaceStar:nil delegate:self];
-    [self.navigationController pushViewController:controllerBiuBiuReceive animated:YES];
     
 }
 

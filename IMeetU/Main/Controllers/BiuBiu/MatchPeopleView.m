@@ -20,8 +20,6 @@
 #import "MJRefresh.h"
 
 #import "NSDate+plug.h"
-
-
 #import "ModelUserListMatch.h"
 static NSString * const kIdentifierCell = @"MatchPeopleCell";
 @interface MatchPeopleView()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -85,7 +83,15 @@ static NSString * const kIdentifierCell = @"MatchPeopleCell";
     cell.matchPeople = self.matchPeopleArray[indexPath.row];
     return cell;
 }
-#pragma mark - set方法
+#pragma mark - 点击进入对应的页面
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+//    + (ControllerBiuBiuReceive*)controllerWithFaceStar:(ModelBiuFaceStar*)model delegate:(id<ControllerBiuBiuReceiveDelegate>)delegate;
+    ModelBiuFaceStar *modelBiuFaceStar = [ModelBiuFaceStar modelWithModelUserMatch:self.matchPeopleArray[indexPath.row]];
+    if (self.RecieveBiuBiuSelectBlock) {
+        self.RecieveBiuBiuSelectBlock(modelBiuFaceStar);
+    }
+    return;
+}
 
 #pragma mark - get方法
 - (UICollectionView *)collectionView {
@@ -93,6 +99,7 @@ static NSString * const kIdentifierCell = @"MatchPeopleCell";
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height) collectionViewLayout:self.waterLayout];
         [_collectionView registerNib:[UINib nibWithNibName:@"MatchPeopleCell" bundle:nil] forCellWithReuseIdentifier:kIdentifierCell];
         _collectionView.dataSource = self;
+        _collectionView.delegate = self;
         _collectionView.backgroundColor = [UIColor colorWithR:247 G:245 B:243 A:1];
     
         //上拉刷新

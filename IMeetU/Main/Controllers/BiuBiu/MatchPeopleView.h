@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ModelBiuFaceStar.h"
 typedef NS_ENUM(NSInteger,MatchRefreshType) {
     Refresh = 0,
     Loading = 1
 };
-
 @interface MatchPeopleView : UIView
+/**
+ *  点击列表回调的block
+ */
+@property (nonatomic,copy) void (^RecieveBiuBiuSelectBlock)(ModelBiuFaceStar *modelBiuFaceStar);
 - (void)initDataWithTime:(NSInteger)time withType:(MatchRefreshType)refreshType;
 @end

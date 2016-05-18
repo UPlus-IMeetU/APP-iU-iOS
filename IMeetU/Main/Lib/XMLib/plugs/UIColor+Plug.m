@@ -78,6 +78,10 @@
 - (void)setRandomColors:(NSArray *)randomColors{
 }
 
++ (UIColor *)oftenOrange{
+    return [UIColor colorWithR:253 G:148 B:38 A:1];
+}
+
 + (UIColor*)colorWithR:(CGFloat)r G:(CGFloat)g B:(CGFloat)b A:(CGFloat)a{
     return [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a];
 }

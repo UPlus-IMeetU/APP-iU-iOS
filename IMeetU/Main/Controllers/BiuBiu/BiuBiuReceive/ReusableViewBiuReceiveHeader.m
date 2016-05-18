@@ -9,6 +9,7 @@
 #import "ReusableViewBiuReceiveHeader.h"
 #import "DBSchools.h"
 #import <YYKit/YYKit.h>
+#import "UIColor+plug.h"
 
 @interface ReusableViewBiuReceiveHeader()
 
@@ -28,6 +29,10 @@
 @property (weak, nonatomic) IBOutlet UIView *viewProfileState;
 @property (weak, nonatomic) IBOutlet UILabel *labelProfileState;
 
+@property (weak, nonatomic) IBOutlet UIButton *topicButton;
+@property (weak, nonatomic) IBOutlet UIButton *hobbyButton;
+@property (weak, nonatomic) IBOutlet UIButton *dropDownButton;
+
 @property (nonatomic, weak) ModelBiuReceive *model;
 @end
 @implementation ReusableViewBiuReceiveHeader
@@ -43,8 +48,21 @@
     self.labelAge.text = @"";
     self.labelConstellation.text = @"";
     self.labelSchoolProfression.text = @"";
-    
+    self.labelChatTopic.textColor = [UIColor colorWithR:51 G:51 B:51 A:1];
     self.btnUserIdentifier.hidden = YES;
+    
+    [self.topicButton setTitleColor:[UIColor oftenOrange] forState:UIControlStateNormal];
+    self.topicButton.layer.cornerRadius = self.topicButton.height * 0.5;
+    self.topicButton.layer.borderWidth = 0.5;
+    self.topicButton.layer.borderColor = [UIColor oftenOrange].CGColor;
+    self.topicButton.clipsToBounds = YES;
+    
+    [self.hobbyButton setTitleColor:[UIColor oftenOrange] forState:UIControlStateNormal];
+    self.hobbyButton.layer.cornerRadius = self.hobbyButton.height * 0.5;
+    self.hobbyButton.layer.borderWidth = 0.5;
+    self.hobbyButton.layer.borderColor = [UIColor oftenOrange].CGColor;
+    self.hobbyButton.clipsToBounds = YES;
+    [self.dropDownButton setImage:[UIImage imageNamed:@"biu_receive_btn_down"] forState:UIControlStateNormal];
 }
 
 - (void)initWithModel:(ModelBiuReceive *)model{
@@ -126,6 +144,13 @@
     if (self.delegateReusableView) {
         if ([self.delegateReusableView respondsToSelector:@selector(reusableViewBiuReceiveHeader:onClickBtnUserIdentifier:)]) {
             [self.delegateReusableView reusableViewBiuReceiveHeader:self onClickBtnUserIdentifier:sender];
+        }
+    }
+}
+- (IBAction)dropDownButtonClick:(id)sender {
+    if (self.delegateReusableView) {
+        if ([self.delegateReusableView respondsToSelector:@selector(resuableViewBiuReceiveHeader:onClickDropDown:)]) {
+            [self.delegateReusableView resuableViewBiuReceiveHeader:self onClickDropDown:sender];
         }
     }
 }

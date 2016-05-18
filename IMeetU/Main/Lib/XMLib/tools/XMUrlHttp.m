@@ -76,7 +76,7 @@
 }
 
 + (NSString *)xmReceiveBiuDetails{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/biuDetails"];
+    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biu/getBiuDetails"];
 }
 
 + (NSString *)xmReceiveBiuGrabBiu{

@@ -23,4 +23,7 @@
 - (void)reusableViewBiuReceiveHeader:(ReusableViewBiuReceiveHeader*)reusableView profileUrl:(NSString*)url;
 
 - (void)reusableViewBiuReceiveHeader:(ReusableViewBiuReceiveHeader*)reusableView onClickBtnUserIdentifier:(UIButton*)btn;
+
+- (void)resuableViewBiuReceiveHeader:(ReusableViewBiuReceiveHeader*)reusableView
+    onClickDropDown:(UIButton *)btn;
 @end

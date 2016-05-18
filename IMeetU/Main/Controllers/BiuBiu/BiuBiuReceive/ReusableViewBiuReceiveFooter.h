@@ -19,7 +19,7 @@
 @end
 @protocol ReusableViewBiuReceiveFooterDelegate <NSObject>
 @optional
-- (void)reusableViewBiuReceiveFooterGrabBiu:(ReusableViewBiuReceiveFooter*)reusableView;
+- (void)reusableViewBiuReceiveFooterGrabBiu:(ReusableViewBiuReceiveFooter*)reusableView WithButton:(UIButton *)button;
 
 - (void)reusableViewBiuReceiveFooterUnreceiveTA:(ReusableViewBiuReceiveFooter*)reusableView;
 

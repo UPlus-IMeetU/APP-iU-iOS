@@ -38,7 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewMain;
 @property (weak, nonatomic) IBOutlet UIView *viewCard;
 @property (weak, nonatomic) IBOutlet UILabel *labelCodeCount;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionViewChats;
+//@property (weak, nonatomic) IBOutlet UICollectionView *collectionViewChats;
 @property (weak, nonatomic) IBOutlet UIButton *btnProfile;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldTopic;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constarintViewEndEditBottom;
@@ -81,11 +81,11 @@
     self.viewCard.layer.masksToBounds = YES;
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewAlignRightLayout alloc] init];
-    self.collectionViewChats.collectionViewLayout = layout;
-    [self.collectionViewChats registerNib:[UINib xmNibFromMainBundleWithName:CellReuseIdentifier] forCellWithReuseIdentifier:CellReuseIdentifier];
-    self.collectionViewChats.dataSource = self;
-    self.collectionViewChats.delegate = self;
-    self.collectionViewChats.backgroundColor = [UIColor whiteColor];
+//    self.collectionViewChats.collectionViewLayout = layout;
+//    [self.collectionViewChats registerNib:[UINib xmNibFromMainBundleWithName:CellReuseIdentifier] forCellWithReuseIdentifier:CellReuseIdentifier];
+//    self.collectionViewChats.dataSource = self;
+//    self.collectionViewChats.delegate = self;
+//    self.collectionViewChats.backgroundColor = [UIColor whiteColor];
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
         [self.view endEditing:YES];
@@ -95,7 +95,7 @@
     
     [self.textFieldTopic addBlockForControlEvents:UIControlEventEditingDidBegin block:^(id  _Nonnull sender) {
         [self.modelBiuSendChatTopics selectItemOfIndex:NSIntegerMax];
-        [self.collectionViewChats reloadData];
+        //[self.collectionViewChats reloadData];
         
         self.btnSendBiu.enabled = NO;
        self.labelCodeCount.text = @"0/50";
@@ -131,36 +131,36 @@
 
 - (void)viewDidDisappear:(BOOL)animated{
     [self.modelBiuSendChatTopics selectItemOfIndex:NSIntegerMax];
-    [self.collectionViewChats reloadData];
+    //[self.collectionViewChats reloadData];
     [self.textFieldTopic setText:@""];
     [self.labelCodeCount setText:@"0/50"];
 }
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [self.modelBiuSendChatTopics numberOfItems];
-}
-
-- (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CellBiuBiuSend *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellReuseIdentifier forIndexPath:indexPath];
-    [cell initWithModel:[self.modelBiuSendChatTopics modelOfIndex:indexPath.row]];
-    
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self.view endEditing:YES];
-    [self.modelBiuSendChatTopics selectItemOfIndex:indexPath.row];
-    ModelBiuSendChatTopic *topic = [self.modelBiuSendChatTopics modelOfIndex:indexPath.row];
-    [self.textFieldTopic setText:topic.topicContent];
-    self.labelCodeCount.text = [NSString stringWithFormat:@"%lu/50", topic.topicContent.length];
-    
-    self.btnSendBiu.enabled = YES;
-    [self.collectionViewChats reloadData];
-}
+//- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+//    return 1;
+//}
+//
+//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+//    return [self.modelBiuSendChatTopics numberOfItems];
+//}
+//
+//- (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+//    CellBiuBiuSend *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellReuseIdentifier forIndexPath:indexPath];
+//    [cell initWithModel:[self.modelBiuSendChatTopics modelOfIndex:indexPath.row]];
+//    
+//    return cell;
+//}
+//
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+//    [self.view endEditing:YES];
+//    [self.modelBiuSendChatTopics selectItemOfIndex:indexPath.row];
+//    ModelBiuSendChatTopic *topic = [self.modelBiuSendChatTopics modelOfIndex:indexPath.row];
+//    [self.textFieldTopic setText:topic.topicContent];
+//    self.labelCodeCount.text = [NSString stringWithFormat:@"%lu/50", topic.topicContent.length];
+//    
+//    self.btnSendBiu.enabled = YES;
+//    [self.collectionViewChats reloadData];
+//}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
@@ -258,7 +258,7 @@
                 self.chatTopicsLoadResult = YES;
                 
                 self.modelBiuSendChatTopics = [ModelBiuSendChatTopics modelWithDictionary:response.data];
-                [self.collectionViewChats reloadData];
+                //[self.collectionViewChats reloadData];
             }else{
                 NSLog(@"加载话题标签错误:%@", responseObject);
             }

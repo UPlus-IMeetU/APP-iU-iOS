@@ -125,4 +125,8 @@
  *  获取匹配用户
  */
 + (NSString *)xmLoadMatchUsers;
+/**
+ *  获取U米
+ */
++ (NSString *)xmGetUMi;
 @end

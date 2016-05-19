@@ -80,7 +80,7 @@
 }
 
 + (NSString *)xmReceiveBiuGrabBiu{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/grabBiu"];
+    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biu/grabBiu"];
 }
 
 + (NSString *)xmReceiveBiuUnreceiveTA{
@@ -161,6 +161,10 @@
 + (NSString *)testConnectWithOperation:(NSString *)operation{
     NSString *host = @"http://123.57.26.168:8080";
     return [NSString stringWithFormat:@"%@%@", host, operation];
+}
+
++ (NSString *)xmGetUMi{
+    return [XMUrlHttp testConnectWithOperation:@"/meetu_maven/app/biu/getVC"];
 }
 
 + (NSString *)connectWithOperation:(NSString *)operation{

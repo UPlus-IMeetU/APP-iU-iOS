@@ -229,7 +229,7 @@
                                 <constraint firstAttribute="height" constant="51" id="lD4-us-nCI"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWF-5b-rhK">
@@ -255,8 +255,8 @@
                                 <constraint firstAttribute="height" constant="0.5" id="pC6-XG-sBS"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cay-G7-xUw">
-                            <rect key="frame" x="235" y="321" width="45" height="22"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cay-G7-xUw">
+                            <rect key="frame" x="235" y="321" width="45" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="sst-gQ-Kcf"/>
                             </constraints>

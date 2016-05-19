@@ -55,7 +55,7 @@
                                 <rect key="frame" x="0.0" y="431" width="600" height="169"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7C3-IT-Jy6">
-                                        <rect key="frame" x="208.5" y="61" width="183" height="61"/>
+                                        <rect key="frame" x="208" y="61" width="183" height="61"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VAp-HX-Q5b">
                                                 <rect key="frame" x="0.0" y="41" width="183" height="20"/>
@@ -135,7 +135,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7K-9C-thq">
-                                                <rect key="frame" x="77.5" y="0.0" width="28" height="21"/>
+                                                <rect key="frame" x="77" y="0.0" width="28" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="udR-Ce-oUt"/>
                                                 </constraints>
@@ -187,8 +187,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUX-tO-Zy1">
-                                                <rect key="frame" x="285" y="7" width="30" height="30"/>
-                                                <state key="normal" title="切换"/>
+                                                <rect key="frame" x="278" y="0.0" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="74A-Qd-dw0"/>
+                                                    <constraint firstAttribute="height" constant="44" id="dWg-f3-L1o"/>
+                                                </constraints>
                                                 <connections>
                                                     <action selector="IntoMatchPeople:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xFP-EI-faJ"/>
                                                 </connections>
@@ -257,13 +260,14 @@
                         <outlet property="labelGender" destination="S9o-zS-Kh8" id="kaA-Wc-ZMS"/>
                         <outlet property="labelNameNick" destination="G7K-9C-thq" id="F9T-Sb-e9q"/>
                         <outlet property="labelSchoolProfession" destination="cAD-Yq-QNT" id="OQn-1c-hMk"/>
+                        <outlet property="matchButton" destination="dUX-tO-Zy1" id="yDE-jx-04l"/>
                         <outlet property="viewBiuBiu" destination="6eS-9h-FjF" id="6aW-F3-O92"/>
                         <outlet property="viewMatchUserInfo" destination="61e-gt-0i5" id="PqL-oG-sf9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2087" y="-155"/>
+            <point key="canvasLocation" x="-2005" y="-275"/>
         </scene>
         <!--Advert Controller-->
         <scene sceneID="AUv-GE-fbd">

@@ -630,12 +630,13 @@
 		307DFDCAED0FA4E06183F229 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782115C93935C5E2EF970E47 /* Pods.framework */; };
 		6F0495AD1CE382F000FB36A9 /* ModelAdvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0495AC1CE382F000FB36A9 /* ModelAdvert.m */; };
 		6F1588721CEB16BF0007AA9E /* NSDate+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1588701CEB16BF0007AA9E /* NSDate+MJ.m */; };
+		6F45F92C1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F45F92B1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m */; };
+		6F45F92F1CED96DC0011474A /* BQWaterLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F45F92E1CED96DC0011474A /* BQWaterLayout.m */; };
 		6F4A48451CE3061200D91B4C /* AdvertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A48441CE3061200D91B4C /* AdvertController.m */; };
 		6F4A48481CE3082400D91B4C /* AdvertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A48471CE3082400D91B4C /* AdvertCell.m */; };
 		6F4A48521CE30EE400D91B4C /* AdvertDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A48511CE30EE400D91B4C /* AdvertDetailController.m */; };
 		6F4A48541CE3117300D91B4C /* BiuBiu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F4A48531CE3117300D91B4C /* BiuBiu.storyboard */; };
 		6F5951ED1CE5E5B500D20AD0 /* EmptyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5951EC1CE5E5B500D20AD0 /* EmptyController.m */; };
-		6F8F45641CEB06CA0016DC91 /* BQWaterLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F455F1CEB06CA0016DC91 /* BQWaterLayout.m */; };
 		6F8F45651CEB06CA0016DC91 /* MatchPeopleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F45611CEB06CA0016DC91 /* MatchPeopleController.m */; };
 		6F9A43EC1CEAFC5700532C06 /* MatchPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9A43E71CEAFC5700532C06 /* MatchPeopleCell.m */; };
 		6F9A43ED1CEAFC5700532C06 /* MatchPeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F9A43E81CEAFC5700532C06 /* MatchPeopleCell.xib */; };
@@ -1693,6 +1694,10 @@
 		6F0495AC1CE382F000FB36A9 /* ModelAdvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelAdvert.m; sourceTree = "<group>"; };
 		6F1588701CEB16BF0007AA9E /* NSDate+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MJ.m"; sourceTree = "<group>"; };
 		6F1588711CEB16BF0007AA9E /* NSDate+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+MJ.h"; sourceTree = "<group>"; };
+		6F45F92A1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
+		6F45F92B1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
+		6F45F92D1CED96DC0011474A /* BQWaterLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BQWaterLayout.h; sourceTree = "<group>"; };
+		6F45F92E1CED96DC0011474A /* BQWaterLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BQWaterLayout.m; sourceTree = "<group>"; };
 		6F4A48431CE3061200D91B4C /* AdvertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertController.h; sourceTree = "<group>"; };
 		6F4A48441CE3061200D91B4C /* AdvertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertController.m; sourceTree = "<group>"; };
 		6F4A48461CE3082400D91B4C /* AdvertCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdvertCell.h; path = BiuMainBG/AdvertCell.h; sourceTree = "<group>"; };
@@ -1702,8 +1707,6 @@
 		6F4A48531CE3117300D91B4C /* BiuBiu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BiuBiu.storyboard; path = Main/Others/BiuBiu.storyboard; sourceTree = "<group>"; };
 		6F5951EB1CE5E5B500D20AD0 /* EmptyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyController.h; sourceTree = "<group>"; };
 		6F5951EC1CE5E5B500D20AD0 /* EmptyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyController.m; sourceTree = "<group>"; };
-		6F8F455E1CEB06CA0016DC91 /* BQWaterLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BQWaterLayout.h; sourceTree = "<group>"; };
-		6F8F455F1CEB06CA0016DC91 /* BQWaterLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BQWaterLayout.m; sourceTree = "<group>"; };
 		6F8F45601CEB06CA0016DC91 /* MatchPeopleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchPeopleController.h; sourceTree = "<group>"; };
 		6F8F45611CEB06CA0016DC91 /* MatchPeopleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchPeopleController.m; sourceTree = "<group>"; };
 		6F9A43E61CEAFC5700532C06 /* MatchPeopleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchPeopleCell.h; sourceTree = "<group>"; };
@@ -3982,10 +3985,10 @@
 		6F9A43EF1CEAFC5D00532C06 /* MatchPeople */ = {
 			isa = PBXGroup;
 			children = (
+				6F45F92D1CED96DC0011474A /* BQWaterLayout.h */,
+				6F45F92E1CED96DC0011474A /* BQWaterLayout.m */,
 				6F1588701CEB16BF0007AA9E /* NSDate+MJ.m */,
 				6F1588711CEB16BF0007AA9E /* NSDate+MJ.h */,
-				6F8F455E1CEB06CA0016DC91 /* BQWaterLayout.h */,
-				6F8F455F1CEB06CA0016DC91 /* BQWaterLayout.m */,
 				6F8F45601CEB06CA0016DC91 /* MatchPeopleController.h */,
 				6F8F45611CEB06CA0016DC91 /* MatchPeopleController.m */,
 				6F9A43E71CEAFC5700532C06 /* MatchPeopleCell.m */,
@@ -3993,6 +3996,8 @@
 				6F9A43E81CEAFC5700532C06 /* MatchPeopleCell.xib */,
 				6F9A43F01CEAFD2000532C06 /* MatchPeopleView.h */,
 				6F9A43F11CEAFD2000532C06 /* MatchPeopleView.m */,
+				6F45F92A1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.h */,
+				6F45F92B1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m */,
 			);
 			name = MatchPeople;
 			path = ..;
@@ -4661,8 +4666,8 @@
 				049AA3F61CEA08A600B1AD93 /* DBCacheBiuBiu.m in Sources */,
 				04B7D5BD1CDB4CB600D74C6D /* UIScrollView+MJExtension.m in Sources */,
 				047519B21CA631CB009115CE /* BCPayPalVerifyReq.m in Sources */,
-				6F8F45641CEB06CA0016DC91 /* BQWaterLayout.m in Sources */,
 				04A31D7B1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.m in Sources */,
+				6F45F92F1CED96DC0011474A /* BQWaterLayout.m in Sources */,
 				044AF73E1C8D878E009AF59F /* ControllerUserRegisterThirdStep.m in Sources */,
 				044724C11C9A61EC000FD349 /* XMAlertDialog.m in Sources */,
 				04151AB71C96A5DC008955C2 /* ModelResponseMine.m in Sources */,
@@ -4758,6 +4763,7 @@
 				6F9A43EC1CEAFC5700532C06 /* MatchPeopleCell.m in Sources */,
 				6F5951ED1CE5E5B500D20AD0 /* EmptyController.m in Sources */,
 				047519BD1CA631CB009115CE /* BCQueryRefundsCountReq.m in Sources */,
+				6F45F92C1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m in Sources */,
 				044724BE1C9A5D7F000FD349 /* XMAlertDialogLoginRegister.m in Sources */,
 				0450B7E41C91A118001DD60A /* ViewMineMainAlterProfile.m in Sources */,
 				04B7D4C31CDB4BEB00D74C6D /* EaseMessageViewController.m in Sources */,

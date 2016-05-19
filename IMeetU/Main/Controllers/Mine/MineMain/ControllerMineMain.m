@@ -430,11 +430,27 @@
 #pragma mark -进入主页购买U币
 -(void)cellMineMainProfileAndPhotos:(CellMineMainProfileAndPhotos *)cell onClickBuyUMi:(UIButton *)btn{
     //获取U币，进行相关的操作
+    [self goToRecharge];
+}
+
+- (void)goToRecharge{
     
-    NSInteger umiCount = [UserDefultAccount countUmi];
-    ControllerBiuPayB *payBController = [ControllerBiuPayB controllerWithUmiCount:umiCount];
-    [payBController setHidesBottomBarWhenPushed:YES];
-    [self.navigationController pushViewController:payBController animated:YES];
+    AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
+    httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString]};
+    [httpManager POST:[XMUrlHttp xmGetUMi] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
+        if (response.state == 200) {
+            NSInteger UMiCount = [response.data[@"virtual_currency"] integerValue];
+            ControllerBiuPayB *controller = [ControllerBiuPayB controllerWithUmiCount:UMiCount];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
     
 }
 

@@ -22,7 +22,7 @@
 
 - (IBAction)onClickBtnGrabBiu:(id)sender {
     if (self.delegateFooter) {
-        if([self.delegateFooter respondsToSelector:@selector(reusableViewBiuReceiveFooterGrabBiu:)]){
+        if([self.delegateFooter respondsToSelector:@selector(reusableViewBiuReceiveFooterGrabBiu:WithButton:)]){
             [self.delegateFooter reusableViewBiuReceiveFooterGrabBiu:self WithButton:sender];
         }
     }

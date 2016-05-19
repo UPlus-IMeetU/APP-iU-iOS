@@ -46,9 +46,6 @@
 + (NSInteger)haveToView;
 + (void)setHaveToView:(NSInteger)haveToView;
 
-+ (NSInteger)countUmi;
-+ (void)setCountUmi:(NSInteger)countUmi;
-
 /**
  * 销毁信息
  */

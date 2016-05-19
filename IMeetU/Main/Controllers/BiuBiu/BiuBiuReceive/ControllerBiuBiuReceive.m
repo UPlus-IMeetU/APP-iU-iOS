@@ -68,6 +68,11 @@
 @property (nonatomic, strong) UIImagePickerController *imgPickController;
 @property (nonatomic, assign) NSInteger profileState;
 @property (nonatomic, assign) BOOL isDropDown;
+//抢Biu需要的UMi数量，同时也是状态位置，在每次开始的时候都都应该为0
+@property (nonatomic, assign) NSInteger countUMi;
+@property (nonatomic, strong) UIButton  *statusButton;
+@property (nonatomic, strong) MBProgressHUD *hub;
+
 @property (nonatomic, weak) id<ControllerBiuBiuReceiveDelegate,UIAlertViewDelegate> delegateReceiveBiu;
 @end
 
@@ -105,7 +110,6 @@
     httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"user_code":self.modelFaceStar.userCode};
-    
     [httpManager POST:[XMUrlHttp xmReceiveBiuDetails] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         ModelResponse *response = [ModelResponse responselWithObject:responseObject];
         if (response.state == 200) {
@@ -287,6 +291,12 @@
 
 #pragma mark - 抢biu回调
 - (void)reusableViewBiuReceiveFooterGrabBiu:(ReusableViewBiuReceiveFooter *)reusableView WithButton:(UIButton *)button{
+    [self grabBiu:0 WithButton:button];
+    self.statusButton = button;
+}
+
+#pragma mark 抢Biu的方法
+- (void)grabBiu:(NSInteger )UMi WithButton:(UIButton *)button{
     if (self.profileState == 1 || self.profileState == 2 || self.profileState == 3){
         MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"抢biu中..." animated:YES];
         
@@ -294,12 +304,14 @@
         httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
         httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
         
-        NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"send_user_code":self.modelFaceStar.userCode,@"virtual_currency":[NSNumber numberWithInt:0]};
+//        NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"send_user_code":self.modelFaceStar.userCode,@"virtual_currency":[NSNumber numberWithInteger:UMi]};
+         NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"send_user_code":[NSNumber numberWithInteger:10039],@"virtual_currency":[NSNumber numberWithInteger:UMi]};
         [httpManager POST:[XMUrlHttp xmReceiveBiuGrabBiu] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             ModelResponse *response = [ModelResponse responselWithObject:responseObject];
             if (response.state == 200) {
+                [hud hide:YES];
                 NSInteger status = [response.data[@"message"] integerValue];
-                NSInteger uMi = [response.data[@"virtual_currency"] integerValue];
+                _countUMi = [response.data[@"virtual_currency"] integerValue];
                 //进行判断 message 1.
                 //2.biu币不足，请充值
                 
@@ -308,11 +320,11 @@
                 if (status == 0) {
                     button.enabled = NO;
                     [button setTitle:@"本次biubiu已结束" forState:UIControlStateNormal];
-                //3.已经被接受
+                    //3.已经被接受
                 }else if(status == 3){
                     button.enabled = NO;
                     [button setTitle:@"已收biu" forState:UIControlStateNormal];
-                //1.已经进入抢biu列表
+                    //1.已经进入抢biu列表
                 }else if(status == 1){
                     [self.navigationController popViewControllerAnimated:YES];
                 }else if(status == 2){
@@ -320,7 +332,7 @@
                     alertView.tag = 1001;
                     [alertView show];
                 }else if(status == 4){
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收biu" message:[NSString stringWithFormat:@"已经有%ld收了TA的biubiu继续收TA的将消耗%ldU米",uMi * 10,uMi] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收biu" message:[NSString stringWithFormat:@"已经有%ld收了TA的biubiu继续收TA的将消耗%ldU米",_countUMi * 10,_countUMi] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                     alertView.tag = 1002;
                     [alertView show];
                 }
@@ -389,8 +401,6 @@
         [self presentViewController:controller animated:YES completion:nil];
     }
 }
-
-
 #pragma mark UIAlertDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
@@ -398,15 +408,34 @@
     }else if(buttonIndex == 1){
         if ((alertView.tag == Recharge)) {
             //进行充值操作
-            NSInteger uMi = [UserDefultAccount countUmi];
-            ControllerBiuPayB *controller = [ControllerBiuPayB controllerWithUmiCount:uMi];
-            controller.delegatePayUmi = self;
-            [self.navigationController pushViewController:controller animated:YES];
+            [self goToRecharge];
         }else if(alertView.tag == Consumption){
             //进行消费,再调用接口
-            
+            [self grabBiu:_countUMi WithButton:self.statusButton];
         }
     }
+}
+
+#pragma mark 获取UMI的数量
+- (void)goToRecharge{
+    
+    AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
+    httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString]};
+    [httpManager POST:[XMUrlHttp xmGetUMi] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
+        if (response.state == 200) {
+            NSInteger UMiCount = [response.data[@"virtual_currency"] integerValue];
+            ControllerBiuPayB *controller = [ControllerBiuPayB controllerWithUmiCount:UMiCount];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
 }
 - (void)reusableViewBiuReceiveFooterUnreceiveTA:(ReusableViewBiuReceiveFooter *)reusableView {
     MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"" animated:YES];

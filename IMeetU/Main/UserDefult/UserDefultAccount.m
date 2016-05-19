@@ -18,7 +18,6 @@
 #define DIALOYURL @"dialogURL"
 #define UPDATEAT @"updateAt"
 #define HAVETOVIEW @"haveToView"
-#define CountUMI @"CountUmi"
 
 @implementation UserDefultAccount
 
@@ -129,15 +128,6 @@
 }
 
 
-+(NSInteger)countUmi{
-    NSUInteger countUmi = [[[NSUserDefaults standardUserDefaults] objectForKey:CountUMI] integerValue];
-    return countUmi;
-}
-
-+ (void)setCountUmi:(NSInteger)countUmi{
-    [[NSUserDefaults standardUserDefaults] setObject:@(countUmi) forKey:CountUMI];
-}
-
 + (void)cleanAccountCache{
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:TOKEN];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:IM_NAME];
@@ -148,7 +138,6 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:DIALOYURL];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:UPDATEAT];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:HAVETOVIEW];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:CountUMI];
 }
 
 @end

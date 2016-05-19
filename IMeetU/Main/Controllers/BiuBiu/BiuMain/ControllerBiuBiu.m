@@ -101,6 +101,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *advertButton;
 //筛选按钮
 @property (weak, nonatomic) IBOutlet UIButton *chooseButton;
+//Match按钮
+@property (weak, nonatomic) IBOutlet UIButton *matchButton;
 
 @property (nonatomic, strong) XMBiuMainViewBG *biuViewBG;
 @property (nonatomic, strong) XMBiuCenterView *biuCenterButton;
@@ -225,11 +227,11 @@
     }
     
     self.chooseButton.hidden = ![UserDefultAccount isLogin];
-    
+    self.matchButton.hidden = ![UserDefultAccount isLogin];
     if ([UserDefultAccount isLogin]) {
         [self timerRefreshLaunch];
     }else{
-        [self updateUmiCount:0];
+        //[self updateUmiCount:0];
     }
     
 }
@@ -257,9 +259,6 @@
         self.biuViewBG.isAnimation = YES;
     }
     
-    if ([UserDefultAccount isLogin]) {
-        [_matchPeopleView initDataWithTime:0 withType:Refresh];
-    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -275,7 +274,7 @@
     if (res) {
         self.umiCount = count;
         //进行更新
-        [self updateUmiCount:count];
+        //[self updateUmiCount:count];
     }
 }
 
@@ -384,7 +383,7 @@
 - (void)controllerBiuBiuSend:(ControllerBiuBiuSend *)controller sendResult:(BOOL)result virtualCurrency:(NSInteger)virtualCurrency{
     if (result) {
         [self.biuCenterButton timerCountdownStart];
-        [self updateUmiCount:virtualCurrency];
+        //[self updateUmiCount:virtualCurrency];
         //更新U米个数
         self.umiCount = virtualCurrency;
     }else{
@@ -397,13 +396,13 @@
 - (void)controllerBiuBiuReceive:(ControllerBiuBiuReceive *)controller grabBiu:(ModelBiuFaceStar *)biu umiCount:(NSInteger)umiCount{
     [self.biuFaceStarCollection removeFaceStarWithModel:biu];
     //更新U米个数
-    [self updateUmiCount:umiCount];
+    //[self updateUmiCount:umiCount];
     self.umiCount = umiCount;
 }
 
 #pragma mark 充值成功
 - (void)controllerBiuBiuReceive:(ControllerBiuBiuReceive *)controller umiCount:(NSInteger)umiCount{
-    [self updateUmiCount:umiCount];
+    //[self updateUmiCount:umiCount];
     //更新U米个数
     self.umiCount = umiCount;
 }
@@ -462,7 +461,7 @@
         if (response.state == 200) {
             //登陆成功的情况下，可以进行点击的操作
             ModelBiuMainRefreshData *biuData = [ModelBiuMainRefreshData modelWithDictionary:response.data];
-            [self updateUmiCount:biuData.virtualCurrency];
+            //[self updateUmiCount:biuData.virtualCurrency];
             
             self.umiCount = biuData.virtualCurrency;
             self.profileState = biuData.profileState;
@@ -496,7 +495,7 @@
         ModelResponse *response = [ModelResponse responselWithObject:responseObject];
         if (response.state == 200) {
             ModelBiuMainRefreshData *biuData = [ModelBiuMainRefreshData modelWithDictionary:response.data];
-            [self updateUmiCount:biuData.virtualCurrency];
+            //[self updateUmiCount:biuData.virtualCurrency];
             
         }else{
             
@@ -833,9 +832,9 @@
     self.profileState = 1;
 }
 
-- (void)updateUmiCount:(NSInteger)umiCount{
-    [UserDefultAccount setCountUmi:umiCount];
-}
+//- (void)updateUmiCount:(NSInteger)umiCount{
+//    [UserDefultAccount setCountUmi:umiCount];
+//}
 
 #pragma mark广告相关的操作
 - (IBAction)AdvertCloseButtonClick:(id)sender {

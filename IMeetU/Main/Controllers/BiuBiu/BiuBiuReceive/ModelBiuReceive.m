@@ -57,10 +57,6 @@
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{
              @"token":@"token",
-             
-             @"biuAllCount":@"havevc",
-             @"biuUsedCountOnce":@"needvc",
-             
              @"userCode":@"user_code",
              @"nameNick":@"nickname",
              @"userProfile":@"icon_thumbnailUrl",
@@ -68,21 +64,16 @@
              @"gender":@"sex",
              @"age":@"age",
              @"constellation":@"starsign",
-             @"isGraduated":@"isgraduated",
              @"schoolId":@"school",
              @"company":@"company",
              @"profression":@"carrer",
              
-             @"timebefore":@"timebefore",
-             @"chatTopic":@"chatTag",
+             @"timebefore":@"time",
+             @"chatTopic":@"chat_tags",
              @"characters":@"hit_tags",
              @"interested_tags":@"interested_tags",
-             
-             
              @"characters":@"distance",
              @"matchingScore":@"matching_score",
-             
-             @"isGrabbbed":@"isGrabbed",
              @"userIdentifier":@"superman"
              };
 }

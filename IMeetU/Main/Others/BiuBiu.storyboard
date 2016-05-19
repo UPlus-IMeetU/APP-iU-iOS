@@ -186,12 +186,14 @@
                                                     <segue destination="2nN-9C-l5v" kind="push" id="z5d-vU-NAx"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUX-tO-Zy1">
-                                                <rect key="frame" x="278" y="0.0" width="44" height="44"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUX-tO-Zy1">
+                                                <rect key="frame" x="270" y="0.0" width="60" height="44"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="44" id="74A-Qd-dw0"/>
-                                                    <constraint firstAttribute="height" constant="44" id="dWg-f3-L1o"/>
+                                                    <constraint firstAttribute="width" constant="60" id="Jbt-HH-H9T"/>
                                                 </constraints>
+                                                <state key="normal" image="biu_btn_ago_front">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="IntoMatchPeople:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xFP-EI-faJ"/>
                                                 </connections>
@@ -199,12 +201,13 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="KCI-gc-Rg6" firstAttribute="leading" secondItem="Cm1-jC-0gX" secondAttribute="leading" constant="5" id="RGV-f6-UwW"/>
-                                            <constraint firstItem="dUX-tO-Zy1" firstAttribute="centerX" secondItem="Cm1-jC-0gX" secondAttribute="centerX" id="SEv-zm-DP3"/>
+                                            <constraint firstItem="dUX-tO-Zy1" firstAttribute="top" secondItem="Cm1-jC-0gX" secondAttribute="top" id="Wga-G2-Arf"/>
                                             <constraint firstItem="I8l-dd-2FH" firstAttribute="top" secondItem="Cm1-jC-0gX" secondAttribute="top" id="ZVd-Oc-XST"/>
+                                            <constraint firstAttribute="bottom" secondItem="dUX-tO-Zy1" secondAttribute="bottom" id="d4V-Pn-wMT"/>
                                             <constraint firstAttribute="bottom" secondItem="KCI-gc-Rg6" secondAttribute="bottom" id="hPd-ne-73T"/>
                                             <constraint firstAttribute="bottom" secondItem="I8l-dd-2FH" secondAttribute="bottom" id="kC4-zj-3He"/>
-                                            <constraint firstItem="dUX-tO-Zy1" firstAttribute="centerY" secondItem="Cm1-jC-0gX" secondAttribute="centerY" id="l5K-eo-3hA"/>
                                             <constraint firstItem="KCI-gc-Rg6" firstAttribute="top" secondItem="Cm1-jC-0gX" secondAttribute="top" id="s4r-KI-9PR"/>
+                                            <constraint firstItem="dUX-tO-Zy1" firstAttribute="centerX" secondItem="Cm1-jC-0gX" secondAttribute="centerX" id="uZ2-eT-MnX"/>
                                             <constraint firstAttribute="trailing" secondItem="I8l-dd-2FH" secondAttribute="trailing" constant="5" id="ymH-EN-Xpv"/>
                                         </constraints>
                                     </view>
@@ -252,6 +255,7 @@
                         <outlet property="advertCloseButton" destination="wzs-iX-etc" id="4Kp-Eo-t1h"/>
                         <outlet property="advertImageView" destination="fjt-6Q-ODa" id="eTn-h3-tYk"/>
                         <outlet property="advertView" destination="Zzh-07-qkh" id="bdc-OA-oLg"/>
+                        <outlet property="backTitleBgView" destination="QOn-kV-d7b" id="bCA-nD-pDj"/>
                         <outlet property="chooseButton" destination="KCI-gc-Rg6" id="DLp-Fi-Jai"/>
                         <outlet property="constraintNavigationViewHeight" destination="Fhr-QL-MCQ" id="JGb-tT-QFJ"/>
                         <outlet property="constraintUserInfoHeight" destination="qHm-vh-o5M" id="gq3-yu-IIf"/>
@@ -1214,6 +1218,7 @@
         <image name="biu_activty_img_1" width="340" height="123"/>
         <image name="biu_banner" width="298" height="396"/>
         <image name="biu_btn_activity_nor" width="28" height="28"/>
+        <image name="biu_btn_ago_front" width="23" height="27"/>
         <image name="biu_btn_choose" width="28" height="28"/>
         <image name="biu_icon_close" width="33" height="33"/>
         <image name="biu_main_point_user_info" width="5" height="5"/>

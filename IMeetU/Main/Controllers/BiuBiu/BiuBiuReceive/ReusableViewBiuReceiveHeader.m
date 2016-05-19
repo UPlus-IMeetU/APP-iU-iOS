@@ -117,18 +117,11 @@
     
     self.labelChatTopic.text = model.chatTopic;
     
-    if (model.isGraduated==1) {
         NSString *schoolName = [[DBSchools shareInstance] schoolNameWithID:[model.schoolId integerValue]];
         if (schoolName.length > 6) {
             schoolName = [NSString stringWithFormat:@"%@...", [schoolName substringToIndex:6]];
         }
         self.labelSchoolProfression.text = schoolName;
-    }else if (model.isGraduated==2) {
-        if (model.profression.length > 6) {
-            model.profression = [NSString stringWithFormat:@"%@...", [model.profression substringToIndex:6]];
-        }
-        self.labelSchoolProfression.text = model.profression;
-    }
 }
 
 

@@ -205,7 +205,7 @@
         //        if ((!self.modelBiuReceiveIsRequest) || (self.modelBiuReceive.biuAllCount > self.modelBiuReceive.biuUsedCountOnce)) {
         ReusableViewBiuReceiveFooter *viewSection = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ReusableViewBiuReceiveFooterIdentifier forIndexPath:indexPath];
         viewSection.delegateFooter = self;
-        [viewSection initWithIsGrabbed:self.modelBiuReceive.isGrabbbed];
+        [viewSection initWithIsGrabbed:self.modelBiuReceive.message];
         
         reusableView = viewSection;
         //        }else{

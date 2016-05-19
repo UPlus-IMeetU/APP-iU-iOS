@@ -67,14 +67,14 @@
              @"schoolId":@"school",
              @"company":@"company",
              @"profression":@"carrer",
-             
              @"timebefore":@"time",
              @"chatTopic":@"chat_tags",
              @"characters":@"hit_tags",
              @"interested_tags":@"interested_tags",
              @"characters":@"distance",
              @"matchingScore":@"matching_score",
-             @"userIdentifier":@"superman"
+             @"userIdentifier":@"superman",
+             @"message":@"message"
              };
 }
 

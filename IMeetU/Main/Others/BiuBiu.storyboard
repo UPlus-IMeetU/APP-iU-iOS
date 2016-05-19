@@ -569,9 +569,6 @@
                                     <action selector="onClickBtnSendFinish:" destination="veG-7F-HWL" eventType="touchUpInside" id="ktx-pX-VPs"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gga-Ly-y96">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yvf-6a-kIr">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                 <subviews>
@@ -806,16 +803,12 @@
                             <constraint firstItem="WfY-wO-aX6" firstAttribute="top" secondItem="iwm-L9-A8g" secondAttribute="bottom" constant="45" id="B2Z-3u-hbN"/>
                             <constraint firstItem="iwm-L9-A8g" firstAttribute="leading" secondItem="3Ba-T5-QUn" secondAttribute="leading" constant="37" id="D2C-Vs-DZA"/>
                             <constraint firstItem="WfY-wO-aX6" firstAttribute="centerX" secondItem="3Ba-T5-QUn" secondAttribute="centerX" id="DeH-0C-SZ8"/>
-                            <constraint firstItem="Gga-Ly-y96" firstAttribute="leading" secondItem="3Ba-T5-QUn" secondAttribute="leading" id="DyW-So-XOy"/>
-                            <constraint firstItem="Gga-Ly-y96" firstAttribute="trailing" secondItem="3Ba-T5-QUn" secondAttribute="trailing" id="FK4-k9-zVL"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Luj-A2-3ZF" secondAttribute="bottom" id="M5P-61-tO2"/>
                             <constraint firstItem="Luj-A2-3ZF" firstAttribute="top" secondItem="iwm-L9-A8g" secondAttribute="bottom" constant="150" id="P3U-BH-uXc"/>
                             <constraint firstItem="yvf-6a-kIr" firstAttribute="top" secondItem="3Ba-T5-QUn" secondAttribute="topMargin" id="Psi-rQ-Vag"/>
                             <constraint firstItem="yvf-6a-kIr" firstAttribute="leading" secondItem="3Ba-T5-QUn" secondAttribute="leading" id="YVL-6I-kkM"/>
                             <constraint firstItem="Luj-A2-3ZF" firstAttribute="leading" secondItem="3Ba-T5-QUn" secondAttribute="leading" id="Ynq-L3-LNg"/>
-                            <constraint firstItem="L84-yb-HeW" firstAttribute="top" secondItem="Gga-Ly-y96" secondAttribute="bottom" id="kc1-l7-aHv"/>
                             <constraint firstAttribute="trailing" secondItem="Luj-A2-3ZF" secondAttribute="trailing" id="scp-cm-hfR"/>
-                            <constraint firstItem="Gga-Ly-y96" firstAttribute="top" secondItem="yvf-6a-kIr" secondAttribute="bottom" id="zcy-Ll-FbD"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -838,7 +831,6 @@
                         <outlet property="viewCard" destination="uIJ-OQ-AID" id="aPE-K9-tyd"/>
                         <outlet property="viewEndEdit" destination="cOz-Mc-e2h" id="e2u-iT-4zO"/>
                         <outlet property="viewEndEditSuper" destination="Luj-A2-3ZF" id="vZm-QJ-HWx"/>
-                        <outlet property="viewMain" destination="Gga-Ly-y96" id="rjt-mW-QXW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GCz-PD-pcD" userLabel="First Responder" sceneMemberID="firstResponder"/>

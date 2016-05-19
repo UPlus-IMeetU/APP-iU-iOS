@@ -60,7 +60,7 @@
 }
 
 + (instancetype)often_6CD1C9:(float)alpha{
-    return [UIColor colorWithR:108 G:209 B:201 A:1];
+    return [UIColor colorWithR:108 G:209 B:201 A:alpha];
 }
 
 + (instancetype)often_CCCCCC:(float)alpha{

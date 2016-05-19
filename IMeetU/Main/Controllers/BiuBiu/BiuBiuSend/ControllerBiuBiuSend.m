@@ -114,14 +114,12 @@
         [self getModelBiuSendChatTopics];
     }
     
-    [self.view endEditing:YES];
     self.placeholderLabel.hidden = self.textViewTopic.text.length != 0 ? YES : NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
+    [self.view endEditing:YES];
     [self.modelBiuSendChatTopics selectItemOfIndex:NSIntegerMax];
-    self.placeholderLabel.hidden = NO;
-    [self.labelCodeCount setText:@"0/50"];
 }
 
 #pragma mark UITextViewDelegate
@@ -209,19 +207,15 @@
 
 - (void)keyboardChangedWithTransition:(YYKeyboardTransition)transition{
     CGFloat constraintHeight;
-    CGFloat constraintHeightTop;
     if (transition.toVisible) {
         constraintHeight = transition.toFrame.size.height;
-        constraintHeightTop = -40;
     }else{
         constraintHeight = -40;
-        constraintHeightTop = 40;
     }
     
     [UIView animateWithDuration:transition.animationDuration animations:^{
         self.constarintViewEndEditBottom.constant = constraintHeight;
         self.constraintViewEndEditSuperHeight.constant = constraintHeight+40;
-         self.constraintViewTopicViewTop.constant += constraintHeightTop;
         [self.view layoutIfNeeded]; //修改约束时需要添加此句
     }];
 }

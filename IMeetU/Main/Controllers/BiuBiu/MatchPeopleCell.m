@@ -73,12 +73,6 @@
     DBSchools *dbSchools = [DBSchools shareInstance];
     return [[dbSchools schoolWithID:schoolID] objectForKey:@"schoolName"];
 }
-
-- (void)Circular{
-    _headPortrait.layer.cornerRadius = _headPortrait.frame.size.width * 0.25 ;
-    _headPortrait.clipsToBounds = YES;
-}
-
 - (NSString *)createdAt:(NSInteger)time
 {
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];

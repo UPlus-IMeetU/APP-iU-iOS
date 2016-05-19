@@ -10,5 +10,4 @@
 #import "ModelUserMatch.h"
 @interface MatchPeopleCell : UICollectionViewCell
 @property (nonatomic,strong) ModelUserMatch *matchPeople;
-- (void)Circular;
 @end

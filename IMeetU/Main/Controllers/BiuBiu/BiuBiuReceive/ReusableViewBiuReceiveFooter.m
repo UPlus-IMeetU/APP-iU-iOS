@@ -16,8 +16,8 @@
 @implementation ReusableViewBiuReceiveFooter
 
 - (void)initWithIsGrabbed:(BOOL)isGrabbed{
-    self.btnGrabBiu.enabled = !isGrabbed;
-    [self.btnGrabBiu setTitle:isGrabbed?@"biu已被抢":@"抢biu" forState:UIControlStateNormal];
+    self.btnGrabBiu.enabled = isGrabbed;
+    [self.btnGrabBiu setTitle:isGrabbed?@"抢biu":@"本轮biubiu已结束" forState:UIControlStateNormal];
 }
 
 - (IBAction)onClickBtnGrabBiu:(id)sender {

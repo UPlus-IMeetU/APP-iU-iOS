@@ -17,8 +17,6 @@
 + (void)finalUpdateTimeContactUpdate;
 /**
  *  检查超时
- *
- *  @return 是否已超时
  */
 + (BOOL)finalUpdateTimeContactTimeout;
 

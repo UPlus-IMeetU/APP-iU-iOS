@@ -19,7 +19,8 @@
 
 - (void)noReceiveMatchUser;
 
-- (void)receiveMatcheUserWithModel:(ModelBiuFaceStar*)model animation:(BOOL)animation;
+- (void)receiveMatcheUserWithImage:(UIImage*)image;
+//- (void)receiveMatcheUserWithModel:(ModelBiuFaceStar*)model animation:(BOOL)animation;
 
 - (void)timerCountdownStart;
 

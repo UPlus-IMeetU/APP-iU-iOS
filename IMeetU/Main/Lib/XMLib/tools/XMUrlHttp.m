@@ -158,6 +158,10 @@
     return [XMUrlHttp testConnectWithOperation:@"/meetu_maven/app/biu/getTargetBiuList"];
 }
 
++ (NSString *)xmLoadGrabBiuList{
+    return [XMUrlHttp testConnectWithOperation:@"/meetu_maven/app/biu/getGrabBiuList"];
+}
+
 + (NSString *)testConnectWithOperation:(NSString *)operation{
     NSString *host = @"http://123.57.26.168:8080";
     return [NSString stringWithFormat:@"%@%@", host, operation];

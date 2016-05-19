@@ -10,8 +10,6 @@
 #import "EMConversation.h"
 
 @interface EmptyController : UIViewController
-@property (nonatomic,strong) NSString *conversationId;
-@property (nonatomic,assign) EMConversationType type;
 @property (nonatomic, strong) UIImage *backgroundImage;
 
 @end

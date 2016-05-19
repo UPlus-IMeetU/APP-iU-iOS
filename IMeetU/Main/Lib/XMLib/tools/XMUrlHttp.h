@@ -129,4 +129,6 @@
  *  获取U米
  */
 + (NSString *)xmGetUMi;
+
++ (NSString *)xmLoadGrabBiuList;
 @end

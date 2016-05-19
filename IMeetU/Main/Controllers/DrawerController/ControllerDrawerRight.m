@@ -215,8 +215,6 @@
 
             
             EmptyController *emptyController = [[EmptyController alloc] init];
-            emptyController.conversationId = conversation.conversationId;
-            emptyController.type = conversation.type;
             emptyController.backgroundImage = viewImage;
             
             

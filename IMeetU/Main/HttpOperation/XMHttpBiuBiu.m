@@ -30,4 +30,19 @@
         callback (RESPONSE_CODE_ERR, nil, task, error);
     }];
 }
+
+- (void)loadGrabBiuListWithCallback:(XMHttpBlockStandard)callback{
+    NSString *url = [XMUrlHttp xmLoadGrabBiuList];
+    NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:nil];
+    
+    [self.httpManager POST:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
+        
+        callback (response.state, response.data, task, nil);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callback (RESPONSE_CODE_ERR, nil, task, error);
+    }];
+}
+
 @end

@@ -27,7 +27,12 @@
 }
 
 - (NSDictionary *)parametersFactoryAppendTokenDeviceCode:(NSDictionary *)parameters{
-    NSMutableDictionary *p = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    NSMutableDictionary *p;
+    if (parameters) {
+        p = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    }else{
+        p = [NSMutableDictionary dictionary];
+    }
     [p setObject:[UserDefultAccount token] forKey:@"token"];
     [p setObject:[[UIDevice currentDevice].identifierForVendor UUIDString]  forKey:@"device_code"];
     

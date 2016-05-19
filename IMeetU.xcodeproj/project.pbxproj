@@ -360,6 +360,13 @@
 		045C01381CCA3D4400AFA3C3 /* UserDefultSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 045C01371CCA3D4400AFA3C3 /* UserDefultSetting.m */; };
 		045F983C1CE6D07F008AEBC6 /* XMHttpBiuBiu.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F983B1CE6D07F008AEBC6 /* XMHttpBiuBiu.m */; };
 		045FD8FB1CE9D0C9007B15F6 /* ModelUserListMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FD8FA1CE9D0C9007B15F6 /* ModelUserListMatch.m */; };
+		04610B031CEDA56A0033B43E /* XMStitchingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04610B021CEDA56A0033B43E /* XMStitchingImage.m */; };
+		04610B061CEDAA5C0033B43E /* UserDefult.m in Sources */ = {isa = PBXBuildFile; fileRef = 04610B051CEDAA5C0033B43E /* UserDefult.m */; };
+		04610B091CEDAB250033B43E /* UserDefultBiu.m in Sources */ = {isa = PBXBuildFile; fileRef = 04610B081CEDAB250033B43E /* UserDefultBiu.m */; };
+		04610B0D1CEDB2E60033B43E /* ControllerBiuAccept.m in Sources */ = {isa = PBXBuildFile; fileRef = 04610B0C1CEDB2E60033B43E /* ControllerBiuAccept.m */; };
+		04610B111CEDB5590033B43E /* CellBiuAccept.m in Sources */ = {isa = PBXBuildFile; fileRef = 04610B0F1CEDB5590033B43E /* CellBiuAccept.m */; };
+		04610B121CEDB55A0033B43E /* CellBiuAccept.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04610B101CEDB5590033B43E /* CellBiuAccept.xib */; };
+		04610B151CEDC35E0033B43E /* ModelBiuAccept.m in Sources */ = {isa = PBXBuildFile; fileRef = 04610B141CEDC35E0033B43E /* ModelBiuAccept.m */; };
 		0474512C1CCB723800568704 /* XMHttpTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 0474512B1CCB723800568704 /* XMHttpTools.m */; };
 		047519AC1CA631CB009115CE /* BeeCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 047518F21CA631CB009115CE /* BeeCloud.m */; };
 		047519AD1CA631CB009115CE /* BCBaseReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 047518F61CA631CB009115CE /* BCBaseReq.m */; };
@@ -1138,6 +1145,19 @@
 		045F983B1CE6D07F008AEBC6 /* XMHttpBiuBiu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMHttpBiuBiu.m; sourceTree = "<group>"; };
 		045FD8F91CE9D0C9007B15F6 /* ModelUserListMatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelUserListMatch.h; sourceTree = "<group>"; };
 		045FD8FA1CE9D0C9007B15F6 /* ModelUserListMatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelUserListMatch.m; sourceTree = "<group>"; };
+		04610B011CEDA56A0033B43E /* XMStitchingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMStitchingImage.h; sourceTree = "<group>"; };
+		04610B021CEDA56A0033B43E /* XMStitchingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMStitchingImage.m; sourceTree = "<group>"; };
+		04610B041CEDAA5C0033B43E /* UserDefult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefult.h; sourceTree = "<group>"; };
+		04610B051CEDAA5C0033B43E /* UserDefult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefult.m; sourceTree = "<group>"; };
+		04610B071CEDAB250033B43E /* UserDefultBiu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefultBiu.h; sourceTree = "<group>"; };
+		04610B081CEDAB250033B43E /* UserDefultBiu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefultBiu.m; sourceTree = "<group>"; };
+		04610B0B1CEDB2E60033B43E /* ControllerBiuAccept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerBiuAccept.h; sourceTree = "<group>"; };
+		04610B0C1CEDB2E60033B43E /* ControllerBiuAccept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerBiuAccept.m; sourceTree = "<group>"; };
+		04610B0E1CEDB5590033B43E /* CellBiuAccept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellBiuAccept.h; sourceTree = "<group>"; };
+		04610B0F1CEDB5590033B43E /* CellBiuAccept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellBiuAccept.m; sourceTree = "<group>"; };
+		04610B101CEDB5590033B43E /* CellBiuAccept.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellBiuAccept.xib; sourceTree = "<group>"; };
+		04610B131CEDC35E0033B43E /* ModelBiuAccept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelBiuAccept.h; sourceTree = "<group>"; };
+		04610B141CEDC35E0033B43E /* ModelBiuAccept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelBiuAccept.m; sourceTree = "<group>"; };
 		0474512A1CCB723800568704 /* XMHttpTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMHttpTools.h; sourceTree = "<group>"; };
 		0474512B1CCB723800568704 /* XMHttpTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMHttpTools.m; sourceTree = "<group>"; };
 		047518F01CA631CB009115CE /* BCPayObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayObjects.h; sourceTree = "<group>"; };
@@ -1818,6 +1838,8 @@
 		04151AAE1C967468008955C2 /* UserDefult */ = {
 			isa = PBXGroup;
 			children = (
+				04610B041CEDAA5C0033B43E /* UserDefult.h */,
+				04610B051CEDAA5C0033B43E /* UserDefult.m */,
 				04151AAF1C967478008955C2 /* UserDefultAccount.h */,
 				04151AB01C967478008955C2 /* UserDefultAccount.m */,
 				040F4F9D1CAB8C6500AD8334 /* UserDefultDB.h */,
@@ -1828,6 +1850,8 @@
 				0492A3F01CC908F100659FFD /* UserDefultMsg.m */,
 				045C01361CCA3D4400AFA3C3 /* UserDefultSetting.h */,
 				045C01371CCA3D4400AFA3C3 /* UserDefultSetting.m */,
+				04610B071CEDAB250033B43E /* UserDefultBiu.h */,
+				04610B081CEDAB250033B43E /* UserDefultBiu.m */,
 			);
 			path = UserDefult;
 			sourceTree = "<group>";
@@ -2426,6 +2450,8 @@
 		044AF7181C8D390D009AF59F /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				04610B011CEDA56A0033B43E /* XMStitchingImage.h */,
+				04610B021CEDA56A0033B43E /* XMStitchingImage.m */,
 				044AF7191C8D390D009AF59F /* XMQueryConstellation.h */,
 				044AF71A1C8D390D009AF59F /* XMQueryConstellation.m */,
 				044AF71B1C8D390D009AF59F /* MLStructWrap.h */,
@@ -2536,6 +2562,8 @@
 				045FD8FA1CE9D0C9007B15F6 /* ModelUserListMatch.m */,
 				040F65001CE9D73400DEEAE0 /* ModelUserMatch.h */,
 				040F65011CE9D73400DEEAE0 /* ModelUserMatch.m */,
+				04610B131CEDC35E0033B43E /* ModelBiuAccept.h */,
+				04610B141CEDC35E0033B43E /* ModelBiuAccept.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2631,6 +2659,18 @@
 				040F4F9B1CAB8AAA00AD8334 /* ModelContacts.m */,
 			);
 			path = BiuContact;
+			sourceTree = "<group>";
+		};
+		04610B0A1CEDB2D00033B43E /* BiuAccept */ = {
+			isa = PBXGroup;
+			children = (
+				04610B0B1CEDB2E60033B43E /* ControllerBiuAccept.h */,
+				04610B0C1CEDB2E60033B43E /* ControllerBiuAccept.m */,
+				04610B0E1CEDB5590033B43E /* CellBiuAccept.h */,
+				04610B0F1CEDB5590033B43E /* CellBiuAccept.m */,
+				04610B101CEDB5590033B43E /* CellBiuAccept.xib */,
+			);
+			path = BiuAccept;
 			sourceTree = "<group>";
 		};
 		047518EE1CA631CB009115CE /* BCPaySDK */ = {
@@ -3036,6 +3076,7 @@
 		04B1659D1C89D87E00EE6DB8 /* BiuBiu */ = {
 			isa = PBXGroup;
 			children = (
+				04610B0A1CEDB2D00033B43E /* BiuAccept */,
 				04B7D5E91CDB5C3600D74C6D /* BiuPayB */,
 				04E981421C97A0E2000C214D /* BiuBiuReceive */,
 				04151AC91C970C99008955C2 /* BiuBiuSend */,
@@ -4280,6 +4321,7 @@
 				044AF7031C8D182E009AF59F /* XMInputViews.xib in Resources */,
 				044727031C9F9A7F000FD349 /* icon_012.gif in Resources */,
 				04471FB71C996C49000FD349 /* chatBar_keyboardSelected@2x.png in Resources */,
+				04610B121CEDB55A0033B43E /* CellBiuAccept.xib in Resources */,
 				044727091C9F9A7F000FD349 /* icon_019.gif in Resources */,
 				044727DE1C9FAF9D000FD349 /* icon_019_cover.png in Resources */,
 				044727121C9F9A7F000FD349 /* icon_024_cover.png in Resources */,
@@ -4560,6 +4602,7 @@
 				04B7D5C21CDB4CB600D74C6D /* MWGridViewController.m in Sources */,
 				044726B21C9D60D4000FD349 /* ModelRemoteNotification.m in Sources */,
 				0450B7F21C91D38B001DD60A /* ControllerMineAlterIdentityProfession.m in Sources */,
+				04610B111CEDB5590033B43E /* CellBiuAccept.m in Sources */,
 				04B7D5E11CDB4CB600D74C6D /* PSTCollectionViewUpdateItem.m in Sources */,
 				04B7D4DC1CDB4BEB00D74C6D /* EaseConversationCell.m in Sources */,
 				044AF74F1C8E6F86009AF59F /* CellMineMainProfileAndPhotos.m in Sources */,
@@ -4615,6 +4658,7 @@
 				044725E81C9AAE93000FD349 /* EaseUI.m in Sources */,
 				04B165E61C89D87E00EE6DB8 /* ControllerFirstLaunch.m in Sources */,
 				0474512C1CCB723800568704 /* XMHttpTools.m in Sources */,
+				04610B091CEDAB250033B43E /* UserDefultBiu.m in Sources */,
 				04B0F42C1CBFF2E100268082 /* ControllerUserIdentifierGuide.m in Sources */,
 				047519AD1CA631CB009115CE /* BCBaseReq.m in Sources */,
 				0450B7DE1C912FA5001DD60A /* ModelMatchSetting.m in Sources */,
@@ -4756,6 +4800,7 @@
 				04E7B9A11CC65A7A0047ABE8 /* CellChatMsgImgBrowser.m in Sources */,
 				04B7D59E1CDB4CB600D74C6D /* EMAudioPlayerUtil.m in Sources */,
 				04B7D5DA1CDB4CB600D74C6D /* PSTCollectionView.m in Sources */,
+				04610B0D1CEDB2E60033B43E /* ControllerBiuAccept.m in Sources */,
 				04151AB11C967478008955C2 /* UserDefultAccount.m in Sources */,
 				6F8F45651CEB06CA0016DC91 /* MatchPeopleController.m in Sources */,
 				044728221CA00720000FD349 /* ModelBiuSendChatTopics.m in Sources */,
@@ -4779,15 +4824,18 @@
 				04B165F81C89D87E00EE6DB8 /* UIView+Plug.m in Sources */,
 				047519AC1CA631CB009115CE /* BeeCloud.m in Sources */,
 				04B7D4B71CDB4BEB00D74C6D /* UIViewController+DismissKeyboard.m in Sources */,
+				04610B061CEDAA5C0033B43E /* UserDefult.m in Sources */,
 				047519C01CA631CB009115CE /* BCRefundStatusResp.m in Sources */,
 				04B7D5D31CDB4CB600D74C6D /* UIImage+EMGIF.m in Sources */,
 				044AF74B1C8E6E17009AF59F /* ControllerMineMain.m in Sources */,
 				044AF7011C8D17BF009AF59F /* XMInputViewGender.m in Sources */,
 				04B7D4CE1CDB4BEB00D74C6D /* EaseBubbleView+Image.m in Sources */,
+				04610B031CEDA56A0033B43E /* XMStitchingImage.m in Sources */,
 				04B7D5E51CDB4CB600D74C6D /* PSTGridLayoutSection.m in Sources */,
 				04151AC61C96FD39008955C2 /* ModelCharachers.m in Sources */,
 				04B7D5BC1CDB4CB600D74C6D /* MJRefreshConst.m in Sources */,
 				04151AD31C971039008955C2 /* CellBiuBiuSend.m in Sources */,
+				04610B151CEDC35E0033B43E /* ModelBiuAccept.m in Sources */,
 				04DA95CC1CACFFB100A5BF37 /* XMHttpChat.m in Sources */,
 				04DA95DE1CAD5A1300A5BF37 /* XMActionSheetMineMainMore.m in Sources */,
 				044AF6C71C8C883D009AF59F /* DBSchools.m in Sources */,

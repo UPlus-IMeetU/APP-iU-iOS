@@ -31,6 +31,8 @@
 
 #import "UICollectionViewAlignRightLayout.h"
 
+#import "UserDefultBiu.h"
+
 
 #define CellReuseIdentifier @"CellBiuBiuSend"
 
@@ -178,6 +180,8 @@
                         [weakSelf.delegateBiuSender controllerBiuBiuSend:self sendResult:YES virtualCurrency:virtualCurrency];
                         //更改提示框
                         [hud xmSetCustomModeWithResult:YES label:@"发送成功"];
+                        
+                        [UserDefultBiu setBiuInMatch:YES];
                         
                         [MobClick event:@"biu_send"];
                        //关闭提示框、跳回主页

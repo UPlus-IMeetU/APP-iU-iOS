@@ -13,7 +13,6 @@
 #import "UINib+Plug.h"
 #import "NSDate+plug.h"
 
-#define PI 3.14159265358979323846
 #define animationBLN @"animationBLN"
 
 @interface XMBiuCenterView()
@@ -90,47 +89,57 @@
     self.btnSuccessfulMatches.hidden = YES;
 }
 
-- (void)receiveMatcheUserWithModel:(ModelBiuFaceStar *)model animation:(BOOL)animation{
+- (void)receiveMatcheUserWithImage:(UIImage*)image{
     self.btnSuccessfulMatches.alpha = 0;
     [self.btnSuccessfulMatches setHidden:NO];
-    __weak UIButton *weakBtnSuccessfulMatches = self.btnSuccessfulMatches;
+    [self.btnSuccessfulMatches setImage:image forState:UIControlStateNormal];
     
-    self.modelFaceStar = model;
-    [self.btnSuccessfulMatches setBackgroundImageWithURL:[NSURL URLWithString:model.userProfile] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@"global_profile_defult"] options:YYWebImageOptionAllowBackgroundTask completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
-        
-        [weakBtnSuccessfulMatches setBackgroundImage:image forState:UIControlStateHighlighted];
-        self.biubiuNowCount = 0;
-        [self setNeedsDisplay];
-        
-        [self.labelBiuBiu setHidden:YES];
-        [self.btnBiuBiu setHidden:YES];
-        [self.labelBiuBiu setText:@""];
-        [self.btnBiuBiu setTitle:@"biu" forState:UIControlStateNormal];
-        [self.timerCountdown invalidate];
-        self.timerCountdown = nil;
-        
-        POPSpringAnimation *scaleAnimationSuccessfulMatches = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
-        scaleAnimationSuccessfulMatches.springBounciness = 10;
-        scaleAnimationSuccessfulMatches.springSpeed = 20;
-        scaleAnimationSuccessfulMatches.fromValue = [NSValue valueWithCGPoint:CGPointMake(0, 0)];
-        scaleAnimationSuccessfulMatches.toValue = [NSValue valueWithCGPoint:CGPointMake(1.0, 1.0)];
-        
-        
-        POPBasicAnimation *opacityAnimationSuccessfulMatches = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
-        opacityAnimationSuccessfulMatches.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        opacityAnimationSuccessfulMatches.duration = 0.3;
-        opacityAnimationSuccessfulMatches.toValue = @1.0;
-        
-        scaleAnimationSuccessfulMatches.completionBlock = ^(POPAnimation *anim, BOOL finish){
-        };
-        
-        if (animation) {
-            [weakBtnSuccessfulMatches.layer pop_addAnimation:scaleAnimationSuccessfulMatches forKey:@"AnimationScale"];
-        }
-        [weakBtnSuccessfulMatches.layer pop_addAnimation:opacityAnimationSuccessfulMatches forKey:@"AnimateOpacity"];
-
+    [UIView animateWithDuration:0.5 animations:^{
+        self.btnSuccessfulMatches.alpha = 1;
     }];
 }
+
+//- (void)receiveMatcheUserWithModel:(ModelBiuFaceStar *)model animation:(BOOL)animation{
+//    self.btnSuccessfulMatches.alpha = 0;
+//    [self.btnSuccessfulMatches setHidden:NO];
+//    __weak UIButton *weakBtnSuccessfulMatches = self.btnSuccessfulMatches;
+//    
+//    self.modelFaceStar = model;
+//    [self.btnSuccessfulMatches setBackgroundImageWithURL:[NSURL URLWithString:model.userProfile] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@"global_profile_defult"] options:YYWebImageOptionAllowBackgroundTask completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+//        
+//        [weakBtnSuccessfulMatches setBackgroundImage:image forState:UIControlStateHighlighted];
+//        self.biubiuNowCount = 0;
+//        [self setNeedsDisplay];
+//        
+//        [self.labelBiuBiu setHidden:YES];
+//        [self.btnBiuBiu setHidden:YES];
+//        [self.labelBiuBiu setText:@""];
+//        [self.btnBiuBiu setTitle:@"biu" forState:UIControlStateNormal];
+//        [self.timerCountdown invalidate];
+//        self.timerCountdown = nil;
+//        
+//        POPSpringAnimation *scaleAnimationSuccessfulMatches = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+//        scaleAnimationSuccessfulMatches.springBounciness = 10;
+//        scaleAnimationSuccessfulMatches.springSpeed = 20;
+//        scaleAnimationSuccessfulMatches.fromValue = [NSValue valueWithCGPoint:CGPointMake(0, 0)];
+//        scaleAnimationSuccessfulMatches.toValue = [NSValue valueWithCGPoint:CGPointMake(1.0, 1.0)];
+//        
+//        
+//        POPBasicAnimation *opacityAnimationSuccessfulMatches = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+//        opacityAnimationSuccessfulMatches.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//        opacityAnimationSuccessfulMatches.duration = 0.3;
+//        opacityAnimationSuccessfulMatches.toValue = @1.0;
+//        
+//        scaleAnimationSuccessfulMatches.completionBlock = ^(POPAnimation *anim, BOOL finish){
+//        };
+//        
+//        if (animation) {
+//            [weakBtnSuccessfulMatches.layer pop_addAnimation:scaleAnimationSuccessfulMatches forKey:@"AnimationScale"];
+//        }
+//        [weakBtnSuccessfulMatches.layer pop_addAnimation:opacityAnimationSuccessfulMatches forKey:@"AnimateOpacity"];
+//
+//    }];
+//}
 
 -(CABasicAnimation *) AlphaLight:(float)time{
     CABasicAnimation *animation =[CABasicAnimation animationWithKeyPath:@"opacity"];
@@ -198,7 +207,7 @@
     
     CGContextSetRGBStrokeColor(context,1.0,1.0,1.0,1.0);//画笔线的颜色
     CGContextSetLineWidth(context, self.circleBorderWidth);
-    CGContextAddArc(context, self.viewWidthHeight/2, self.viewWidthHeight/2, self.circleRadius, 0, PI*2*self.biubiuNowCount/self.biubiuCount, 0); //添加一个圆
+    CGContextAddArc(context, self.viewWidthHeight/2, self.viewWidthHeight/2, self.circleRadius, 0, M_PI*2*self.biubiuNowCount/self.biubiuCount, 0); //添加一个圆
     
     CGContextDrawPath(context, kCGPathStroke);
 }

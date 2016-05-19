@@ -72,6 +72,12 @@
 
 #import "ControllerBiuBiuReceive.h"
 
+#import "XMStitchingImage.h"
+
+#import "UserDefultBiu.h"
+
+#import "ControllerBiuAccept.h"
+
 @interface ControllerBiuBiu ()<XMBiuCenterButtonDelegate, AppDelegateRemoteNotificationDelegate, ControllerBiuBiuSendDelegate, XMBiuFaceStarCollectionDelegate, ControllerBiuBiuReceiveDelegate, ControllerBiuPayBDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) NSArray *trajectoryRadiusArr;
@@ -234,6 +240,12 @@
         //[self updateUmiCount:0];
     }
     
+    //当biubiu未结束时......
+    if ([UserDefultBiu biuInMatch]) {
+        [self.biuCenterButton receiveMatcheUserWithImage:nil];
+    }else{
+        [self.biuCenterButton noReceiveMatchUser];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -308,28 +320,36 @@
 //    
 //    //[controllerChat setHidesBottomBarWhenPushed:YES];
 //    [self.navigationController pushViewController:controllerChat animated:YES];
+    
+    ControllerBiuAccept *controller = [ControllerBiuAccept controller];
+    
+    UIGraphicsBeginImageContext(self.view.bounds.size);     //currentView 当前的view  创建一个基于位图的图形上下文并指定大小为
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];//renderInContext呈现接受者及其子范围到指定的上下文
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();//返回一个基于当前图形上下文的图片
+    UIGraphicsEndImageContext();
+    
     //用辅助类进行页面的跳转
 #warning 临解决tabBar隐藏后有空余的空间 后续需要进行修改
-    EmptyController *emptyController = [EmptyController new];
-    emptyController.conversationId = model.userCode;
-    emptyController.type = EMConversationTypeChat;
+    EmptyController *emptyController = [[EmptyController alloc] init];
+    emptyController.backgroundImage = viewImage;
     [self.navigationController pushViewController:emptyController animated:NO];
+    [self.navigationController pushViewController:controller animated:YES];
     
     //更新抢到我的biu的用户的状态（已读）
-    AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
-    httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString]};
-    [httpManager POST:[XMUrlHttp xmUpdateBiuMatchUserStatus] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
-        if (response.state == 200) {
-        }else{
-            NSLog(@"%@", responseObject);
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", error);
-    }];
+//    AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
+//    httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    
+//    NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString]};
+//    [httpManager POST:[XMUrlHttp xmUpdateBiuMatchUserStatus] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
+//        if (response.state == 200) {
+//        }else{
+//            NSLog(@"%@", responseObject);
+//        }
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"%@", error);
+//    }];
 }
 
 #pragma mark - AppDelegate回调
@@ -357,7 +377,7 @@
     if (self.isDisplayedInScreen) {
         if (userInfo.typeNotifi == 1){
             ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:userInfo];
-            [self.biuCenterButton receiveMatcheUserWithModel:faceStar animation:YES];
+            //[self.biuCenterButton receiveMatcheUserWithModel:faceStar animation:YES];
         }else if (userInfo.typeNotifi == 2){
             ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:userInfo];
             [self.biuFaceStarCollection removeFaceStarWithModel:faceStar];
@@ -468,11 +488,7 @@
             
             [self showAlertProfileState];
             
-            if (biuData.matchUser) {
-                [self.biuCenterButton receiveMatcheUserWithModel:biuData.matchUser animation:NO];
-            }else{
-                [self.biuCenterButton noReceiveMatchUser];
-            }
+            
         }else{
             [self.biuCenterButton noReceiveMatchUser];
         }

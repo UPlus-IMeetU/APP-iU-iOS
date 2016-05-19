@@ -75,8 +75,6 @@
     if ([UserDefultAccount isLogin]) {
         [self.labelRighsterLoginOrName setText:[UserDefultAccount userName]];
         [self.imgViewUserProfile setImageWithURL:[NSURL URLWithString:[UserDefultAccount userProfileUrlThumbnail]] placeholder:[UIImage imageNamed:@"global_profile_defult"]];
-        
-        NSLog(@"===>%@", [UserDefultAccount userProfileUrlThumbnail]);
     }else{
         
         [self.labelRighsterLoginOrName setText:@"点击登录/注册"];

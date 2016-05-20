@@ -1,4 +1,4 @@
-//
+ //
 //  ControllerBiuBiuSend.m
 //  IMeetU
 //
@@ -265,7 +265,7 @@
 - (IBAction)RandomTopic:(id)sender {
     [self.view endEditing:YES];
     ModelBiuSendChatTopic *topic;
-    while (true) {
+    while (true && self.modelBiuSendChatTopics.tags.count>0) {
         int index = arc4random() % self.modelBiuSendChatTopics.tags.count;
         //取出数据
         topic = [self.modelBiuSendChatTopics modelOfIndex:index];

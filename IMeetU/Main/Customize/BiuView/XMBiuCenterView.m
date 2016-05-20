@@ -91,7 +91,6 @@
 }
 
 - (void)receiveMatcheUserWithImageUrl:(NSString *)url{
-    NSLog(@"=====>%lli", [UserDefultBiu biuSendTime]);
     
     self.btnSuccessfulMatches.alpha = 0;
     [self.btnSuccessfulMatches setHidden:NO];
@@ -100,7 +99,7 @@
     }];
     
     if ([UserDefultBiu biuSendTime] - [NSDate currentTimeMillis] > 90*1000 || url==nil) {
-        [self.btnSuccessfulMatches setBackgroundImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@"global_btn_more"]];
+        [self.btnSuccessfulMatches setBackgroundImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@"biu_btn_matching"]];
     }
 }
 

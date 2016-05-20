@@ -49,9 +49,9 @@
     _matchLabel.text = [NSString stringWithFormat:@"%ld%%",(long)_matchPeople.matchScore];
     NSString *schoolName = [self searchSchoolNameWithID:_matchPeople.schoolID];
     if (!schoolName) {
-        _userInfo.text = [NSString stringWithFormat:@"%ld",(long)_matchPeople.age];
+        _userInfo.text = [NSString stringWithFormat:@"%ld岁",(long)_matchPeople.age];
     }else{
-        _userInfo.text = [NSString stringWithFormat:@"%@  •  %ld",schoolName,(long)_matchPeople.age];
+        _userInfo.text = [NSString stringWithFormat:@"%@ • %ld岁",schoolName,(long)_matchPeople.age];
     }
     
     if (_matchPeople.distanceToMe < 1000) {

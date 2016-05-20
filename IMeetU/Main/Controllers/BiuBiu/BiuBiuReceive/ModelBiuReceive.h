@@ -39,7 +39,7 @@
 
 @property (nonatomic, assign) NSInteger distance;
 @property (nonatomic, assign) NSInteger matchingScore;
-
+@property (nonatomic, assign) NSInteger message;
 /**
  *  标记此biu是否已被抢
  */
@@ -50,10 +50,6 @@
 @property (nonatomic, assign) NSInteger userIdentifier;
 
 @property (nonatomic, assign) NSInteger profileState;
-/**
- *  标记位置，如果位0Biu已经结束 1为请求成功
- */
-@property (nonatomic, assign) NSInteger message;
 
 
 - (ModelCharacher*)modelCharaterOfIndex:(NSInteger)index;

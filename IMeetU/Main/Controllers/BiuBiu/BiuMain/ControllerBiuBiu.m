@@ -193,7 +193,7 @@
         [self refreshBiuMainInfoNotLogin];
     }
     //对于广告页进行相关的处理
-    _matchPeopleView = [[MatchPeopleView alloc] initWithFrame:CGRectMake(0, 58, [UIScreen screenWidth], [UIScreen screenHeight] - 58 - 49)];
+    _matchPeopleView = [[MatchPeopleView alloc] initWithFrame:CGRectMake(0, 55, [UIScreen screenWidth], [UIScreen screenHeight] - 55 - 49)];
     _matchPeopleView.hidden = YES;
     [self.view addSubview:_matchPeopleView];
 

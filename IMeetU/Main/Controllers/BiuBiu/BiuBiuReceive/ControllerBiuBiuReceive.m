@@ -115,7 +115,6 @@
         if (response.state == 200) {
             [hud hide:YES];
             self.modelBiuReceive = [ModelBiuReceive modelWithDictionary:response.data];
-            
             //如果biubiu已经被抢了，移除主屏幕上的头像
             if (self.modelBiuReceive.isGrabbbed) {
                 if (self.delegateReceiveBiu){
@@ -205,7 +204,7 @@
         //        if ((!self.modelBiuReceiveIsRequest) || (self.modelBiuReceive.biuAllCount > self.modelBiuReceive.biuUsedCountOnce)) {
         ReusableViewBiuReceiveFooter *viewSection = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ReusableViewBiuReceiveFooterIdentifier forIndexPath:indexPath];
         viewSection.delegateFooter = self;
-        [viewSection initWithIsGrabbed:self.modelBiuReceive.message];
+        [viewSection initWithMessage:self.modelBiuReceive.message];
         
         reusableView = viewSection;
         //        }else{
@@ -312,10 +311,6 @@
                 [hud hide:YES];
                 NSInteger status = [response.data[@"message"] integerValue];
                 _countUMi = [response.data[@"virtual_currency"] integerValue];
-                //进行判断 message 1.
-                //2.biu币不足，请充值
-                
-                //4.需要扣biu币
                 //0.要抢的biu已结束
                 if (status == 0) {
                     button.enabled = NO;
@@ -323,7 +318,7 @@
                     //3.已经被接受
                 }else if(status == 3){
                     button.enabled = NO;
-                    [button setTitle:@"已收biu" forState:UIControlStateNormal];
+                    [button setTitle:@"已接受" forState:UIControlStateNormal];
                     //1.已经进入抢biu列表
                 }else if(status == 1){
                     [self.navigationController popViewControllerAnimated:YES];

@@ -13,7 +13,7 @@
 @interface ReusableViewBiuReceiveFooter : UICollectionReusableView
 
 @property (nonatomic, weak) id<ReusableViewBiuReceiveFooterDelegate> delegateFooter;
-- (void)initWithIsGrabbed:(BOOL)isGrabbed;
+- (void)initWithMessage:(NSInteger)message;
 
 
 @end

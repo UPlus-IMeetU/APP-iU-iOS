@@ -264,16 +264,14 @@
     self.isDisplayedInScreen = YES;
     [self.biuFaceStarCollection superViewDidAppear:animated];
     //开启
-    //[[ControllerDrawer shareControllerDrawer] setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     
     if ([AppDelegate shareAppDelegate].remoteNotificationUserInfo) {
         
         ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:[AppDelegate shareAppDelegate].remoteNotificationUserInfo];
         ControllerBiuBiuReceive *controller = [ControllerBiuBiuReceive controllerWithFaceStar:faceStar delegate:self];
-//        [controller setHidesBottomBarWhenPushed:YES];
+
         [self.navigationController pushViewController:controller animated:YES];
         [AppDelegate shareAppDelegate].remoteNotificationUserInfo = nil;
-        
     }
     
     if (!self.biuViewBG.isAnimation) {
@@ -282,7 +280,6 @@
         });
         self.biuViewBG.isAnimation = YES;
     }
-    
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -397,6 +394,9 @@
         //清空数据库
         DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
         [cache cleanDB];
+        
+        //清空原有头像
+        [self.biuFaceStarCollection refreshWithModels:@[]];
     }else{
         [self refreshBiuMainInfoNotLogin];
     }

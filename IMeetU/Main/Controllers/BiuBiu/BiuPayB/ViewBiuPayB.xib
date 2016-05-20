@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -46,10 +46,10 @@
                     <rect key="frame" x="0.0" y="77" width="600" height="79"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRH-8W-jIj">
-                            <rect key="frame" x="191" y="10" width="217" height="58"/>
+                            <rect key="frame" x="152.5" y="20.5" width="294.5" height="37"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yPv-yn-f8K">
-                                    <rect key="frame" x="0.0" y="0.0" width="217" height="16"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="294.5" height="16"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pay_imageview_point_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="Qin-dY-Ucn">
                                             <rect key="frame" x="0.0" y="5" width="6" height="6"/>
@@ -58,8 +58,8 @@
                                                 <constraint firstAttribute="width" constant="6" id="xGU-ut-vQx"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每发一次biubiu，奖励5粒U米" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hu-gy-MDn">
-                                            <rect key="frame" x="10" y="0.0" width="207" height="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你发出去的biubiu，被足够多的人接收后，则之后" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hu-gy-MDn">
+                                            <rect key="frame" x="10" y="0.0" width="284.5" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -77,17 +77,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Upr-ik-Weh">
-                                    <rect key="frame" x="0.0" y="21" width="217" height="16"/>
+                                    <rect key="frame" x="0.0" y="21" width="294.5" height="16"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pay_imageview_point_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="yex-cb-jlZ">
-                                            <rect key="frame" x="0.0" y="5" width="6" height="6"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="6" id="hTo-tY-o9n"/>
-                                                <constraint firstAttribute="width" constant="6" id="iIa-pH-qnI"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每收一次biubiu，消耗5粒U米" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SfW-BV-gS3">
-                                            <rect key="frame" x="10" y="0.0" width="207" height="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="想接收你biubiu的人，需要送给你一定量的U米；" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SfW-BV-gS3">
+                                            <rect key="frame" x="10" y="0.0" width="284.5" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -95,57 +88,24 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="SfW-BV-gS3" firstAttribute="leading" secondItem="Upr-ik-Weh" secondAttribute="leading" constant="10" id="1mq-aN-L6N"/>
                                         <constraint firstItem="SfW-BV-gS3" firstAttribute="top" secondItem="Upr-ik-Weh" secondAttribute="top" id="6wT-db-KwM"/>
                                         <constraint firstAttribute="trailing" secondItem="SfW-BV-gS3" secondAttribute="trailing" id="B8U-ed-g7y"/>
                                         <constraint firstItem="SfW-BV-gS3" firstAttribute="centerY" secondItem="Upr-ik-Weh" secondAttribute="centerY" id="GZA-kN-bYh"/>
-                                        <constraint firstItem="yex-cb-jlZ" firstAttribute="leading" secondItem="Upr-ik-Weh" secondAttribute="leading" id="bGC-7H-DmQ"/>
-                                        <constraint firstItem="SfW-BV-gS3" firstAttribute="leading" secondItem="yex-cb-jlZ" secondAttribute="trailing" constant="4" id="fmA-4A-xAd"/>
                                         <constraint firstAttribute="bottom" secondItem="SfW-BV-gS3" secondAttribute="bottom" id="ox2-HX-Mou"/>
-                                        <constraint firstItem="yex-cb-jlZ" firstAttribute="centerY" secondItem="Upr-ik-Weh" secondAttribute="centerY" id="riY-Fk-ifD"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7m-26-KuU">
-                                    <rect key="frame" x="0.0" y="42" width="217" height="16"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pay_imageview_point_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="RhJ-HP-9vZ">
-                                            <rect key="frame" x="0.0" y="5" width="6" height="6"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="6" id="Ja5-oB-HuT"/>
-                                                <constraint firstAttribute="width" constant="6" id="i3q-nr-Wqf"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="U米总量超出100时，暂停发biu奖励" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCJ-ye-IIU">
-                                            <rect key="frame" x="10" y="0.0" width="207" height="16"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="uCJ-ye-IIU" secondAttribute="trailing" id="RkU-nk-1WU"/>
-                                        <constraint firstItem="uCJ-ye-IIU" firstAttribute="centerY" secondItem="x7m-26-KuU" secondAttribute="centerY" id="WRl-eI-Ztz"/>
-                                        <constraint firstAttribute="bottom" secondItem="uCJ-ye-IIU" secondAttribute="bottom" id="evT-Dw-5Gn"/>
-                                        <constraint firstItem="RhJ-HP-9vZ" firstAttribute="centerY" secondItem="x7m-26-KuU" secondAttribute="centerY" id="hL3-Qd-SiA"/>
-                                        <constraint firstItem="uCJ-ye-IIU" firstAttribute="top" secondItem="x7m-26-KuU" secondAttribute="top" id="mLy-iE-VcW"/>
-                                        <constraint firstItem="RhJ-HP-9vZ" firstAttribute="leading" secondItem="x7m-26-KuU" secondAttribute="leading" id="q8o-bo-q5q"/>
-                                        <constraint firstItem="uCJ-ye-IIU" firstAttribute="leading" secondItem="RhJ-HP-9vZ" secondAttribute="trailing" constant="4" id="tQ3-5s-V1x"/>
                                     </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="x7m-26-KuU" secondAttribute="trailing" id="2J3-Mc-gr6"/>
                                 <constraint firstItem="yPv-yn-f8K" firstAttribute="leading" secondItem="zRH-8W-jIj" secondAttribute="leading" id="3o5-Qi-Y4E"/>
-                                <constraint firstItem="x7m-26-KuU" firstAttribute="top" secondItem="Upr-ik-Weh" secondAttribute="bottom" constant="5" id="6Hw-1z-GYb"/>
                                 <constraint firstItem="yPv-yn-f8K" firstAttribute="top" secondItem="zRH-8W-jIj" secondAttribute="top" id="9Ku-Ad-isZ"/>
                                 <constraint firstItem="Upr-ik-Weh" firstAttribute="leading" secondItem="zRH-8W-jIj" secondAttribute="leading" id="L6S-5F-b2Y"/>
                                 <constraint firstItem="Upr-ik-Weh" firstAttribute="height" secondItem="yPv-yn-f8K" secondAttribute="height" id="Ne9-dG-W7u"/>
-                                <constraint firstItem="x7m-26-KuU" firstAttribute="leading" secondItem="zRH-8W-jIj" secondAttribute="leading" id="PEi-C5-FMd"/>
                                 <constraint firstItem="Upr-ik-Weh" firstAttribute="top" secondItem="yPv-yn-f8K" secondAttribute="bottom" constant="5" id="QAL-j0-LCj"/>
+                                <constraint firstAttribute="bottom" secondItem="Upr-ik-Weh" secondAttribute="bottom" id="Wz2-XL-FQM"/>
                                 <constraint firstAttribute="trailing" secondItem="yPv-yn-f8K" secondAttribute="trailing" id="gxu-fr-ldE"/>
                                 <constraint firstAttribute="trailing" secondItem="Upr-ik-Weh" secondAttribute="trailing" id="n1k-4X-oXs"/>
-                                <constraint firstAttribute="bottom" secondItem="x7m-26-KuU" secondAttribute="bottom" id="pE1-OM-Lpb"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -271,7 +231,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="71" height="33.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="980U米" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6U-yE-lHD">
-                                                    <rect key="frame" x="11.5" y="9" width="48" height="16"/>
+                                                    <rect key="frame" x="11" y="9" width="48" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -344,7 +304,7 @@
                                             <rect key="frame" x="71" y="0.0" width="45" height="33.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUw-nq-CBk">
-                                                    <rect key="frame" x="8.5" y="8" width="27" height="16"/>
+                                                    <rect key="frame" x="9" y="8" width="27" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -501,7 +461,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8H-1d-Xxq">
-                                    <rect key="frame" x="522.5" y="-1" width="25" height="18"/>
+                                    <rect key="frame" x="523" y="-1" width="25" height="18"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" red="0.42352941179999998" green="0.81960784310000001" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>

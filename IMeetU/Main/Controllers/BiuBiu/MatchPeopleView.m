@@ -27,6 +27,7 @@ static NSString * const kIdentifierCell = @"MatchPeopleCell";
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *matchPeopleArray;
 @property (nonatomic, strong) MLCollectionViewWaterfallLayout *waterfallLayout;
+@property (nonatomic, assign) BOOL isCanLoading;
 
 @end
 @implementation MatchPeopleView
@@ -55,6 +56,8 @@ static NSString * const kIdentifierCell = @"MatchPeopleCell";
     [xmHttpBiuBiu loadMatchUserWithCount:20 timestamp:time callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
         if (code == 200) {
             ModelUserListMatch *modelUserListMatch = [ModelUserListMatch modelWithJSON:response];
+            _isCanLoading = modelUserListMatch.hasNext;
+            //NSLog(@"*************_isCanLoading  = %@**************",_isCanLoading);
             if (refreshType == Refresh) {
                 [weakSelf.matchPeopleArray removeAllObjects];
                 weakSelf.matchPeopleArray = [NSMutableArray arrayWithArray:modelUserListMatch.users];
@@ -117,8 +120,12 @@ static NSString * const kIdentifierCell = @"MatchPeopleCell";
 
 - (void)loading{
     //取出最后一个
-    NSInteger lastTime = ((ModelUserMatch *)[_matchPeopleArray lastObject]).timeSendBiu;
-    [self initDataWithTime:lastTime withType:Loading];
+    if (_isCanLoading) {
+        NSInteger lastTime = ((ModelUserMatch *)[_matchPeopleArray lastObject]).timeSendBiu;
+        [self initDataWithTime:lastTime withType:Loading];
+    }else{
+       
+    }
 }
 
 -  (MLCollectionViewWaterfallLayout *)waterfallLayout{

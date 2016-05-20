@@ -329,11 +329,11 @@
                     [self.navigationController popViewControllerAnimated:YES];
                 }else if(status == 2){
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"U米不足" message:@"U米不够啦，先去U米中心兑换吧" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"兑换U米", nil];
-                    alertView.tag = 1001;
+                    alertView.tag = Recharge;
                     [alertView show];
                 }else if(status == 4){
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收biu" message:[NSString stringWithFormat:@"已经有%ld收了TA的biubiu继续收TA的将消耗%ldU米",_countUMi * 10,_countUMi] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-                    alertView.tag = 1002;
+                    alertView.tag = Consumption;
                     [alertView show];
                 }
                 //                if (status == 0) {

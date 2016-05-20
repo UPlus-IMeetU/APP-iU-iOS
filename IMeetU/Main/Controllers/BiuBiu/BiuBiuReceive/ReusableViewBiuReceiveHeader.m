@@ -92,12 +92,12 @@
     }
     
     if (model.distance < 1000){
-        self.labelDistance.text = [NSString stringWithFormat:@"%lum", model.distance];
+        self.labelDistance.text = [NSString stringWithFormat:@"%lum", (long)model.distance];
     }else{
         self.labelDistance.text = [NSString stringWithFormat:@"%.1fkm", model.distance/1000.0];
     }
     
-    self.labelMatch.text = [NSString stringWithFormat:@"%lu%%", model.matchingScore];
+    self.labelMatch.text = [NSString stringWithFormat:@"%lu%%", (long)model.matchingScore];
     
     self.labelBeforeTime.text = [self createdAt:model.timebefore];
     if (model.gender==1) {
@@ -107,7 +107,7 @@
     }else{
         self.labelGender.text = @"未知性别";
     }
-    self.labelAge.text = [NSString stringWithFormat:@"%lu", model.age];
+    self.labelAge.text = [NSString stringWithFormat:@"%lu", (long)model.age];
     
     if (model.constellation && model.constellation.length>0){
         self.labelConstellation.text = model.constellation;
@@ -125,7 +125,7 @@
 }
 
 
-- (NSString *)createdAt:(NSInteger)time
+- (NSString *)createdAt:(long long)time
 {
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     //2015-09-08 18:05:31

@@ -46,7 +46,7 @@
     _biubiuInfoLabel.attributedText = attributedString;
     [_biubiuInfoLabel sizeToFit];
     _timeLabel.text = [self createdAt:_matchPeople.timeSendBiu];
-    _matchLabel.text = [NSString stringWithFormat:@"%ld%%",_matchPeople.matchScore];
+    _matchLabel.text = [NSString stringWithFormat:@"%ld%%",(long)_matchPeople.matchScore];
     NSString *schoolName = [self searchSchoolNameWithID:_matchPeople.schoolID];
     if (!schoolName) {
         _userInfo.text = [NSString stringWithFormat:@"%ld",(long)_matchPeople.age];
@@ -73,7 +73,7 @@
     DBSchools *dbSchools = [DBSchools shareInstance];
     return [[dbSchools schoolWithID:schoolID] objectForKey:@"schoolName"];
 }
-- (NSString *)createdAt:(NSInteger)time
+- (NSString *)createdAt:(long long)time
 {
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     //2015-09-08 18:05:31

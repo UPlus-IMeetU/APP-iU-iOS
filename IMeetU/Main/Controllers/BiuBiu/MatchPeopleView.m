@@ -133,7 +133,7 @@ static NSString * const kIdentifierCell = @"MatchPeopleCell";
         NSInteger lastTime = ((ModelUserMatch *)[_matchPeopleArray lastObject]).timeSendBiu;
         [self initDataWithTime:lastTime withType:Loading];
     }else{
-       
+        [self.collectionView.mj_footer endRefreshing];
     }
 }
 

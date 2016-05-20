@@ -25,4 +25,5 @@
 @optional
 - (void)viewMineMainAlterProfileAfterReadingDialog:(ViewMineMainAlterProfile*)view;
 
+- (void)viewMineMainAlterProfileClose:(ViewMineMainAlterProfile*)view;
 @end

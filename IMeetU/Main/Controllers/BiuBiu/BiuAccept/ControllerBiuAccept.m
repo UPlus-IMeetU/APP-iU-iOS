@@ -57,7 +57,6 @@
                     ModelBiuAccept *model = self.users[0];
                     [UserDefultBiu setBiuUserProfileOfGrab:model.urlProfile];
                 }
-                [hud xmSetCustomModeWithResult:YES label:@"完成"];
                 [hud hide:YES];
             }else{
                 [UserDefultBiu setBiuInMatch:NO];
@@ -72,6 +71,9 @@
             [hud hide:YES afterDelay:1];
         }
     }];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -138,23 +140,29 @@
 }
 
 - (IBAction)onClickBtnShutdownBiu:(id)sender {
-    MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.view label:@"正在结束..." animated:YES];
-    [[XMHttpBiuBiu http] shutdownBiuWithCallback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
-        if (code == 200) {
-            if ([response[@"message"] integerValue] == 1) {
-                [UserDefultBiu setBiuInMatch:NO];
-                [UserDefultBiu setBiuUserProfileOfGrab:@""];
-                [hud xmSetCustomModeWithResult:YES label:@"结束成功"];
-                [self.navigationController popToRootViewControllerAnimated:NO];
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"结束本次biubiu" message:@"结束后，本次biubiu将失效，也可以重新发biu哦" preferredStyle:UIAlertControllerStyleAlert];
+    [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [controller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.view label:@"正在结束..." animated:YES];
+        [[XMHttpBiuBiu http] shutdownBiuWithCallback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+            if (code == 200) {
+                if ([response[@"message"] integerValue] == 1) {
+                    [UserDefultBiu setBiuInMatch:NO];
+                    [UserDefultBiu setBiuUserProfileOfGrab:@""];
+                    [hud xmSetCustomModeWithResult:YES label:@"结束成功"];
+                    [self.navigationController popToRootViewControllerAnimated:NO];
+                }else{
+                    [hud xmSetCustomModeWithResult:NO label:@"结束失败"];
+                }
             }else{
                 [hud xmSetCustomModeWithResult:NO label:@"结束失败"];
             }
-        }else{
-            [hud xmSetCustomModeWithResult:NO label:@"结束失败"];
-        }
-        
-        [hud hide:YES afterDelay:1];
-    }];
+            
+            [hud hide:YES afterDelay:1];
+        }];
+    }]];
+    [controller presentationController];
+    
 }
 
 - (IBAction)onClickBtnBack:(id)sender {

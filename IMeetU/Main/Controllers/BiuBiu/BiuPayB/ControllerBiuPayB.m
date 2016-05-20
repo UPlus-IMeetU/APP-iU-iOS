@@ -20,6 +20,7 @@
 #import "XMUrlHttp.h"
 #import <YYKit/YYKit.h>
 #import "ModelResponse.h"
+#import "MBProgressHUD+plug.h"
 
 #define UMi60 @"cc.imeetu.iu.umi_60"
 #define UMi120 @"cc.imeetu.iu.umi_120"
@@ -56,11 +57,29 @@
     self.scrollViewMain.showsVerticalScrollIndicator = NO;
     self.scrollViewMain.contentSize = CGSizeMake([UIScreen screenWidth], self.scrollViewContentHeight);
     self.viewBiuPayB.delegatePayUmi = self;
-    [self.viewBiuPayB initialWithUmiCount:self.umiCountNow height:self.scrollViewContentHeight];
     [self.scrollViewMain addSubview:self.viewBiuPayB];
+    
+    MBProgressHUD *hud = [MBProgressHUD xmShowHUDAddedTo:self.view animated:YES];
+    
+    AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
+    httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString]};
+    [httpManager POST:[XMUrlHttp xmGetUMi] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
+        if (response.state == 200) {
+            self.umiCountNow = [response.data[@"virtual_currency"] integerValue];
+            [self.viewBiuPayB initialWithUmiCount:self.umiCountNow];
+            [hud xmSetCustomModeWithResult:YES label:@"完毕"];
+        }else{
+            [hud xmSetCustomModeWithResult:NO label:@"加载失败"];
+        }
+        [hud hide:YES afterDelay:0.5];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [hud xmSetCustomModeWithResult:NO label:@"加载失败"];
+        [hud hide:YES afterDelay:0.5];
+    }];
 }
-
-
 /**
  *  请求可卖商品
  */
@@ -123,6 +142,7 @@
 - (ViewBiuPayB *)viewBiuPayB{
     if (!_viewBiuPayB) {
         _viewBiuPayB = [UINib xmViewWithName:@"ViewBiuPayB" class:[ViewBiuPayB class]];
+        [_viewBiuPayB initWithViewHeight:self.scrollViewContentHeight];
     }
     return _viewBiuPayB;
 }

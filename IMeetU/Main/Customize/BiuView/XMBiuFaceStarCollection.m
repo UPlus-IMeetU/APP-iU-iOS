@@ -347,15 +347,15 @@
 }
 
 - (NSInteger)collectionMaxCountInside{
-    return 5;
+    return 4;
 }
 
 - (NSInteger)collectionMaxCountCenter{
-    return 8;
+    return 6;
 }
 
 - (NSInteger)collectionMaxCountOutside{
-    return 12;
+    return 8;
 }
 
 - (NSMutableArray *)collectionArrInside{

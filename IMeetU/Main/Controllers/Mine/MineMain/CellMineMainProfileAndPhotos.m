@@ -58,10 +58,6 @@
 - (void)initWithMine:(ModelResponseMine *)mine isMine:(BOOL)isMine isShowBtnBack:(BOOL)isShowBtnBack{
     self.mineInfo = mine;
     
-    self.btnBack.hidden = !isShowBtnBack;
-    self.btnBuyUmi.hidden = isShowBtnBack;
-    self.btnMore.hidden = isMine;
-    self.btnSetting.hidden = !isMine;
     self.btnAddPhotos.hidden = !isMine;
     
     if (isMine) {
@@ -242,7 +238,7 @@
 }
 
 + (CGFloat)viewHeight{
-    return 321;
+    return 257;
 }
 
 + (CGFloat)viewHeaderHeight{

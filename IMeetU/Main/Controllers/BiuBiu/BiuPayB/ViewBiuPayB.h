@@ -12,7 +12,8 @@
 
 @interface ViewBiuPayB : UIView
 
-- (void)initialWithUmiCount:(NSInteger)umiCount height:(CGFloat)height;
+- (void)initWithViewHeight:(CGFloat)height;
+- (void)initialWithUmiCount:(NSInteger)umiCount;
 
 @property (nonatomic, weak) id<ViewBiuPayBDelegate> delegatePayUmi;
 

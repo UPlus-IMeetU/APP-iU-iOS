@@ -51,13 +51,16 @@
 @end
 @implementation ViewBiuPayB
 
-- (void)initialWithUmiCount:(NSInteger)umiCount height:(CGFloat)height{
+- (void)initialWithUmiCount:(NSInteger)umiCount{
     self.umiCountNow = umiCount;
     self.umiCountSelected = 60;
-    self.viewHeight = height;
     self.segmentedPayWay.tintColor = [UIColor colorWithR:115 G:193 B:234];
     
     [self.labelUmCountNow setText:[NSString stringWithFormat:@"%lu粒", (long)self.umiCountNow]];
+}
+
+- (void)initWithViewHeight:(CGFloat)height{
+    self.viewHeight = height;
 }
 
 - (void)layoutSubviews{
@@ -66,7 +69,6 @@
 
 - (IBAction)onClickBtnUmiSelect_0:(UIButton*)sender {
     [self selectedBtnUmi:sender umiCount:self.labelUmiCount_0 umiCount:60];
-    
 }
 
 - (IBAction)onClickBtnUmiSelect_1:(UIButton*)sender {

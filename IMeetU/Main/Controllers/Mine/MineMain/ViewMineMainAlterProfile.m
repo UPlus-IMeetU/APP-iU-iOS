@@ -48,6 +48,12 @@
         } completion:^(BOOL finished) {
             [self removeFromSuperview];
         }];
+        
+        if (self.delegateProfile) {
+            if ([self.delegateProfile respondsToSelector:@selector(viewMineMainAlterProfileClose:)]) {
+                [self.delegateProfile viewMineMainAlterProfileClose:self];
+            }
+        }
     }];
     [self addGestureRecognizer:tapGestureRecognizerView];
     

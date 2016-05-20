@@ -85,12 +85,18 @@
 @property (nonatomic, strong) UIImagePickerController *pickControllerImg;
 @property (nonatomic, strong) UIImagePickerController *pickControllerProfile;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *viewStateBarBackgroundView;
 @property (weak, nonatomic) IBOutlet UIView *viewHUD;
 
 @property (nonatomic, strong) ViewMineMainAlterProfile *viewMineMainAlterProfile;
 
 @property (weak, nonatomic) IBOutlet UIView *viewLoginRegister;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnBack;
+@property (weak, nonatomic) IBOutlet UIButton *btnUmi;
+@property (weak, nonatomic) IBOutlet UIButton *btnMore;
+@property (weak, nonatomic) IBOutlet UIButton *btnSetting;
+@property (weak, nonatomic) IBOutlet UILabel *labelNameNick;
+
 /**
  *  是否正在加载个人信息
  */
@@ -132,6 +138,13 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.btnBack.hidden = !(self.getUserCodeFrom == MineMainGetUserCodeFromParam);
+    self.btnUmi.hidden = (self.getUserCodeFrom == MineMainGetUserCodeFromParam);
+    self.btnMore.hidden = self.isMine;
+    self.btnSetting.hidden = !self.isMine;
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
@@ -403,28 +416,23 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - tableView滚动回调：状态栏背景显示/隐藏
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.y>([CellMineMainProfileAndPhotos viewHeaderHeight]-20) && self.viewStateBarBackgroundView.alpha==0) {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.viewStateBarBackgroundView.alpha = 1;
-        }];
-    }else if(scrollView.contentOffset.y<([CellMineMainProfileAndPhotos viewHeaderHeight]-20) && self.viewStateBarBackgroundView.alpha==1){
-        [UIView animateWithDuration:0.3 animations:^{
-            self.viewStateBarBackgroundView.alpha = 0;
-        }];
-    }
-}
+//#pragma mark - tableView滚动回调：状态栏背景显示/隐藏
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    if (scrollView.contentOffset.y>([CellMineMainProfileAndPhotos viewHeaderHeight]-20) && self.viewStateBarBackgroundView.alpha==0) {
+//        [UIView animateWithDuration:0.3 animations:^{
+//            self.viewStateBarBackgroundView.alpha = 1;
+//        }];
+//    }else if(scrollView.contentOffset.y<([CellMineMainProfileAndPhotos viewHeaderHeight]-20) && self.viewStateBarBackgroundView.alpha==1){
+//        [UIView animateWithDuration:0.3 animations:^{
+//            self.viewStateBarBackgroundView.alpha = 0;
+//        }];
+//    }
+//}
 
 #pragma mark - 个人介绍：展开关闭按钮回调
 - (void)cellMineMainPersonalIntroductions:(CellMineMainPersonalIntroductions *)cell isOpen:(BOOL)isOpen{
     self.isOpen = isOpen;
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-#pragma mark - 关闭个人主页
-- (void)cellMineMainProfileAndPhotos:(CellMineMainProfileAndPhotos *)cell onClickBtnBack:(UIButton *)btn{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -进入主页购买U币
@@ -444,8 +452,6 @@
         ModelResponse *response = [ModelResponse responselWithObject:responseObject];
         if (response.state == 200) {
             NSInteger UMiCount = [response.data[@"virtual_currency"] integerValue];
-            ControllerBiuPayB *controller = [ControllerBiuPayB controllerWithUmiCount:UMiCount];
-            [self.navigationController pushViewController:controller animated:YES];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -454,26 +460,12 @@
     
 }
 
-#pragma mark -进入设置页面
-- (void)cellMineMainProfileAndPhotos:(CellMineMainProfileAndPhotos *)cell onClickSetting:(UIButton *)btn{
-    ControllerMatchSetting *matchSettingController = [ControllerMatchSetting controller];
-    matchSettingController.controllerType = ControllerTypeSetUp;
-    [self.navigationController pushViewController:matchSettingController animated:YES];
-    
-}
-
 #pragma mark - 点击头像：打开头像预览界面
 - (void)cellMineMainProfileAndPhotos:(CellMineMainProfileAndPhotos *)cell onClickBtnProfile:(UIButton *)btn{
     self.viewMineMainAlterProfile = [ViewMineMainAlterProfile viewMineMainAlterProfileWithIsMine:self.isMine];
     self.viewMineMainAlterProfile.delegateProfile = self;
     [self.viewMineMainAlterProfile showWithUrl:self.mineInfo.profileOrigin superView:self.view];
-}
-
-#pragma mark - 更多
-- (void)cellMineMainProfileAndPhotosOnClickMore:(CellMineMainProfileAndPhotos *)cell{
-    XMActionSheetMineMainMore *actionSheet = [XMActionSheetMineMainMore actionSheet];
-    actionSheet.delegateActionSheet = self;
-    [actionSheet showInView:self.view];
+    self.tabBarController.tabBar.hidden = YES;
 }
 
 - (void)xmActionSheetMineMainMoreReport:(XMActionSheetMineMainMore *)view{
@@ -500,7 +492,6 @@
 #pragma mark 特殊身份标识
 - (void)cellMineMainProfileAndPhotos:(CellMineMainProfileAndPhotos *)cell onClickBtnUserIdentifier:(UIButton *)btn{
     ControllerUserIdentifierGuide *controller = [ControllerUserIdentifierGuide controller];
-    //[controller setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -841,9 +832,12 @@
     [self presentViewController:self.pickControllerProfile animated:YES completion:^{
         [self.viewMineMainAlterProfile hiddenAndRemove];
     }];
+    self.tabBarController.tabBar.hidden = NO;
 }
 
-
+- (void)viewMineMainAlterProfileClose:(ViewMineMainAlterProfile *)view{
+    self.tabBarController.tabBar.hidden = NO;
+}
 
 - (UIImagePickerController *)pickControllerImg{
     if (!_pickControllerImg) {
@@ -895,6 +889,27 @@
 - (IBAction)onClickBtnLogin:(id)sender {
     ControllerUserLogin *controller = [ControllerUserLogin controller];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (IBAction)onClickBtnBack:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)onClickBtnUmi:(id)sender {
+    ControllerBiuPayB *controller = [ControllerBiuPayB controllerWithUmiCount:0];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (IBAction)onClickBtnSetting:(id)sender {
+    ControllerMatchSetting *matchSettingController = [ControllerMatchSetting controller];
+    matchSettingController.controllerType = ControllerTypeSetUp;
+    [self.navigationController pushViewController:matchSettingController animated:YES];
+}
+
+- (IBAction)onClickBtnMore:(id)sender {
+    XMActionSheetMineMainMore *actionSheet = [XMActionSheetMineMainMore actionSheet];
+    actionSheet.delegateActionSheet = self;
+    [actionSheet showInView:self.view];
 }
 
 //当个人主页是由tabbarController创建时，userCode从缓存中取

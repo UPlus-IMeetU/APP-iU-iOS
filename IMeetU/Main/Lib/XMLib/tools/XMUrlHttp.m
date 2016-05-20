@@ -12,176 +12,170 @@
 
 #pragma mark - 注册相关
 + (NSString *)xmIsRegisteredPhone{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/auth/checkPhoneIsRegistered"];
+    return [XMUrlHttp connectWithOperation:@"/app/auth/checkPhoneIsRegistered"];
 }
 
 + (NSString *)xmRegister{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/auth/register"];
+    return [XMUrlHttp connectWithOperation:@"/app/auth/register"];
 }
 
 + (NSString *)xmLogin{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/auth/login"];
+    return [XMUrlHttp connectWithOperation:@"/app/auth/login"];
 }
 
 + (NSString *)xmLogout{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/auth/logout"];
+    return [XMUrlHttp connectWithOperation:@"/app/auth/logout"];
 }
 
 + (NSString *)xmResetPassword{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/auth/updatePassword"];
+    return [XMUrlHttp connectWithOperation:@"/app/auth/updatePassword"];
 }
 
 #pragma mark - 个人主页相关
 + (NSString *)xmMineInfo{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/info/getUserInfo"];
+    return [XMUrlHttp connectWithOperation:@"/app/info/getUserInfo"];
 }
 
 + (NSString *)xmUpdateProfile{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/info/updateIcon"];
+    return [XMUrlHttp connectWithOperation:@"/app/info/updateIcon"];
 }
 
 + (NSString *)xmUpdateMineInfo{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/info/updateUserInfo"];
+    return [XMUrlHttp connectWithOperation:@"/app/info/updateUserInfo"];
 }
 
 + (NSString *)xmPhotoAdd{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/info/savePhoto"];
+    return [XMUrlHttp connectWithOperation:@"/app/info/savePhoto"];
 }
 
 + (NSString *)xmPhotoDelete{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/info/delPhoto"];
+    return [XMUrlHttp connectWithOperation:@"/app/info/delPhoto"];
 }
 #pragma mark - OSS令牌
 + (NSString *)xmOSSToken{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/info/getOSSSecurityToken"];
+    return [XMUrlHttp connectWithOperation:@"/app/info/getOSSSecurityToken"];
 }
 
 #pragma mark - 个性、兴趣、发biu话题
 + (NSString *)xmAllCharactersInterestChat{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/info/getTags"];
+    return [XMUrlHttp connectWithOperation:@"/app/info/getTags"];
 }
 
 + (NSString *)xmAllCharactersInterestChatTopic{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/info/getTags"];
+    return [XMUrlHttp connectWithOperation:@"/app/info/getTags"];
 }
 
 #pragma mark - biubiu相关
 #pragma mark 发biubiu
 + (NSString *)xmBiuSend{
-    return [XMUrlHttp testConnectWithOperation:@"/meetu_maven/app/biu/sendBiu"];
+    return [XMUrlHttp connectWithOperation:@"/app/biu/sendBiu"];
 }
 #pragma mark 更新biubiu主页信息（已登录）
 + (NSString *)xmUpdateBiuMainInfo{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/biubiuList"];
+    return [XMUrlHttp connectWithOperation:@"/app/biubiu/biubiuList"];
 }
 
 + (NSString *)xmReceiveBiuDetails{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biu/getBiuDetails"];
+    return [XMUrlHttp connectWithOperation:@"/app/biu/getBiuDetails"];
 }
 
 + (NSString *)xmReceiveBiuGrabBiu{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biu/grabBiu"];
+    return [XMUrlHttp connectWithOperation:@"/app/biu/grabBiu"];
 }
 
 + (NSString *)xmReceiveBiuUnreceiveTA{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/nolongerMatch"];
+    return [XMUrlHttp connectWithOperation:@"/app/biubiu/nolongerMatch"];
 }
 
 + (NSString *)xmUpdateBiuMainInfoUnlogin{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/auth/biubiuListUnlogin"];
+    return [XMUrlHttp connectWithOperation:@"/app/auth/biubiuListUnlogin"];
 }
 
 + (NSString *)xmUpdateBiuMatchUserStatus{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/updateChatListState"];
+    return [XMUrlHttp connectWithOperation:@"/app/biubiu/updateChatListState"];
 }
 
 #pragma mark - 更新推送channel
 + (NSString *)xmUpdateChannel{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/updateChannelIdAndDeviceType"];
+    return [XMUrlHttp connectWithOperation:@"/app/biubiu/updateChannelIdAndDeviceType"];
 }
 
 #pragma mark - 更新位置
 + (NSString *)xmUpdateLocation{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/info/updateLocation"];
+    return [XMUrlHttp connectWithOperation:@"/app/info/updateLocation"];
 }
 
 #pragma mark - 匹配设置
 + (NSString *)xmMatchSetting{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/info/getSettings"];
+    return [XMUrlHttp connectWithOperation:@"/app/info/getSettings"];
 }
 + (NSString*)xmMatchSettingUpdate{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/info/updateSettings"];
+    return [XMUrlHttp connectWithOperation:@"/app/info/updateSettings"];
 }
 
 #pragma mark - 创建biu币订单
 + (NSString *)xmPayCreateBiuOrder{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/createBill"];
+    return [XMUrlHttp connectWithOperation:@"/app/biubiu/createBill"];
 }
 
 + (NSString *)xmPayVerifyUmiOrderRes{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/checkBill"];
+    return [XMUrlHttp connectWithOperation:@"/app/biubiu/checkBill"];
 }
 
 + (NSString *)xmContactList{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/getFriendsList"];
+    return [XMUrlHttp connectWithOperation:@"/app/biubiu/getFriendsList"];
 }
 
 + (NSString *)xmUnfriendYou{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/removeFriend"];
+    return [XMUrlHttp connectWithOperation:@"/app/biubiu/removeFriend"];
 }
 
 + (NSString *)xmReportUser{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/report"];
+    return [XMUrlHttp connectWithOperation:@"/app/biubiu/report"];
 }
 
 + (NSString *)xmChangeUserStateRead{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/updateIconStatus"];
+    return [XMUrlHttp connectWithOperation:@"/app/biubiu/updateIconStatus"];
 }
 
 + (NSString *)xmEnablePay{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/enablePay"];
+    return [XMUrlHttp connectWithOperation:@"/app/biubiu/enablePay"];
 }
 
 + (NSString*)xmUpdateBill{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/updateBill"];
+    return [XMUrlHttp connectWithOperation:@"/app/biubiu/updateBill"];
 }
 
 + (NSString *)xmGetActivity{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/activity/getActivity"];
+    return [XMUrlHttp connectWithOperation:@"/activity/getActivity"];
 }
 
 + (NSString *)xmGetActivityContents{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/activity/getContents"];
+    return [XMUrlHttp connectWithOperation:@"/activity/getContents"];
 }
 
 + (NSString *)xmLoadMatchUsers{
-    return [XMUrlHttp testConnectWithOperation:@"/meetu_maven/app/biu/getTargetBiuList"];
+    return [XMUrlHttp connectWithOperation:@"/app/biu/getTargetBiuList"];
 }
 
 + (NSString *)xmLoadGrabBiuList{
-    return [XMUrlHttp testConnectWithOperation:@"/meetu_maven/app/biu/getGrabBiuList"];
+    return [XMUrlHttp connectWithOperation:@"/app/biu/getGrabBiuList"];
 }
 
 + (NSString *)xmAcceptUserGrabBiu{
-    return [XMUrlHttp testConnectWithOperation:@"/meetu_maven/app/biu/acceptBiu"];
+    return [XMUrlHttp connectWithOperation:@"/app/biu/acceptBiu"];
 }
 
 + (NSString *)xmShutdownBiu{
-    return [XMUrlHttp testConnectWithOperation:@"/meetu_maven/app/biu/endBiu"];
-}
-
-+ (NSString *)testConnectWithOperation:(NSString *)operation{
-    NSString *host = @"http://123.57.26.168:8080";
-    return [NSString stringWithFormat:@"%@%@", host, operation];
+    return [XMUrlHttp connectWithOperation:@"/app/biu/endBiu"];
 }
 
 + (NSString *)xmGetUMi{
-    return [XMUrlHttp testConnectWithOperation:@"/meetu_maven/app/biu/getVC"];
+    return [XMUrlHttp connectWithOperation:@"/app/biu/getVC"];
 }
 
 + (NSString *)connectWithOperation:(NSString *)operation{
-    //NSString *host = @"http://app.iu.imeetu.cc";
-    NSString *host = @"http://123.57.26.168:8080";
+    NSString *host = @"http://123.57.26.168:8080/meetu_maven_new";
     return [NSString stringWithFormat:@"%@%@", host, operation];
 }
 @end

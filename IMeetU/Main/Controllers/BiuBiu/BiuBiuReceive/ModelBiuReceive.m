@@ -74,7 +74,8 @@
              @"characters":@"distance",
              @"matchingScore":@"matching_score",
              @"userIdentifier":@"superman",
-             @"message":@"message"
+             @"message":@"message",
+             @"timebefore":@"time"
              };
 }
 

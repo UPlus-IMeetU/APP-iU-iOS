@@ -177,6 +177,9 @@
     
     self.advertView.hidden = YES;
     //刷新biubiu主页信息
+    self.matchButton.hidden = ![UserDefultAccount isLogin];
+    self.chooseButton.hidden = ![UserDefultAccount isLogin];
+    self.advertButton.hidden = YES;
     if ([UserDefultAccount isLogin]) {
         [self refreshBiuMainInfo];
     }else{
@@ -184,8 +187,9 @@
     }
     //对于广告页进行相关的处理
     _matchPeopleView = [[MatchPeopleView alloc] initWithFrame:CGRectMake(0, 58, [UIScreen screenWidth], [UIScreen screenHeight] - 58 - 49)];
-    [self.view addSubview:_matchPeopleView];
     _matchPeopleView.hidden = YES;
+    [self.view addSubview:_matchPeopleView];
+
     __weak typeof(self) weakSelf = self;
     _matchPeopleView.RecieveBiuBiuSelectBlock = ^(ModelBiuFaceStar *modelBiuFaceStar){
         //进行页面的跳转
@@ -233,6 +237,7 @@
     self.matchButton.hidden = ![UserDefultAccount isLogin];
     if (![UserDefultAccount isLogin]) {
         self.matchPeopleView.hidden = YES;
+        self.backTitleBgView.backgroundColor = [UIColor often_6CD1C9:0];
     }
     if ([UserDefultAccount isLogin]) {
         [self timerRefreshLaunch];
@@ -375,7 +380,6 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application{
     if ([UserDefultAccount isLogin]) {
         [self refreshBiuMainInfo];
-        
         //清空数据库
         DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
         [cache cleanDB];

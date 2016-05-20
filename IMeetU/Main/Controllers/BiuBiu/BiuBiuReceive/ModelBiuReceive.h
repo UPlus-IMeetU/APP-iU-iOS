@@ -31,7 +31,7 @@
 @property (nonatomic, copy) NSString *company;
 @property (nonatomic, copy) NSString *profression;
 
-@property (nonatomic, assign) NSInteger timebefore;
+@property (nonatomic, assign) long long timebefore;
 @property (nonatomic, copy) NSString *chatTopic;
 @property (nonatomic, strong) NSArray *characters;
 @property (nonatomic, strong) NSArray *interests;

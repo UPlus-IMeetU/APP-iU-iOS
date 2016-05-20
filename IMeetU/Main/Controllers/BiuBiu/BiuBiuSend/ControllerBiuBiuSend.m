@@ -188,8 +188,6 @@
                         [hud hide:YES afterDelay:3];
                     }
                     
-                    
-                    
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     [hud xmSetCustomModeWithResult:NO label:@"发送失败"];
                     [hud hide:YES afterDelay:3];

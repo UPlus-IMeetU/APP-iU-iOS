@@ -49,7 +49,7 @@
 /**
  * 发biubiu时间
  */
-@property (nonatomic, assign) NSInteger timeSendBiu;
+@property (nonatomic, assign) long long timeSendBiu;
 /**
  * 发biubiu的话题
  */

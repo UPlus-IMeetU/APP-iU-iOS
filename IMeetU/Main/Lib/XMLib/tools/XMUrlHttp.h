@@ -131,4 +131,8 @@
 + (NSString *)xmGetUMi;
 
 + (NSString *)xmLoadGrabBiuList;
+
++ (NSString *)xmAcceptUserGrabBiu;
+
++ (NSString *)xmShutdownBiu;
 @end

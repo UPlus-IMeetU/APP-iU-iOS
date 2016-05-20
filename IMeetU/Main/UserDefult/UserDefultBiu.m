@@ -7,6 +7,7 @@
 //
 
 #import "UserDefultBiu.h"
+#import "NSDate+plug.h"
 
 @implementation UserDefultBiu
 
@@ -18,4 +19,23 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+
++ (NSString *)biuUserProfileOfGrab{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:BIU_IN_MATCH_GRAB_PROFILE];
+}
++ (void)setBiuUserProfileOfGrab:(NSString *)url{
+    [[NSUserDefaults standardUserDefaults] setObject:url forKey:BIU_IN_MATCH_GRAB_PROFILE];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (long long)biuSendTime{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:BIU_SEND_TIME]) {
+        return [[[NSUserDefaults standardUserDefaults] objectForKey:BIU_SEND_TIME] longLongValue];
+    }
+    return 0;
+}
++ (void)setBiuSendTime{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithLongLong:[NSDate currentTimeMillis]] forKey:BIU_SEND_TIME];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 @end

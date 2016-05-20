@@ -10,4 +10,19 @@
 
 @implementation ModelBiuAccept
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{
+             @"userCode":@"user_code",
+             @"nameNick":@"nickname",
+             @"urlProfile":@"icon_thumbnailUrl",
+             @"age":@"age",
+             @"gender":@"sex",
+             @"constellation":@"starsign",
+             @"schoolID":@"school",
+             @"status":@"status",
+             @"virtualCurrency":@"status",
+             @"timestamp":@"time"
+             };
+}
+
 @end

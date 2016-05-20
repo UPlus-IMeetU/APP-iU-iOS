@@ -14,4 +14,8 @@
 - (void)loadMatchUserWithCount:(NSInteger)count timestamp:(NSInteger)timestamp callback:(XMHttpBlockStandard)callback;
 
 - (void)loadGrabBiuListWithCallback:(XMHttpBlockStandard)callback;
+
+- (void)acceptUserWithCode:(NSInteger)userCode callback:(XMHttpBlockStandard)callback;
+
+- (void)shutdownBiuWithCallback:(XMHttpBlockStandard)callback;
 @end

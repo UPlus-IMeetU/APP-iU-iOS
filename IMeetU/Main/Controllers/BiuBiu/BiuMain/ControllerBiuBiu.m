@@ -132,6 +132,7 @@
 @property (nonatomic, strong) NSTimer *timerRefresh;
 @property (nonatomic, assign) NSInteger refreshTheCountdown;
 @property (nonatomic, assign) NSInteger refreshMaxInterval;
+@property (nonatomic, assign) int matchHasNext;
 @property (nonatomic, assign) BOOL isLoadingBiu;
 @end
 
@@ -247,8 +248,8 @@
     }
     
     //当biubiu未结束时......
-    if ([UserDefultBiu biuInMatch]) {
-        [self.biuCenterButton receiveMatcheUserWithImage:nil];
+    if ([UserDefultBiu biuInMatch] && [UserDefultAccount isLogin]) {
+        [self.biuCenterButton receiveMatcheUserWithImageUrl:[UserDefultBiu biuUserProfileOfGrab]];
     }else{
         [self.biuCenterButton noReceiveMatchUser];
     }
@@ -305,7 +306,6 @@
                 ControllerBiuBiuSend *controller = [ControllerBiuBiuSend shareController];
                 controller.delegateBiuSender = self;
                 [self.navigationController pushViewController:controller animated:YES];
-                
             }else{
                 [self showAlertProfileState];
             }
@@ -315,7 +315,6 @@
         
     }else{
         ControllerUserLoginOrRegister *controller = [ControllerUserLoginOrRegister shareController];
-        //[controller setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:controller animated:YES];
     }
 }
@@ -327,19 +326,13 @@
 //    //[controllerChat setHidesBottomBarWhenPushed:YES];
 //    [self.navigationController pushViewController:controllerChat animated:YES];
     
-    ControllerBiuAccept *controller = [ControllerBiuAccept controller];
-    
-    UIGraphicsBeginImageContext(self.view.bounds.size);     //currentView 当前的view  创建一个基于位图的图形上下文并指定大小为
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];//renderInContext呈现接受者及其子范围到指定的上下文
-    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();//返回一个基于当前图形上下文的图片
-    UIGraphicsEndImageContext();
-    
-    //用辅助类进行页面的跳转
-#warning 临解决tabBar隐藏后有空余的空间 后续需要进行修改
-    EmptyController *emptyController = [[EmptyController alloc] init];
-    emptyController.backgroundImage = viewImage;
-    [self.navigationController pushViewController:emptyController animated:NO];
-    [self.navigationController pushViewController:controller animated:YES];
+    if ([UserDefultAccount isLogin]) {
+        ControllerBiuAccept *controller = [ControllerBiuAccept controller];
+        [self.navigationController pushViewController:controller animated:YES];
+    }else{
+        ControllerUserLoginOrRegister *controller = [ControllerUserLoginOrRegister shareController];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
     
     //更新抢到我的biu的用户的状态（已读）
 //    AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
@@ -383,7 +376,8 @@
     if (self.isDisplayedInScreen) {
         if (userInfo.typeNotifi == 1){
             ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:userInfo];
-            //[self.biuCenterButton receiveMatcheUserWithModel:faceStar animation:YES];
+            [UserDefultBiu setBiuUserProfileOfGrab:faceStar.userProfile];
+            [self.biuCenterButton receiveMatcheUserWithImageUrl:faceStar.userProfile];
         }else if (userInfo.typeNotifi == 2){
             ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:userInfo];
             [self.biuFaceStarCollection removeFaceStarWithModel:faceStar];
@@ -917,21 +911,13 @@
     return self.profileState;
 }
 
-- (void)testDBMatchUser{
-    DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
-    
-    [[XMHttpBiuBiu http] loadMatchUserWithCount:10 timestamp:0 callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
-        [cache cleanDB];
-        [cache insertWithArrModelUserMatch:[ModelUserListMatch modelWithJSON:response].users];
-    }];
-}
-
 - (void)timerRefreshLaunch{
     if (self.timerRefresh) {
         [self.timerRefresh invalidate];
         self.timerRefresh = nil;
     }
     
+    self.matchHasNext = 1;
     self.timerRefresh = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshFaceStarCollectionView:) userInfo:nil repeats:YES];
 }
 
@@ -971,7 +957,7 @@
 }
 
 - (void)loadMatchUser{
-    if (!self.isLoadingBiu) {
+    if (!self.isLoadingBiu && self.matchHasNext) {
         self.isLoadingBiu = YES;
         
         DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
@@ -984,6 +970,7 @@
             self.isLoadingBiu = NO;
             ModelUserListMatch *models = [ModelUserListMatch modelWithJSON:response];
             self.refreshMaxInterval = models.showIntervalMax;
+            self.matchHasNext = models.hasNext;
             
             DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
             [cache insertWithArrModelUserMatch:models.users];

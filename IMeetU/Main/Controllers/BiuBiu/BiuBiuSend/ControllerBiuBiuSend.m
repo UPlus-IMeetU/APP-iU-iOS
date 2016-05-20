@@ -173,28 +173,35 @@
                 [httpManager POST:[XMUrlHttp xmBiuSend] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     ModelResponse *response = [ModelResponse responselWithObject:responseObject];
                     if (response.state == 200) {
-                        NSInteger virtualCurrency = [response.data[@"virtual_currency"] integerValue];
-                        //首页回调
-                        [weakSelf.delegateBiuSender controllerBiuBiuSend:self sendResult:YES virtualCurrency:virtualCurrency];
-                        //更改提示框
-                        [hud xmSetCustomModeWithResult:YES label:@"发送成功"];
+                        if ([response.data[@"message"] integerValue] == 1){
+                            NSInteger virtualCurrency = [response.data[@"virtual_currency"] integerValue];
+                            //首页回调
+                            [weakSelf.delegateBiuSender controllerBiuBiuSend:self sendResult:YES virtualCurrency:virtualCurrency];
+                            //更改提示框
+                            [hud xmSetCustomModeWithResult:YES label:@"发送成功"];
+                            
+                            [UserDefultBiu setBiuUserProfileOfGrab:@""];
+                            [UserDefultBiu setBiuSendTime];
+                            [MobClick event:@"biu_send"];
+                            //关闭提示框、跳回主页
+                        }else{
+                            [hud xmSetCustomModeWithResult:YES label:@"biu还未结束"];
+                        }
                         
                         [UserDefultBiu setBiuInMatch:YES];
-                        
-                        [MobClick event:@"biu_send"];
-                       //关闭提示框、跳回主页
                         dispatch_after(5*NSEC_PER_SEC, dispatch_get_main_queue(), ^{
                             [hud hide:YES];
                             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                         });
                     }else{
+                        
+                        [UserDefultBiu setBiuInMatch:NO];
                         [hud xmSetCustomModeWithResult:YES label:@"发送失败"];
                         [hud hide:YES afterDelay:3];
                     }
                     
-                    
-                    
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    [UserDefultBiu setBiuInMatch:NO];
                     [hud xmSetCustomModeWithResult:NO label:@"发送失败"];
                     [hud hide:YES afterDelay:3];
                 }];

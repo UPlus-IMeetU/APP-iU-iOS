@@ -578,6 +578,9 @@
                                                 <state key="normal" title="结束本次">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onClickBtnShutdownBiu:" destination="6oZ-H8-HWw" eventType="touchUpInside" id="MaZ-7Q-GQz"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grv-kv-qBB">
                                                 <rect key="frame" x="260" y="5" width="79" height="34"/>
@@ -625,6 +628,9 @@
                             <constraint firstItem="js1-vA-tHG" firstAttribute="leading" secondItem="qnk-VB-NrG" secondAttribute="leading" id="zsa-22-WVd"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableViewAcceptList" destination="js1-vA-tHG" id="hhA-xc-P2G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i7m-UG-GCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

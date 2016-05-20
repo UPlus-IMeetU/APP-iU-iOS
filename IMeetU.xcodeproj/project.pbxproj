@@ -367,6 +367,7 @@
 		04610B111CEDB5590033B43E /* CellBiuAccept.m in Sources */ = {isa = PBXBuildFile; fileRef = 04610B0F1CEDB5590033B43E /* CellBiuAccept.m */; };
 		04610B121CEDB55A0033B43E /* CellBiuAccept.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04610B101CEDB5590033B43E /* CellBiuAccept.xib */; };
 		04610B151CEDC35E0033B43E /* ModelBiuAccept.m in Sources */ = {isa = PBXBuildFile; fileRef = 04610B141CEDC35E0033B43E /* ModelBiuAccept.m */; };
+		04610B181CEDEF0D0033B43E /* ModelBiuAccepts.m in Sources */ = {isa = PBXBuildFile; fileRef = 04610B171CEDEF0D0033B43E /* ModelBiuAccepts.m */; };
 		0474512C1CCB723800568704 /* XMHttpTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 0474512B1CCB723800568704 /* XMHttpTools.m */; };
 		047519AC1CA631CB009115CE /* BeeCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 047518F21CA631CB009115CE /* BeeCloud.m */; };
 		047519AD1CA631CB009115CE /* BCBaseReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 047518F61CA631CB009115CE /* BCBaseReq.m */; };
@@ -1158,6 +1159,8 @@
 		04610B101CEDB5590033B43E /* CellBiuAccept.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellBiuAccept.xib; sourceTree = "<group>"; };
 		04610B131CEDC35E0033B43E /* ModelBiuAccept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelBiuAccept.h; sourceTree = "<group>"; };
 		04610B141CEDC35E0033B43E /* ModelBiuAccept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelBiuAccept.m; sourceTree = "<group>"; };
+		04610B161CEDEF0D0033B43E /* ModelBiuAccepts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelBiuAccepts.h; sourceTree = "<group>"; };
+		04610B171CEDEF0D0033B43E /* ModelBiuAccepts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelBiuAccepts.m; sourceTree = "<group>"; };
 		0474512A1CCB723800568704 /* XMHttpTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMHttpTools.h; sourceTree = "<group>"; };
 		0474512B1CCB723800568704 /* XMHttpTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMHttpTools.m; sourceTree = "<group>"; };
 		047518F01CA631CB009115CE /* BCPayObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayObjects.h; sourceTree = "<group>"; };
@@ -2564,6 +2567,8 @@
 				040F65011CE9D73400DEEAE0 /* ModelUserMatch.m */,
 				04610B131CEDC35E0033B43E /* ModelBiuAccept.h */,
 				04610B141CEDC35E0033B43E /* ModelBiuAccept.m */,
+				04610B161CEDEF0D0033B43E /* ModelBiuAccepts.h */,
+				04610B171CEDEF0D0033B43E /* ModelBiuAccepts.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4600,6 +4605,7 @@
 				04A31D991C98091E00BCBAE0 /* ModelMineAlterInterestSection.m in Sources */,
 				04151AB41C969088008955C2 /* ModelResponseRegisterLogin.m in Sources */,
 				04B7D5C21CDB4CB600D74C6D /* MWGridViewController.m in Sources */,
+				04610B181CEDEF0D0033B43E /* ModelBiuAccepts.m in Sources */,
 				044726B21C9D60D4000FD349 /* ModelRemoteNotification.m in Sources */,
 				0450B7F21C91D38B001DD60A /* ControllerMineAlterIdentityProfession.m in Sources */,
 				04610B111CEDB5590033B43E /* CellBiuAccept.m in Sources */,

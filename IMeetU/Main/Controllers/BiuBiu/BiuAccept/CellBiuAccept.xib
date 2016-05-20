@@ -29,13 +29,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2p-ny-iuu">
                         <rect key="frame" x="79" y="0.0" width="241" height="61"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5o-QF-dgf">
-                                <rect key="frame" x="0.0" y="60.5" width="241" height="0.5"/>
-                                <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="0.5" id="C6X-CK-0z4"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LT9-hp-8G9">
                                 <rect key="frame" x="157" y="0.0" width="84" height="61"/>
                                 <subviews>
@@ -161,6 +154,13 @@
                                     <constraint firstAttribute="height" constant="42" id="iYX-Vo-Cyd"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5o-QF-dgf">
+                                <rect key="frame" x="0.0" y="60.5" width="241" height="0.5"/>
+                                <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="C6X-CK-0z4"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -186,6 +186,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="btnAccept" destination="mGq-eQ-0hs" id="UP1-0r-u4O"/>
                 <outlet property="btnUserProfile" destination="Ng6-Kh-Qkt" id="Rge-UD-gpA"/>
                 <outlet property="labelAge" destination="6wp-re-DJI" id="nGi-4D-K71"/>
                 <outlet property="labelConstellation" destination="L0e-Ik-Oi9" id="3o9-YI-Jlq"/>

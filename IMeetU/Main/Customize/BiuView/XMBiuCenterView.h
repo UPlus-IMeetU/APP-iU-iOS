@@ -19,7 +19,7 @@
 
 - (void)noReceiveMatchUser;
 
-- (void)receiveMatcheUserWithImage:(UIImage*)image;
+- (void)receiveMatcheUserWithImageUrl:(NSString*)url;
 //- (void)receiveMatcheUserWithModel:(ModelBiuFaceStar*)model animation:(BOOL)animation;
 
 - (void)timerCountdownStart;

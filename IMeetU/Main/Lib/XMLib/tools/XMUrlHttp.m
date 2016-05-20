@@ -68,7 +68,7 @@
 #pragma mark - biubiu相关
 #pragma mark 发biubiu
 + (NSString *)xmBiuSend{
-    return [XMUrlHttp connectWithOperation:@"/meetu_maven/app/biubiu/sendBiu"];
+    return [XMUrlHttp testConnectWithOperation:@"/meetu_maven/app/biu/sendBiu"];
 }
 #pragma mark 更新biubiu主页信息（已登录）
 + (NSString *)xmUpdateBiuMainInfo{
@@ -160,6 +160,14 @@
 
 + (NSString *)xmLoadGrabBiuList{
     return [XMUrlHttp testConnectWithOperation:@"/meetu_maven/app/biu/getGrabBiuList"];
+}
+
++ (NSString *)xmAcceptUserGrabBiu{
+    return [XMUrlHttp testConnectWithOperation:@"/meetu_maven/app/biu/acceptBiu"];
+}
+
++ (NSString *)xmShutdownBiu{
+    return [XMUrlHttp testConnectWithOperation:@"/meetu_maven/app/biu/endBiu"];
 }
 
 + (NSString *)testConnectWithOperation:(NSString *)operation{

@@ -11,6 +11,8 @@
 
 //==============BiuBiu
 #define BIU_IN_MATCH @"BiuInMatch" //biu正在匹配中
+#define BIU_SEND_TIME @"BiuSendTime"
+#define BIU_IN_MATCH_GRAB_PROFILE @"BiuInMatchProfile" //最近一个抢biu的人的头像
 
 @interface UserDefult : NSObject
 

@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@class ModelBiuAccept;
+@protocol CellBiuAcceptDelegate;
+
 @interface CellBiuAccept : UITableViewCell
+
+@property (nonatomic, weak) id<CellBiuAcceptDelegate> delegateCellAccept;
+- (void)initWithModel:(ModelBiuAccept*)model;
+
+- (void)setAlreadyAccept;
+
+@end
+@protocol CellBiuAcceptDelegate <NSObject>
+@optional
+- (void)cellBiuAccept:(CellBiuAccept*)cell onClickBtnProfile:(NSInteger)userCode;
+
+- (void)cellBiuAccept:(CellBiuAccept*)cell onClickBtnAccept:(NSInteger)userCode;
 
 @end

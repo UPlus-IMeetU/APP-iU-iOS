@@ -11,12 +11,15 @@
 
 @interface ModelUserListMatch : NSObject
 
+@property (nonatomic, copy) NSString *token;
+/**
+ * 是否还有匹配的用户
+ */
+@property (nonatomic, assign) int hasNext;
 /**
  * 显示头像的最大间隔时间
  */
 @property (nonatomic, assign) NSInteger showIntervalMax;
-
-@property (nonatomic, copy) NSString *token;
 
 @property (nonatomic, strong) NSArray *users;
 

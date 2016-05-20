@@ -12,6 +12,7 @@
 
 #import "UINib+Plug.h"
 #import "NSDate+plug.h"
+#import "UserDefultBiu.h"
 
 #define animationBLN @"animationBLN"
 
@@ -89,14 +90,18 @@
     self.btnSuccessfulMatches.hidden = YES;
 }
 
-- (void)receiveMatcheUserWithImage:(UIImage*)image{
+- (void)receiveMatcheUserWithImageUrl:(NSString *)url{
+    NSLog(@"=====>%lli", [UserDefultBiu biuSendTime]);
+    
     self.btnSuccessfulMatches.alpha = 0;
     [self.btnSuccessfulMatches setHidden:NO];
-    [self.btnSuccessfulMatches setImage:image forState:UIControlStateNormal];
-    
     [UIView animateWithDuration:0.5 animations:^{
         self.btnSuccessfulMatches.alpha = 1;
     }];
+    
+    if ([UserDefultBiu biuSendTime] - [NSDate currentTimeMillis] > 90*1000 || url==nil) {
+        [self.btnSuccessfulMatches setBackgroundImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@"global_btn_more"]];
+    }
 }
 
 //- (void)receiveMatcheUserWithModel:(ModelBiuFaceStar *)model animation:(BOOL)animation{
@@ -170,9 +175,6 @@
             [self.delegateBiuCenter biuCenterButton:self onClickBtnSuccessfulMatches:self.btnSuccessfulMatches model:self.modelFaceStar];
         }
     }
-    
-    [self.btnBiuBiu setHidden:NO];
-    [self.btnSuccessfulMatches setHidden:YES];
 }
 
 - (void)onBiubiuing:(NSTimer*)timer{
@@ -182,7 +184,8 @@
         self.timerCountdown = nil;
         [self.labelBiuBiu setText:@""];
         [self.labelBiuBiu setHidden:YES];
-        [self.btnBiuBiu setTitle:@"biu" forState:UIControlStateNormal];
+        
+        [self receiveMatcheUserWithImageUrl:nil];
     }else{
         if (self.biubiuNowCount % self.biubiuStep == 0) {
             [self.labelBiuBiu setText:[NSString stringWithFormat:@"%luS", self.biubiuNowCount/8]];

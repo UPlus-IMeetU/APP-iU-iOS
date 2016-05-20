@@ -57,7 +57,7 @@ static NSString * const kIdentifierCell = @"MatchPeopleCell";
         if (code == 200) {
             ModelUserListMatch *modelUserListMatch = [ModelUserListMatch modelWithJSON:response];
             _isCanLoading = modelUserListMatch.hasNext;
-            NSLog(@"*************_isCanLoading  = %@**************",_isCanLoading);
+            //NSLog(@"*************_isCanLoading  = %@**************",_isCanLoading);
             if (refreshType == Refresh) {
                 [weakSelf.matchPeopleArray removeAllObjects];
                 weakSelf.matchPeopleArray = [NSMutableArray arrayWithArray:modelUserListMatch.users];
@@ -124,7 +124,7 @@ static NSString * const kIdentifierCell = @"MatchPeopleCell";
         NSInteger lastTime = ((ModelUserMatch *)[_matchPeopleArray lastObject]).timeSendBiu;
         [self initDataWithTime:lastTime withType:Loading];
     }else{
-        
+       
     }
 }
 

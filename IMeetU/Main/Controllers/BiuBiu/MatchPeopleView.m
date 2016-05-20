@@ -106,10 +106,19 @@ static NSString * const kIdentifierCell = @"MatchPeopleCell";
         _collectionView.delegate = self;
         _collectionView.backgroundColor = [UIColor colorWithR:247 G:245 B:243 A:1];
         
-        //上拉刷新
+       // 上拉刷新
         _collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
+        MJRefreshNormalHeader *header = (MJRefreshNormalHeader *)_collectionView.mj_header;
+        header.stateLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
+        header.lastUpdatedTimeLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
+        header.stateLabel.font = [UIFont systemFontOfSize:12];
+        header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
         //下拉加载
         _collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loading)];
+        MJRefreshAutoNormalFooter *footer = (MJRefreshAutoNormalFooter *)_collectionView.mj_footer;
+        footer.stateLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
+        footer.stateLabel.font = [UIFont systemFontOfSize:12];
+        
     }
     return _collectionView;
 }

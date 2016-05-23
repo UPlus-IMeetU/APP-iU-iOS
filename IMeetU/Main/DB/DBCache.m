@@ -27,7 +27,7 @@
 }
 
 + (NSString *)getDBPath{
-    NSLog(@"DBPath====>%@", [MLToolsPath pathDocumentsWithFileName:@""]);
+    //NSLog(@"DBPath====>%@", [MLToolsPath pathDocumentsWithFileName:@""]);
     return [MLToolsPath pathDocumentsWithFileName:@"IU.sqlite"];
 }
 

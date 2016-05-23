@@ -141,7 +141,6 @@
         id<IConversationModel> model = [self.dataArray objectAtIndex:indexPath.row];
         [UserDefultMsg unreadMsgCountReduceWithCount:model.conversation.unreadMessagesCount];
     
-        
     }else{
         [self showAlertProfileState];
     }

@@ -40,6 +40,8 @@
 #import "ViewNewComerGuide.h"
 #import "ControllerTabBarMain.h"
 
+#import "DBCacheBiuBiu.h"
+
 #define CellCollectionMatchSettingCharacterIdentifier @"CellCollectionMatchSettingCharacter"
 #define ReusableViewMatchSettingHeaderIdentifier @"ReusableViewMatchSettingHeader"
 #define ReusableViewMatchSettingFooterIdentifier @"ReusableViewMatchSettingFooter"
@@ -189,11 +191,12 @@
     model.characters = @"";
     model.parameters = ModelMatchSettingGender;
     
-    
     [self updateWithModel:model result:^(BOOL successed) {
         if (successed) {
             self.modelMatchSetting.gender = gender;
             self.modelMatchSetting.characters = nil;
+            //清空本地数据库
+            [[DBCacheBiuBiu shareInstance] cleanDB];
         }
         [self.collectionViewSettting reloadData];
     }];

@@ -10,6 +10,7 @@
 #import "NSDate+plug.h"
 #import "ModelBiuFaceStar.h"
 #import "NSDate+plug.h"
+#import <YYKit/YYKit.h>
 
 @interface XMBiuFaceStarCollection()<XMBiuFaceStarDelegate>
 
@@ -59,6 +60,32 @@
 - (void)superViewDidDisappear:(BOOL)animated{
 //    [self.timerCleanFaceStar invalidate];
 //    self.timerCleanFaceStar = nil;
+}
+
+- (void)refresh{
+    NSMutableArray *models = [NSMutableArray array];
+    for (XMBiuFaceStar *star in self.collectionArrInside) {
+        ModelBiuFaceStar *model = [star getModel];
+        model.matchTime = [NSDate currentTimeMillis];
+        [models addObject:model];
+        NSLog(@"======>%@", [[star getModel] modelToJSONString]);
+    }
+    NSLog(@"-------------------------------------------------");
+    for (XMBiuFaceStar *star in self.collectionArrCenter) {
+        ModelBiuFaceStar *model = [star getModel];
+        model.matchTime = [NSDate currentTimeMillis];
+        [models addObject:model];
+        NSLog(@"======>%@", [[star getModel] modelToJSONString]);
+    }
+    NSLog(@"-------------------------------------------------");
+    for (XMBiuFaceStar *star in self.collectionArrOutside) {
+        ModelBiuFaceStar *model = [star getModel];
+        model.matchTime = [NSDate currentTimeMillis];
+        [models addObject:model];
+        NSLog(@"======>%@", [[star getModel] modelToJSONString]);
+    }
+    
+    [self refreshWithModels:models];
 }
 
 - (void)refreshWithModels:(NSArray *)models {

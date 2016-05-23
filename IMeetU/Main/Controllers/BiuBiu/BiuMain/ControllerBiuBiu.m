@@ -394,12 +394,13 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application{
     if ([UserDefultAccount isLogin]) {
         [self refreshBiuMainInfo];
+        
         //清空数据库
-        DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
-        [cache cleanDB];
+        //DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
+        //[cache cleanDB];
         
         //清空原有头像
-        [self.biuFaceStarCollection refreshWithModels:@[]];
+        [self.biuFaceStarCollection refresh];
     }else{
         [self refreshBiuMainInfoNotLogin];
     }
@@ -955,8 +956,7 @@
             self.refreshTheCountdown = 0;
         }
         
-        NSInteger countOfUnShow = [cache selectCountOfUnShow];
-        if (countOfUnShow < 3) {
+        if ([cache selectCountOfUnShow] < 3) {
             [self loadMatchUser];
         }
     }
@@ -965,7 +965,7 @@
 }
 
 - (void)loadMatchUser{
-    if (!self.isLoadingBiu && self.matchHasNext) {
+    if (!self.isLoadingBiu) {
         self.isLoadingBiu = YES;
         
         DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
@@ -978,7 +978,12 @@
             self.isLoadingBiu = NO;
             ModelUserListMatch *models = [ModelUserListMatch modelWithJSON:response];
             self.refreshMaxInterval = models.showIntervalMax;
-            self.matchHasNext = models.hasNext;
+            
+            if (!models.hasNext){
+                if ([cache selectCountOfUnShow] < 1){
+                    [cache cleanDB];
+                }
+            }
             
             DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
             [cache insertWithArrModelUserMatch:models.users];

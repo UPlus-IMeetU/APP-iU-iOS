@@ -17,6 +17,8 @@
 
 @property (nonatomic, weak) id<XMBiuFaceStarCollectionDelegate> delegateFaceStarCollection;
 
+- (void)refresh;
+
 - (void)refreshWithModels:(NSArray*)models;
 
 - (void)addNewFaceStarWithModel:(ModelBiuFaceStar*)model;

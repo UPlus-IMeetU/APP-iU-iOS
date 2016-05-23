@@ -133,6 +133,10 @@
     return nil;
 }
 
+- (ModelBiuFaceStar *)getModel{
+    return self.modelFaceStar;
+}
+
 - (BOOL)isEqualWithUserCode:(NSString *)userCode{
     return [self.modelFaceStar.userCode isEqualToString:userCode];
 }

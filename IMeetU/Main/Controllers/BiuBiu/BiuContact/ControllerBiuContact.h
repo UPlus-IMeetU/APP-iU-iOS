@@ -10,6 +10,6 @@
 
 @interface ControllerBiuContact : UIViewController
 
-+ (instancetype)controller;
++ (instancetype)controllerWithSuperController:(UIViewController*)superController;
 
 @end

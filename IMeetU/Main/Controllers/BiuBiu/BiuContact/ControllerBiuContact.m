@@ -36,13 +36,14 @@
 @property (weak, nonatomic) IBOutlet UIView *viewMain;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewContact;
 @property (nonatomic, strong) ModelContacts *contacts;
-
+@property (nonatomic, weak) UIViewController *superController;
 @end
 
 @implementation ControllerBiuContact
 
-+ (instancetype)controller{
++ (instancetype)controllerWithSuperController:(UIViewController *)superController{
     ControllerBiuContact *controller = [UIStoryboard xmControllerWithName:xmStoryboardNameBuiBui indentity:@"ControllerBiuContact"];
+    controller.superController = superController;
     
     return controller;
 }
@@ -108,7 +109,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ModelContact *model = [self.contacts contactForRowAtIndexPath:indexPath];
-    ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:model.userCode conversationType:EMConversationTypeChat];
+    ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:model.userCode conversationType:EMConversationTypeChat backController:self.superController];
     //ControllerChatMsg.title = conversationModel.title;
     [self.navigationController pushViewController:controllerChat animated:YES];
 }

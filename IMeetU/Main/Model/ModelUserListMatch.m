@@ -14,6 +14,7 @@
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{
              @"showIntervalMax":@"biu_time_interval",
+             @"showIntervalMin":@"biu_time_interval_min",
              @"hasNext":@"has_next",
              @"token":@"token",
              @"users":@"users"

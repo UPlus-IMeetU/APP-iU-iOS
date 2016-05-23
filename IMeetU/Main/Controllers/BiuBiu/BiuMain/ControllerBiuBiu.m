@@ -132,6 +132,7 @@
 @property (nonatomic, strong) NSTimer *timerRefresh;
 @property (nonatomic, assign) NSInteger refreshTheCountdown;
 @property (nonatomic, assign) NSInteger refreshMaxInterval;
+@property (nonatomic, assign) NSInteger refreshMinInterval;
 @property (nonatomic, assign) int matchHasNext;
 @property (nonatomic, assign) BOOL isLoadingBiu;
 @end
@@ -934,7 +935,7 @@
 - (void)refreshFaceStarCollectionView:(id)sender{
     if (self.refreshTheCountdown < 1){
         if (self.refreshMaxInterval) {
-            self.refreshTheCountdown = arc4random()%self.refreshMaxInterval;
+            self.refreshTheCountdown = arc4random()%(self.refreshMaxInterval-self.refreshMinInterval) + self.refreshMinInterval;
         }else{
             self.refreshTheCountdown = 0;
         }

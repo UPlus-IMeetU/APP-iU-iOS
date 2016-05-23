@@ -39,6 +39,10 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
 
 - (void)prepareData{
     AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];

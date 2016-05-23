@@ -20,6 +20,10 @@
  * 显示头像的最大间隔时间
  */
 @property (nonatomic, assign) NSInteger showIntervalMax;
+/**
+ * 显示头像的最小间隔时间
+ */
+@property (nonatomic, assign) NSInteger showIntervalMin;
 
 @property (nonatomic, strong) NSArray *users;
 

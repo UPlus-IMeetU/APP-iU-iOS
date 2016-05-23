@@ -303,8 +303,7 @@
         httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
         httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
         
-//        NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"send_user_code":self.modelFaceStar.userCode,@"virtual_currency":[NSNumber numberWithInteger:UMi]};
-         NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"send_user_code":[NSNumber numberWithInteger:10039],@"virtual_currency":[NSNumber numberWithInteger:UMi]};
+        NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"send_user_code":self.modelFaceStar.userCode,@"virtual_currency":[NSNumber numberWithInteger:UMi]};
         [httpManager POST:[XMUrlHttp xmReceiveBiuGrabBiu] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             ModelResponse *response = [ModelResponse responselWithObject:responseObject];
             if (response.state == 200) {

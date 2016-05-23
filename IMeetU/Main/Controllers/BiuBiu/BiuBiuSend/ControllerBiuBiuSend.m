@@ -32,6 +32,7 @@
 #import "UICollectionViewAlignRightLayout.h"
 
 #import "UserDefultBiu.h"
+#import "UserDefultAccount.h"
 
 
 #define CellReuseIdentifier @"CellBiuBiuSend"
@@ -115,11 +116,14 @@
     if (!self.chatTopicsLoadResult) {
         [self getModelBiuSendChatTopics];
     }
-    
+    if ([UserDefultAccount topic]) {
+        self.textViewTopic.text = [UserDefultAccount topic];
+    }
     self.placeholderLabel.hidden = self.textViewTopic.text.length != 0 ? YES : NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
+    [UserDefultAccount setTopic:self.textViewTopic.text];
     [self.view endEditing:YES];
     [self.modelBiuSendChatTopics selectItemOfIndex:NSIntegerMax];
 }

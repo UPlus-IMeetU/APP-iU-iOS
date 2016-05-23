@@ -24,6 +24,8 @@
 
 + (instancetype)biuFaceStarWithTrajectoryIndex:(NSInteger)index model:(ModelBiuFaceStar*)model trajectoryRadiusArr:(NSArray*)trajectoryRadiusArr circleCenter:(CGPoint)circleCenter collectionFaceStar:(NSArray *)collectionFaceStar;
 
+- (ModelBiuFaceStar*)getModel;
+
 - (BOOL)isEqualWithUserCode:(NSString*)userCode;
 
 - (void)showNormalFaceStarWithSuperView:(UIView*)superView;

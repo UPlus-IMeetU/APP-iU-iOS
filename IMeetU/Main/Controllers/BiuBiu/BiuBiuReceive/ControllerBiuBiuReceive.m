@@ -327,7 +327,7 @@
                     alertView.tag = Recharge;
                     [alertView show];
                 }else if(status == 4){
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收biu" message:[NSString stringWithFormat:@"已经有%ld收了TA的biubiu继续收TA的将消耗%ldU米",_countUMi * 10,_countUMi] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收biu" message:[NSString stringWithFormat:@"已经有%ld个人收了TA的biubiu继续收TA的将消耗%ldU米",_countUMi * 10,_countUMi] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                     alertView.tag = Consumption;
                     [alertView show];
                 }

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define BIU_BIU @"BiuBiu"
-#define BIU_CONTACT @"BiuContact"
+#define BIU_CONTACT @"BiuContactNew"
 
 @class FMDatabase;
 

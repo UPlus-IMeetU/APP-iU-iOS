@@ -18,8 +18,6 @@
 @property (nonatomic, assign) NSInteger isGraduated;
 @property (nonatomic, copy) NSString *constellation;
 @property (nonatomic, copy) NSString *schoolId;
-@property (nonatomic, copy) NSString *profession;
-@property (nonatomic, copy) NSString *company;
 
 @property (nonatomic, copy) NSString *schoolName;
 @property (nonatomic, strong) NSNumber *ageObj;

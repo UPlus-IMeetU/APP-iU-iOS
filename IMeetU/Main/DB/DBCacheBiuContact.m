@@ -34,7 +34,7 @@
 - (instancetype)init{
     if (self = [super init]) {
         if ([self.db open]) {
-            NSString *sql = [NSString stringWithFormat:@"create table  if not exists %@(user_code TEXT, name_nick TEXT, age INTEGER, gender INTEGER, profile_url TEXT, constellation TEXT, school TEXT, profession TEXT, company TEXT, is_graduate INTEGER)", self.tableName];
+            NSString *sql = [NSString stringWithFormat:@"create table  if not exists %@(user_code TEXT, name_nick TEXT, age INTEGER, gender INTEGER, profile_url TEXT, constellation TEXT, school TEXT, is_graduate INTEGER)", self.tableName];
             [self.db executeUpdate:sql];
             [self.db close];
         }
@@ -84,9 +84,9 @@
 - (void)updateContactWithArr:(NSArray*)contact{
     [self cleanDB];
     if ([self.db open]) {
-        NSString *sql = [NSString stringWithFormat:@"insert into %@(user_code, name_nick, age, gender, profile_url, constellation, school, profession, company, is_graduate)values(?,?,?,?,?,?,?,?,?,?)", self.tableName];
+        NSString *sql = [NSString stringWithFormat:@"insert into %@(user_code, name_nick, age, gender, profile_url, constellation, school, is_graduate)values(?,?,?,?,?,?,?,?)", self.tableName];
         for (ModelContact *model in contact) {
-            [self.db executeUpdate:sql, model.userCode, model.nameNick, model.ageObj, model.genderObj, model.profileUrl, model.constellation, model.schoolId, model.profession, model.company, model.isGraduatedObj, nil];
+            [self.db executeUpdate:sql, model.userCode, model.nameNick, model.ageObj, model.genderObj, model.profileUrl, model.constellation, model.schoolId, model.isGraduatedObj, nil];
         }
         [self.db close];
     }
@@ -150,8 +150,6 @@
     model.gender = [set longLongIntForColumn:@"gender"];
     model.constellation = [set stringForColumn:@"constellation"];
     model.schoolId = [set stringForColumn:@"school"];
-    model.profession = [set stringForColumn:@"profession"];
-    model.company = [set stringForColumn:@"company"];
     model.isGraduated = [set longLongIntForColumn:@"is_graduate"];
     
     return model;

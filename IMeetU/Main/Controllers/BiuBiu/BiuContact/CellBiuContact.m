@@ -38,11 +38,7 @@
     self.labelNameNick.text = model.nameNick;
     self.labelAge.text = [NSString stringWithFormat:@"%lu岁", model.age];
     self.labelConstellation.text = model.constellation;
-    if (model.isGraduated == 1) {
-        self.labelSchoolOrProfession.text = model.schoolName;
-    }else if (model.isGraduated == 2){
-        self.labelSchoolOrProfession.text = model.profession;
-    }
+    self.labelSchoolOrProfession.text = model.schoolName;
     
     [self.btnProfile setBackgroundImageWithURL:[NSURL URLWithString:model.profileUrl] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@"global_profile_defult"]];
 }

@@ -16,6 +16,22 @@
     return [[DBCacheBiuContact shareDAO] selectContactWithUserCode:userCode];
 }
 
+- (NSString *)profileUrl{
+    return _profileUrl?_profileUrl:@"";
+}
+
+- (NSString *)userCode{
+    return _userCode?_userCode:@"";
+}
+
+- (NSString *)nameNick{
+    return _nameNick?_nameNick:@"";
+}
+
+- (NSString *)constellation{
+    return _constellation?_constellation:_constellation;
+}
+
 - (NSString *)schoolName{
     DBSchools *dao = [DBSchools shareInstance];
     return [dao schoolNameWithID:[self.schoolId integerValue]];
@@ -42,9 +58,7 @@
              @"gender":@"sex",
              @"isGraduated":@"isgraduated",
              @"constellation":@"starsign",
-             @"schoolId":@"school",
-             @"profession":@"carrer",
-             @"company":@"company",
+             @"schoolId":@"school"
              };
 }
 

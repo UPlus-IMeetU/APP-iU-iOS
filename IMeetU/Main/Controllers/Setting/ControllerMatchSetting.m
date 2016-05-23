@@ -402,8 +402,8 @@
         
     }]];
     
-    [controller presentationController];
-    
+    //[controller presentationController];
+    [self presentViewController:controller animated:YES completion:nil];
     
     
     

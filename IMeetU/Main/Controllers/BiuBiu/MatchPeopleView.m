@@ -50,7 +50,7 @@ static NSString * const kIdentifierCell = @"MatchPeopleCell";
     return _matchPeopleArray;
 }
 
-- (void)initDataWithTime:(NSInteger)time withType:(MatchRefreshType)refreshType{
+- (void)initDataWithTime:(long long)time withType:(MatchRefreshType)refreshType{
     XMHttpBiuBiu *xmHttpBiuBiu = [[XMHttpBiuBiu alloc] init];
     __weak typeof(self) weakSelf = self;
     [xmHttpBiuBiu loadMatchUserWithCount:20 timestamp:time callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
@@ -130,7 +130,7 @@ static NSString * const kIdentifierCell = @"MatchPeopleCell";
 - (void)loading{
     //取出最后一个
     if (_isCanLoading) {
-        NSInteger lastTime = ((ModelUserMatch *)[_matchPeopleArray lastObject]).timeSendBiu;
+        long long lastTime = ((ModelUserMatch *)[_matchPeopleArray lastObject]).timeSendBiu;
         [self initDataWithTime:lastTime withType:Loading];
     }else{
         [self.collectionView.mj_footer endRefreshing];

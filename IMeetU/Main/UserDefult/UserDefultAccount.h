@@ -46,6 +46,10 @@
 + (NSInteger)haveToView;
 + (void)setHaveToView:(NSInteger)haveToView;
 
+
++ (NSString *)topic;
++ (void)setTopic:(NSString *)topic;
+
 /**
  * 销毁信息
  */

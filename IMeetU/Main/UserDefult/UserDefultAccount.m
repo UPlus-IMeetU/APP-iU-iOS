@@ -18,6 +18,7 @@
 #define DIALOYURL @"dialogURL"
 #define UPDATEAT @"updateAt"
 #define HAVETOVIEW @"haveToView"
+#define TOPIC @"topic"
 
 @implementation UserDefultAccount
 
@@ -128,7 +129,17 @@
 }
 
 
++ (NSString *)topic{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:TOPIC];
+}
++ (void)setTopic:(NSString *)topic{
+    [[NSUserDefaults standardUserDefaults] setObject:topic forKey:TOPIC];
+}
+
+
+
 + (void)cleanAccountCache{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:TOPIC];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:TOKEN];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:IM_NAME];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:IM_PASSWD];

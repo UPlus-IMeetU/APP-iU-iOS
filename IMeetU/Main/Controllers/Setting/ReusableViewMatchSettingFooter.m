@@ -10,7 +10,7 @@
 #import "UserDefultAccount.h"
 #import "ModelMatchSetting.h"
 
-@interface ReusableViewMatchSettingFooter()<UIAlertViewDelegate>
+@interface ReusableViewMatchSettingFooter()
 
 @property (nonatomic, strong) ModelMatchSetting *model;
 @property (weak, nonatomic) IBOutlet UISwitch *switchNewMsg;
@@ -53,21 +53,13 @@
 }
 
 - (IBAction)onClickBtnLogout:(UIButton*)sender {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"确定退出当前账号?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alertView show];
-}
-
-
-#pragma mark UIAlertViewDelegate
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        if (self.delegateMatchSetting) {
-            if ([self.delegateMatchSetting respondsToSelector:@selector(reusableViewMatchSettingFooter:switchRes:)]) {
-                [self.delegateMatchSetting reusableViewMatchSettingFooter:self onLogout:self.btnLogout];
-            }
+    if (self.delegateMatchSetting) {
+        if ([self.delegateMatchSetting respondsToSelector:@selector(reusableViewMatchSettingFooter:switchRes:)]) {
+            [self.delegateMatchSetting reusableViewMatchSettingFooter:self onLogout:self.btnLogout];
         }
     }
 }
+
 - (void)onChangeSwitch{
     if (self.delegateMatchSetting) {
         if ([self.delegateMatchSetting respondsToSelector:@selector(reusableViewMatchSettingFooter:switchRes:)]) {

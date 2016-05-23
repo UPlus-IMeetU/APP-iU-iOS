@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableViewAcceptList;
 
 @property (nonatomic, strong) NSArray *users;
+
 @end
 
 @implementation ControllerBiuAccept
@@ -123,7 +124,7 @@
                     emptyController.backgroundImage = viewImage;
                     
                     
-                    ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:[NSString stringWithFormat:@"%lu", userCode] conversationType:EMConversationTypeChat];
+                    ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:[NSString stringWithFormat:@"%lu", (long)userCode] conversationType:EMConversationTypeChat];
                     
                     [self.navigationController pushViewController:emptyController animated:NO];
                     [self.navigationController pushViewController:controllerChat animated:YES];
@@ -140,9 +141,9 @@
 }
 
 - (IBAction)onClickBtnShutdownBiu:(id)sender {
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"结束本次biubiu" message:@"结束后，本次biubiu将失效，也可以重新发biu哦" preferredStyle:UIAlertControllerStyleAlert];
-    [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-    [controller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *controllerAlertShutdownBiu = [UIAlertController alertControllerWithTitle:@"结束本次biubiu" message:@"结束后，本次biubiu将失效，也可以重新发biu哦" preferredStyle:UIAlertControllerStyleAlert];
+    [controllerAlertShutdownBiu addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [controllerAlertShutdownBiu addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.view label:@"正在结束..." animated:YES];
         [[XMHttpBiuBiu http] shutdownBiuWithCallback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
             if (code == 200) {
@@ -161,7 +162,7 @@
             [hud hide:YES afterDelay:1];
         }];
     }]];
-    [controller presentationController];
+    [self presentViewController:controllerAlertShutdownBiu animated:YES completion:nil];
     
 }
 

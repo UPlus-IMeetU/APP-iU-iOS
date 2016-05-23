@@ -157,7 +157,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+  
     self.automaticallyAdjustsScrollViewInsets = YES;
     
     self.extendedLayoutIncludesOpaqueBars = YES;
@@ -214,14 +214,17 @@
     //清空数据库
     DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
     [cache cleanDB];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    //隐藏状态栏
+    [[UIApplication sharedApplication] setStatusBarHidden:self.matchPeopleView.hidden];
+
     [AppDelegateDelegate shareAppDelegateDelegate].delegateAppDelegate = self;
     self.navigationController.navigationBarHidden = YES;
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     self.biuViewBG.alpha = 0;
     [UIView animateWithDuration:0.5 animations:^{
@@ -884,7 +887,8 @@
     [UIView setAnimationDelegate:self];
     [UIView commitAnimations];
     [self rotate:_matchButton];
-    self.matchPeopleView.hidden = !self.matchPeopleView.hidden;
+      self.matchPeopleView.hidden = !self.matchPeopleView.hidden;
+    [[UIApplication sharedApplication] setStatusBarHidden:self.matchPeopleView.hidden];
 }
 
 

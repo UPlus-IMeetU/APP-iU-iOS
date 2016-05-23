@@ -20,7 +20,7 @@
              @"constellation":@"starsign",
              @"schoolID":@"school",
              @"status":@"status",
-             @"virtualCurrency":@"status",
+             @"virtualCurrency":@"biu_vc",
              @"timestamp":@"time"
              };
 }

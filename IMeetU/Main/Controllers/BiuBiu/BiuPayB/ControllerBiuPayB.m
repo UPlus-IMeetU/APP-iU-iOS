@@ -70,7 +70,6 @@
         if (response.state == 200) {
             self.umiCountNow = [response.data[@"virtual_currency"] integerValue];
             [self.viewBiuPayB initialWithUmiCount:self.umiCountNow];
-            [hud xmSetCustomModeWithResult:YES label:@"完毕"];
         }else{
             [hud xmSetCustomModeWithResult:NO label:@"加载失败"];
         }

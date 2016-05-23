@@ -98,6 +98,12 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ModelBiuAccept *model = self.users[indexPath.row];
+    ControllerMineMain *controller = [ControllerMineMain controllerWithUserCode:[NSString stringWithFormat:@"%lu", model.userCode] getUserCodeFrom:MineMainGetUserCodeFromParam];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 - (void)cellBiuAccept:(CellBiuAccept *)cell onClickBtnProfile:(NSInteger)userCode{
     ControllerMineMain *controller = [ControllerMineMain controllerWithUserCode:[NSString stringWithFormat:@"%lu", userCode] getUserCodeFrom:MineMainGetUserCodeFromParam];
     [self.navigationController pushViewController:controller animated:YES];
@@ -124,7 +130,7 @@
                     emptyController.backgroundImage = viewImage;
                     
                     
-                    ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:[NSString stringWithFormat:@"%lu", (long)userCode] conversationType:EMConversationTypeChat];
+                    ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:[NSString stringWithFormat:@"%lu", (long)userCode] conversationType:EMConversationTypeChat backController:self];
                     
                     [self.navigationController pushViewController:emptyController animated:NO];
                     [self.navigationController pushViewController:controllerChat animated:YES];

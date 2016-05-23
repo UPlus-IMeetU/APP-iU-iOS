@@ -217,7 +217,7 @@
             emptyController.backgroundImage = viewImage;
             
             
-            ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:conversation.conversationId conversationType:conversation.type];
+            ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:conversation.conversationId conversationType:conversation.type backController:self];
             
             [self.navigationController pushViewController:emptyController animated:NO];
             [self.navigationController pushViewController:controllerChat animated:YES];

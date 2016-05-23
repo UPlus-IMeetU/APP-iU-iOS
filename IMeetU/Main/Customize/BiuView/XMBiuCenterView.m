@@ -87,6 +87,7 @@
 
 - (void)noReceiveMatchUser{
     self.btnBiuBiu.hidden = NO;
+    [self.btnBiuBiu setTitle:@"biu" forState:UIControlStateNormal];
     self.btnSuccessfulMatches.hidden = YES;
 }
 
@@ -100,6 +101,8 @@
     
     if ([NSDate currentTimeMillis] - [UserDefultBiu biuSendTime] > 90*1000 || url==nil) {
         [self.btnSuccessfulMatches setBackgroundImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@"biu_btn_matching"]];
+    }else if([NSDate currentTimeMillis] - [UserDefultBiu biuSendTime] < 90*1000){
+        self.btnSuccessfulMatches.alpha = 0;
     }
 }
 

@@ -55,13 +55,16 @@
 @property (nonatomic, strong) XMActionSheetChatMsg *actionSheetMore;
 
 @property (nonatomic, copy) NSString *chatterCode;
+
+@property (nonatomic, weak) UIViewController *backController;
 @end
 
 @implementation ControllerChatMsg
 
-- (instancetype)initWithConversationChatter:(NSString *)conversationChatter conversationType:(EMConversationType)conversationType{
+- (instancetype)initWithConversationChatter:(NSString *)conversationChatter conversationType:(EMConversationType)conversationType backController:(UIViewController *)controller{
     if (self = [super initWithConversationChatter:conversationChatter conversationType:conversationType]) {
         self.chatterCode = conversationChatter;
+        self.backController = controller;
         return self;
     }
     return nil;
@@ -332,7 +335,7 @@
 }
 
 - (void)onClickNavigationBtnBack:(UIButton*)sender{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popToViewController:self.backController animated:YES];
 }
 
 #pragma mark - 更多

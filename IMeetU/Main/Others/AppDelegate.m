@@ -46,6 +46,7 @@
 #import "ControllerChatMsg.h"
 #import "FactotyLocalNotification.h"
 #import <BQMM/BQMM.h>
+#import <Bugly/Bugly.h>
 
 #import "UserDefultAccount.h"
 
@@ -131,6 +132,9 @@
     
     //表情云
     [[MMEmotionCentre defaultCentre] setAppId:@"5ca457f4bf624e31ac2dbc1ba3bc398e" secret:@"eafc5215121a4075927f4317e6ab67d5"];
+    
+    //腾讯崩溃日志跟踪
+    [Bugly startWithAppId:@"i1400009724"];
     
     [self changeForeOrBackGround:1];
     

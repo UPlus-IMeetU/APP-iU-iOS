@@ -98,7 +98,7 @@
         self.btnSuccessfulMatches.alpha = 1;
     }];
     
-    if ([UserDefultBiu biuSendTime] - [NSDate currentTimeMillis] > 90*1000 || url==nil) {
+    if ([NSDate currentTimeMillis] - [UserDefultBiu biuSendTime] > 90*1000 || url==nil) {
         [self.btnSuccessfulMatches setBackgroundImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@"biu_btn_matching"]];
     }
 }

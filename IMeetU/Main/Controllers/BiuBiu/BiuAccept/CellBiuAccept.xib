@@ -33,10 +33,10 @@
                                 <rect key="frame" x="157" y="0.0" width="84" height="61"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xfc-qg-jhC">
-                                        <rect key="frame" x="10" y="13" width="64" height="35"/>
+                                        <rect key="frame" x="10" y="11.5" width="64" height="38"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已赠2U米" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDh-o5-wz4">
-                                                <rect key="frame" x="0.0" y="24" width="64" height="11"/>
+                                                <rect key="frame" x="0.0" y="27" width="64" height="11"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="64" id="SGv-Dc-q5Q"/>
                                                 </constraints>
@@ -62,7 +62,7 @@
                                             <constraint firstItem="nDh-o5-wz4" firstAttribute="leading" secondItem="xfc-qg-jhC" secondAttribute="leading" id="SdJ-G8-Rhm"/>
                                             <constraint firstAttribute="bottom" secondItem="nDh-o5-wz4" secondAttribute="bottom" id="adz-br-uUL"/>
                                             <constraint firstItem="km4-dZ-6wG" firstAttribute="centerX" secondItem="xfc-qg-jhC" secondAttribute="centerX" id="jQM-Ib-5cd"/>
-                                            <constraint firstItem="nDh-o5-wz4" firstAttribute="top" secondItem="km4-dZ-6wG" secondAttribute="bottom" id="z87-kX-b8H"/>
+                                            <constraint firstItem="nDh-o5-wz4" firstAttribute="top" secondItem="km4-dZ-6wG" secondAttribute="bottom" constant="3" id="z87-kX-b8H"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGq-eQ-0hs">

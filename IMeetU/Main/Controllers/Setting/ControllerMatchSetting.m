@@ -366,34 +366,50 @@
     }
 }
 - (void)reusableViewMatchSettingFooter:(ReusableViewMatchSettingFooter *)reusableView onLogout:(UIButton *)btnLogout{
-    AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
-    httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"user_code":[UserDefultAccount userCode], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString]};
-    [httpManager POST:[XMUrlHttp xmLogout] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定退出当前账号？" preferredStyle:UIAlertControllerStyleAlert];
+    [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [controller addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
+        httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
         
-    }];
-    
-    
-    //退出环信
-    dispatch_queue_t queue = dispatch_queue_create("em.logout.setting", DISPATCH_QUEUE_SERIAL);
-    dispatch_async(queue, ^{
-        EMError *logoutErr = [[EMClient sharedClient] logout:YES];
-        if (logoutErr) {
+        NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"user_code":[UserDefultAccount userCode], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString]};
+        [httpManager POST:[XMUrlHttp xmLogout] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             
-        }
-    });
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+        
+        
+        //退出环信
+        dispatch_queue_t queue = dispatch_queue_create("em.logout.setting", DISPATCH_QUEUE_SERIAL);
+        dispatch_async(queue, ^{
+            EMError *logoutErr = [[EMClient sharedClient] logout:YES];
+            if (logoutErr) {
+                
+            }
+        });
+        
+        
+        //进行UserDefaultAccount数据的清除
+        [UserDefultAccount cleanAccountCache];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+        //清空未读消息数
+        [ControllerTabBarMain setBadgeMsgWithCount:0];
+        
+    }]];
+    
+    [controller presentationController];
     
     
-    //进行UserDefaultAccount数据的清除
-    [UserDefultAccount cleanAccountCache];
-    [self.navigationController popViewControllerAnimated:YES];
     
-    //清空未读消息数
-    [ControllerTabBarMain setBadgeMsgWithCount:0];
+    
+    
+    
+    
 }
 
 - (void)updateWithModel:(ModelMatchSettingUpdate*)model result:(void(^)(BOOL successed))result{

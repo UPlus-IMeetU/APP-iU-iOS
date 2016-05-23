@@ -116,13 +116,13 @@
             [hud hide:YES];
             self.modelBiuReceive = [ModelBiuReceive modelWithDictionary:response.data];
             //如果biubiu已经被抢了，移除主屏幕上的头像
-            if (self.modelBiuReceive.isGrabbbed) {
-                if (self.delegateReceiveBiu){
-                    if ([self.delegateReceiveBiu respondsToSelector:@selector(controllerBiuBiuReceive:alreadyGrabBiu:)]) {
-                        [self.delegateReceiveBiu controllerBiuBiuReceive:self alreadyGrabBiu:self.modelFaceStar];
-                    }
-                }
-            }
+//            if (self.modelBiuReceive.isGrabbbed) {
+//                if (self.delegateReceiveBiu){
+//                    if ([self.delegateReceiveBiu respondsToSelector:@selector(controllerBiuBiuReceive:alreadyGrabBiu:)]) {
+//                        [self.delegateReceiveBiu controllerBiuBiuReceive:self alreadyGrabBiu:self.modelFaceStar];
+//                    }
+//                }
+//            }
             
             self.modelBiuReceiveIsRequest = YES;
             [self.collectionViewMain reloadData];
@@ -432,29 +432,39 @@
     }];
     
 }
+
+#pragma mark - 屏蔽用户
 - (void)reusableViewBiuReceiveFooterUnreceiveTA:(ReusableViewBiuReceiveFooter *)reusableView {
-    MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"" animated:YES];
-    
-    AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
-    httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"user_code":self.modelFaceStar.userCode};
-    [httpManager POST:[XMUrlHttp xmReceiveBiuUnreceiveTA] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        ModelResponse *response = [ModelResponse modelWithJSON:responseObject];
-        if (response.state == 200) {
-            NSDictionary *data = response.data;
-            
-            [hud xmSetCustomModeWithResult:YES label:@"屏蔽成功"];
-            [hud hide:YES afterDelay:3];
-        }else{
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定屏蔽他/她？" preferredStyle:UIAlertControllerStyleAlert];
+    [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [controller addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"" animated:YES];
+        
+        AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
+        httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"user_code":self.modelFaceStar.userCode};
+        [httpManager POST:[XMUrlHttp xmReceiveBiuUnreceiveTA] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            ModelResponse *response = [ModelResponse modelWithJSON:responseObject];
+            if (response.state == 200) {
+                NSDictionary *data = response.data;
+                
+                [hud xmSetCustomModeWithResult:YES label:@"屏蔽成功"];
+                [hud hide:YES afterDelay:3];
+            }else{
+                [hud xmSetCustomModeWithResult:NO label:@"屏蔽失败"];
+                [hud hide:YES afterDelay:3];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [hud xmSetCustomModeWithResult:NO label:@"屏蔽失败"];
             [hud hide:YES afterDelay:3];
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [hud xmSetCustomModeWithResult:NO label:@"屏蔽失败"];
-        [hud hide:YES afterDelay:3];
-    }];
+        }];
+        
+    }]];
+    
+    [controller presentationController];
 }
 
 - (void)reusableViewBiuReceiveHeader:(ReusableViewBiuReceiveHeader *)reusableView onClickBtnUserIdentifier:(UIButton *)btn{

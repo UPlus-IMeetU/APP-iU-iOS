@@ -17,5 +17,5 @@ typedef NS_ENUM(NSInteger,MatchRefreshType) {
  *  点击列表回调的block
  */
 @property (nonatomic,copy) void (^RecieveBiuBiuSelectBlock)(ModelBiuFaceStar *modelBiuFaceStar);
-- (void)initDataWithTime:(NSInteger)time withType:(MatchRefreshType)refreshType;
+- (void)initDataWithTime:(long long)time withType:(MatchRefreshType)refreshType;
 @end

@@ -11,7 +11,7 @@
 
 @interface XMHttpBiuBiu : XMHttp
 
-- (void)loadMatchUserWithCount:(NSInteger)count timestamp:(NSInteger)timestamp callback:(XMHttpBlockStandard)callback;
+- (void)loadMatchUserWithCount:(NSInteger)count timestamp:(long long)timestamp callback:(XMHttpBlockStandard)callback;
 
 - (void)loadGrabBiuListWithCallback:(XMHttpBlockStandard)callback;
 

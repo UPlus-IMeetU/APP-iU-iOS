@@ -57,7 +57,11 @@
     if (_matchPeople.distanceToMe < 1000) {
         self.distanceLabel.text = [NSString stringWithFormat:@"%lum", (long)_matchPeople.distanceToMe];
     }else{
-        self.distanceLabel.text = [NSString stringWithFormat:@"%.1fkm", _matchPeople.distanceToMe/1000.0];
+        if (_matchPeople.distanceToMe/1000.0 <= 10) {
+            self.distanceLabel.text = [NSString stringWithFormat:@"%.1fkm",_matchPeople.distanceToMe/1000.0];
+        }else{
+            self.distanceLabel.text = [NSString stringWithFormat:@"%dkm",_matchPeople.distanceToMe/1000];
+        }
     }
     
     if (_matchPeople.gender == 1) {

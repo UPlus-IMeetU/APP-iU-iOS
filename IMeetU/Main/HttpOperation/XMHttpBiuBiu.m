@@ -14,11 +14,11 @@
     return [[XMHttpBiuBiu alloc] init];
 }
 
-- (void)loadMatchUserWithCount:(NSInteger)count timestamp:(NSInteger)timestamp callback:(XMHttpBlockStandard)callback{
+- (void)loadMatchUserWithCount:(NSInteger)count timestamp:(long long)timestamp callback:(XMHttpBlockStandard)callback{
     NSString *url = [XMUrlHttp xmLoadMatchUsers];
     NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{
                                                                          @"num":[NSNumber numberWithInteger:count],
-                                                                         @"last_date":[NSNumber numberWithInteger:timestamp]
+                                                                         @"last_date":[NSNumber numberWithLongLong:timestamp]
                                                                          }];
     
     [self.httpManager POST:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

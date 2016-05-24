@@ -35,7 +35,7 @@
 
 - (void)setMatchPeople:(ModelUserMatch *)matchPeople{
     _matchPeople = matchPeople;
-    [_headPortrait setImageWithURL:[NSURL URLWithString:_matchPeople.urlProfileThumbnail] options:YYWebImageOptionShowNetworkActivity];
+    [_headPortrait setImageWithURL:[NSURL URLWithString:_matchPeople.urlProfileThumbnail] placeholder:[UIImage imageNamed:@"chatListCellHead"]];
     _userName.text = _matchPeople.nameNick;
     _biubiuInfoLabel.text = _matchPeople.topic;
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_matchPeople.topic];

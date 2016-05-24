@@ -261,6 +261,8 @@
     }else{
         [self.biuCenterButton noReceiveMatchUser];
     }
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -504,7 +506,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.biuCenterButton noReceiveMatchUser];
     }];
-    
     [self getAdvertInfo];
 }
 
@@ -529,6 +530,7 @@
     }];
     
     [self.biuCenterButton noReceiveMatchUser];
+    [self getAdvertInfo];
 }
 
 #pragma mark 获取广告信息
@@ -538,7 +540,7 @@
     httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     
-    NSDictionary *parameters = @{};
+    NSDictionary *parameters =  @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString]};
     [httpManager POST:[XMUrlHttp xmGetActivity] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         ModelResponse *response = [ModelResponse responselWithObject:responseObject];
         if (response.state == 200) {

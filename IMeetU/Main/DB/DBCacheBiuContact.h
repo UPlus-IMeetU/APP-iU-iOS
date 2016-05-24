@@ -16,6 +16,8 @@
 
 + (instancetype)shareDAO;
 
+- (void)insertWithModel:(ModelContact*)model;
+
 - (void)updateFromNetworkWithIsForced:(BOOL)forcedUpdate block:(void (^)(BOOL, ModelContacts *))block;
 /**
  *  更新联系人数据库

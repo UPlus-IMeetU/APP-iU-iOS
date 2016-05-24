@@ -43,6 +43,14 @@
     return nil;
 }
 
+- (void)insertWithModel:(ModelContact *)model{
+    if ([self.db open]) {
+        NSString *sql = [NSString stringWithFormat:@"insert into %@(user_code, name_nick, age, gender, profile_url, constellation, school, is_graduate)values(?,?,?,?,?,?,?,?)", self.tableName];
+        [self.db executeUpdate:sql, model.userCode, model.nameNick, model.ageObj, model.genderObj, model.profileUrl, model.constellation, model.schoolId, model.isGraduatedObj];
+        [self.db close];
+    }
+}
+
 - (void)updateFromNetworkWithIsForced:(BOOL)forcedUpdate block:(void (^)(BOOL, ModelContacts *))block{
     
     if (forcedUpdate || [UserDefultDB finalUpdateTimeContactTimeout]) {

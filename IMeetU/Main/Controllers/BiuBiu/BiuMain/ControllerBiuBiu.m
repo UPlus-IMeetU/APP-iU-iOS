@@ -925,8 +925,6 @@
             ModelUserListMatch *models = [ModelUserListMatch modelWithJSON:response];
             self.refreshMaxInterval = models.showIntervalMax;
             self.refreshMinInterval = models.showIntervalMin;
-            NSLog(@"%@", response);
-            NSLog(@"=====>%lu====>%lu", self.refreshMinInterval, self.refreshMaxInterval);
             
             if (!models.hasNext){
                 if ([cache selectCountOfUnShow] < 1){

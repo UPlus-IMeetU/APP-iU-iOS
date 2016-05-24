@@ -21,8 +21,8 @@
 @end
 @protocol CellBiuAcceptDelegate <NSObject>
 @optional
-- (void)cellBiuAccept:(CellBiuAccept*)cell onClickBtnProfile:(NSInteger)userCode;
+- (void)cellBiuAccept:(CellBiuAccept*)cell onClickBtnProfile:(ModelBiuAccept*)model;
 
-- (void)cellBiuAccept:(CellBiuAccept*)cell onClickBtnAccept:(NSInteger)userCode;
+- (void)cellBiuAccept:(CellBiuAccept*)cell onClickBtnAccept:(ModelBiuAccept*)model;
 
 @end

@@ -20,6 +20,7 @@
 - (AFHTTPSessionManager *)httpManager{
     if (!_httpManager) {
         _httpManager = [AFHTTPSessionManager manager];
+        _httpManager.requestSerializer.timeoutInterval = 8.0;
         _httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
         _httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
     }

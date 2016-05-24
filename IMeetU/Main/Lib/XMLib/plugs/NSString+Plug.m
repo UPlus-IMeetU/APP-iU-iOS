@@ -39,8 +39,7 @@
 
 - (CGSize)sizeWithFontSize:(CGFloat)fontSize constrainedToSize:(CGSize)size{
     if ([[UIDevice currentDevice].systemVersion floatValue] < 7.0) {
-        return [self sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:size
-                                 lineBreakMode:NSLineBreakByWordWrapping];
+        return [self sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
     }else{
         //获取当前文本的属性
         NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:self];
@@ -56,6 +55,22 @@
     }
     
     return CGSizeZero;
+}
+
++ (instancetype)xmStringWithInt:(int)num{
+    return [NSString stringWithFormat:@"%i", num];
+}
++ (instancetype)xmStringWithDouble:(double)num{
+    return [NSString stringWithFormat:@"%f", num];
+}
++ (instancetype)xmStringWithFloat:(float)num{
+    return [NSString stringWithFormat:@"%f", num];
+}
++ (instancetype)xmStringWithLong:(long)num{
+    return [NSString stringWithFormat:@"%li", num];
+}
++ (instancetype)xmStringWithLongLong:(long long)num{
+    return [NSString stringWithFormat:@"%lli", num];
 }
 
 @end

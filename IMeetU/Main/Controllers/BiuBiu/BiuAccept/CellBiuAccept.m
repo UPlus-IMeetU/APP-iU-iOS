@@ -38,7 +38,6 @@
 - (void)initWithModel:(ModelBiuAccept*)model{
     self.model = model;
     
-    //[self.btnUserProfile setImageWithURL:[NSURL URLWithString:model.urlProfile] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@"global_profile_defult"]];
     [self.btnUserProfile setBackgroundImageWithURL:[NSURL URLWithString:model.urlProfile] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@"global_profile_defult"]];
     
     [self.labelName setText:model.nameNick];
@@ -74,7 +73,7 @@
 - (IBAction)onClickBtnProfile:(id)sender {
     if (self.delegateCellAccept) {
         if ([self.delegateCellAccept respondsToSelector:@selector(cellBiuAccept:onClickBtnProfile:)]) {
-            [self.delegateCellAccept cellBiuAccept:self onClickBtnProfile:self.model.userCode];
+            [self.delegateCellAccept cellBiuAccept:self onClickBtnProfile:self.model];
         }
     }
 }
@@ -82,7 +81,7 @@
 - (IBAction)onClickBtnAccept:(id)sender {
     if (self.delegateCellAccept) {
         if ([self.delegateCellAccept respondsToSelector:@selector(cellBiuAccept:onClickBtnAccept:)]) {
-            [self.delegateCellAccept cellBiuAccept:self onClickBtnAccept:self.model.userCode];
+            [self.delegateCellAccept cellBiuAccept:self onClickBtnAccept:self.model];
         }
     }
 }

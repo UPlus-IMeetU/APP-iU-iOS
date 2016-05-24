@@ -23,7 +23,7 @@
 @property (nonatomic, assign) NSInteger biubiuStep;
 @property (nonatomic, assign) NSInteger biubiuCount;
 @property (nonatomic, assign) NSInteger biubiuNowCount;
-@property (nonatomic, assign) NSInteger biuCountdownStartTime;
+@property (nonatomic, assign) long long biuCountdownStartTime;
 @property (nonatomic, assign) CGPoint viewOrigin;
 @property (nonatomic, assign) CGFloat circleRadius;
 @property (nonatomic, assign) CGFloat circleBorderWidth;

@@ -19,6 +19,9 @@
 #import "MBProgressHUD+plug.h"
 #import "EmptyController.h"
 #import "ControllerChatMsg.h"
+#import "ModelContact.h"
+#import "NSString+Plug.h"
+#import "DBCacheBiuContact.h"
 
 #define ReuseIdentifierCellBiuAccept @"CellBiuAccept"
 
@@ -104,21 +107,29 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)cellBiuAccept:(CellBiuAccept *)cell onClickBtnProfile:(NSInteger)userCode{
-    ControllerMineMain *controller = [ControllerMineMain controllerWithUserCode:[NSString stringWithFormat:@"%lu", userCode] getUserCodeFrom:MineMainGetUserCodeFromParam];
+- (void)cellBiuAccept:(CellBiuAccept *)cell onClickBtnProfile:(ModelBiuAccept*)model{
+    ControllerMineMain *controller = [ControllerMineMain controllerWithUserCode:[NSString stringWithFormat:@"%lu", model.userCode] getUserCodeFrom:MineMainGetUserCodeFromParam];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)cellBiuAccept:(CellBiuAccept *)cell onClickBtnAccept:(NSInteger)userCode{
+- (void)cellBiuAccept:(CellBiuAccept *)cell onClickBtnAccept:(ModelBiuAccept *)model{
     MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.view label:@"接受中..." animated:YES];
     
-    [[XMHttpBiuBiu http] acceptUserWithCode:userCode callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+    [[XMHttpBiuBiu http] acceptUserWithCode:model.userCode callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
         if (code == 200) {
             if ([response[@"message"] integerValue] == 1) {
                 [cell setAlreadyAccept];
                 [hud xmSetCustomModeWithResult:YES label:@"接受成功"];
                 
-                dispatch_after(NSEC_PER_SEC * 1, dispatch_get_main_queue(), ^{
+                ModelContact *modelContact = [[ModelContact alloc] init];
+                modelContact.userCode = [NSString xmStringWithLong:model.userCode];
+                modelContact.nameNick = model.nameNick;
+                modelContact.profileUrl = model.urlProfile;
+                [[DBCacheBiuContact shareDAO] insertWithModel:modelContact];
+                
+                
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 1), dispatch_get_main_queue(), ^{
                    
                     UIGraphicsBeginImageContext(self.view.bounds.size);     //currentView 当前的view  创建一个基于位图的图形上下文并指定大小为
                     [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];//renderInContext呈现接受者及其子范围到指定的上下文
@@ -130,7 +141,7 @@
                     emptyController.backgroundImage = viewImage;
                     
                     
-                    ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:[NSString stringWithFormat:@"%lu", (long)userCode] conversationType:EMConversationTypeChat backController:self];
+                    ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:[NSString stringWithFormat:@"%lu", (long)model.userCode] conversationType:EMConversationTypeChat backController:self];
                     
                     [self.navigationController pushViewController:emptyController animated:NO];
                     [self.navigationController pushViewController:controllerChat animated:YES];

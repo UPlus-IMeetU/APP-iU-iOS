@@ -16,4 +16,10 @@
 
 - (CGSize)sizeWithFontSize:(CGFloat)fontSize constrainedToSize:(CGSize)size;
 
++ (instancetype)xmStringWithInt:(int)num;
++ (instancetype)xmStringWithDouble:(double)num;
++ (instancetype)xmStringWithFloat:(float)num;
++ (instancetype)xmStringWithLong:(long)num;
++ (instancetype)xmStringWithLongLong:(long long)num;
+
 @end

@@ -41,7 +41,6 @@
 #import "ControllerUserLoginOrRegister.h"
 
 #import "ControllerChatMsg.h"
-#import "ControllerBiuPayB.h"
 #import "DBCacheBiuContact.h"
 
 #import "MLToast.h"
@@ -80,7 +79,7 @@
 
 #import "ModelAdvert.h"
 
-@interface ControllerBiuBiu ()<XMBiuCenterButtonDelegate, AppDelegateRemoteNotificationDelegate, ControllerBiuBiuSendDelegate, XMBiuFaceStarCollectionDelegate, ControllerBiuBiuReceiveDelegate, ControllerBiuPayBDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface ControllerBiuBiu ()<XMBiuCenterButtonDelegate, AppDelegateRemoteNotificationDelegate, ControllerBiuBiuSendDelegate, XMBiuFaceStarCollectionDelegate, ControllerBiuBiuReceiveDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) NSArray *trajectoryRadiusArr;
 @property (nonatomic, assign) CGFloat navigationHeight;
@@ -126,7 +125,6 @@
 @property (nonatomic, strong) UIImagePickerController *imgPickController;
 
 @property (nonatomic,strong) ModelActivity *modelActivity;
-@property (nonatomic, assign) NSInteger umiCount;
 @property (nonatomic,strong) MatchPeopleView *matchPeopleView;
 
 @property (weak, nonatomic) IBOutlet UIView *backTitleBgView;
@@ -297,16 +295,6 @@
     [self timerRefreshShutdown];
 }
 
-
-#pragma mark - 充值代理方法
-- (void)controllerBiuPayB:(ControllerBiuPayB *)controller payRes:(BOOL)res umiCount:(NSInteger)count{
-    if (res) {
-        self.umiCount = count;
-        //进行更新
-        //[self updateUmiCount:count];
-    }
-}
-
 #pragma mark - 中心视图代理方法
 #pragma mark 发送Biu
 - (void)biuCenterButton:(XMBiuCenterView *)biuCenterButton onClickBtnSenderBiu:(UIButton *)btn isTimeout:(BOOL)timeout{
@@ -326,11 +314,6 @@
 #pragma mark 点击抢到我发出的biu的用户头像
 - (void)biuCenterButton:(XMBiuCenterView *)biuCenterButton onClickBtnSuccessfulMatches:(UIButton *)btn model:(ModelBiuFaceStar *)model{
     
-//    ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:model.userCode conversationType:EMConversationTypeChat];
-//    
-//    //[controllerChat setHidesBottomBarWhenPushed:YES];
-//    [self.navigationController pushViewController:controllerChat animated:YES];
-    
     if ([UserDefultAccount isLogin]) {
         ControllerBiuAccept *controller = [ControllerBiuAccept controller];
         [self.navigationController pushViewController:controller animated:YES];
@@ -338,22 +321,6 @@
         ControllerUserLoginOrRegister *controller = [ControllerUserLoginOrRegister shareController];
         [self.navigationController pushViewController:controller animated:YES];
     }
-    
-    //更新抢到我的biu的用户的状态（已读）
-//    AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
-//    httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-//    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
-//    
-//    NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString]};
-//    [httpManager POST:[XMUrlHttp xmUpdateBiuMatchUserStatus] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
-//        if (response.state == 200) {
-//        }else{
-//            NSLog(@"%@", responseObject);
-//        }
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        NSLog(@"%@", error);
-//    }];
 }
 
 #pragma mark - AppDelegate回调
@@ -383,9 +350,8 @@
             ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:userInfo];
             [UserDefultBiu setBiuUserProfileOfGrab:faceStar.userProfile];
             [self.biuCenterButton receiveMatcheUserWithImageUrl:faceStar.userProfile];
-        }else if (userInfo.typeNotifi == 2){
-            ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:userInfo];
-            [self.biuFaceStarCollection removeFaceStarWithModel:faceStar];
+            //更新最新头像缓存
+            [UserDefultBiu setBiuUserProfileOfGrab:faceStar.userProfile];
         }
     }
 }
@@ -394,10 +360,6 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application{
     if ([UserDefultAccount isLogin]) {
         [self refreshBiuMainInfo];
-        
-        //清空数据库
-        //DBCacheBiuBiu *cache = [DBCacheBiuBiu shareInstance];
-        //[cache cleanDB];
         
         //清空原有头像
         [self.biuFaceStarCollection refresh];
@@ -411,8 +373,6 @@
 - (void)controllerBiuBiuSend:(ControllerBiuBiuSend *)controller sendResult:(BOOL)result virtualCurrency:(NSInteger)virtualCurrency{
     if (result) {
         [self.biuCenterButton timerCountdownStart];
-        //更新U米个数
-        self.umiCount = virtualCurrency;
     }else{
         
     }
@@ -422,16 +382,6 @@
 #pragma mark 抢biu成功
 - (void)controllerBiuBiuReceive:(ControllerBiuBiuReceive *)controller grabBiu:(ModelBiuFaceStar *)biu umiCount:(NSInteger)umiCount{
     [self.biuFaceStarCollection removeFaceStarWithModel:biu];
-    //更新U米个数
-    //[self updateUmiCount:umiCount];
-    self.umiCount = umiCount;
-}
-
-#pragma mark 充值成功
-- (void)controllerBiuBiuReceive:(ControllerBiuBiuReceive *)controller umiCount:(NSInteger)umiCount{
-    //[self updateUmiCount:umiCount];
-    //更新U米个数
-    self.umiCount = umiCount;
 }
 
 - (void)controllerBiuBiuReceive:(ControllerBiuBiuReceive *)controller alreadyGrabBiu:(ModelBiuFaceStar *)biu{
@@ -488,14 +438,13 @@
         if (response.state == 200) {
             //登陆成功的情况下，可以进行点击的操作
             ModelBiuMainRefreshData *biuData = [ModelBiuMainRefreshData modelWithDictionary:response.data];
-            //[self updateUmiCount:biuData.virtualCurrency];
-            
-            self.umiCount = biuData.virtualCurrency;
             self.profileState = biuData.profileState;
-            
+            if (biuData.isBiuEnd) {
+                [UserDefultBiu setBiuInMatch:NO];
+                [UserDefultBiu setBiuUserProfileOfGrab:@""];
+                [self.biuCenterButton noReceiveMatchUser];
+            }
             [self showAlertProfileState];
-            
-            
         }else{
             [self.biuCenterButton noReceiveMatchUser];
         }
@@ -517,7 +466,7 @@
         ModelResponse *response = [ModelResponse responselWithObject:responseObject];
         if (response.state == 200) {
             ModelBiuMainRefreshData *biuData = [ModelBiuMainRefreshData modelWithDictionary:response.data];
-            //[self updateUmiCount:biuData.virtualCurrency];
+            
             
         }else{
             

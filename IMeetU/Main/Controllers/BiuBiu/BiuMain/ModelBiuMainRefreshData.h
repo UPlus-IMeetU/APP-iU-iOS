@@ -19,4 +19,6 @@
 
 @property (nonatomic, strong) ModelBiuFaceStar *matchUser;
 
+@property (nonatomic, copy) NSString *isBiuEnd;
+
 @end

@@ -16,7 +16,8 @@
              @"profileState":@"iconStatus",
              @"token":@"token",
              @"faceStars":@"users",
-             @"matchUser":@"mylatestbiu"
+             @"matchUser":@"mylatestbiu",
+             @"isBiuEnd":@"is_biu_end"
              };
 }
 

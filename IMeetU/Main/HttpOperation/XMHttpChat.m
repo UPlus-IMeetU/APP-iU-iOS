@@ -15,6 +15,13 @@
 }
 
 - (void)xmUnfriendYouWithUserCode:(NSString*)userCode block:(XMHttpBlockStandard)block{
+    if (!userCode || userCode.length<1) {
+        if (block) {
+            block (RESPONSE_CODE_ERR, nil, nil, nil);
+        }
+        return;
+    }
+    
     NSString *url = [XMUrlHttp xmUnfriendYou];
     NSDictionary *para = [self parametersFactoryAppendTokenDeviceCode:@{@"user_code":userCode}];
     

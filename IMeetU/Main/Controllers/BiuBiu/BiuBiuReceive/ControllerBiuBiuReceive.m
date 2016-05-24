@@ -115,26 +115,18 @@
         if (response.state == 200) {
             [hud hide:YES];
             self.modelBiuReceive = [ModelBiuReceive modelWithDictionary:response.data];
-            //如果biubiu已经被抢了，移除主屏幕上的头像
-//            if (self.modelBiuReceive.isGrabbbed) {
-//                if (self.delegateReceiveBiu){
-//                    if ([self.delegateReceiveBiu respondsToSelector:@selector(controllerBiuBiuReceive:alreadyGrabBiu:)]) {
-//                        [self.delegateReceiveBiu controllerBiuBiuReceive:self alreadyGrabBiu:self.modelFaceStar];
-//                    }
-//                }
-//            }
             
             self.modelBiuReceiveIsRequest = YES;
             [self.collectionViewMain reloadData];
             
         }else{
-            dispatch_after(NSEC_PER_SEC*3, dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [hud hide:YES];
                 [self.navigationController popViewControllerAnimated:YES];
             });
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        dispatch_after(NSEC_PER_SEC*3, dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [hud hide:YES];
             [self.navigationController popViewControllerAnimated:YES];
         });
@@ -297,7 +289,7 @@
 #pragma mark 抢Biu的方法
 - (void)grabBiu:(NSInteger )UMi WithButton:(UIButton *)button{
     if (self.profileState == 1 || self.profileState == 2 || self.profileState == 3){
-        MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"抢biu中..." animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"收biu中..." animated:YES];
         
         AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
         httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -307,20 +299,25 @@
         [httpManager POST:[XMUrlHttp xmReceiveBiuGrabBiu] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             ModelResponse *response = [ModelResponse responselWithObject:responseObject];
             if (response.state == 200) {
-                [hud hide:YES];
                 NSInteger status = [response.data[@"message"] integerValue];
                 _countUMi = [response.data[@"virtual_currency"] integerValue];
                 //0.要抢的biu已结束
                 if (status == 0) {
                     button.enabled = NO;
                     [button setTitle:@"本次biubiu已结束" forState:UIControlStateNormal];
+                    [hud xmSetCustomModeWithResult:NO label:@"biu已结束"];
                     //3.已经被接受
                 }else if(status == 3){
                     button.enabled = NO;
-                    [button setTitle:@"已接受" forState:UIControlStateNormal];
+                    [button setTitle:@"对方已接受" forState:UIControlStateNormal];
+                    [hud xmSetCustomModeWithResult:YES label:@"对方已接受"];
                     //1.已经进入抢biu列表
                 }else if(status == 1){
-                    [self.navigationController popViewControllerAnimated:YES];
+                    [hud xmSetCustomModeWithResult:YES label:@"收biu成功"];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    });
+                    
                 }else if(status == 2){
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"U米不足" message:@"U米不够啦，先去U米中心兑换吧" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"兑换U米", nil];
                     alertView.tag = Recharge;
@@ -330,6 +327,7 @@
                     alertView.tag = Consumption;
                     [alertView show];
                 }
+                [hud hide:YES afterDelay:1.5];
                 //                if (status == 0) {
                 //                    //biu币不足
                 //                    [hud xmSetCustomModeWithResult:NO label:@"biu币不足"];
@@ -375,16 +373,12 @@
                 //                }
                 
             }else{
-                [hud xmSetCustomModeWithResult:NO label:@"没抢到biu"];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [hud hide:YES];
-                });
+                [hud xmSetCustomModeWithResult:NO label:@"没收到biu"];
+                [hud hide:YES afterDelay:1];
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [hud xmSetCustomModeWithResult:NO label:@"没抢到biu"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                [hud hide:YES];
-            });
+            [hud xmSetCustomModeWithResult:NO label:@"没收到biu"];
+            [hud hide:YES afterDelay:1];
         }];
     }else{
         UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"头像审核未通过" message:@"你的头像审核不通过，请上传能体现个人的真实头像哦" preferredStyle:UIAlertControllerStyleAlert];
@@ -463,7 +457,7 @@
         
     }]];
     
-    [controller presentationController];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)reusableViewBiuReceiveHeader:(ReusableViewBiuReceiveHeader *)reusableView onClickBtnUserIdentifier:(UIButton *)btn{

@@ -406,7 +406,7 @@
     if([UserDefultAccount isLogin]){
         NSInteger userProfileState = [ControllerBiuBiu shareControllerBiuBiu].userProfileState;
         if (userProfileState == 1 || userProfileState == 2 || userProfileState == 3 || userProfileState == 0) {
-            ControllerBiuContact *controller = [ControllerBiuContact controller];
+            ControllerBiuContact *controller = [ControllerBiuContact controllerWithSuperController:self];
             [self.navigationController pushViewController:controller animated:YES];
         }else{
             [self showAlertProfileState];

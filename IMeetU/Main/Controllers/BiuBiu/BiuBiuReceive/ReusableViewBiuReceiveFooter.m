@@ -29,10 +29,10 @@
         [self.btnGrabBiu setTitle:@"收Biu" forState:UIControlStateNormal];
     }else if(message == 2){
         self.btnGrabBiu.enabled = YES ;
-        [self.btnGrabBiu setTitle:@"再次抢biu" forState:UIControlStateNormal];
+        [self.btnGrabBiu setTitle:@"再次收biu" forState:UIControlStateNormal];
     }else if (message == 3){
         self.btnGrabBiu.enabled = NO;
-        [self.btnGrabBiu setTitle:@"已接受" forState:UIControlStateNormal];
+        [self.btnGrabBiu setTitle:@"对方已接受" forState:UIControlStateNormal];
     }
 }
 - (IBAction)onClickBtnGrabBiu:(id)sender {

@@ -78,6 +78,8 @@
 
 #import "ControllerBiuAccept.h"
 
+#import "ModelAdvert.h"
+
 @interface ControllerBiuBiu ()<XMBiuCenterButtonDelegate, AppDelegateRemoteNotificationDelegate, ControllerBiuBiuSendDelegate, XMBiuFaceStarCollectionDelegate, ControllerBiuBiuReceiveDelegate, ControllerBiuPayBDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) NSArray *trajectoryRadiusArr;
@@ -307,18 +309,13 @@
 #pragma mark 发送Biu
 - (void)biuCenterButton:(XMBiuCenterView *)biuCenterButton onClickBtnSenderBiu:(UIButton *)btn isTimeout:(BOOL)timeout{
     if ([UserDefultAccount isLogin]) {
-        if (timeout) {
-            if (self.profileState == 1 || self.profileState == 2 || self.profileState == 3 || self.profileState == 0){
-                ControllerBiuBiuSend *controller = [ControllerBiuBiuSend shareController];
-                controller.delegateBiuSender = self;
-                [self.navigationController pushViewController:controller animated:YES];
-            }else{
-                [self showAlertProfileState];
-            }
+        if (self.profileState == 1 || self.profileState == 2 || self.profileState == 3 || self.profileState == 0){
+            ControllerBiuBiuSend *controller = [ControllerBiuBiuSend shareController];
+            controller.delegateBiuSender = self;
+            [self.navigationController pushViewController:controller animated:YES];
         }else{
-            [[MLToast toastInView:self.view content:@"距离上次发biu还不到90s"] show];
+            [self showAlertProfileState];
         }
-        
     }else{
         ControllerUserLoginOrRegister *controller = [ControllerUserLoginOrRegister shareController];
         [self.navigationController pushViewController:controller animated:YES];
@@ -412,7 +409,6 @@
 - (void)controllerBiuBiuSend:(ControllerBiuBiuSend *)controller sendResult:(BOOL)result virtualCurrency:(NSInteger)virtualCurrency{
     if (result) {
         [self.biuCenterButton timerCountdownStart];
-        //[self updateUmiCount:virtualCurrency];
         //更新U米个数
         self.umiCount = virtualCurrency;
     }else{
@@ -608,9 +604,7 @@
 - (void)intoAdvert:(UITapGestureRecognizer *)tapGesutre{
     //活动弹窗，点开次数
     [MobClick event:@"acty_dialog_open"];
-    AdvertDetailController *advertDetailController = [AdvertDetailController shareControllerAdvert];
-    advertDetailController.advertUrl = _modelActivity.dialog.url;
-    //[advertDetailController setHidesBottomBarWhenPushed:YES];
+    AdvertDetailController *advertDetailController = [AdvertDetailController shareControllerAdvertWithModel:_modelActivity.dialog];
     [self.navigationController pushViewController:advertDetailController animated:YES];
     //点击结束以后消失
     [UIView animateWithDuration:0.2 animations:^{
@@ -979,6 +973,9 @@
             self.isLoadingBiu = NO;
             ModelUserListMatch *models = [ModelUserListMatch modelWithJSON:response];
             self.refreshMaxInterval = models.showIntervalMax;
+            self.refreshMinInterval = models.showIntervalMin;
+            NSLog(@"%@", response);
+            NSLog(@"=====>%lu====>%lu", self.refreshMinInterval, self.refreshMaxInterval);
             
             if (!models.hasNext){
                 if ([cache selectCountOfUnShow] < 1){

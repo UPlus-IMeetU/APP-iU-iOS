@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class ModelAdvert;
+
 @interface AdvertDetailController : UIViewController
-+ (instancetype)shareControllerAdvert;
-@property (nonatomic,copy) NSString *advertUrl;
+
++ (instancetype)shareControllerAdvertWithModel:(ModelAdvert*)model;
+
 @end

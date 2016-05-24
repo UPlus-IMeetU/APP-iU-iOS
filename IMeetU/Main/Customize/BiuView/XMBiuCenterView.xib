@@ -21,29 +21,27 @@
                         <constraint firstAttribute="width" constant="65" id="Xf5-Pw-RQ4"/>
                         <constraint firstAttribute="height" constant="65" id="s9i-iV-rcB"/>
                     </constraints>
-                    <state key="normal" title="biu">
-                        <color key="titleColor" red="0.20000000000000001" green="0.77647058823529413" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
+                    <state key="normal" backgroundImage="biu_main_btn_biu"/>
                     <connections>
                         <action selector="onClickBtnBiuBiu:" destination="iN0-l3-epB" eventType="touchUpInside" id="C9u-au-NF5"/>
                     </connections>
                 </button>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="biu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXd-s1-qDp">
-                    <rect key="frame" x="50.5" y="52" width="23.5" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.42352941179999998" green="0.81960784310000001" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VsG-el-goy">
-                    <rect key="frame" x="29" y="30" width="65" height="64"/>
+                    <rect key="frame" x="29" y="29.5" width="65" height="65"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="64" id="2A0-aw-aL9"/>
+                        <constraint firstAttribute="height" constant="65" id="2A0-aw-aL9"/>
                         <constraint firstAttribute="width" constant="65" id="vcF-Qk-emG"/>
                     </constraints>
                     <connections>
                         <action selector="onClickBtnSuccessfulMatches:" destination="iN0-l3-epB" eventType="touchUpInside" id="Cpo-dS-ULo"/>
                     </connections>
                 </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="90" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXd-s1-qDp">
+                    <rect key="frame" x="62" y="62" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.42352941179999998" green="0.81960784310000001" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -73,6 +71,7 @@
         </view>
     </objects>
     <resources>
+        <image name="biu_main_btn_biu" width="65" height="65"/>
         <image name="biu_waterwave" width="125" height="125"/>
     </resources>
 </document>

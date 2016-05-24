@@ -8,28 +8,35 @@
 
 #import "AdvertDetailController.h"
 #import "UIStoryboard+Plug.h"
+#import "ModelAdvert.h"
+
 @interface AdvertDetailController ()<UIWebViewDelegate>
+
+@property (nonatomic, weak) ModelAdvert *model;
+@property (weak, nonatomic) IBOutlet UILabel *labelTitle;
 @property (weak, nonatomic) IBOutlet UIWebView *advertWebView;
 @end
 
 @implementation AdvertDetailController
 
-+ (instancetype)shareControllerAdvert{
++ (instancetype)shareControllerAdvertWithModel:(ModelAdvert *)model{
     static AdvertDetailController *controller;
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
         controller = [UIStoryboard xmControllerWithName:xmStoryboardNameBuiBui indentity:@"AdvertDetailController"];
     });
+    controller.model = model;
     
     return controller;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSURL *url = [NSURL URLWithString:self.advertUrl];
+    [self.labelTitle setText:self.model.name];
+    
+    NSURL *url = [NSURL URLWithString:self.model.url];
     [self.advertWebView loadRequest:[NSURLRequest requestWithURL:url]];
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -37,20 +44,6 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)backButtonClick:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -118,6 +118,8 @@
     }
     if ([UserDefultAccount topic]) {
         self.textViewTopic.text = [UserDefultAccount topic];
+        self.labelCodeCount.text = [NSString stringWithFormat:@"%lu/50", (unsigned long)self.textViewTopic.text.length];
+        self.btnSendBiu.enabled = self.textViewTopic.text.length>0;
     }
     self.placeholderLabel.hidden = self.textViewTopic.text.length != 0 ? YES : NO;
 }
@@ -193,7 +195,7 @@
                         }
                         
                         [UserDefultBiu setBiuInMatch:YES];
-                        dispatch_after(5*NSEC_PER_SEC, dispatch_get_main_queue(), ^{
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                             [hud hide:YES];
                             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                         });
@@ -201,13 +203,13 @@
                         
                         [UserDefultBiu setBiuInMatch:NO];
                         [hud xmSetCustomModeWithResult:YES label:@"发送失败"];
-                        [hud hide:YES afterDelay:3];
+                        [hud hide:YES afterDelay:1.5];
                     }
                     
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     [UserDefultBiu setBiuInMatch:NO];
                     [hud xmSetCustomModeWithResult:NO label:@"发送失败"];
-                    [hud hide:YES afterDelay:3];
+                    [hud hide:YES afterDelay:1.5];
                 }];
             }
         }

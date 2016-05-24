@@ -96,11 +96,10 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    AdvertDetailController *advertController = [AdvertDetailController shareControllerAdvert];
-    [advertController setHidesBottomBarWhenPushed:YES];
-    
     ModelAdvert *modelAdvert = self.activityArray[indexPath.row];
-    advertController.advertUrl = modelAdvert.url;
+    AdvertDetailController *advertController = [AdvertDetailController shareControllerAdvertWithModel:modelAdvert];
+    
+    [advertController setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:advertController animated:YES];
 }
 

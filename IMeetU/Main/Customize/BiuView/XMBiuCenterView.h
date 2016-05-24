@@ -24,7 +24,6 @@
 
 - (void)timerCountdownStart;
 
-- (void)viewWillAppear;
 @end
 @protocol XMBiuCenterButtonDelegate <NSObject>
 @optional

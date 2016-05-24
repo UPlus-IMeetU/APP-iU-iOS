@@ -145,6 +145,8 @@
     self.btnMore.hidden = self.isMine;
     self.btnSetting.hidden = !self.isMine;
     
+    [self.labelNameNick setText:@""];
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
@@ -188,6 +190,7 @@
                 
                 self.mineInfo = [ModelResponseMine modelWithJSON:mineHeader.userinfo];
                 self.mineInfo.profileCircle = self.mineInfo.profileOrigin;
+                [self.labelNameNick setText:self.mineInfo.nameNick];
                 
                 [self.tableView reloadData];
                 

@@ -69,18 +69,12 @@
 }
 
 - (IBAction)onClickBtnFinish:(id)sender {
-    if (self.isGraduated == 2) {
-        if (self.delegateAlterIdentityProfession) {
-            if ([self.delegateAlterIdentityProfession respondsToSelector:@selector(controllerMineAlterIdentityProfession:isGraduated:profession:schoolId:schoolName:)]) {
-                [self.delegateAlterIdentityProfession controllerMineAlterIdentityProfession:self isGraduated:self.isGraduated profession:self.profession schoolId:nil schoolName:nil];
-                
-                [self.navigationController popViewControllerAnimated:YES];
-            }
+    if (self.delegateAlterIdentityProfession) {
+        if ([self.delegateAlterIdentityProfession respondsToSelector:@selector(controllerMineAlterIdentityProfession:isGraduated:profession:schoolId:schoolName:)]) {
+            [self.delegateAlterIdentityProfession controllerMineAlterIdentityProfession:self isGraduated:self.isGraduated profession:self.profession schoolId:nil schoolName:nil];
+            
+            [self.navigationController popViewControllerAnimated:YES];
         }
-    }else if(self.isGraduated == 1){
-        ControllerSelectSchool *controller = [ControllerSelectSchool controllerViewSelectSchool];
-        controller.delegateSelegateSchool = self;
-        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 

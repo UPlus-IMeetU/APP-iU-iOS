@@ -88,6 +88,9 @@
                 <constraint firstAttribute="trailing" secondItem="OTL-lR-Kdb" secondAttribute="trailing" id="L50-oj-0nL"/>
                 <constraint firstItem="OTL-lR-Kdb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sgd-UR-dlJ"/>
             </constraints>
+            <connections>
+                <outlet property="constraintDistance" destination="ZYb-UL-tcu" id="vIv-qx-qM8"/>
+            </connections>
         </view>
     </objects>
     <resources>

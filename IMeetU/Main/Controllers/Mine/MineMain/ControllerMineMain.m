@@ -722,22 +722,15 @@
     ModelRequestMineInfoUpdate *model = [[ModelRequestMineInfoUpdate alloc] init];
     model.isGraduated = isGraduated;
     if (isGraduated==1) {
-        model.profession = @"学生";
-        model.school = schoolId;
+        model.profession = @"学生党";
     }else if(isGraduated==2){
-        model.profession = profession;
-        model.school = @"";
+        model.profession = @"毕业族";
     }
-    model.company = @"";
-    model.parameters = ModelRequestMineInfoUpdateIsStudentSchoolProfessionCompany;
+    model.parameters = ModelRequestMineInfoUpdateIsStudentProfession;
     [self updateWithModel:model result:^(bool successed) {
         if (successed) {
             self.mineInfo.isGraduated = isGraduated;
             self.mineInfo.profession = profession;
-            self.mineInfo.company = nil;
-            if (isGraduated==1) {
-                self.mineInfo.school= schoolId;
-            }
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
         }else{
         

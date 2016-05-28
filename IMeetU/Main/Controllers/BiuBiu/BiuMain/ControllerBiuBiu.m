@@ -79,6 +79,10 @@
 
 #import "ModelAdvert.h"
 
+#import "MLToast.h"
+#import "ModelMatchSetting.h"
+#import "UserDefultSetting.h"
+
 @interface ControllerBiuBiu ()<XMBiuCenterButtonDelegate, AppDelegateRemoteNotificationDelegate, ControllerBiuBiuSendDelegate, XMBiuFaceStarCollectionDelegate, ControllerBiuBiuReceiveDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) NSArray *trajectoryRadiusArr;
@@ -158,7 +162,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-  
     self.automaticallyAdjustsScrollViewInsets = YES;
     
     self.extendedLayoutIncludesOpaqueBars = YES;
@@ -223,6 +226,7 @@
     [super viewWillAppear:animated];
     //隐藏状态栏
     [[UIApplication sharedApplication] setStatusBarHidden:self.matchPeopleView.hidden];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     [AppDelegateDelegate shareAppDelegateDelegate].delegateAppDelegate = self;
     self.navigationController.navigationBarHidden = YES;
@@ -323,6 +327,13 @@
     }
 }
 
+#pragma mark 倒计时结束
+- (void)biuCenterButtonCountdownEnd:(XMBiuCenterView *)biuCenterButton{
+    if (![UserDefultBiu biuUserProfileOfGrab] || [UserDefultBiu biuUserProfileOfGrab].length<1) {
+        [[MLToast toastInView:self.view content:@"你的biubiu暂时无人接收呢"] show];
+    }
+}
+
 #pragma mark - AppDelegate回调
 #pragma mark 远程通知回
 - (void)appDelegate:(AppDelegate *)appDelegate isEnterFromRemoteNotification:(BOOL)isEnterFromRemoteNotification remoteNotificationUserInfo:(ModelRemoteNotification *)userInfo{
@@ -360,9 +371,10 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application{
     if ([UserDefultAccount isLogin]) {
         [self refreshBiuMainInfo];
-        
         //清空原有头像
         [self.biuFaceStarCollection refresh];
+        
+        [self loadSetting];
     }else{
         [self refreshBiuMainInfoNotLogin];
     }
@@ -466,8 +478,6 @@
         ModelResponse *response = [ModelResponse responselWithObject:responseObject];
         if (response.state == 200) {
             ModelBiuMainRefreshData *biuData = [ModelBiuMainRefreshData modelWithDictionary:response.data];
-            
-            
         }else{
             
         }
@@ -829,7 +839,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     [UIView beginAnimations:nil context:context];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationDuration:0.8];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:_matchPeopleView cache:YES];
     [UIView setAnimationDelegate:self];
     [UIView commitAnimations];
@@ -936,5 +946,28 @@
             [cache insertWithArrModelUserMatch:models.users];
         }];
     }
+}
+
+- (void)loadSetting{
+    AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
+    httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString]};
+    [httpManager POST:[XMUrlHttp xmMatchSetting] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
+        
+        if (response.state == 200) {
+            ModelMatchSetting *modelMatchSetting = [ModelMatchSetting modelWithDictionary:response.data];
+            [UserDefultSetting msgNotification:modelMatchSetting.pushNewMsg];
+            [UserDefultSetting msgNotificationIsSound:modelMatchSetting.pushSound];
+            [UserDefultSetting msgNotificationVibration:modelMatchSetting.pushVibration];
+            
+        }else{
+            
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 @end

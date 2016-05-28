@@ -89,6 +89,8 @@
     self.viewLoginRegister.delegateLoginRegister = self;
     self.viewLoginRegister.frame = CGRectMake(0, 64, [UIScreen screenWidth], [UIScreen screenHeight]-64);
     [self.view addSubview:self.viewLoginRegister];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 66, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated{

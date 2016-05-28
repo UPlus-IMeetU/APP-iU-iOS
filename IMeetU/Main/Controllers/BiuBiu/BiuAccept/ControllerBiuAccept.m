@@ -27,6 +27,7 @@
 
 @interface ControllerBiuAccept ()<UITableViewDelegate, UITableViewDataSource, CellBiuAcceptDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableViewAcceptList;
+@property (weak, nonatomic) IBOutlet UIView *viewEmptyNotice;
 
 @property (nonatomic, strong) NSArray *users;
 
@@ -50,6 +51,7 @@
     self.tableViewAcceptList.dataSource = self;
     self.tableViewAcceptList.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    self.viewEmptyNotice.hidden = YES;
     [[XMHttpBiuBiu http] loadGrabBiuListWithCallback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
         if (code == 200) {
             ModelBiuAccepts *models = [ModelBiuAccepts modelWithJSON:response];
@@ -60,7 +62,9 @@
                 if (self.users.count > 0) {
                     ModelBiuAccept *model = self.users[0];
                     [UserDefultBiu setBiuUserProfileOfGrab:model.urlProfile];
+                    [self.tableViewAcceptList reloadData];
                 }
+                self.viewEmptyNotice.hidden = (self.users.count > 0);
                 [hud hide:YES];
             }else{
                 [UserDefultBiu setBiuInMatch:NO];
@@ -69,8 +73,8 @@
                 [hud hide:YES afterDelay:1];
                 [self.navigationController popToRootViewControllerAnimated:NO];
             }
-            [self.tableViewAcceptList reloadData];
         }else{
+            self.viewEmptyNotice.hidden = NO;
             [hud xmSetCustomModeWithResult:NO label:@"加载失败"];
             [hud hide:YES afterDelay:1];
         }

@@ -395,23 +395,15 @@
             }
         });
         
-        
         //进行UserDefaultAccount数据的清除
         [UserDefultAccount cleanAccountCache];
         [self.navigationController popViewControllerAnimated:YES];
         
         //清空未读消息数
         [ControllerTabBarMain setBadgeMsgWithCount:0];
-        
     }]];
     
-    //[controller presentationController];
     [self presentViewController:controller animated:YES completion:nil];
-    
-    
-    
-    
-    
     
 }
 

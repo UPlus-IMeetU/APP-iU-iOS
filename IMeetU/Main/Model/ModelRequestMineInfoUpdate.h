@@ -14,7 +14,7 @@
 #define ModelRequestMineInfoUpdateCity @"city,cityf"
 #define ModelRequestMineInfoUpdateHometown @"hometown"
 #define ModelRequestMineInfoUpdateHeightWeight @"height,weight"
-#define ModelRequestMineInfoUpdateIsStudentSchoolProfessionCompany @"isgraduated,career,school,company"
+#define ModelRequestMineInfoUpdateIsStudentProfession @"isgraduated,career"
 #define ModelRequestMineInfoUpdateSchool @"school"
 #define ModelRequestMineInfoUpdateCompany @"company"
 #define ModelRequestMineInfoUpdateConstellation @"starsign"

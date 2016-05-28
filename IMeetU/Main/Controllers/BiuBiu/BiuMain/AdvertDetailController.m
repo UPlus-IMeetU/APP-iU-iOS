@@ -9,23 +9,21 @@
 #import "AdvertDetailController.h"
 #import "UIStoryboard+Plug.h"
 #import "ModelAdvert.h"
+#import "MBProgressHUD+plug.h"
 
 @interface AdvertDetailController ()<UIWebViewDelegate>
 
 @property (nonatomic, weak) ModelAdvert *model;
 @property (weak, nonatomic) IBOutlet UILabel *labelTitle;
 @property (weak, nonatomic) IBOutlet UIWebView *advertWebView;
+
+@property (nonatomic, strong) MBProgressHUD *hud;
 @end
 
 @implementation AdvertDetailController
 
 + (instancetype)shareControllerAdvertWithModel:(ModelAdvert *)model{
-    static AdvertDetailController *controller;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        controller = [UIStoryboard xmControllerWithName:xmStoryboardNameBuiBui indentity:@"AdvertDetailController"];
-    });
+    AdvertDetailController *controller = [UIStoryboard xmControllerWithName:xmStoryboardNameBuiBui indentity:@"AdvertDetailController"];
     controller.model = model;
     
     return controller;
@@ -33,15 +31,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.labelTitle setText:self.model.name];
     
     NSURL *url = [NSURL URLWithString:self.model.url];
+    self.advertWebView.delegate = self;
+    
     [self.advertWebView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    self.hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.view label:@"加载中..." animated:YES];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [self.hud hide:YES];
 }
 
 - (IBAction)backButtonClick:(UIButton *)sender {

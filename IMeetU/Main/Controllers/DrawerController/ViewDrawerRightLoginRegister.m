@@ -8,13 +8,26 @@
 
 #import "ViewDrawerRightLoginRegister.h"
 #import "UINib+Plug.h"
+#import "UIScreen+Plug.h"
 
+@interface ViewDrawerRightLoginRegister()
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintDistance;
+
+
+@end
 @implementation ViewDrawerRightLoginRegister
 
 + (instancetype)view{
     ViewDrawerRightLoginRegister *view = [UINib xmViewWithName:@"ViewDrawerRightLoginRegister" class:[ViewDrawerRightLoginRegister class]];
+    if ([UIScreen is40Screen]) {
+        view.constraintDistance.constant = 90;
+    }
+    
     return view;
 }
+
+
 
 - (IBAction)onClickBtnRegister:(id)sender {
     if (self.delegateLoginRegister) {

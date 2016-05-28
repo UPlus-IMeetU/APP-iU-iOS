@@ -313,7 +313,7 @@
                     [hud xmSetCustomModeWithResult:YES label:@"对方已接受"];
                     //1.已经进入抢biu列表
                 }else if(status == 1){
-                    [hud xmSetCustomModeWithResult:YES label:@"收biu成功"];
+                    [hud xmSetCustomModeWithResult:YES label:@"已经抢啦，等待对方确认"];
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                         [self.navigationController popViewControllerAnimated:YES];
                     });

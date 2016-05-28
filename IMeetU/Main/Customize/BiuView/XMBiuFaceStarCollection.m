@@ -68,21 +68,16 @@
         ModelBiuFaceStar *model = [star getModel];
         model.matchTime = [NSDate currentTimeMillis];
         [models addObject:model];
-        NSLog(@"======>%@", [[star getModel] modelToJSONString]);
     }
-    NSLog(@"-------------------------------------------------");
     for (XMBiuFaceStar *star in self.collectionArrCenter) {
         ModelBiuFaceStar *model = [star getModel];
         model.matchTime = [NSDate currentTimeMillis];
         [models addObject:model];
-        NSLog(@"======>%@", [[star getModel] modelToJSONString]);
     }
-    NSLog(@"-------------------------------------------------");
     for (XMBiuFaceStar *star in self.collectionArrOutside) {
         ModelBiuFaceStar *model = [star getModel];
         model.matchTime = [NSDate currentTimeMillis];
         [models addObject:model];
-        NSLog(@"======>%@", [[star getModel] modelToJSONString]);
     }
     
     [self refreshWithModels:models];

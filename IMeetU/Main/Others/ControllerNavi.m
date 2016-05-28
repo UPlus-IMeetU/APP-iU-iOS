@@ -14,6 +14,13 @@
 
 @implementation ControllerNavi
 
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController{
+    if (self = [super initWithRootViewController:rootViewController]) {
+        self.navigationBarHidden = YES;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }

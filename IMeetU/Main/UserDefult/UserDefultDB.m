@@ -22,6 +22,6 @@
 
 + (BOOL)finalUpdateTimeContactTimeout{
     NSInteger updateTime = [[[NSUserDefaults standardUserDefaults] objectForKey:@"finalUpdateTimeContact"] integerValue];
-    return [NSDate currentTimeMillisSecond] - updateTime > 60;
+    return [NSDate currentTimeMillisSecond] - updateTime > 6;
 }
 @end

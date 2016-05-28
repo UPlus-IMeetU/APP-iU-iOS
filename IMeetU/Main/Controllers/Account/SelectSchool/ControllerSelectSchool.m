@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnBack;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldSchool;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewSchools;
-@property (weak, nonatomic) IBOutlet UIImageView *imgTextFieldBg;
 
 @property (nonatomic, strong) ModelSchools *modelSchools;
 
@@ -55,7 +54,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 #pragma mark - get/set

@@ -21,7 +21,7 @@
     localNotification.repeatInterval = 0;
     
     if ([UserDefultSetting msgNotificationIsSound]) {
-        localNotification.soundName = @"biubiu.wav";
+        localNotification.soundName = @"msg.wav";
     }else{
         localNotification.soundName = @"";
     }
@@ -36,7 +36,7 @@
     
     if([UIApplication sharedApplication].applicationState == UIApplicationStateBackground){
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-        if ([UserDefultSetting msgNotification]) {
+        if ([UserDefultSetting msgNotificationVibration]) {
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
         }
     }

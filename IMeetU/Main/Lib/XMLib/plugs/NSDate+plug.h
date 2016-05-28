@@ -45,4 +45,14 @@
 - (long)minuteNumber;
 - (long)secondNumber;
 
+
+//=========================================================================================
+- (BOOL)xmIsToday;
+
+- (BOOL)xmIsYesterday;
+
+- (NSString *)xmShortTimeTextOfDate;
+
+- (NSString *)xmTimeTextOfDate;
+
 @end

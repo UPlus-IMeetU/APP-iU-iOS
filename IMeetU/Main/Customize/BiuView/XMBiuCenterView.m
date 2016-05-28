@@ -13,6 +13,7 @@
 #import "UINib+Plug.h"
 #import "NSDate+plug.h"
 #import "UserDefultBiu.h"
+#import "MLToast.h"
 
 #define animationBLN @"animationBLN"
 
@@ -141,6 +142,12 @@
         
         //切换状态
         [self.btnSuccessfulMatches setBackgroundImage:[UIImage imageNamed:@"biu_btn_matching"] forState:UIControlStateNormal];
+        
+        if (self.delegateBiuCenter){
+            if ([self.delegateBiuCenter respondsToSelector:@selector(biuCenterButtonCountdownEnd:)]) {
+                [self.delegateBiuCenter biuCenterButtonCountdownEnd:self];
+            }
+        }
     }else{
         if (self.biubiuNowCount % self.biubiuStep == 0) {
             [self.labelBiuBiu setText:[NSString stringWithFormat:@"%luS", self.biubiuNowCount/self.biubiuStep]];

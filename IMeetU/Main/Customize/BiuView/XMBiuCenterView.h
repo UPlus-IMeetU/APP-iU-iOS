@@ -29,4 +29,6 @@
 @optional
 - (void)biuCenterButton:(XMBiuCenterView*)biuCenterButton onClickBtnSenderBiu:(UIButton*)btn isTimeout:(BOOL)timeout;
 - (void)biuCenterButton:(XMBiuCenterView*)biuCenterButton onClickBtnSuccessfulMatches:(UIButton*)btn model:(ModelBiuFaceStar*)model;
+//倒计时结束回调
+- (void)biuCenterButtonCountdownEnd:(XMBiuCenterView*)biuCenterButton;
 @end

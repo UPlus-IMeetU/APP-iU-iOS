@@ -150,15 +150,18 @@
                     [hud xmSetCustomModeWithResult:NO label:@"注册失败"];
                 }
                 [hud hide:YES afterDelay:0.3];
+                NSLog(@"================>%@", responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 //网络请求失败
                 [hud xmSetCustomModeWithResult:NO label:@"注册失败"];
                 [hud hide:YES afterDelay:0.3];
+                NSLog(@"================>%@", error);
             }];
         }else{
             //上传头像失败
             [hud xmSetCustomModeWithResult:NO label:@"注册失败"];
             [hud hide:YES afterDelay:0.3];
+            NSLog(@"================>%@", task.error);
         }
         return nil;
     }];

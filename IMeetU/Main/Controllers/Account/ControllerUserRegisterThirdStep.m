@@ -189,7 +189,6 @@
 - (IBAction)onClickBtnNextStep:(id)sender {
     [self.view endEditing:YES];
     
-    /*
      MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"验证中..." animated:YES];
      
     [AVOSCloud verifySmsCode:self.textSecurityCode.text mobilePhoneNumber:self.textPhoneNumber.text callback:^(BOOL succeeded, NSError *error) {
@@ -209,12 +208,12 @@
             [hud xmSetCustomModeWithResult:NO label:@"验证码错误"];
             [hud hide:YES afterDelay:0.3];
         }
-    }];*/
+    }];
     
-    self.modelRequestRegister.phone = self.textPhoneNumber.text;
-    self.modelRequestRegister.password = self.textPasswd.text;
-    ControllerUserRegisterSecondStep *controller = [ControllerUserRegisterSecondStep controllerWithModel:self.modelRequestRegister profile:self.imgProfile];
-    [self.navigationController pushViewController:controller animated:YES];
+//    self.modelRequestRegister.phone = self.textPhoneNumber.text;
+//    self.modelRequestRegister.password = self.textPasswd.text;
+//    ControllerUserRegisterSecondStep *controller = [ControllerUserRegisterSecondStep controllerWithModel:self.modelRequestRegister profile:self.imgProfile];
+//    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

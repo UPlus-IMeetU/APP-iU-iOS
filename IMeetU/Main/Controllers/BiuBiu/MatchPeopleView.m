@@ -51,9 +51,10 @@ static NSString * const kIdentifierCell = @"MatchPeopleCell";
 }
 
 - (void)initDataWithTime:(long long)time withType:(MatchRefreshType)refreshType{
-    XMHttpBiuBiu *xmHttpBiuBiu = [[XMHttpBiuBiu alloc] init];
+    XMHttpBiuBiu *xmHttpBiuBiu = [XMHttpBiuBiu http];
     __weak typeof(self) weakSelf = self;
     [xmHttpBiuBiu loadMatchUserWithCount:20 timestamp:time callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        
         if (code == 200) {
             ModelUserListMatch *modelUserListMatch = [ModelUserListMatch modelWithJSON:response];
             _isCanLoading = modelUserListMatch.hasNext;

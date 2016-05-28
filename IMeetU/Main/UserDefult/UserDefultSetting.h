@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserDefult.h"
 
-@interface UserDefultSetting : NSObject
+@interface UserDefultSetting : UserDefult
 
 + (BOOL)msgNotification;
 + (void)msgNotification:(BOOL)notifi;

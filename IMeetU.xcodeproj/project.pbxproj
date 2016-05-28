@@ -368,6 +368,7 @@
 		04610B121CEDB55A0033B43E /* CellBiuAccept.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04610B101CEDB5590033B43E /* CellBiuAccept.xib */; };
 		04610B151CEDC35E0033B43E /* ModelBiuAccept.m in Sources */ = {isa = PBXBuildFile; fileRef = 04610B141CEDC35E0033B43E /* ModelBiuAccept.m */; };
 		04610B181CEDEF0D0033B43E /* ModelBiuAccepts.m in Sources */ = {isa = PBXBuildFile; fileRef = 04610B171CEDEF0D0033B43E /* ModelBiuAccepts.m */; };
+		047335F11CF844D50055A0C6 /* msg.wav in Resources */ = {isa = PBXBuildFile; fileRef = 047335F01CF844D50055A0C6 /* msg.wav */; };
 		0474512C1CCB723800568704 /* XMHttpTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 0474512B1CCB723800568704 /* XMHttpTools.m */; };
 		047519AC1CA631CB009115CE /* BeeCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 047518F21CA631CB009115CE /* BeeCloud.m */; };
 		047519AD1CA631CB009115CE /* BCBaseReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 047518F61CA631CB009115CE /* BCBaseReq.m */; };
@@ -1161,6 +1162,7 @@
 		04610B141CEDC35E0033B43E /* ModelBiuAccept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelBiuAccept.m; sourceTree = "<group>"; };
 		04610B161CEDEF0D0033B43E /* ModelBiuAccepts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelBiuAccepts.h; sourceTree = "<group>"; };
 		04610B171CEDEF0D0033B43E /* ModelBiuAccepts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelBiuAccepts.m; sourceTree = "<group>"; };
+		047335F01CF844D50055A0C6 /* msg.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = msg.wav; sourceTree = "<group>"; };
 		0474512A1CCB723800568704 /* XMHttpTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMHttpTools.h; sourceTree = "<group>"; };
 		0474512B1CCB723800568704 /* XMHttpTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMHttpTools.m; sourceTree = "<group>"; };
 		047518F01CA631CB009115CE /* BCPayObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayObjects.h; sourceTree = "<group>"; };
@@ -2010,6 +2012,7 @@
 		044726641C9D0AA3000FD349 /* voice */ = {
 			isa = PBXGroup;
 			children = (
+				047335F01CF844D50055A0C6 /* msg.wav */,
 				040F4F951CAB731200AD8334 /* biubiu.wav */,
 			);
 			path = voice;
@@ -4409,6 +4412,7 @@
 				044727DF1C9FAF9D000FD349 /* icon_020.gif in Resources */,
 				04471FC01C996C49000FD349 /* Localizable.strings in Resources */,
 				044727F11C9FAF9D000FD349 /* account.png in Resources */,
+				047335F11CF844D50055A0C6 /* msg.wav in Resources */,
 				04B165721C89CC0B00EE6DB8 /* Assets.xcassets in Resources */,
 				044728071C9FAF9D000FD349 /* tabbar_chatsHL.png in Resources */,
 				044727C21C9FAF9D000FD349 /* messageSendFail@2x.png in Resources */,

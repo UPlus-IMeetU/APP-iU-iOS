@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -618,20 +618,58 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BiQ-92-ZXd">
+                                <rect key="frame" x="181.5" y="186" width="237.5" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你的biubiu暂时还没有人接收呢 " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6X-6q-W5n" customClass="YYL">
+                                        <rect key="frame" x="0.0" y="0.0" width="237.5" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PS：抢你的人越多，你机会有越多奖励哟" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cB6-bB-xI2">
+                                        <rect key="frame" x="0.0" y="48" width="237.5" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你可以继续等待或者重新发biu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmo-45-JKG">
+                                        <rect key="frame" x="0.0" y="24" width="237.5" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="cB6-bB-xI2" secondAttribute="bottom" id="8Ah-HK-bJR"/>
+                                    <constraint firstAttribute="trailing" secondItem="cB6-bB-xI2" secondAttribute="trailing" id="E36-rV-SeJ"/>
+                                    <constraint firstItem="cB6-bB-xI2" firstAttribute="leading" secondItem="BiQ-92-ZXd" secondAttribute="leading" id="E7e-NH-jVo"/>
+                                    <constraint firstItem="i6X-6q-W5n" firstAttribute="leading" secondItem="BiQ-92-ZXd" secondAttribute="leading" id="JBd-kX-hkx"/>
+                                    <constraint firstAttribute="trailing" secondItem="i6X-6q-W5n" secondAttribute="trailing" id="PYJ-hw-eab"/>
+                                    <constraint firstItem="cB6-bB-xI2" firstAttribute="top" secondItem="Wmo-45-JKG" secondAttribute="bottom" constant="8" id="Ure-J4-9Y1"/>
+                                    <constraint firstItem="i6X-6q-W5n" firstAttribute="top" secondItem="BiQ-92-ZXd" secondAttribute="top" id="Ush-Bz-LRU"/>
+                                    <constraint firstItem="Wmo-45-JKG" firstAttribute="top" secondItem="i6X-6q-W5n" secondAttribute="bottom" constant="8" id="VJS-Hn-6EZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wmo-45-JKG" secondAttribute="trailing" id="hsb-ke-0fm"/>
+                                    <constraint firstItem="Wmo-45-JKG" firstAttribute="leading" secondItem="BiQ-92-ZXd" secondAttribute="leading" id="yf2-4y-cMJ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="BiQ-92-ZXd" firstAttribute="top" secondItem="GED-lq-uxp" secondAttribute="bottom" constant="122" id="5WK-qQ-NyP"/>
                             <constraint firstAttribute="trailing" secondItem="GED-lq-uxp" secondAttribute="trailing" id="AgM-ZY-Wq8"/>
                             <constraint firstItem="aff-s9-NaN" firstAttribute="top" secondItem="js1-vA-tHG" secondAttribute="bottom" id="ap1-Oo-F80"/>
                             <constraint firstItem="GED-lq-uxp" firstAttribute="top" secondItem="qnk-VB-NrG" secondAttribute="topMargin" id="jgg-oH-sfe"/>
                             <constraint firstItem="js1-vA-tHG" firstAttribute="top" secondItem="GED-lq-uxp" secondAttribute="bottom" id="m6v-VV-ISV"/>
                             <constraint firstItem="GED-lq-uxp" firstAttribute="leading" secondItem="qnk-VB-NrG" secondAttribute="leading" id="n4F-Lx-7Am"/>
+                            <constraint firstItem="BiQ-92-ZXd" firstAttribute="centerX" secondItem="qnk-VB-NrG" secondAttribute="centerX" id="rWT-LX-dhO"/>
                             <constraint firstAttribute="trailing" secondItem="js1-vA-tHG" secondAttribute="trailing" id="s5Z-Vb-gCO"/>
                             <constraint firstItem="js1-vA-tHG" firstAttribute="leading" secondItem="qnk-VB-NrG" secondAttribute="leading" id="zsa-22-WVd"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="tableViewAcceptList" destination="js1-vA-tHG" id="hhA-xc-P2G"/>
+                        <outlet property="viewEmptyNotice" destination="BiQ-92-ZXd" id="iqP-zv-ClE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i7m-UG-GCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1211,6 +1249,19 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIK-MQ-O0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1935" y="768"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="T2P-2H-ZdB">
+            <objects>
+                <viewController id="ci5-h8-iBN" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xOM-VL-q0Y">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mYd-BD-GKx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

@@ -174,8 +174,30 @@
     return [XMUrlHttp connectWithOperation:@"/app/biu/getVC"];
 }
 
++ (NSString *)xmGetCommunityList{
+    return [XMUrlHttp connectWithComm:@"/app/community/post/getPostListByType"];
+}
+
++ (NSString *)xmGetPostDetail{
+    return [XMUrlHttp connectWithComm:@"/app/community/post/getPostDetail"];
+}
+
++ (NSString *)xmDeletePost{
+    return [XMUrlHttp connectWithComm:@"/app/community/post/deletePost"];
+}
+
++ (NSString *)xmDoPraise{
+    return [XMUrlHttp connectWithComm:@"/app/community/praise/doPraise"];
+}
+
++ (NSString *)connectWithComm:(NSString *)operation{
+    NSString *host = @"http://123.57.26.168:8080/meetu_community/";
+    return [NSString stringWithFormat:@"%@%@", host, operation];
+}
+
 + (NSString *)connectWithOperation:(NSString *)operation{
-    NSString *host = @"http://app.iu.imeetu.cc/meetu_maven_new/";
+   //NSString *host = @"http://app.iu.imeetu.cc/meetu_maven_new/";
+   NSString *host = @"http://123.57.26.168:8080/meetu_maven_new/";
     return [NSString stringWithFormat:@"%@%@", host, operation];
 }
 @end

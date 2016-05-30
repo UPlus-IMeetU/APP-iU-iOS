@@ -60,7 +60,6 @@
 #import "MobClick.h"
 
 #import "XMHttpBiuBiu.h"
-#import "MatchPeopleController.h"
 
 #import "UserDefultAccount.h"
 

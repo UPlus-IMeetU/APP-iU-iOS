@@ -25,7 +25,6 @@
 + (instancetype)shareControllerAdvertWithModel:(ModelAdvert *)model{
     AdvertDetailController *controller = [UIStoryboard xmControllerWithName:xmStoryboardNameBuiBui indentity:@"AdvertDetailController"];
     controller.model = model;
-    
     return controller;
 }
 
@@ -33,7 +32,6 @@
     [super viewDidLoad];
     
     [self.labelTitle setText:self.model.name];
-    
     NSURL *url = [NSURL URLWithString:self.model.url];
     self.advertWebView.delegate = self;
     

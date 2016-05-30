@@ -7,8 +7,6 @@
 //
 
 #import "MatchPeopleView.h"
-#import "MatchPeopleController.h"
-#import "BQWaterLayout.h"
 #import "MatchPeopleCell.h"
 #import "UserDefultAccount.h"
 #import "XMUrlHttp.h"

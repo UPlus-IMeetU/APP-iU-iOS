@@ -15,6 +15,7 @@
 #import "ControllerDrawerRight.h"
 #import "ControllerBiuBiu.h"
 #import "ControllerMineMain.h"
+#import "ControllerCommunity.h"
 
 @interface ControllerTabBarMain ()
 
@@ -26,6 +27,11 @@
 
 @property (nonatomic, strong) ControllerNavi *controllerNaviMine;
 @property (nonatomic, strong) ControllerMineMain *controllerMine;
+
+
+@property (nonatomic, strong) ControllerNavi *
+controllerNaviCommunity;
+@property (nonatomic, strong) ControllerCommunity * controllerCommunity;
 
 
 
@@ -73,11 +79,18 @@
     
     self.controllerBiu = [ControllerBiuBiu shareControllerBiuBiu];
     self.controllerNaviBiu = [[ControllerNavi alloc] initWithRootViewController:self.controllerBiu];
-    //self.controllerNaviBiu.tabBarItem.title = @"BiuBiu";
+    self.controllerNaviBiu.tabBarItem.title = @"BiuBiu";
     self.controllerNaviBiu.tabBarItem.image = [[UIImage imageNamed:@"tab_icon_biu_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.controllerNaviBiu.tabBarItem.selectedImage = [[UIImage imageNamed:@"tab_icon_biu_light"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    //设置tabBar中间按钮的编剧
-    self.controllerNaviBiu.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+    //    //设置tabBar中间按钮的编剧
+    //    self.controllerNaviBiu.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+    
+    
+    //社区
+    self.controllerCommunity = [ControllerCommunity shareControllerCommunity];
+    self.controllerNaviCommunity = [[ControllerNavi alloc] initWithRootViewController:self.controllerCommunity];
+    self.controllerNaviCommunity.title = @"社区";
+    
     
     self.controllerMine = [ControllerMineMain  controllerWithUserCode:nil getUserCodeFrom:MineMainGetUserCodeFromUserDefult];
     self.controllerNaviMine = [[ControllerNavi alloc] initWithRootViewController:self.controllerMine];
@@ -85,7 +98,8 @@
     self.controllerNaviMine.tabBarItem.image = [[UIImage imageNamed:@"main_tab_icon_mine_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.controllerNaviMine.tabBarItem.selectedImage = [[UIImage imageNamed:@"main_tab_icon_mine_light"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    self.viewControllers = @[self.controllerNaviMsg,self.controllerNaviBiu,self.controllerNaviMine];
+    
+    self.viewControllers = @[self.controllerNaviMsg,self.controllerNaviBiu,self.controllerNaviCommunity,self.controllerNaviMine];
     //默认显示发送biubiu的页面
     self.selectedIndex = 1;
 }

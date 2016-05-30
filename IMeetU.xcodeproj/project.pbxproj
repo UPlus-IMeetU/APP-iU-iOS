@@ -660,6 +660,12 @@
 		6FBC68861CFBCECA00B45657 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68821CFBCECA00B45657 /* UIViewAdditions.m */; };
 		6FBC68871CFBCECA00B45657 /* ZXCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68841CFBCECA00B45657 /* ZXCycleScrollView.m */; };
 		6FBC68891CFBCEE000B45657 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FBC68881CFBCEE000B45657 /* Community.storyboard */; };
+		6FBC688E1CFBCFA900B45657 /* ModelComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC688B1CFBCFA900B45657 /* ModelComment.m */; };
+		6FBC688F1CFBCFA900B45657 /* ModelPostDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC688D1CFBCFA900B45657 /* ModelPostDetail.m */; };
+		6FBC68981CFBCFD100B45657 /* ModelBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68911CFBCFD100B45657 /* ModelBanner.m */; };
+		6FBC68991CFBCFD100B45657 /* ModelCommunity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68931CFBCFD100B45657 /* ModelCommunity.m */; };
+		6FBC689A1CFBCFD100B45657 /* ModelPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68951CFBCFD100B45657 /* ModelPost.m */; };
+		6FBC689B1CFBCFD100B45657 /* ModelTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68971CFBCFD100B45657 /* ModelTag.m */; };
 		6FF1DEE41CE42DC400A05C54 /* ModelActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1DEE31CE42DC400A05C54 /* ModelActivity.m */; };
 		6FF1DEE71CE459D300A05C54 /* ModelActivityContents.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1DEE61CE459D300A05C54 /* ModelActivityContents.m */; };
 /* End PBXBuildFile section */
@@ -1767,6 +1773,18 @@
 		6FBC68831CFBCECA00B45657 /* ZXCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZXCycleScrollView.h; path = Community/titleView/ZXCycleScrollView.h; sourceTree = "<group>"; };
 		6FBC68841CFBCECA00B45657 /* ZXCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZXCycleScrollView.m; path = Community/titleView/ZXCycleScrollView.m; sourceTree = "<group>"; };
 		6FBC68881CFBCEE000B45657 /* Community.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
+		6FBC688A1CFBCFA900B45657 /* ModelComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelComment.h; sourceTree = "<group>"; };
+		6FBC688B1CFBCFA900B45657 /* ModelComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelComment.m; sourceTree = "<group>"; };
+		6FBC688C1CFBCFA900B45657 /* ModelPostDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelPostDetail.h; sourceTree = "<group>"; };
+		6FBC688D1CFBCFA900B45657 /* ModelPostDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelPostDetail.m; sourceTree = "<group>"; };
+		6FBC68901CFBCFD100B45657 /* ModelBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelBanner.h; path = Community/Model/ModelBanner.h; sourceTree = "<group>"; };
+		6FBC68911CFBCFD100B45657 /* ModelBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelBanner.m; path = Community/Model/ModelBanner.m; sourceTree = "<group>"; };
+		6FBC68921CFBCFD100B45657 /* ModelCommunity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelCommunity.h; path = Community/Model/ModelCommunity.h; sourceTree = "<group>"; };
+		6FBC68931CFBCFD100B45657 /* ModelCommunity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelCommunity.m; path = Community/Model/ModelCommunity.m; sourceTree = "<group>"; };
+		6FBC68941CFBCFD100B45657 /* ModelPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelPost.h; path = Community/Model/ModelPost.h; sourceTree = "<group>"; };
+		6FBC68951CFBCFD100B45657 /* ModelPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelPost.m; path = Community/Model/ModelPost.m; sourceTree = "<group>"; };
+		6FBC68961CFBCFD100B45657 /* ModelTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelTag.h; path = Community/Model/ModelTag.h; sourceTree = "<group>"; };
+		6FBC68971CFBCFD100B45657 /* ModelTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelTag.m; path = Community/Model/ModelTag.m; sourceTree = "<group>"; };
 		6FF1DEE21CE42DC400A05C54 /* ModelActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelActivity.h; sourceTree = "<group>"; };
 		6FF1DEE31CE42DC400A05C54 /* ModelActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelActivity.m; sourceTree = "<group>"; };
 		6FF1DEE51CE459D300A05C54 /* ModelActivityContents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelActivityContents.h; sourceTree = "<group>"; };
@@ -4084,6 +4102,8 @@
 		6FBC68671CFBCE6600B45657 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				6FBC686C1CFBCE9300B45657 /* ControllerCommunity.h */,
+				6FBC686D1CFBCE9300B45657 /* ControllerCommunity.m */,
 				6FBC686B1CFBCE8800B45657 /* titleView */,
 				6FBC686A1CFBCE8100B45657 /* Model */,
 				6FBC68691CFBCE7900B45657 /* ControllerReply */,
@@ -4095,8 +4115,6 @@
 		6FBC68681CFBCE7100B45657 /* ControllerPostList */ = {
 			isa = PBXGroup;
 			children = (
-				6FBC686C1CFBCE9300B45657 /* ControllerCommunity.h */,
-				6FBC686D1CFBCE9300B45657 /* ControllerCommunity.m */,
 				6FBC686E1CFBCE9300B45657 /* ControllerPostList.h */,
 				6FBC686F1CFBCE9300B45657 /* ControllerPostList.m */,
 				6FBC68701CFBCE9300B45657 /* PostListCell.h */,
@@ -4109,11 +4127,11 @@
 		6FBC68691CFBCE7900B45657 /* ControllerReply */ = {
 			isa = PBXGroup;
 			children = (
+				6FBC687A1CFBCE9D00B45657 /* ControllerReply.h */,
+				6FBC687B1CFBCE9D00B45657 /* ControllerReply.m */,
 				6FBC68771CFBCE9D00B45657 /* CommunityReplyCell.h */,
 				6FBC68781CFBCE9D00B45657 /* CommunityReplyCell.m */,
 				6FBC68791CFBCE9D00B45657 /* CommunityReplyCell.xib */,
-				6FBC687A1CFBCE9D00B45657 /* ControllerReply.h */,
-				6FBC687B1CFBCE9D00B45657 /* ControllerReply.m */,
 			);
 			name = ControllerReply;
 			sourceTree = "<group>";
@@ -4121,6 +4139,18 @@
 		6FBC686A1CFBCE8100B45657 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6FBC68901CFBCFD100B45657 /* ModelBanner.h */,
+				6FBC68911CFBCFD100B45657 /* ModelBanner.m */,
+				6FBC68921CFBCFD100B45657 /* ModelCommunity.h */,
+				6FBC68931CFBCFD100B45657 /* ModelCommunity.m */,
+				6FBC68941CFBCFD100B45657 /* ModelPost.h */,
+				6FBC68951CFBCFD100B45657 /* ModelPost.m */,
+				6FBC68961CFBCFD100B45657 /* ModelTag.h */,
+				6FBC68971CFBCFD100B45657 /* ModelTag.m */,
+				6FBC688A1CFBCFA900B45657 /* ModelComment.h */,
+				6FBC688B1CFBCFA900B45657 /* ModelComment.m */,
+				6FBC688C1CFBCFA900B45657 /* ModelPostDetail.h */,
+				6FBC688D1CFBCFA900B45657 /* ModelPostDetail.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -4653,6 +4683,7 @@
 				047519B01CA631CB009115CE /* BCPayResp.m in Sources */,
 				04B165E31C89D87E00EE6DB8 /* ControllerDrawer.m in Sources */,
 				04B7D5AB1CDB4CB600D74C6D /* MBProgressHUD+Add.m in Sources */,
+				6FBC689A1CFBCFD100B45657 /* ModelPost.m in Sources */,
 				04B7D5DB1CDB4CB600D74C6D /* PSTCollectionViewCell.m in Sources */,
 				6F4A48451CE3061200D91B4C /* AdvertController.m in Sources */,
 				0450B7C21C90665A001DD60A /* ControllerMatchSetting.m in Sources */,
@@ -4667,6 +4698,7 @@
 				047519C71CA631CB009115CE /* BCURLRequestSerialization.m in Sources */,
 				044AF7261C8D390D009AF59F /* MLToolsID.m in Sources */,
 				04B7D4C01CDB4BEB00D74C6D /* FixFopen.c in Sources */,
+				6FBC68981CFBCFD100B45657 /* ModelBanner.m in Sources */,
 				04B165F01C89D87E00EE6DB8 /* NSURL+Plug.m in Sources */,
 				047519C61CA631CB009115CE /* BCSecurityPolicy.m in Sources */,
 				04B7D4DB1CDB4BEB00D74C6D /* EaseRecordView.m in Sources */,
@@ -4786,6 +4818,7 @@
 				044727271C9FA63E000FD349 /* MLAnnotation.m in Sources */,
 				04B7D4CA1CDB4BEB00D74C6D /* EaseMessageCell.m in Sources */,
 				04B7D5B61CDB4CB600D74C6D /* MJRefreshBackNormalFooter.m in Sources */,
+				6FBC689B1CFBCFD100B45657 /* ModelTag.m in Sources */,
 				04B7D4B01CDB4BEB00D74C6D /* EaseSDKHelper.m in Sources */,
 				044726D51C9E98C8000FD349 /* ControllerChatMsg.m in Sources */,
 				04B7D5A51CDB4CB600D74C6D /* amrFileCodec.mm in Sources */,
@@ -4799,11 +4832,13 @@
 				044724B71C99B52B000FD349 /* ModelMatchSettingUpdate.m in Sources */,
 				044AF7681C8E7D4D009AF59F /* CellMineMainTableViewHeader.m in Sources */,
 				04B165EE1C89D87E00EE6DB8 /* NSDate+plug.m in Sources */,
+				6FBC688E1CFBCFA900B45657 /* ModelComment.m in Sources */,
 				044728A51CA04189000FD349 /* XMBiuMainViewBG.m in Sources */,
 				0450B81E1C930C2B001DD60A /* ControllerUserProtocol.m in Sources */,
 				04B7D5AC1CDB4CB600D74C6D /* MBProgressHUD.m in Sources */,
 				04B165671C89CC0B00EE6DB8 /* main.m in Sources */,
 				6F4A48521CE30EE400D91B4C /* AdvertDetailController.m in Sources */,
+				6FBC688F1CFBCFA900B45657 /* ModelPostDetail.m in Sources */,
 				044AF6FC1C8D17BF009AF59F /* CellEmoji.m in Sources */,
 				0450B8271C944943001DD60A /* XMUrlHttp.m in Sources */,
 				044AF6721C8C45A9009AF59F /* ControllerUserLogin.m in Sources */,
@@ -4874,6 +4909,7 @@
 				044728B61CA181CB000FD349 /* ModelBiuFaceStar.m in Sources */,
 				044AF7171C8D3061009AF59F /* ControllerMineAlterName.m in Sources */,
 				04B7D0DD1CD9AA3200D74C6D /* NSString+Valid.m in Sources */,
+				6FBC68991CFBCFD100B45657 /* ModelCommunity.m in Sources */,
 				04B7D5D11CDB4CB600D74C6D /* NSData+EMImageContentType.m in Sources */,
 				04B7D4D51CDB4BEB00D74C6D /* EaseChatToolbarItem.m in Sources */,
 				0450B8211C93EEA5001DD60A /* Model.m in Sources */,

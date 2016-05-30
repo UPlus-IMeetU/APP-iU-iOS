@@ -10,8 +10,8 @@
 #import "MJRefresh.h"
 #import "UIColor+Plug.h"
 #import "UIView+Plug.h"
-#import "UINib+Plug.h" 
-
+#import "UIViewAdditions.h"
+#import "UINib+Plug.h"
 #import "PostListCell.h"
 
 @interface ControllerPostList ()<UITableViewDelegate,UITableViewDataSource,ZXCycleScrollViewDelegate,ZXCycleScrollViewDatasource>{
@@ -106,11 +106,6 @@
 //点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ControllerReply *controllerReply = [ControllerReply shareControllerReply];
-//    if (self.delegate) {
-//        if ([self.delegate respondsToSelector:@selector(hideTitleView:)]) {
-//            [self.delegate hideTitleView:YES];
-//        }
-//    }
     if(self.delegate){
         if ([self.delegate respondsToSelector:@selector(pushController:)]) {
             [self.delegate pushController:controllerReply];

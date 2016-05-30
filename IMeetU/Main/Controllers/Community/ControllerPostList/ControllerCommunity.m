@@ -45,6 +45,8 @@
  *  进行页面布局
  */
 - (void)prepareUI{
+    self.navigationController.navigationBar.hidden = YES;
+    
     //默认情况下，上面的titleView是显示的
     [self.view addSubview:self.titleView];
     _subViewArray = [NSMutableArray array];

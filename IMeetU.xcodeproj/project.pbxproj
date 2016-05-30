@@ -649,6 +649,17 @@
 		6F9A43EC1CEAFC5700532C06 /* MatchPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9A43E71CEAFC5700532C06 /* MatchPeopleCell.m */; };
 		6F9A43ED1CEAFC5700532C06 /* MatchPeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F9A43E81CEAFC5700532C06 /* MatchPeopleCell.xib */; };
 		6F9A43F21CEAFD2000532C06 /* MatchPeopleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9A43F11CEAFD2000532C06 /* MatchPeopleView.m */; };
+		6FBC68731CFBCE9300B45657 /* ControllerCommunity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC686D1CFBCE9300B45657 /* ControllerCommunity.m */; };
+		6FBC68741CFBCE9300B45657 /* ControllerPostList.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC686F1CFBCE9300B45657 /* ControllerPostList.m */; };
+		6FBC68751CFBCE9300B45657 /* PostListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68711CFBCE9300B45657 /* PostListCell.m */; };
+		6FBC68761CFBCE9300B45657 /* PostListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FBC68721CFBCE9300B45657 /* PostListCell.xib */; };
+		6FBC687C1CFBCE9D00B45657 /* CommunityReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68781CFBCE9D00B45657 /* CommunityReplyCell.m */; };
+		6FBC687D1CFBCE9D00B45657 /* CommunityReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FBC68791CFBCE9D00B45657 /* CommunityReplyCell.xib */; };
+		6FBC687E1CFBCE9D00B45657 /* ControllerReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC687B1CFBCE9D00B45657 /* ControllerReply.m */; };
+		6FBC68851CFBCECA00B45657 /* SMPagerTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68801CFBCECA00B45657 /* SMPagerTabView.m */; };
+		6FBC68861CFBCECA00B45657 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68821CFBCECA00B45657 /* UIViewAdditions.m */; };
+		6FBC68871CFBCECA00B45657 /* ZXCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68841CFBCECA00B45657 /* ZXCycleScrollView.m */; };
+		6FBC68891CFBCEE000B45657 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FBC68881CFBCEE000B45657 /* Community.storyboard */; };
 		6FF1DEE41CE42DC400A05C54 /* ModelActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1DEE31CE42DC400A05C54 /* ModelActivity.m */; };
 		6FF1DEE71CE459D300A05C54 /* ModelActivityContents.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1DEE61CE459D300A05C54 /* ModelActivityContents.m */; };
 /* End PBXBuildFile section */
@@ -1737,6 +1748,25 @@
 		6F9A43E81CEAFC5700532C06 /* MatchPeopleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchPeopleCell.xib; sourceTree = "<group>"; };
 		6F9A43F01CEAFD2000532C06 /* MatchPeopleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchPeopleView.h; sourceTree = "<group>"; };
 		6F9A43F11CEAFD2000532C06 /* MatchPeopleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchPeopleView.m; sourceTree = "<group>"; };
+		6FBC686C1CFBCE9300B45657 /* ControllerCommunity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControllerCommunity.h; path = Community/ControllerPostList/ControllerCommunity.h; sourceTree = "<group>"; };
+		6FBC686D1CFBCE9300B45657 /* ControllerCommunity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControllerCommunity.m; path = Community/ControllerPostList/ControllerCommunity.m; sourceTree = "<group>"; };
+		6FBC686E1CFBCE9300B45657 /* ControllerPostList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControllerPostList.h; path = Community/ControllerPostList/ControllerPostList.h; sourceTree = "<group>"; };
+		6FBC686F1CFBCE9300B45657 /* ControllerPostList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControllerPostList.m; path = Community/ControllerPostList/ControllerPostList.m; sourceTree = "<group>"; };
+		6FBC68701CFBCE9300B45657 /* PostListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostListCell.h; path = Community/ControllerPostList/PostListCell.h; sourceTree = "<group>"; };
+		6FBC68711CFBCE9300B45657 /* PostListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostListCell.m; path = Community/ControllerPostList/PostListCell.m; sourceTree = "<group>"; };
+		6FBC68721CFBCE9300B45657 /* PostListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostListCell.xib; path = Community/ControllerPostList/PostListCell.xib; sourceTree = "<group>"; };
+		6FBC68771CFBCE9D00B45657 /* CommunityReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommunityReplyCell.h; path = Community/ControllerReply/CommunityReplyCell.h; sourceTree = "<group>"; };
+		6FBC68781CFBCE9D00B45657 /* CommunityReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommunityReplyCell.m; path = Community/ControllerReply/CommunityReplyCell.m; sourceTree = "<group>"; };
+		6FBC68791CFBCE9D00B45657 /* CommunityReplyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CommunityReplyCell.xib; path = Community/ControllerReply/CommunityReplyCell.xib; sourceTree = "<group>"; };
+		6FBC687A1CFBCE9D00B45657 /* ControllerReply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControllerReply.h; path = Community/ControllerReply/ControllerReply.h; sourceTree = "<group>"; };
+		6FBC687B1CFBCE9D00B45657 /* ControllerReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControllerReply.m; path = Community/ControllerReply/ControllerReply.m; sourceTree = "<group>"; };
+		6FBC687F1CFBCECA00B45657 /* SMPagerTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMPagerTabView.h; path = Community/titleView/SMPagerTabView.h; sourceTree = "<group>"; };
+		6FBC68801CFBCECA00B45657 /* SMPagerTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMPagerTabView.m; path = Community/titleView/SMPagerTabView.m; sourceTree = "<group>"; };
+		6FBC68811CFBCECA00B45657 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewAdditions.h; path = Community/titleView/UIViewAdditions.h; sourceTree = "<group>"; };
+		6FBC68821CFBCECA00B45657 /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewAdditions.m; path = Community/titleView/UIViewAdditions.m; sourceTree = "<group>"; };
+		6FBC68831CFBCECA00B45657 /* ZXCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZXCycleScrollView.h; path = Community/titleView/ZXCycleScrollView.h; sourceTree = "<group>"; };
+		6FBC68841CFBCECA00B45657 /* ZXCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZXCycleScrollView.m; path = Community/titleView/ZXCycleScrollView.m; sourceTree = "<group>"; };
+		6FBC68881CFBCEE000B45657 /* Community.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
 		6FF1DEE21CE42DC400A05C54 /* ModelActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelActivity.h; sourceTree = "<group>"; };
 		6FF1DEE31CE42DC400A05C54 /* ModelActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelActivity.m; sourceTree = "<group>"; };
 		6FF1DEE51CE459D300A05C54 /* ModelActivityContents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelActivityContents.h; sourceTree = "<group>"; };
@@ -3007,6 +3037,7 @@
 				04B167DC1C8C198E00EE6DB8 /* Account.storyboard */,
 				044AF7021C8D182E009AF59F /* XMInputViews.xib */,
 				0450B7C31C906678001DD60A /* Setting.storyboard */,
+				6FBC68881CFBCEE000B45657 /* Community.storyboard */,
 				0447271D1C9FA2DB000FD349 /* Msg.storyboard */,
 				04B165711C89CC0B00EE6DB8 /* Assets.xcassets */,
 				04B165761C89CC0B00EE6DB8 /* Info.plist */,
@@ -3067,6 +3098,7 @@
 		04B1659C1C89D87E00EE6DB8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6FBC68671CFBCE6600B45657 /* Community */,
 				044726D21C9E9849000FD349 /* ControllerChat */,
 				0450B7BF1C906637001DD60A /* Setting */,
 				044AF7071C8D304E009AF59F /* Mine */,
@@ -4049,6 +4081,63 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		6FBC68671CFBCE6600B45657 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				6FBC686B1CFBCE8800B45657 /* titleView */,
+				6FBC686A1CFBCE8100B45657 /* Model */,
+				6FBC68691CFBCE7900B45657 /* ControllerReply */,
+				6FBC68681CFBCE7100B45657 /* ControllerPostList */,
+			);
+			name = Community;
+			sourceTree = "<group>";
+		};
+		6FBC68681CFBCE7100B45657 /* ControllerPostList */ = {
+			isa = PBXGroup;
+			children = (
+				6FBC686C1CFBCE9300B45657 /* ControllerCommunity.h */,
+				6FBC686D1CFBCE9300B45657 /* ControllerCommunity.m */,
+				6FBC686E1CFBCE9300B45657 /* ControllerPostList.h */,
+				6FBC686F1CFBCE9300B45657 /* ControllerPostList.m */,
+				6FBC68701CFBCE9300B45657 /* PostListCell.h */,
+				6FBC68711CFBCE9300B45657 /* PostListCell.m */,
+				6FBC68721CFBCE9300B45657 /* PostListCell.xib */,
+			);
+			name = ControllerPostList;
+			sourceTree = "<group>";
+		};
+		6FBC68691CFBCE7900B45657 /* ControllerReply */ = {
+			isa = PBXGroup;
+			children = (
+				6FBC68771CFBCE9D00B45657 /* CommunityReplyCell.h */,
+				6FBC68781CFBCE9D00B45657 /* CommunityReplyCell.m */,
+				6FBC68791CFBCE9D00B45657 /* CommunityReplyCell.xib */,
+				6FBC687A1CFBCE9D00B45657 /* ControllerReply.h */,
+				6FBC687B1CFBCE9D00B45657 /* ControllerReply.m */,
+			);
+			name = ControllerReply;
+			sourceTree = "<group>";
+		};
+		6FBC686A1CFBCE8100B45657 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6FBC686B1CFBCE8800B45657 /* titleView */ = {
+			isa = PBXGroup;
+			children = (
+				6FBC687F1CFBCECA00B45657 /* SMPagerTabView.h */,
+				6FBC68801CFBCECA00B45657 /* SMPagerTabView.m */,
+				6FBC68811CFBCECA00B45657 /* UIViewAdditions.h */,
+				6FBC68821CFBCECA00B45657 /* UIViewAdditions.m */,
+				6FBC68831CFBCECA00B45657 /* ZXCycleScrollView.h */,
+				6FBC68841CFBCECA00B45657 /* ZXCycleScrollView.m */,
+			);
+			name = titleView;
+			sourceTree = "<group>";
+		};
 		8DED88011BE5CD828EC52278 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -4227,6 +4316,7 @@
 				044727AE1C9FAF9D000FD349 /* call_out@2x.png in Resources */,
 				040F4FE61CABD1CE00AD8334 /* chat_sender_bg.png in Resources */,
 				04B7D5BB1CDB4CB600D74C6D /* MJRefresh.bundle in Resources */,
+				6FBC68761CFBCE9300B45657 /* PostListCell.xib in Resources */,
 				0447280C1C9FAF9D000FD349 /* tabbar_contactsHL@2x.png in Resources */,
 				044727B91C9FAF9D000FD349 /* chat_location_detail_disclosure.png in Resources */,
 				044727181C9F9A7F000FD349 /* icon_030_cover.png in Resources */,
@@ -4322,10 +4412,12 @@
 				044727D11C9FAF9D000FD349 /* icon_002.gif in Resources */,
 				044727D21C9FAF9D000FD349 /* icon_002_cover.png in Resources */,
 				04471FA21C996C49000FD349 /* in.caf in Resources */,
+				6FBC68891CFBCEE000B45657 /* Community.storyboard in Resources */,
 				044727C61C9FAF9D000FD349 /* chat_receiver_audio_playing003@2x.png in Resources */,
 				044AF7031C8D182E009AF59F /* XMInputViews.xib in Resources */,
 				044727031C9F9A7F000FD349 /* icon_012.gif in Resources */,
 				04471FB71C996C49000FD349 /* chatBar_keyboardSelected@2x.png in Resources */,
+				6FBC687D1CFBCE9D00B45657 /* CommunityReplyCell.xib in Resources */,
 				04610B121CEDB55A0033B43E /* CellBiuAccept.xib in Resources */,
 				044727091C9F9A7F000FD349 /* icon_019.gif in Resources */,
 				044727DE1C9FAF9D000FD349 /* icon_019_cover.png in Resources */,
@@ -4532,7 +4624,9 @@
 				044AF6C01C8C883D009AF59F /* DBCity.m in Sources */,
 				049E799C1CC65691009928F0 /* ViewChatMsgImgBrowser.m in Sources */,
 				04B7D0E01CD9AA3200D74C6D /* UIViewController+DismissKeyboard.m in Sources */,
+				6FBC687E1CFBCE9D00B45657 /* ControllerReply.m in Sources */,
 				047519C11CA631CB009115CE /* BCBaseResult.m in Sources */,
+				6FBC68731CFBCE9300B45657 /* ControllerCommunity.m in Sources */,
 				0492A3F11CC908F100659FFD /* UserDefultMsg.m in Sources */,
 				6FF1DEE71CE459D300A05C54 /* ModelActivityContents.m in Sources */,
 				04B7D5F01CDB5C3600D74C6D /* ViewBiuPayB.m in Sources */,
@@ -4578,6 +4672,7 @@
 				04B7D4DB1CDB4BEB00D74C6D /* EaseRecordView.m in Sources */,
 				04151AC01C96E620008955C2 /* ModelRequestMineInfoUpdate.m in Sources */,
 				04B7D5C91CDB4CB600D74C6D /* EMSDImageCache.m in Sources */,
+				6FBC68751CFBCE9300B45657 /* PostListCell.m in Sources */,
 				04A31D801C97E0CC00BCBAE0 /* ReusableViewBiuReceiveFooter.m in Sources */,
 				04B7D4E61CDB4C0500D74C6D /* EMBubbleView+MMText.m in Sources */,
 				047519C41CA631CB009115CE /* BCHTTPSessionManager.m in Sources */,
@@ -4595,6 +4690,7 @@
 				04B7D5D61CDB4CB600D74C6D /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				040F4FF31CABD6E000AD8334 /* XMActionSheetChatMsg.m in Sources */,
 				044AF6F91C8D17BF009AF59F /* XMInputViewBirthday.m in Sources */,
+				6FBC68851CFBCECA00B45657 /* SMPagerTabView.m in Sources */,
 				04B7D4C11CDB4BEB00D74C6D /* EaseConversationListViewController.m in Sources */,
 				040F4F941CAAC30000AD8334 /* DBCacheBiuContact.m in Sources */,
 				044AF7151C8D3061009AF59F /* ControllerMineAlterConstellation.m in Sources */,
@@ -4622,8 +4718,10 @@
 				04B7D4D01CDB4BEB00D74C6D /* EaseBubbleView+Text.m in Sources */,
 				0450B8141C925CF0001DD60A /* ControllerMineAlterInterest.m in Sources */,
 				04B7D4D41CDB4BEB00D74C6D /* EaseChatToolbar.m in Sources */,
+				6FBC68871CFBCECA00B45657 /* ZXCycleScrollView.m in Sources */,
 				0450B80F1C925CF0001DD60A /* CellCollectionMineAlterInterest.m in Sources */,
 				047519BF1CA631CB009115CE /* BCRefundStatusReq.m in Sources */,
+				6FBC68861CFBCECA00B45657 /* UIViewAdditions.m in Sources */,
 				04151ABA1C96BF40008955C2 /* ModelResponseMineHeader.m in Sources */,
 				04B165EF1C89D87E00EE6DB8 /* NSString+Plug.m in Sources */,
 				04F0BBF01CA2C88E0025408D /* ModelBiuReceive.m in Sources */,
@@ -4640,6 +4738,7 @@
 				044727241C9FA45B000FD349 /* ControllerChatMsgLocation.m in Sources */,
 				04B7D5B21CDB4CB600D74C6D /* MJRefreshAutoGifFooter.m in Sources */,
 				04151ABD1C96C13C008955C2 /* ModelResponseOSSSecurityToke.m in Sources */,
+				6FBC68741CFBCE9300B45657 /* ControllerPostList.m in Sources */,
 				047519B91CA631CB009115CE /* BCQueryRefundByIdReq.m in Sources */,
 				047519CD1CA631CB009115CE /* NSDictionary+Utils.m in Sources */,
 				044EB4661CE46C1A0076DCD6 /* ControllerNavi.m in Sources */,
@@ -4671,6 +4770,7 @@
 				0450B7F51C91D3A3001DD60A /* ControllerMineAlterCompany.m in Sources */,
 				044AF7711C8EDD7B009AF59F /* XMTableViewNoHover.m in Sources */,
 				04B7D5A71CDB4CB600D74C6D /* EMVoiceConverter.mm in Sources */,
+				6FBC687C1CFBCE9D00B45657 /* CommunityReplyCell.m in Sources */,
 				04151AD71C979EA8008955C2 /* ControllerBiuBiuSend.m in Sources */,
 				0450B7A51C90248A001DD60A /* ModelInterests.m in Sources */,
 				044AF7141C8D3061009AF59F /* ControllerMineAlterBirthday.m in Sources */,

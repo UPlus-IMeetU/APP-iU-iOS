@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ModelPostDetail.h"
+#import "ModelComment.h"
 typedef NS_ENUM(NSInteger,OperationType) {
     OperationTypeDelete = 0,
     OperationTypeReport = 1
@@ -15,5 +15,5 @@ typedef NS_ENUM(NSInteger,OperationType) {
 typedef void (^ReplyOperationBlock) (NSInteger userCode,OperationType operationType);
 @interface CommunityReplyCell : UITableViewCell
 @property (nonatomic,copy) ReplyOperationBlock replyOperationBlock;
-@property (nonatomic,strong) ModelPostDetail *modelPostDetail;
+@property (nonatomic,strong) ModelComment *modelComment;
 @end

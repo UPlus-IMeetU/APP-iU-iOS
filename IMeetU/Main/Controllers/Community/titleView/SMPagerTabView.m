@@ -7,6 +7,7 @@
 //
 
 #import "SMPagerTabView.h"
+#import "UIColor+Plug.h"
 
 @interface SMPagerTabView()
 
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) NSMutableArray* tabRedDots; //按钮上的红点
 @property (nonatomic, strong) UIView* selectedLine;
 @property (nonatomic, assign) CGFloat selectedLineOffsetXBeforeMoving;
+@property (nonatomic, strong) UIView *lineView;
 
 @property(nonatomic,strong)NSMutableArray * arrBtn;
 
@@ -268,7 +270,7 @@
 }
 - (CGFloat)tabFrameHeight {
     if (!_tabFrameHeight) {
-        self.tabFrameHeight = 40;
+        self.tabFrameHeight = 36;
     }
     return _tabFrameHeight;
 }
@@ -304,15 +306,19 @@
 }
 - (UIColor *)tabButtonTitleColorForSelected {
     if (!_tabButtonTitleColorForSelected) {
-        self.tabButtonTitleColorForSelected = [UIColor redColor];
+        self.tabButtonTitleColorForSelected = [UIColor often_33C6E5:1];
     }
     return _tabButtonTitleColorForSelected;
 }
 - (UIView *)selectedLine {
     if (!_selectedLine) {
-        self.selectedLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.tabView.height - 2, self.selectedLineWidth, 2)];
-        _selectedLine.backgroundColor = [UIColor redColor];
+        self.selectedLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.tabView.height - 1, self.selectedLineWidth, 1)];
+        _selectedLine.backgroundColor = [UIColor often_33C6E5:1];
         [self addSubview:_selectedLine];
+        //设置线
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.tabView.height - 0.5, self.tabView.width, 0.5)];
+        _lineView.backgroundColor = [UIColor often_33C6E5:1];
+        [self addSubview:_lineView];
     }
     return _selectedLine;
 }
@@ -361,6 +367,7 @@
     }
     self.selectedLine.hidden=YES;
     self.tabView.hidden=YES;
+    self.lineView.hidden = YES;
 }
 -(void)setShow{
     for (int i = 0; i<self.arrBtn.count; i++) {
@@ -370,6 +377,7 @@
     }
     self.tabView.hidden=NO;
     self.selectedLine.hidden=NO;
+    self.lineView.hidden = NO;
 }
 
 

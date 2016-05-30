@@ -13,11 +13,13 @@
 @interface ModelComment : NSObject
 @property (nonatomic,assign) NSInteger commentId;
 @property (nonatomic,assign) NSInteger parentId;
-@property (nonatomic,assign) NSInteger fromUserCode;
-@property (nonatomic,copy) NSString *fromUserName;
-@property (nonatomic,copy) NSString *fromUserHead;
-@property (nonatomic,assign) NSInteger toUserCode;
-@property (nonatomic,copy) NSString *toUserName;
+@property (nonatomic,assign) NSInteger userFromCode;
+@property (nonatomic,copy) NSString *userFromName;
+@property (nonatomic,copy) NSString *userFromHead;
+@property (nonatomic,assign) NSInteger userToCode;
+@property (nonatomic,copy) NSString *userToName;
 @property (nonatomic,copy) NSString *content;
 @property (nonatomic,assign) long long createAt;
+@property (nonatomic,copy) NSString *userToSex;
+@property (nonatomic,copy) NSString *userFromSex;
 @end

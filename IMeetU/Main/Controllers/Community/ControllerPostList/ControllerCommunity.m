@@ -10,6 +10,8 @@
 #import "SMPagerTabView.h"
 #import "UIStoryboard+Plug.h"
 #import "ControllerPostList.h"
+
+#import "UIColor+Plug.h"
 @interface ControllerCommunity ()<ControllerPostListDelegate>
 @property (strong, nonatomic) SMPagerTabView *titleView;
 /**
@@ -104,7 +106,7 @@
 
 #pragma mark ControllerPostListDelegate
 - (void)hideTitleView:(BOOL)isHidden{
-    if (isHidden && _titleView.tabFrameHeight == 40) {
+    if (isHidden && _titleView.tabFrameHeight == 36.0) {
         [UIView animateWithDuration:1 animations:^{
             _titleView.tabFrameHeight = 0.1;
             [_titleView setHide];
@@ -115,7 +117,7 @@
     
     if (!isHidden && _titleView.tabFrameHeight == 0.1) {
         [UIView animateWithDuration:1 animations:^{
-            _titleView.tabFrameHeight = 40.0;
+            _titleView.tabFrameHeight = 36.0;
             [_titleView setShow];
         } completion:^(BOOL finished) {
             [_titleView setNeedsLayout];
@@ -123,15 +125,14 @@
     }
 }
 
-- (void)pushController:(ControllerReply *)controllerReply{
-    [self.navigationController pushViewController:controllerReply animated:YES];
-}
-
 #pragma mark titleView getter
 - (SMPagerTabView *)titleView{
     if (!_titleView) {
         self.titleView = [[SMPagerTabView  alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64 - 49)];
         self.titleView.selectedLineWidth = self.view.width / 3;
+        self.titleView.tabButtonFontSize = 15;
+        self.titleView.tabButtonTitleColorForSelected = [UIColor often_33C6E5:1];
+        self.titleView.tabButtonTitleColorForNormal = [UIColor often_808080:1];
     }
     return _titleView;
 }

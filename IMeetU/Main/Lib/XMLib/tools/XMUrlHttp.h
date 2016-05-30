@@ -135,4 +135,28 @@
 + (NSString *)xmAcceptUserGrabBiu;
 
 + (NSString *)xmShutdownBiu;
+
+/**
+ *  获取社区首页的列表
+ *
+ *  @return 返回社区的地址
+ */
++ (NSString *)xmGetCommunityList;
+
+/**
+ *  获取帖子详情
+ *
+ *  @return 返回地址
+ */
++ (NSString *)xmGetPostDetail;
+
+/**
+ *  删除帖子
+ */
++ (NSString *)xmDeletePost;
+
+/**
+ *  点赞
+ */
++ (NSString *)xmDoPraise;
 @end

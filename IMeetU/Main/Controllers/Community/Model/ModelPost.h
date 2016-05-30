@@ -19,6 +19,7 @@
 @property (nonatomic,copy) NSString *content;
 @property (nonatomic,assign) NSInteger praiseNum;
 @property (nonatomic,assign) NSInteger commentNum;
+@property (nonatomic,copy) NSString *userSex;
 //0 未读,1 已读
 @property (nonatomic,assign) BOOL isPraise;
 @property (nonatomic,strong) NSArray *tags;

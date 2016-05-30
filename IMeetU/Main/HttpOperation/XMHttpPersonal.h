@@ -13,4 +13,5 @@
 - (void)xmReportWithUserCode:(NSString*)userCode reason:(NSString*)reason block:(XMHttpBlockStandard)block;
 
 - (void)xmChangeProfileStateReadWithUserCode:(NSString*)userCode block:(XMHttpBlockStandard)block;
+
 @end

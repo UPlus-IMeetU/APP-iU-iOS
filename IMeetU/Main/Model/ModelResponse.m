@@ -16,7 +16,6 @@
 + (instancetype)responselWithObject:(id)responseObject{
     ModelResponse *model = [ModelResponse modelWithDictionary:responseObject];
     model.data = responseObject[@"data"];
-    
     return model;
 }
 

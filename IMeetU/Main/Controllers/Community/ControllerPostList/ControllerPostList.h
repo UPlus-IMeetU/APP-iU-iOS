@@ -23,7 +23,6 @@ typedef NS_ENUM(NSInteger,PostListType) {
  *  @param isHidden 是否隐藏 YES为隐藏 NO为不隐藏
  */
 - (void)hideTitleView:(BOOL)isHidden;
-- (void)pushController:(ControllerReply *)controllerReply;
 @end
 
 @interface ControllerPostList : UIViewController

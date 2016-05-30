@@ -22,19 +22,16 @@
 + (instancetype)shareControllerAdvertWithModel:(ModelAdvert *)model{
     static AdvertDetailController *controller;
     static dispatch_once_t onceToken;
-    
     dispatch_once(&onceToken, ^{
         controller = [UIStoryboard xmControllerWithName:xmStoryboardNameBuiBui indentity:@"AdvertDetailController"];
     });
     controller.model = model;
-    
     return controller;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.labelTitle setText:self.model.name];
-    
     NSURL *url = [NSURL URLWithString:self.model.url];
     [self.advertWebView loadRequest:[NSURLRequest requestWithURL:url]];
 }

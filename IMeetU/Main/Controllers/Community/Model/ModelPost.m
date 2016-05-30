@@ -8,10 +8,12 @@
 
 #import "ModelPost.h"
 #import "ModelTag.h"
+#import "ModelImage.h"
 @implementation ModelPost
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{
-             @"tags":[ModelTag class]
+             @"tags":[ModelTag class],
+             @"imgs":[ModelImage class]
              };
 }
 @end

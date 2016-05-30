@@ -14,6 +14,12 @@
 #import "UINib+Plug.h"
 #import "PostListCell.h"
 
+
+#import "XMHttpCommunity.h"
+#import "ModelCommunity.h"
+#import "ModelAdvert.h"
+#import "AdvertDetailController.h"
+#import "YYKit/YYKit.h"
 @interface ControllerPostList ()<UITableViewDelegate,UITableViewDataSource,ZXCycleScrollViewDelegate,ZXCycleScrollViewDatasource>{
     //记录当前的位置
     CGFloat contentOffsetY;
@@ -23,17 +29,37 @@
     CGFloat oldContentOffsetY;
 }
 @property (nonatomic,strong) UITableView *postListTableView;
+/**
+ *  帖子
+ */
+@property (nonatomic,strong) NSMutableArray *postListArray;
+/**
+ *  轮播图
+ */
+@property (nonatomic,strong) NSMutableArray *bannerArray;
 @end
 
 @implementation ControllerPostList
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self prepareData];
     [self prepareUI];
     // Do any additional setup after loading the view.
 }
 
-
+- (void)prepareData{
+    _postListArray = [NSMutableArray array];
+    _bannerArray = [NSMutableArray array];
+    //进行处理
+    [[XMHttpCommunity http] loadCommunityListWithType:self.postListType withTimeStamp:0 withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        ModelCommunity *community = [ModelCommunity modelWithJSON:response];
+        _postListArray = [NSMutableArray arrayWithArray:community.postList];
+        _bannerArray = [NSMutableArray arrayWithArray:community.banner];
+        [_postListTableView reloadData];
+        [_cycleScrollView reloadData];
+    }];
+}
 - (void)prepareUI{
     [self.view addSubview:self.postListTableView];
 }
@@ -92,26 +118,90 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PostListCell *postListCell = [tableView dequeueReusableCellWithIdentifier:@"PostListCell"];
     postListCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    __weak typeof(self) weakSelf = self;
+    postListCell.postViewOperationBlock = ^(NSInteger postId,OperationType operationType){
+        [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType];
+    };
+    postListCell.modelPost = _postListArray[indexPath.row];
     return postListCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 300.0f;
+    //计算cell的高度
+    ModelPost *modelPost = self.postListArray[indexPath.row];
+    NSString *contentStr = modelPost.content;
+    CGSize titleSize = [contentStr sizeWithFont:[UIFont systemFontOfSize:15.0] constrainedToSize:CGSizeMake(self.view.width - 20, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
+    
+    
+    NSInteger imageCount = modelPost.imgs.count;
+    NSInteger photoViewWidth = 0;
+    if (imageCount == 0) {
+        photoViewWidth = -20;
+    }else if(imageCount == 1){
+        photoViewWidth = self.view.width - 20;
+    }else if(imageCount == 2){
+        photoViewWidth = (self.view.width - 20 - 5) * 0.5;
+    }else if(imageCount == 3){
+        photoViewWidth = ceil((self.view.width - 20 - 5 * 2) /  3);
+    }else if(imageCount >3 && imageCount <= 6){
+        photoViewWidth = ceil((self.view.width - 20 - 5 * 2) /  3) * 2 + 5;
+    }else{
+       photoViewWidth = ceil((self.view.width - 20 - 5 * 2) /  3) * 3 + 5 * 2;
+    }
+    return 165.0f +  ceil(titleSize.height) + photoViewWidth;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return _postListArray.count;
 }
 
 //点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ControllerReply *controllerReply = [ControllerReply shareControllerReply];
     if(self.delegate){
-        if ([self.delegate respondsToSelector:@selector(pushController:)]) {
-            [self.delegate pushController:controllerReply];
-        }
+        [((UIViewController *)self.delegate).navigationController pushViewController:controllerReply animated:YES];
     }
 
+}
+
+- (void)operationBtnClickWithPostId:(NSInteger) postId withOperationType:(OperationType)operationType{
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"选择操作" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    NSString *operationStr = (operationType == OperationTypeDelete) ? @"删除":@"举报";
+    NSString *messageStr = (operationType == OperationTypeDelete) ?@"嗨，确定要删除内容么?":@"嗨，确定要举报TA么?";
+    [controller addAction:[UIAlertAction actionWithTitle:operationStr style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        //弹出框
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:operationStr message:messageStr preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if (operationType == OperationTypeDelete) {
+                [self deletePostWithId:postId];
+            }else{
+                [self reportPostWithId:postId];
+            }
+        }]];
+        if (self.delegate) {
+            [((UIViewController *)self.delegate) presentViewController:alertController animated:YES completion:nil];
+        }
+    }]];
+    [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    if (self.delegate) {
+        [((UIViewController *)self.delegate) presentViewController:controller animated:YES completion:nil];
+    }
+}
+
+
+#pragma mark 删除操作
+- (void)deletePostWithId:(NSInteger)postId{
+    
+}
+
+#pragma mark 举报操作
+- (void)reportPostWithId:(NSInteger)postId{
+    
 }
 #pragma mark UIScrollViewDelegate
 
@@ -145,26 +235,29 @@
 #pragma mark ZXCycleScrollViewDelegate,ZXCycleScrollViewDatasource
 //返回滚动视图的个数
 - (NSInteger)numberOfPages{
-    return 3;
+    return _bannerArray.count;
 }
 //定义ScrollView
 - (UIView *)pageAtIndex:(NSInteger)index
 {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.cycleScrollView.bounds];
-    if (index==0) {
-        imageView.backgroundColor=[UIColor orangeColor];
-    }else if (index==1){
-        imageView.backgroundColor=[UIColor purpleColor];
-    }else{
-        imageView.backgroundColor=[UIColor greenColor];
+    if (_bannerArray.count == 0 || index >= _bannerArray.count) {
+        return imageView;
     }
+    ModelAdvert *advert = _bannerArray[index];
+    [imageView setImageWithURL:[NSURL URLWithString:advert.cover] placeholder:[UIImage imageNamed:@"biu_activty_img_1"]];
     return imageView;
 }
 
 #pragma  delegate
 - (void)didClickPage:(ZXCycleScrollView *)csView atIndex:(NSInteger)index
 {
-    NSLog(@"%li",(long)index);
+    ModelAdvert *modelAdvert = _bannerArray[index];
+    AdvertDetailController *advertController = [AdvertDetailController shareControllerAdvertWithModel:modelAdvert];
+    [advertController setHidesBottomBarWhenPushed:YES];
+    if (self.delegate) {
+        [((UIViewController *)self.delegate).navigationController pushViewController:advertController animated:YES];
+    }
 }
 
 

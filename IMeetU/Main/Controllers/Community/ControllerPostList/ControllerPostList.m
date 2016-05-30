@@ -72,7 +72,7 @@
 
 - (UITableView *)postListTableView{
     if (!_postListTableView) {
-        _postListTableView = [[UITableView alloc] initWithFrame:self.view.frame];
+        _postListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64)];
         _postListTableView.delegate = self;
         _postListTableView.dataSource = self;
         _postListTableView.showsVerticalScrollIndicator = NO;

@@ -122,6 +122,7 @@
     postListCell.postViewOperationBlock = ^(NSInteger postId,OperationType operationType){
         [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType];
     };
+    postListCell.width = self.view.width;
     postListCell.modelPost = _postListArray[indexPath.row];
     return postListCell;
 }

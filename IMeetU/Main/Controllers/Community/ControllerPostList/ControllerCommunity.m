@@ -48,7 +48,6 @@
  */
 - (void)prepareUI{
     self.navigationController.navigationBar.hidden = YES;
-    
     //默认情况下，上面的titleView是显示的
     [self.view addSubview:self.titleView];
     _subViewArray = [NSMutableArray array];
@@ -128,7 +127,7 @@
 #pragma mark titleView getter
 - (SMPagerTabView *)titleView{
     if (!_titleView) {
-        self.titleView = [[SMPagerTabView  alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64 - 49)];
+        self.titleView = [[SMPagerTabView  alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64 - 49 )];
         self.titleView.selectedLineWidth = self.view.width / 3;
         self.titleView.tabButtonFontSize = 15;
         self.titleView.tabButtonTitleColorForSelected = [UIColor often_33C6E5:1];

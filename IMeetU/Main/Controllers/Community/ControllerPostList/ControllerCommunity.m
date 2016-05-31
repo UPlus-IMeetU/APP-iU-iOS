@@ -42,6 +42,10 @@
     // Do any additional setup after loading the view from its nib
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
 
 /**
  *  进行页面布局
@@ -135,4 +139,10 @@
     }
     return _titleView;
 }
+
+- (IBAction)onClickBtnPostRelease:(id)sender {
+    ControllerPostRelease *controller = [ControllerPostRelease controller];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 @end

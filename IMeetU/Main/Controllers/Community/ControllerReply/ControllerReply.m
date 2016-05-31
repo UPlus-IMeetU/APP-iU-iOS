@@ -20,6 +20,7 @@
 #import "CommunityReplyCell.h"
 #import "ModelPostDetail.h"
 #import "YYKit/YYKit.h"
+#import "PostListCell.h"
 @interface ControllerReply ()<UITableViewDelegate,UITableViewDataSource>
 /**
  *  评论列表
@@ -49,7 +50,13 @@
     [[XMHttpCommunity http] loadPostDetailWithPostId:self.postId withTimeStamp:0 withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
         if (code == 200) {
             ModelPostDetail *modelPostDetail = [ModelPostDetail modelWithJSON:response];
+            
+            //创建视图
+            PostListCell *postCell =  [[[NSBundle mainBundle] loadNibNamed:@"PostListCell" owner:self options:nil] lastObject];
+            postCell.size = CGSizeMake(self.view.width, [ModelPost cellHeightWith:modelPostDetail.post]);
+            postCell.modelPost = modelPostDetail.post;
             _commentArray = [NSMutableArray arrayWithArray:modelPostDetail.commentList];
+            _replyTableView.tableHeaderView = postCell;
             [_replyTableView reloadData];
         };
     }];
@@ -91,7 +98,7 @@
     
     //进行删除或者举报操作
     typeof(self) weakSelf = self;
-    replyCell.replyOperationBlock = ^(NSInteger postId,OperationType operationType){
+    replyCell.replyOperationBlock = ^(NSInteger postId,OperationReplyType operationType){
         [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType];
     };
     return replyCell;

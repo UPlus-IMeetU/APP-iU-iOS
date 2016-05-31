@@ -82,13 +82,12 @@ controllerNaviCommunity;
     self.controllerNaviBiu.tabBarItem.title = @"BiuBiu";
     self.controllerNaviBiu.tabBarItem.image = [[UIImage imageNamed:@"tab_icon_biu_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.controllerNaviBiu.tabBarItem.selectedImage = [[UIImage imageNamed:@"tab_icon_biu_light"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    //    //设置tabBar中间按钮的编剧
-    //    self.controllerNaviBiu.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
-    
     
     //社区
     self.controllerCommunity = [ControllerCommunity shareControllerCommunity];
     self.controllerNaviCommunity = [[ControllerNavi alloc] initWithRootViewController:self.controllerCommunity];
+    self.controllerNaviCommunity.tabBarItem.image = [[UIImage imageNamed:@"tab_icon_found_nor"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.controllerNaviCommunity.tabBarItem.selectedImage = [[UIImage imageNamed:@"tab_icon_found_light"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.controllerNaviCommunity.title = @"社区";
     
     

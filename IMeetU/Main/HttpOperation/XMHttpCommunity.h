@@ -22,6 +22,9 @@
 
 - (void)deletePostWithId:(NSInteger) postId withCallBack:(XMHttpBlockStandard)callback;
 
-- (void)praisePostWithId:(NSInteger) postId withCallBack:(XMHttpBlockStandard)
+- (void)praisePostWithId:(NSInteger) postId withUserCode:(NSInteger)userCode withCallBack:(XMHttpBlockStandard)
     callback;
+
+
+- (void)getPostListWithId:(NSInteger) postId withTimeStamp:(long long)timeStamp withCallBack:(XMHttpBlockStandard)callback;
 @end

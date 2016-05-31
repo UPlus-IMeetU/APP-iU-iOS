@@ -76,6 +76,14 @@
     return [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:alpha];
 }
 
++ (instancetype)often_8883BC:(float)alpha{
+    return [UIColor colorWithRed:136/255.0 green:131/255.0 blue:188/255.0 alpha:alpha];
+}
+
++ (instancetype)often_F06E7F:(float)alpha{
+    return [UIColor colorWithRed:240/255.0 green:110/255.0 blue:127/255.0 alpha:alpha];
+}
+
 + (instancetype)often_FF5CFF:(float)alpha{
     return [UIColor colorWithRed:1.0 green:92/255.0 blue:1.0 alpha:alpha];
 }

@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ModelPost.h"
-typedef NS_ENUM(NSInteger,OperationType) {
-    OperationTypeDelete = 0,
-    OperationTypeReport = 1
-};
-typedef void (^PostViewPraiseBlock) (NSInteger postId,NSInteger praise);
-typedef void (^PostViewGoSameTagListBlock) (NSInteger tagId);
+#import "ModelTag.h"
+#import "EnumHeader.h"
+typedef void (^PostViewPraiseBlock) (NSInteger postId,NSInteger userCode,NSInteger praise);
+typedef void (^PostViewGoSameTagListBlock) (ModelTag *modelTag);
 typedef void (^PostViewOperationBlock) (NSInteger postId,OperationType operationType);
+typedef void (^PostViewGoHomePageBlock)(NSInteger userCode);
 @interface PostListCell : UITableViewCell
 /**
  *  点赞操作
@@ -28,5 +27,6 @@ typedef void (^PostViewOperationBlock) (NSInteger postId,OperationType operation
  *  进行相关的操作 举报和删除页面
  */
 @property (nonatomic,copy) PostViewOperationBlock postViewOperationBlock;
+@property (nonatomic,copy) PostViewGoHomePageBlock postViewGoHomePageBlock;
 @property (nonatomic,strong) ModelPost *modelPost;
 @end

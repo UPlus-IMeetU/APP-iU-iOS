@@ -56,7 +56,7 @@
 }
 
 - (CGFloat)bottomSpace{
-    return 100;
+    return 120;
 }
 
 - (void) initial{

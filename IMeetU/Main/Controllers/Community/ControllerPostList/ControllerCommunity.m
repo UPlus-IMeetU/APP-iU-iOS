@@ -59,21 +59,18 @@
     ControllerPostList *postListRecommend = [[ControllerPostList alloc] init];
     postListRecommend.postListType = PostListTypeRecommend;
     postListRecommend.title = @"推荐";
-    postListRecommend.view.backgroundColor = [UIColor redColor];
     postListRecommend.delegate = self;
     [self.subViewArray addObject:postListRecommend];
     
     ControllerPostList *postListNew = [[ControllerPostList alloc] init];
     postListNew.postListType = PostListTypeNew;
     postListNew.title = @"新鲜";
-    postListNew.view.backgroundColor = [UIColor yellowColor];
     postListNew.delegate = self;
     [self.subViewArray addObject:postListNew];
     
     ControllerPostList *postListBiuBiu = [[ControllerPostList alloc] init];
-    postListNew.postListType = PostListTypeBiuBiu;
+    postListBiuBiu.postListType = PostListTypeBiuBiu;
     postListBiuBiu.title = @"biubiu";
-    postListBiuBiu.view.backgroundColor = [UIColor blueColor];
     postListBiuBiu.delegate = self;
     [self.subViewArray addObject:postListBiuBiu];
     
@@ -92,14 +89,7 @@
 
 
 - (void)whenSelectOnPager:(NSUInteger)number {
-    for (int index = 0; index < _subViewArray.count ; index ++) {
-        ControllerPostList *postList = _subViewArray[index];
-        if (index == number) {
-            [postList.cycleScrollView.timer setFireDate:[NSDate distantPast]];
-        }else{
-            [postList.cycleScrollView.timer setFireDate:[NSDate distantFuture]];
-        }
-    }
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -111,14 +101,14 @@
 - (void)hideTitleView:(BOOL)isHidden{
     if (isHidden && _titleView.tabFrameHeight == 36.0) {
         [UIView animateWithDuration:1 animations:^{
-            _titleView.tabFrameHeight = 0.1;
+            _titleView.tabFrameHeight = 0.5;
             [_titleView setHide];
         } completion:^(BOOL finished) {
             [_titleView setNeedsLayout];
         }];
     }
-    
-    if (!isHidden && _titleView.tabFrameHeight == 0.1) {
+    NSLog(@"the height = %f,%f",_titleView.tabFrameHeight,floor(_titleView.tabFrameHeight));
+    if (!isHidden && _titleView.tabFrameHeight == 0.5) {
         [UIView animateWithDuration:1 animations:^{
             _titleView.tabFrameHeight = 36.0;
             [_titleView setShow];

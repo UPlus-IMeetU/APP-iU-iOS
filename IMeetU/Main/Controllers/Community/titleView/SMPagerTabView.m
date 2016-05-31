@@ -312,7 +312,7 @@
 }
 - (UIView *)selectedLine {
     if (!_selectedLine) {
-        self.selectedLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.tabView.height - 1, self.selectedLineWidth, 1)];
+        self.selectedLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.tabView.height - 1.5, self.selectedLineWidth, 1.5)];
         _selectedLine.backgroundColor = [UIColor often_33C6E5:1];
         [self addSubview:_selectedLine];
         //设置线

@@ -9,12 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ZXCycleScrollView.h"
 #import "ControllerReply.h"
-typedef NS_ENUM(NSInteger,PostListType) {
-    PostListTypeRecommend = 0,
-    PostListTypeNew = 1,
-    PostListTypeBiuBiu = 2
-};
-
+#import "EnumHeader.h"
 
 @protocol ControllerPostListDelegate <NSObject>
 /**

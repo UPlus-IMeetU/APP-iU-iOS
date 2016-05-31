@@ -688,6 +688,7 @@
 		6FBC68AA1CFC417E00B45657 /* ModelImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68A91CFC417E00B45657 /* ModelImage.m */; };
 		6FF1DEE41CE42DC400A05C54 /* ModelActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1DEE31CE42DC400A05C54 /* ModelActivity.m */; };
 		6FF1DEE71CE459D300A05C54 /* ModelActivityContents.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1DEE61CE459D300A05C54 /* ModelActivityContents.m */; };
+		6FF903091CFD2E9400EDED73 /* ControllerSamePostList.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FF903081CFD2E9400EDED73 /* ControllerSamePostList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1791,6 +1792,7 @@
 		6F0495AC1CE382F000FB36A9 /* ModelAdvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelAdvert.m; sourceTree = "<group>"; };
 		6F1588701CEB16BF0007AA9E /* NSDate+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MJ.m"; sourceTree = "<group>"; };
 		6F1588711CEB16BF0007AA9E /* NSDate+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+MJ.h"; sourceTree = "<group>"; };
+		6F1B62F01CFD6E4100C84892 /* EnumHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumHeader.h; sourceTree = "<group>"; };
 		6F45F92A1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
 		6F45F92B1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		6F4A48431CE3061200D91B4C /* AdvertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertController.h; sourceTree = "<group>"; };
@@ -1844,6 +1846,8 @@
 		6FF1DEE31CE42DC400A05C54 /* ModelActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelActivity.m; sourceTree = "<group>"; };
 		6FF1DEE51CE459D300A05C54 /* ModelActivityContents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelActivityContents.h; sourceTree = "<group>"; };
 		6FF1DEE61CE459D300A05C54 /* ModelActivityContents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelActivityContents.m; sourceTree = "<group>"; };
+		6FF903071CFD2E9400EDED73 /* ControllerSamePostList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerSamePostList.h; sourceTree = "<group>"; };
+		6FF903081CFD2E9400EDED73 /* ControllerSamePostList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerSamePostList.m; sourceTree = "<group>"; };
 		74126A2A9FF1D8D3F7A7D4C1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		782115C93935C5E2EF970E47 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -4234,6 +4238,8 @@
 				6FBC68701CFBCE9300B45657 /* PostListCell.h */,
 				6FBC68711CFBCE9300B45657 /* PostListCell.m */,
 				6FBC68721CFBCE9300B45657 /* PostListCell.xib */,
+				6FF903071CFD2E9400EDED73 /* ControllerSamePostList.h */,
+				6FF903081CFD2E9400EDED73 /* ControllerSamePostList.m */,
 			);
 			name = ControllerPostList;
 			sourceTree = "<group>";
@@ -4265,6 +4271,7 @@
 				6FBC68A61CFBF1A300B45657 /* ModelCommunity.m */,
 				6FBC68A81CFC417E00B45657 /* ModelImage.h */,
 				6FBC68A91CFC417E00B45657 /* ModelImage.m */,
+				6F1B62F01CFD6E4100C84892 /* EnumHeader.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -5007,6 +5014,7 @@
 				04B7D4C61CDB4BEB00D74C6D /* EaseViewController.m in Sources */,
 				04B7D4D71CDB4BEB00D74C6D /* EaseTextView.m in Sources */,
 				04B7D5E21CDB4CB600D74C6D /* PSTGridLayoutInfo.m in Sources */,
+				6FF903091CFD2E9400EDED73 /* ControllerSamePostList.m in Sources */,
 				044AF6811C8C85E7009AF59F /* CellTableSchool.m in Sources */,
 				046B497D1CFC6B3A00946987 /* TZVideoPlayerController.m in Sources */,
 				04B7D4BF1CDB4BEB00D74C6D /* EaseEmotionManager.m in Sources */,

@@ -159,4 +159,8 @@
  *  点赞
  */
 + (NSString *)xmDoPraise;
+/**
+ *  根据ID获取列表
+ */
++ (NSString *)xmGetPostListWithTagId;
 @end

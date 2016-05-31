@@ -45,7 +45,42 @@
     [super viewDidLoad];
     [self prepareData];
     [self prepareUI];
-    // Do any additional setup after loading the view.
+    
+    //注册通知
+    //通知事件 0为删除 1为点赞操作
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postStatusChange:) name:@"postStatusChange" object:nil];
+}
+
+
+- (void)postStatusChange:(NSNotification *)noti{
+    NSDictionary *dict = noti.object;
+    //首先遍历出要操作的对象
+    NSInteger postId = [[dict objectForKey:@"postId"] integerValue];
+    int index = 0;
+    BOOL hasObject = NO;
+    for( ; index < _postListArray.count ; index ++){
+        ModelPost *modelPost = _postListArray[index];
+        if (modelPost.postId == postId) {
+            hasObject = YES;
+            break;
+        }
+    }
+    //如果不存在的话，就跳出
+    if (!hasObject) {
+        return;
+    }
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    
+    
+    //进行删除操作
+    if ([[dict objectForKey:@"operation"] integerValue] == 0) {
+        //删除数据
+        [_postListArray removeObjectAtIndex:index];
+        [_postListTableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }else if([[dict objectForKey:@"operation"] integerValue] == 1){
+        ((ModelPost *)_postListArray[index]).isPraise = [dict objectForKey:@"praise"];
+        [_postListTableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 
 - (void)prepareData{
@@ -122,6 +157,10 @@
     postListCell.postViewOperationBlock = ^(NSInteger postId,OperationType operationType){
         [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType];
     };
+    
+    postListCell.postViewPraiseBlock = ^(NSInteger postId,NSInteger praise){
+        [weakSelf doPraiseWithId:postId WithPraise:praise];
+    };
     postListCell.width = self.view.width;
     postListCell.modelPost = _postListArray[indexPath.row];
     return postListCell;
@@ -197,13 +236,35 @@
 
 #pragma mark 删除操作
 - (void)deletePostWithId:(NSInteger)postId{
-    
+//    [[XMHttpCommunity http] deletePostWithId:postId withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+//        if (code == 200) {
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            [dict setObject:[NSNumber numberWithInteger:postId] forKey:@"postId"];
+            [dict setObject:@(0) forKey:@"operation"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
+//        }
+//    }];
 }
 
 #pragma mark 举报操作
 - (void)reportPostWithId:(NSInteger)postId{
     
 }
+#pragma mark 进行点赞操作
+- (void)doPraiseWithId:(NSInteger)postId WithPraise:(NSInteger)praise{
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:[NSNumber numberWithInteger:postId] forKey:@"postId"];
+    [dict setObject:@(1) forKey:@"operation"];
+    if (praise == 0) {
+        praise = 1;
+    }else{
+        praise = 0;
+    }
+    [dict setObject:[NSNumber numberWithInteger:praise] forKey:@"praise"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
+}
+#pragma mark 进行通知删除
 #pragma mark UIScrollViewDelegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
@@ -259,6 +320,11 @@
     if (self.delegate) {
         [((UIViewController *)self.delegate).navigationController pushViewController:advertController animated:YES];
     }
+}
+
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

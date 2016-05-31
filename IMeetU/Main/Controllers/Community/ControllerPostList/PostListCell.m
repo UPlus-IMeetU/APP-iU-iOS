@@ -108,9 +108,9 @@
     CGSize titleSize = [contentStr sizeWithFont:[UIFont systemFontOfSize:15.0] constrainedToSize:CGSizeMake(self.width - 20, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
     _commentLabelHeight.constant = ceil(titleSize.height);
     if (_modelPost.isPraise) {
-        [_praiseBtn setBackgroundImage:[UIImage imageNamed:@"found_btn_like_light"] forState:UIControlStateNormal];
+        [_praiseBtn setImage:[UIImage imageNamed:@"found_btn_like_light"] forState:UIControlStateNormal];
     }else{
-        [_praiseBtn setBackgroundImage:[UIImage imageNamed:@"found_btn_like_normal"] forState:UIControlStateNormal];
+        [_praiseBtn setImage:[UIImage imageNamed:@"found_btn_like_normal"] forState:UIControlStateNormal];
     }
     
     
@@ -152,7 +152,6 @@
     }
     
     [self.photoView layoutIfNeeded];
-    [self.photoView layoutSubviews];
 }
 
 
@@ -193,13 +192,15 @@
 
 - (IBAction)operationBtnClick:(id)sender {
     if (self.postViewOperationBlock) {
-        self.postViewOperationBlock(1,OperationTypeReport);
+        self.postViewOperationBlock(_modelPost.postId,OperationTypeDelete);
     }
 }
 
 
 - (IBAction)praiseBtnClick:(id)sender {
-    NSLog(@"点击点赞按钮");
+    if (self.postViewPraiseBlock) {
+        self.postViewPraiseBlock(_modelPost.postId,_modelPost.isPraise);
+    }
 }
 
 

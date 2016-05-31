@@ -106,7 +106,6 @@
                             <constraint firstAttribute="width" constant="35" id="CQm-ac-I1J"/>
                             <constraint firstAttribute="height" constant="35" id="M7S-U0-n3N"/>
                         </constraints>
-                        <state key="normal" image="found_btn_like_light"/>
                         <connections>
                             <action selector="praiseBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nt3-Bj-y3k"/>
                         </connections>
@@ -164,7 +163,6 @@
     </objects>
     <resources>
         <image name="found_btn_discuss" width="19" height="17"/>
-        <image name="found_btn_like_light" width="20" height="17"/>
         <image name="found_btn_more" width="15" height="8"/>
         <image name="photo_fail" width="80" height="80"/>
     </resources>

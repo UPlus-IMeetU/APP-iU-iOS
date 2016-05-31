@@ -12,7 +12,7 @@
 #import "ControllerPostList.h"
 
 #import "UIColor+Plug.h"
-@interface ControllerCommunity ()<ControllerPostListDelegate>
+@interface ControllerCommunity ()<ControllerPostListDelegate,SMPagerTabViewDelegate>
 @property (strong, nonatomic) SMPagerTabView *titleView;
 /**
  *  存储子视图控制器

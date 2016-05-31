@@ -40,4 +40,14 @@
     return @{@"data":[p modelToJSONString]};
 }
 
+- (void)NormalPOST:(NSString *)URLString parameters:(id)parameters callback:(XMHttpBlockStandard)callback{
+    [self.httpManager POST:URLString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
+        if (callback) {
+            callback (response.state, response.data, task, nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callback (RESPONSE_CODE_ERR, nil, task, error);
+    }];
+}
 @end

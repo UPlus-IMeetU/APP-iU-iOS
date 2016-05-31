@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewHeaderPostTags : UIView
+@interface ViewHeaderPostTags : UITableViewHeaderFooterView
+
+- (void)initWithTitle:(NSString*)title;
 
 @end

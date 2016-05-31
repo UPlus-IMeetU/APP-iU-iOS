@@ -44,17 +44,26 @@
                                                     <action selector="onClickBtnPostRelease:" destination="iCr-wc-Av5" eventType="touchUpInside" id="rjA-CX-oyC"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LRf-Wx-t36">
+                                                <rect key="frame" x="466" y="7" width="46" height="30"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="onClickBtnTags:" destination="iCr-wc-Av5" eventType="touchUpInside" id="LFk-xc-Zu1"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.42352941179999998" green="0.81960784310000001" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="B2E-4s-ZvT" secondAttribute="bottom" id="6lV-td-tXt"/>
                                             <constraint firstAttribute="height" constant="44" id="8ng-Dh-CJy"/>
                                             <constraint firstItem="gf0-ao-pPU" firstAttribute="centerY" secondItem="jrx-lZ-nMn" secondAttribute="centerY" id="CL0-hU-rQ4"/>
+                                            <constraint firstItem="LRf-Wx-t36" firstAttribute="centerY" secondItem="jrx-lZ-nMn" secondAttribute="centerY" id="Ugw-Ha-YbT"/>
                                             <constraint firstItem="orA-Dc-nNA" firstAttribute="centerY" secondItem="jrx-lZ-nMn" secondAttribute="centerY" id="VdP-1i-wOf"/>
                                             <constraint firstItem="B2E-4s-ZvT" firstAttribute="top" secondItem="jrx-lZ-nMn" secondAttribute="top" id="XD6-am-z0D"/>
                                             <constraint firstItem="gf0-ao-pPU" firstAttribute="centerX" secondItem="jrx-lZ-nMn" secondAttribute="centerX" id="ZaN-lp-yB8"/>
                                             <constraint firstItem="B2E-4s-ZvT" firstAttribute="leading" secondItem="jrx-lZ-nMn" secondAttribute="leading" id="amM-VX-Zjj"/>
                                             <constraint firstAttribute="trailing" secondItem="orA-Dc-nNA" secondAttribute="trailing" constant="32" id="t9m-jf-JaZ"/>
+                                            <constraint firstItem="orA-Dc-nNA" firstAttribute="leading" secondItem="LRf-Wx-t36" secondAttribute="trailing" constant="10" id="x4q-sW-cR1"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -433,7 +442,7 @@
                         <outlet property="collectionViewImages" destination="N45-ET-sWc" id="ShD-96-0LK"/>
                         <outlet property="labelCountdown" destination="cgi-KQ-WmP" id="rmz-Oo-SrY"/>
                         <outlet property="labelPlaceholder" destination="U0m-Me-8fZ" id="Sxu-hG-7NI"/>
-                        <outlet property="labelTags" destination="RWh-WB-pwE" id="Srb-6r-3Zy"/>
+                        <outlet property="labelTag" destination="RWh-WB-pwE" id="Fqv-XI-IqM"/>
                         <outlet property="textViewContent" destination="irW-T9-2Kw" id="zWg-Fk-lTt"/>
                     </connections>
                 </viewController>
@@ -592,7 +601,7 @@
                         <outlet property="btnFinish" destination="oIT-Fx-sCJ" id="gee-6U-wBV"/>
                         <outlet property="labelCountdown" destination="jfO-R3-etr" id="8rT-9F-o6U"/>
                         <outlet property="labelPlaceholder" destination="VIg-N5-y1F" id="5ur-gc-lfi"/>
-                        <outlet property="labelTags" destination="JDb-8v-M4l" id="4PL-ee-Z9Y"/>
+                        <outlet property="labelTag" destination="JDb-8v-M4l" id="aql-JW-JAb"/>
                         <outlet property="textViewContent" destination="KV6-F0-UQP" id="SdO-qm-8Xe"/>
                     </connections>
                 </viewController>
@@ -689,7 +698,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="labelSearchCountdown" destination="MzH-eB-B3k" id="cfk-Ai-EEd"/>
                         <outlet property="tableViewTags" destination="aAI-aZ-ARB" id="eSA-if-bOP"/>
+                        <outlet property="textFieldSearch" destination="glE-Fd-dB3" id="Jip-5s-rBj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YPx-a1-eKW" userLabel="First Responder" sceneMemberID="firstResponder"/>

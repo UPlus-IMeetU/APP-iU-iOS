@@ -8,17 +8,26 @@
 
 #import "CellPostTags.h"
 
+
+@interface CellPostTags()
+
+@property (weak, nonatomic) IBOutlet UILabel *labelContent;
+
+@end
 @implementation CellPostTags
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+    [self.labelContent setText:@""];
+}
+
+- (void)initWithTag:(NSString *)tag{
+    [self.labelContent setText:tag];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

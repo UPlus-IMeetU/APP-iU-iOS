@@ -10,16 +10,20 @@
 #import <YYKit/YYKit.h>
 #import "UIStoryboard+Plug.h"
 #import "ControllerPostTags.h"
-#import "ControllerPostTags.h"
+#import "ModelTag.h"
+#import "MLToast.h"
+#import "MBProgressHUD+plug.h"
+#import "XMHttpCommunity.h"
 
-@interface ControllerPostReleaseText ()<UITextViewDelegate>
+@interface ControllerPostReleaseText ()<UITextViewDelegate, ControllerPostTagsDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *btnFinish;
-@property (weak, nonatomic) IBOutlet UILabel *labelTags;
+@property (weak, nonatomic) IBOutlet UILabel *labelTag;
 @property (weak, nonatomic) IBOutlet UILabel *labelPlaceholder;
 @property (weak, nonatomic) IBOutlet UITextView *textViewContent;
 @property (weak, nonatomic) IBOutlet UILabel *labelCountdown;
 
+@property (nonatomic, strong) ModelTag *tagModel;
 @end
 
 @implementation ControllerPostReleaseText
@@ -34,16 +38,19 @@
     [super viewDidLoad];
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
-        ControllerPostTags *controller = [ControllerPostTags controllerWithType:ControllerPostTagsTypeRelease];
+        ControllerPostTags *controller = [ControllerPostTags controller];
+        controller.delegatePostTags = self;
         [self.navigationController pushViewController:controller animated:YES];
     }];
-    self.labelTags.userInteractionEnabled = YES;
-    [self.labelTags addGestureRecognizer:tapGestureRecognizer];
+    self.labelTag.userInteractionEnabled = YES;
+    [self.labelTag addGestureRecognizer:tapGestureRecognizer];
     
     self.textViewContent.delegate = self;
 }
 
 - (IBAction)onClickBtnCancel:(id)sender {
+    [self.view endEditing:YES];
+    
     if (self.delegatePostText) {
         if ([self.delegatePostText respondsToSelector:@selector(controllerPostReleaseTextCancel:)]) {
             [self.delegatePostText controllerPostReleaseTextCancel:self];
@@ -53,6 +60,39 @@
 }
 
 - (IBAction)onClickBtnFinish:(id)sender {
+    [self.textViewContent resignFirstResponder];
+    
+    if (self.textViewContent.text.length > 0 && self.tagModel) {
+        [self.textViewContent resignFirstResponder];
+        MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.view label:@"" animated:YES];
+        [[XMHttpCommunity http] releasePostTxtImgWithTags:@[[NSNumber numberWithInteger:self.tagModel.tagId]] imgs:@[] content:self.textViewContent.text callback:^(NSInteger code, NSString *postId, NSError *err) {
+            if (code == 200) {
+                [hud xmSetCustomModeWithResult:YES label:@"发布成功"];
+                if (self.delegatePostText) {
+                    if ([self.delegatePostText respondsToSelector:@selector(controllerPostReleaseTextFinish:result:)]) {
+                        [self.delegatePostText controllerPostReleaseTextFinish:self result:YES];
+                        
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*0.2), dispatch_get_main_queue(), ^{
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                        });
+                    }
+                }
+            }else{
+                [hud xmSetCustomModeWithResult:NO label:@"发布失败"];
+            }
+            [hud hide:YES afterDelay:0.3];
+        }];
+    }else if (self.textViewContent.text.length < 1){
+        [[MLToast toastInView:self.view content:@"请填写帖子内容"] show];
+    }else if (!self.tagModel){
+        [[MLToast toastInView:self.view content:@"请选择话题"] show];
+    }
+}
+
+- (void)controllerPostTags:(ControllerPostTags *)controller model:(ModelTag *)model{
+    [self.navigationController popViewControllerAnimated:YES];
+    self.tagModel = model;
+    [self.labelTag setText:[NSString stringWithFormat:@"#%@#", model.content]];
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
@@ -86,4 +126,5 @@
     self.labelCountdown.text = [NSString stringWithFormat:@"%03i", countdown>=0?countdown:0];
     self.labelPlaceholder.hidden = textView.text.length>0;
 }
+
 @end

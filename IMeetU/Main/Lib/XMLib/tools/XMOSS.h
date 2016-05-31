@@ -16,6 +16,8 @@
 
 + (void)updateUserProfileWithImg:(UIImage *)profile progress:(void(^)(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend))progress finish:(id(^)(OSSTask *task, NSString *fileName))finish;
 
-+ (void)uploadFileWithImg:(UIImage*)img prefix:(NSString*)prefix progress:(void (^)(int64_t, int64_t, int64_t))progress finish:(id (^)(OSSTask *, NSString *))finish;
++ (void)uploadFileWithImg:(UIImage*)img prefix:(NSString*)prefix progress:(void (^)(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend))progress finish:(id (^)(OSSTask *task, NSString *fileName))finish;
+
++ (void)uploadFileWithData:(NSData *)data fileName:(NSString*)fileName progress:(void (^)(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend))progress finish:(id (^)(OSSTask *task, NSString *fileName))finish;
 
 @end

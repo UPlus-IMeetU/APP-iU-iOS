@@ -20,6 +20,6 @@
 @protocol ControllerPostReleaseImageDelegate <NSObject>
 @optional
 - (void)controllerPostReleaseImageCancel:(ControllerPostReleaseImage*)controller;
-- (void)controllerPostReleaseImageFinish:(ControllerPostReleaseImage*)controller;
+- (void)controllerPostReleaseImageFinish:(ControllerPostReleaseImage*)controller result:(BOOL)result;
 
 @end

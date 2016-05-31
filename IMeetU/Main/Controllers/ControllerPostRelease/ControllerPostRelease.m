@@ -210,8 +210,8 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
-- (void)controllerPostReleaseTextFinish:(ControllerPostReleaseText *)controller{
-
+- (void)controllerPostReleaseTextFinish:(ControllerPostReleaseText *)controller result:(BOOL)result{
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 #pragma mark - 发图片贴代理
@@ -219,8 +219,8 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
-- (void)controllerPostReleaseImageFinish:(ControllerPostReleaseImage *)controller{
-
+- (void)controllerPostReleaseImageFinish:(ControllerPostReleaseImage *)controller result:(BOOL)result{
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 @end

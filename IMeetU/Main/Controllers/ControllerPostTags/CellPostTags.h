@@ -10,4 +10,6 @@
 
 @interface CellPostTags : UITableViewCell
 
+- (void)initWithTag:(NSString*)tag;
+
 @end

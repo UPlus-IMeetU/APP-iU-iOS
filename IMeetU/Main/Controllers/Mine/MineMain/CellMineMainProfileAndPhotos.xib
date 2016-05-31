@@ -375,7 +375,7 @@
         <image name="main_nav_bar_icon_left" width="20" height="20"/>
         <image name="main_nav_bar_icon_light" width="20" height="20"/>
         <image name="mine_main_btn_intopicture" width="140" height="140"/>
-        <image name="mine_main_imageview_bg" width="750" height="399"/>
+        <image name="mine_main_imageview_bg" width="375" height="156"/>
         <image name="mine_main_img_profile_bg" width="187" height="187"/>
         <image name="mine_profile_status_bg" width="58" height="22"/>
         <image name="mine_ta_compatibility" width="11" height="11"/>

@@ -11,8 +11,13 @@
 #import "UIStoryboard+Plug.h"
 #import "ControllerPostList.h"
 #import "ControllerPostRelease.h"
+#import "ControllerPostTags.h"
 #import "UIColor+Plug.h"
-@interface ControllerCommunity ()<ControllerPostListDelegate,SMPagerTabViewDelegate>
+#import <YYKit/YYKit.h>
+#import "ModelTag.h"
+
+
+@interface ControllerCommunity ()<ControllerPostListDelegate,SMPagerTabViewDelegate, ControllerPostTagsDelegate>
 @property (strong, nonatomic) SMPagerTabView *titleView;
 /**
  *  存储子视图控制器
@@ -138,9 +143,19 @@
     return _titleView;
 }
 
+- (IBAction)onClickBtnTags:(id)sender {
+    ControllerPostTags *controller = [ControllerPostTags controller];
+    controller.delegatePostTags = self;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
 - (IBAction)onClickBtnPostRelease:(id)sender {
     ControllerPostRelease *controller = [ControllerPostRelease controller];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (void)controllerPostTags:(ControllerPostTags *)controller model:(ModelTag *)model{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

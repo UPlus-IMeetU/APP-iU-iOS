@@ -20,5 +20,11 @@ typedef void(^XMHttpBlockStandard)(NSInteger code, id response, NSURLSessionData
 + (instancetype)http;
 
 @property (nonatomic, strong) AFHTTPSessionManager *httpManager;
+
 - (NSDictionary*)parametersFactoryAppendTokenDeviceCode:(NSDictionary*)parameters;
+
+- (void)NormalPOST:(NSString *)URLString
+                    parameters:(id)parameters
+                    callback:(XMHttpBlockStandard)callback;
+
 @end

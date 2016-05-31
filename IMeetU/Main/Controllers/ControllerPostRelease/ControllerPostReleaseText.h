@@ -20,5 +20,5 @@
 @optional
 - (void)controllerPostReleaseTextCancel:(ControllerPostReleaseText*)controller;
 
-- (void)controllerPostReleaseTextFinish:(ControllerPostReleaseText*)controller;
+- (void)controllerPostReleaseTextFinish:(ControllerPostReleaseText*)controller result:(BOOL)result;
 @end

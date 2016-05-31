@@ -190,6 +190,22 @@
     return [XMUrlHttp connectWithComm:@"/app/community/praise/doPraise"];
 }
 
++ (NSString *)xmPostTagsAll{
+    return [XMUrlHttp connectWithComm:@"/app/community/tag/getTagList"];
+}
+
++ (NSString *)xmPostTagsSearch{
+    return [XMUrlHttp connectWithComm:@"/app/community/tag/getTagByName"];
+}
+
++ (NSString *)xmPostTagsCreate{
+    return [XMUrlHttp connectWithComm:@"/app/community/tag/createTag"];
+}
+
++ (NSString *)xmPostTxtImgRelease{
+    return [XMUrlHttp connectWithComm:@"/app/community/post/createPost"];
+}
+
 + (NSString *)connectWithComm:(NSString *)operation{
     NSString *host = @"http://123.57.26.168:8080/meetu_community/";
     return [NSString stringWithFormat:@"%@%@", host, operation];

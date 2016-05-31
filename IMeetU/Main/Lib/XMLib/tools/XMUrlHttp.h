@@ -159,4 +159,20 @@
  *  点赞
  */
 + (NSString *)xmDoPraise;
+
+/**
+ * 所有帖子标签
+ */
++ (NSString *)xmPostTagsAll;
+
+/**
+ * 查询帖子
+ */
++ (NSString*)xmPostTagsSearch;
+/**
+ * 创建帖子
+ */
++ (NSString *)xmPostTagsCreate;
+
++ (NSString *)xmPostTxtImgRelease;
 @end

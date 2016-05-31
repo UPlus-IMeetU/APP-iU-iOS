@@ -67,7 +67,7 @@
     }];
 }
 
-+ (void)uploadFileWithImg:(UIImage*)img prefix:(NSString*)prefix progress:(void (^)(int64_t, int64_t, int64_t))progress finish:(id (^)(OSSTask *, NSString *))finish{
++ (void)uploadFileWithImg:(UIImage*)img prefix:(NSString*)prefix progress:(void (^)(int64_t, int64_t, int64_t))progress finish:(id (^)(OSSTask *task, NSString *))finish{
     NSString *fileName = [NSString stringWithFormat:@"%@/%@.jpeg", prefix, [MLToolsID createUserProfileID]];
     
     [self ossClientWithBlock:^(OSSClient *client, BOOL res) {
@@ -78,6 +78,29 @@
             put.bucketName = @"protect-app";
             
             put.uploadingData = UIImageJPEGRepresentation(img, 1.0);
+            
+            put.uploadProgress = progress;
+            
+            OSSTask * putTask = [client putObject:put];
+            [putTask continueWithBlock:^id(OSSTask *task) {
+                return finish(task, fileName);
+            }];
+        }else{
+            OSSTask *task = [OSSTask taskWithError:[NSError errorWithDomain:@"获取客户端失败" code:0 userInfo:nil]];
+            finish (task, nil);
+        }
+    }];
+}
+
++ (void)uploadFileWithData:(NSData *)data fileName:(NSString *)fileName progress:(void (^)(int64_t, int64_t, int64_t))progress finish:(id (^)(OSSTask *, NSString *))finish{
+    [self ossClientWithBlock:^(OSSClient *client, BOOL res) {
+        if (res) {
+            OSSPutObjectRequest * put = [[OSSPutObjectRequest alloc] init];
+            
+            put.objectKey = fileName;
+            put.bucketName = @"protect-app";
+            
+            put.uploadingData = data;
             
             put.uploadProgress = progress;
             

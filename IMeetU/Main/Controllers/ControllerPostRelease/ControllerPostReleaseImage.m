@@ -11,18 +11,30 @@
 #import "UINib+Plug.h"
 #import "UIStoryboard+Plug.h"
 #import "CellPostReleaseImage.h"
+#import "ControllerPostTags.h"
+#import "ModelTag.h"
+#import "MLToast.h"
+#import "MBProgressHUD+plug.h"
+#import "XMHttpCommunity.h"
+#import "XMOSS.h"
+#import "UserDefultAccount.h"
+#import "NSDate+plug.h"
+#import "UIColor+plug.h"
 
 #define CellReuseIdentifier @"CellPostReleaseImage"
-@interface ControllerPostReleaseImage ()<UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface ControllerPostReleaseImage ()<UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ControllerPostTagsDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *btnFinish;
-@property (weak, nonatomic) IBOutlet UILabel *labelTags;
+@property (weak, nonatomic) IBOutlet UILabel *labelTag;
 @property (weak, nonatomic) IBOutlet UILabel *labelPlaceholder;
 @property (weak, nonatomic) IBOutlet UITextView *textViewContent;
 @property (weak, nonatomic) IBOutlet UILabel *labelCountdown;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionViewImages;
 
+@property (nonatomic, strong) ModelTag *tagModel;
 @property (nonatomic, strong) NSArray *photos;
+@property (nonatomic, strong) NSMutableArray *photosModelReq;
+
 @end
 
 @implementation ControllerPostReleaseImage
@@ -38,10 +50,12 @@
     [super viewDidLoad];
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
-        NSLog(@"=========>tags tapGestureRecognizer");
+        ControllerPostTags *controller = [ControllerPostTags controller];
+        controller.delegatePostTags = self;
+        [self.navigationController pushViewController:controller animated:YES];
     }];
-    self.labelTags.userInteractionEnabled = YES;
-    [self.labelTags addGestureRecognizer:tapGestureRecognizer];
+    self.labelTag.userInteractionEnabled = YES;
+    [self.labelTag addGestureRecognizer:tapGestureRecognizer];
     
     self.textViewContent.delegate = self;
     
@@ -85,15 +99,29 @@
             [self.delegatePostImage controllerPostReleaseImageCancel:self];
         }
     }
+    [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)onClickBtnFinish:(id)sender {
-    if (self.delegatePostImage) {
-        if ([self.delegatePostImage respondsToSelector:@selector(controllerPostReleaseImageFinish:)]) {
-            [self.delegatePostImage controllerPostReleaseImageFinish:self];
-        }
+    [self.textViewContent resignFirstResponder];
+    
+    if (self.tagModel && self.photos && self.photos.count) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.color = [UIColor colorWithR:0 G:0 B:0 A:0.7];
+        hud.minSize = CGSizeMake(100, 100);
+        [self releasePostWithImgIndex:0 hud:hud];
+    }else if (!self.tagModel){
+        [[MLToast toastInView:self.view content:@"请选择话题"] show];
+    }else if (!self.photos || self.photos.count<1){
+        [[MLToast toastInView:self.view content:@"请选择照片"] show];
     }
+}
+
+- (void)controllerPostTags:(ControllerPostTags *)controller model:(ModelTag *)model{
+    [self.navigationController popViewControllerAnimated:YES];
+    self.tagModel = model;
+    [self.labelTag setText:[NSString stringWithFormat:@"#%@#", model.content]];
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
@@ -128,4 +156,54 @@
     self.labelPlaceholder.hidden = textView.text.length>0;
 }
 
+
+- (void)releasePostWithImgIndex:(NSInteger)index hud:(MBProgressHUD*)hud{
+    if (index < self.photos.count) {
+        hud.progress = 0;
+        hud.mode = MBProgressHUDModeDeterminate;
+        hud.labelText = [NSString stringWithFormat:@"%li/%li", index+1, self.photos.count];
+        
+        UIImage *img = self.photos[index];
+        NSString *fileName = [NSString stringWithFormat:@"community/post/img/%@_%li_%li.jpeg", [UserDefultAccount userCode], [NSDate currentTimeMillisSecond], index];
+        [self.photosModelReq addObject:@{
+                                         @"url":fileName,
+                                         @"w":[NSNumber numberWithFloat:img.size.width],
+                                         @"h":[NSNumber numberWithFloat:img.size.height]
+                                         }];
+        
+        [XMOSS uploadFileWithData:UIImageJPEGRepresentation(img, 0.8) fileName:fileName progress:^(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend) {
+            hud.progress = totalByteSent/1.0/totalBytesExpectedToSend;
+        } finish:^id(OSSTask *task, NSString *fileName) {
+            [self releasePostWithImgIndex:index+1 hud:hud];
+            return nil;
+        }];
+    }else{
+        hud.mode = MBProgressHUDModeIndeterminate;
+        hud.labelText = @"发布...";
+        
+        NSArray *tags = @[[NSNumber numberWithInteger:self.tagModel.tagId]];
+        [[XMHttpCommunity http] releasePostTxtImgWithTags:tags imgs:self.photosModelReq content:self.textViewContent.text callback:^(NSInteger code, NSString *postId, NSError *err) {
+            if (code == 200) {
+                [hud xmSetCustomModeWithResult:YES label:@"发布成功"];
+                if (self.delegatePostImage) {
+                    if ([self.delegatePostImage respondsToSelector:@selector(controllerPostReleaseImageFinish:result:)]) {
+                        [self.delegatePostImage controllerPostReleaseImageFinish:self result:YES];
+                        
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                    }
+                }
+            }else{
+                [hud xmSetCustomModeWithResult:YES label:@"发布失败"];
+            }
+            [hud hide:YES afterDelay:0.3];
+        }];
+    }
+}
+
+- (NSMutableArray *)photosModelReq{
+    if (!_photosModelReq) {
+        _photosModelReq = [NSMutableArray array];
+    }
+    return _photosModelReq;
+}
 @end

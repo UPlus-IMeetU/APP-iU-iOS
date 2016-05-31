@@ -8,13 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, ControllerPostTagsType) {
-    ControllerPostTagsTypeCheck,
-    ControllerPostTagsTypeRelease
-};
+@class ModelTag;
+@protocol ControllerPostTagsDelegate;
 
 @interface ControllerPostTags : UIViewController
 
-+ (instancetype)controllerWithType:(ControllerPostTagsType)type;
++ (instancetype)controller;
+
+@property (nonatomic, weak) id<ControllerPostTagsDelegate> delegatePostTags;
+
+@end
+@protocol ControllerPostTagsDelegate <NSObject>
+@optional
+- (void)controllerPostTags:(ControllerPostTags*)controller model:(ModelTag*)model;
 
 @end

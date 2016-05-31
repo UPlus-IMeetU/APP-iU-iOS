@@ -14,7 +14,6 @@
 + (instancetype)xmShowHUDAddedTo:(UIView *)view animated:(BOOL)animated{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:animated];
     hud.color = [UIColor colorWithR:0 G:0 B:0 A:0.7];
-    hud.tintColor = [UIColor redColor];
     hud.minSize = CGSizeMake(100, 100);
     
     return hud;

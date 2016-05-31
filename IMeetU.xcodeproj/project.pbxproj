@@ -388,6 +388,8 @@
 		046B497C1CFC6B3A00946987 /* TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B49701CFC6B3A00946987 /* TZPhotoPreviewController.m */; };
 		046B497D1CFC6B3A00946987 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B49721CFC6B3A00946987 /* TZVideoPlayerController.m */; };
 		046B497E1CFC6B3A00946987 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B49741CFC6B3A00946987 /* UIView+Layout.m */; };
+		046B49811CFD3C6F00946987 /* ModelTagsAll.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B49801CFD3C6F00946987 /* ModelTagsAll.m */; };
+		046B49841CFD3C8000946987 /* ModelTagsSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B49831CFD3C8000946987 /* ModelTagsSearch.m */; };
 		047335F11CF844D50055A0C6 /* msg.wav in Resources */ = {isa = PBXBuildFile; fileRef = 047335F01CF844D50055A0C6 /* msg.wav */; };
 		0474512C1CCB723800568704 /* XMHttpTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 0474512B1CCB723800568704 /* XMHttpTools.m */; };
 		047519AC1CA631CB009115CE /* BeeCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 047518F21CA631CB009115CE /* BeeCloud.m */; };
@@ -1234,6 +1236,10 @@
 		046B49721CFC6B3A00946987 /* TZVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZVideoPlayerController.m; sourceTree = "<group>"; };
 		046B49731CFC6B3A00946987 /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
 		046B49741CFC6B3A00946987 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
+		046B497F1CFD3C6F00946987 /* ModelTagsAll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTagsAll.h; sourceTree = "<group>"; };
+		046B49801CFD3C6F00946987 /* ModelTagsAll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTagsAll.m; sourceTree = "<group>"; };
+		046B49821CFD3C8000946987 /* ModelTagsSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTagsSearch.h; sourceTree = "<group>"; };
+		046B49831CFD3C8000946987 /* ModelTagsSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTagsSearch.m; sourceTree = "<group>"; };
 		047335F01CF844D50055A0C6 /* msg.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = msg.wav; sourceTree = "<group>"; };
 		0474512A1CCB723800568704 /* XMHttpTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMHttpTools.h; sourceTree = "<group>"; };
 		0474512B1CCB723800568704 /* XMHttpTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMHttpTools.m; sourceTree = "<group>"; };
@@ -4257,6 +4263,10 @@
 				6FBC68951CFBCFD100B45657 /* ModelPost.m */,
 				6FBC68961CFBCFD100B45657 /* ModelTag.h */,
 				6FBC68971CFBCFD100B45657 /* ModelTag.m */,
+				046B497F1CFD3C6F00946987 /* ModelTagsAll.h */,
+				046B49801CFD3C6F00946987 /* ModelTagsAll.m */,
+				046B49821CFD3C8000946987 /* ModelTagsSearch.h */,
+				046B49831CFD3C8000946987 /* ModelTagsSearch.m */,
 				6FBC688A1CFBCFA900B45657 /* ModelComment.h */,
 				6FBC688B1CFBCFA900B45657 /* ModelComment.m */,
 				6FBC688C1CFBCFA900B45657 /* ModelPostDetail.h */,
@@ -5023,11 +5033,13 @@
 				04471F5E1C993AAE000FD349 /* ModelMinePhoto.m in Sources */,
 				04151AAA1C95C225008955C2 /* ModelResponse.m in Sources */,
 				04B165F31C89D87E00EE6DB8 /* UIImage+Plug.m in Sources */,
+				046B49841CFD3C8000946987 /* ModelTagsSearch.m in Sources */,
 				04B7D5C01CDB4CB600D74C6D /* MWCaptionView.m in Sources */,
 				0451BD131CA90E7800630F4D /* ControllerBiuContact.m in Sources */,
 				046B495C1CFC6B0B00946987 /* CellPostTags.m in Sources */,
 				6FBC68A11CFBE9EA00B45657 /* XMHttpCommunity.m in Sources */,
 				04B7D4CC1CDB4BEB00D74C6D /* EaseBubbleView+File.m in Sources */,
+				046B49811CFD3C6F00946987 /* ModelTagsAll.m in Sources */,
 				04B7D5C11CDB4CB600D74C6D /* MWGridCell.m in Sources */,
 				04B7D4C71CDB4BEB00D74C6D /* EaseUserCell.m in Sources */,
 				04B7D4CD1CDB4BEB00D74C6D /* EaseBubbleView+Gif.m in Sources */,

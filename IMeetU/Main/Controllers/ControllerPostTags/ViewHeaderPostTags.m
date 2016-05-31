@@ -8,6 +8,19 @@
 
 #import "ViewHeaderPostTags.h"
 
+@interface ViewHeaderPostTags()
+
+@property (weak, nonatomic) IBOutlet UILabel *labelTitle;
+
+@end
 @implementation ViewHeaderPostTags
+
+- (void)awakeFromNib{
+    [self.labelTitle setText:@""];
+}
+
+- (void)initWithTitle:(NSString *)title{
+    [self.labelTitle setText:title];
+}
 
 @end

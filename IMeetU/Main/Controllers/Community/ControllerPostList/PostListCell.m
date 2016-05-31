@@ -100,6 +100,7 @@
     _nickNameLabel.text = _modelPost.userName;
     _timeLabel.text = [self createdAt:_modelPost.creatAt];
     ModelTag *modelTag = _modelPost.tags[0];
+    
     _tagsLabel.text = [NSString stringWithFormat:@"#%@#",modelTag.content];
     _contentLabel.text = _modelPost.content;
     _praiseLabel.text = (_modelPost.praiseNum) == 0 ? @"":[NSString stringWithFormat:@"赞%ld",(long)_modelPost.praiseNum];

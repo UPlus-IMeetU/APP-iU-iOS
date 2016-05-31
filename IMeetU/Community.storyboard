@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -99,14 +99,14 @@
                         <viewControllerLayoutGuide type="bottom" id="SNx-uJ-Cso"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AfB-Ih-ooi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ux-e9-hkv">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jrx-lZ-nMn">
-                                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2E-4s-ZvT">
                                                 <rect key="frame" x="0.0" y="0.0" width="52" height="44"/>
@@ -116,13 +116,13 @@
                                                 <state key="normal" image="biu_btn_activity_nor"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发现" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gf0-ao-pPU">
-                                                <rect key="frame" x="189" y="11" width="36" height="22"/>
+                                                <rect key="frame" x="282" y="11" width="36" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orA-Dc-nNA">
-                                                <rect key="frame" x="336" y="8" width="46" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orA-Dc-nNA">
+                                                <rect key="frame" x="522" y="7" width="46" height="30"/>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
                                                     <action selector="onClickBtnPostRelease:" destination="iCr-wc-Av5" eventType="touchUpInside" id="rjA-CX-oyC"/>
@@ -159,11 +159,10 @@
                             <constraint firstItem="6ux-e9-hkv" firstAttribute="leading" secondItem="AfB-Ih-ooi" secondAttribute="leading" id="lP9-AS-3Ue"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K2z-ur-nZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="182" y="314"/>
+            <point key="canvasLocation" x="-325" y="408"/>
         </scene>
         <!--Controller Reply-->
         <scene sceneID="9do-3K-HIA">
@@ -174,11 +173,11 @@
                         <viewControllerLayoutGuide type="bottom" id="eOb-1k-g8e"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6Fd-3b-WBs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nls-Kt-5ty">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="aCs-3H-h3d" id="VkG-Nf-eBe"/>
@@ -186,13 +185,13 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oil-LB-bhO">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J1H-OT-MqM">
-                                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNP-iX-DZD">
-                                                <rect key="frame" x="189" y="11" width="36" height="22"/>
+                                                <rect key="frame" x="282" y="11" width="36" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -244,14 +243,13 @@
                             <constraint firstAttribute="trailing" secondItem="Nls-Kt-5ty" secondAttribute="trailing" id="wyK-h5-VUk"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="replyTableView" destination="Nls-Kt-5ty" id="Nly-xe-C7Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2xQ-ED-Vnz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="673" y="314"/>
+            <point key="canvasLocation" x="299" y="408"/>
         </scene>
         <!--Controller Post Release-->
         <scene sceneID="bkF-1X-pF5">
@@ -525,7 +523,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hc-TD-OxS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="299" y="1747"/>
+            <point key="canvasLocation" x="-325" y="1791"/>
         </scene>
         <!--Controller Post Release Text-->
         <scene sceneID="yuV-DW-gjj">
@@ -684,7 +682,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BCv-eJ-WrL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928" y="1747"/>
+            <point key="canvasLocation" x="299" y="1791"/>
         </scene>
         <!--Controller Post Tags-->
         <scene sceneID="d6v-Eb-Cx3">

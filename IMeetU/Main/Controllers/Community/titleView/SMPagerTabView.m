@@ -68,8 +68,8 @@
         [itemButton.titleLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
         [itemButton.titleLabel setFont:[UIFont systemFontOfSize:self.tabButtonFontSize]];
         [itemButton setTitle:vc.title forState:UIControlStateNormal];
-        [itemButton setTitleColor:self.tabButtonTitleColorForNormal forState:UIControlStateNormal];
-        [itemButton setTitleColor:self.tabButtonTitleColorForSelected forState:UIControlStateSelected];
+        [itemButton setTitleColor:[UIColor often_808080:1] forState:UIControlStateNormal];
+        [itemButton setTitleColor:[UIColor often_33C6E5:1] forState:UIControlStateSelected];
         [itemButton addTarget:self action:@selector(onTabButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
         itemButton.tag = i;
         [self.tabButtons addObject:itemButton];

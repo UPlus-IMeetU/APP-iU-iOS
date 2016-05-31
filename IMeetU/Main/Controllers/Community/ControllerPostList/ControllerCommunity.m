@@ -107,7 +107,6 @@
             [_titleView setNeedsLayout];
         }];
     }
-    NSLog(@"the height = %f,%f",_titleView.tabFrameHeight,floor(_titleView.tabFrameHeight));
     if (!isHidden && _titleView.tabFrameHeight == 0.5) {
         [UIView animateWithDuration:1 animations:^{
             _titleView.tabFrameHeight = 36.0;

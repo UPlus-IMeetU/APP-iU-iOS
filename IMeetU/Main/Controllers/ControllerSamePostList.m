@@ -155,8 +155,8 @@
     PostListCell *postListCell = [tableView dequeueReusableCellWithIdentifier:@"PostListCell"];
     postListCell.selectionStyle = UITableViewCellSelectionStyleNone;
     __weak typeof(self) weakSelf = self;
-    postListCell.postViewOperationBlock = ^(NSInteger postId,OperationType operationType){
-        [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType];
+    postListCell.postViewOperationBlock = ^(NSInteger postId,OperationType operationType,NSInteger userCode){
+        [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType withUserCode:userCode];
     };
     
     postListCell.postViewPraiseBlock = ^(NSInteger postId,NSInteger userCode,NSInteger praise){
@@ -187,7 +187,7 @@
     [self.navigationController pushViewController:controllerReply  animated:YES];
 }
 
-- (void)operationBtnClickWithPostId:(NSInteger) postId withOperationType:(OperationType)operationType{
+- (void)operationBtnClickWithPostId:(NSInteger) postId withOperationType:(OperationType)operationType withUserCode:(NSInteger)userCode{
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"选择操作" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     NSString *operationStr = (operationType == OperationTypeDelete) ? @"删除":@"举报";
     NSString *messageStr = (operationType == OperationTypeDelete) ?@"嗨，确定要删除内容么?":@"嗨，确定要举报TA么?";
@@ -202,7 +202,7 @@
             if (operationType == OperationTypeDelete) {
                 [weakSelf deletePostWithId:postId];
             }else{
-                [weakSelf reportPostWithId:postId];
+                [weakSelf reportPostWithId:postId withUserCode:userCode];
             }
         }]];
             [weakSelf presentViewController:alertController animated:YES completion:nil];
@@ -216,20 +216,28 @@
 
 #pragma mark 删除操作
 - (void)deletePostWithId:(NSInteger)postId{
-    //    [[XMHttpCommunity http] deletePostWithId:postId withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
-    //        if (code == 200) {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:[NSNumber numberWithInteger:postId] forKey:@"postId"];
-    [dict setObject:@(0) forKey:@"operation"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
-    //        }
-    //    }];
+    [[XMHttpCommunity http] deletePostWithId:postId withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        if (code == 200) {
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            [dict setObject:[NSNumber numberWithInteger:postId] forKey:@"postId"];
+            [dict setObject:@(0) forKey:@"operation"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
+        }else{
+            [[MLToast toastInView:self.view content:@"删除失败了>_<"] show];
+        }
+    }];
+}
+#pragma mark 举报操作
+- (void)reportPostWithId:(NSInteger)postId withUserCode:(NSInteger) userCode{
+    [[XMHttpCommunity http] createReportWithPostId:postId withCommentId:-1 withUserCode:userCode withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        if (code == 200) {
+            [[MLToast toastInView:self.view content:@"举报成功了"] show];
+        }else{
+            [[MLToast toastInView:self.view content:@"举报失败了"] show];
+        }
+    }];
 }
 
-#pragma mark 举报操作
-- (void)reportPostWithId:(NSInteger)postId{
-    
-}
 #pragma mark 进行点赞操作
 - (void)doPraiseWithId:(NSInteger)postId withUserCode:(NSInteger) userCode withPraise:(NSInteger)praise{
     [[XMHttpCommunity http] praisePostWithId:postId withUserCode:userCode withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {

@@ -248,10 +248,10 @@
 - (IBAction)operationBtnClick:(id)sender {
     if (self.postViewOperationBlock) {
         //进行判断，如果userCode和自己的userCode一致，就可以进行删除，不一致进行举报操作
-        if (_modelPost.userCode == [[UserDefultAccount userCode] integerValue]) {
-            self.postViewOperationBlock(_modelPost.postId,OperationTypeReport);
+        if (_modelPost.userCode != [[UserDefultAccount userCode] integerValue]) {
+            self.postViewOperationBlock(_modelPost.postId,OperationTypeReport,_modelPost.userCode);
         }else{
-            self.postViewOperationBlock(_modelPost.postId,OperationTypeDelete);
+            self.postViewOperationBlock(_modelPost.postId,OperationTypeDelete,_modelPost.userCode);
         }
     }
 }

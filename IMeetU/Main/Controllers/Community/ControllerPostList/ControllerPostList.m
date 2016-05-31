@@ -193,8 +193,8 @@
     PostListCell *postListCell = [tableView dequeueReusableCellWithIdentifier:@"PostListCell"];
     postListCell.selectionStyle = UITableViewCellSelectionStyleNone;
     __weak typeof(self) weakSelf = self;
-    postListCell.postViewOperationBlock = ^(NSInteger postId,OperationType operationType){
-        [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType];
+    postListCell.postViewOperationBlock = ^(NSInteger postId,OperationType operationType,NSInteger userCode){
+        [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType withUserCode:userCode];
     };
     
     postListCell.postViewPraiseBlock = ^(NSInteger postId,NSInteger userCode,NSInteger praise){
@@ -233,7 +233,7 @@
     
 }
 
-- (void)operationBtnClickWithPostId:(NSInteger) postId withOperationType:(OperationType)operationType{
+- (void)operationBtnClickWithPostId:(NSInteger) postId withOperationType:(OperationType)operationType withUserCode:(NSInteger) userCode{
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"选择操作" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     NSString *operationStr = (operationType == OperationTypeDelete) ? @"删除":@"举报";
     NSString *messageStr = (operationType == OperationTypeDelete) ?@"嗨，确定要删除内容么?":@"嗨，确定要举报TA么?";
@@ -247,7 +247,7 @@
             if (operationType == OperationTypeDelete) {
                 [self deletePostWithId:postId];
             }else{
-                [self reportPostWithId:postId];
+                [self reportPostWithId:postId withUserCode:userCode];
             }
         }]];
         if (self.delegate) {
@@ -279,8 +279,14 @@
 }
 
 #pragma mark 举报操作
-- (void)reportPostWithId:(NSInteger)postId{
-    
+- (void)reportPostWithId:(NSInteger)postId withUserCode:(NSInteger) userCode{
+    [[XMHttpCommunity http] createReportWithPostId:postId withCommentId:-1 withUserCode:userCode withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        if (code == 200) {
+            [[MLToast toastInView:self.view content:@"举报成功了"] show];
+        }else{
+            [[MLToast toastInView:self.view content:@"举报失败了"] show];
+        }
+    }];
 }
 #pragma mark 进行点赞操作
 - (void)doPraiseWithId:(NSInteger)postId withUserCode:(NSInteger) userCode withPraise:(NSInteger)praise{

@@ -163,4 +163,9 @@
  *  根据ID获取列表
  */
 + (NSString *)xmGetPostListWithTagId;
+/**
+ *  举报
+ *
+ */
++ (NSString *)xmCreateReport;
 @end

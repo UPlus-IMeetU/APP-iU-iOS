@@ -71,4 +71,22 @@
     }];
 }
 
+- (void)createReportWithPostId:(NSInteger) postId withCommentId:(NSInteger) commentId withUserCode: (NSInteger) userCode withCallBack:(XMHttpBlockStandard)callback{
+    NSString *url = [XMUrlHttp xmCreateReport];
+    NSDictionary *dict ;
+    if (postId == -1) {
+        dict = @{@"commentId":[NSNumber numberWithInteger:commentId],@"userCode":[NSNumber numberWithInteger:userCode]};
+    }else{
+        dict = @{@"postId":[NSNumber numberWithInteger:postId],@"userCode":[NSNumber numberWithInteger:userCode]};
+    }
+    NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:dict];
+    [self.httpManager POST:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
+        callback(response.state,response.data,task,nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callback(RESPONSE_CODE_ERR,nil,task,error);
+    }];
+
+}
+
 @end

@@ -12,7 +12,7 @@
 #import "EnumHeader.h"
 typedef void (^PostViewPraiseBlock) (NSInteger postId,NSInteger userCode,NSInteger praise);
 typedef void (^PostViewGoSameTagListBlock) (ModelTag *modelTag);
-typedef void (^PostViewOperationBlock) (NSInteger postId,OperationType operationType);
+typedef void (^PostViewOperationBlock) (NSInteger postId,OperationType operationType,NSInteger userCode);
 typedef void (^PostViewGoHomePageBlock)(NSInteger userCode);
 @interface PostListCell : UITableViewCell
 /**

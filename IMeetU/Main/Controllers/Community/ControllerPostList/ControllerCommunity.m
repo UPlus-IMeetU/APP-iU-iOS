@@ -134,8 +134,6 @@
         self.titleView = [[SMPagerTabView  alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64 - 49 )];
         self.titleView.selectedLineWidth = self.view.width / 3;
         self.titleView.tabButtonFontSize = 15;
-        self.titleView.tabButtonTitleColorForSelected = [UIColor often_33C6E5:1];
-        self.titleView.tabButtonTitleColorForNormal = [UIColor often_808080:1];
     }
     return _titleView;
 }

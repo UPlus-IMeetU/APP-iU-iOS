@@ -10,7 +10,7 @@
 #import "SMPagerTabView.h"
 #import "UIStoryboard+Plug.h"
 #import "ControllerPostList.h"
-
+#import "ControllerPostRelease.h"
 #import "UIColor+Plug.h"
 @interface ControllerCommunity ()<ControllerPostListDelegate,SMPagerTabViewDelegate>
 @property (strong, nonatomic) SMPagerTabView *titleView;

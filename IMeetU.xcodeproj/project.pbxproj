@@ -321,6 +321,9 @@
 		044AF7841C8FC347009AF59F /* ControllerMinePhotoBrowse.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AF7831C8FC347009AF59F /* ControllerMinePhotoBrowse.m */; };
 		044AF7881C8FCEFE009AF59F /* CellMinePhotoBrowse.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AF7861C8FCEFE009AF59F /* CellMinePhotoBrowse.m */; };
 		044AF7891C8FCEFE009AF59F /* CellMinePhotoBrowse.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044AF7871C8FCEFE009AF59F /* CellMinePhotoBrowse.xib */; };
+		044B3F5A1CFEEC1700E9E46F /* ControllerCommunityNotifies.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F591CFEEC1700E9E46F /* ControllerCommunityNotifies.m */; };
+		044B3F5E1CFEF4A300E9E46F /* CellCommunityNotifies.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F5C1CFEF4A300E9E46F /* CellCommunityNotifies.m */; };
+		044B3F5F1CFEF4A300E9E46F /* CellCommunityNotifies.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044B3F5D1CFEF4A300E9E46F /* CellCommunityNotifies.xib */; };
 		044EB4661CE46C1A0076DCD6 /* ControllerNavi.m in Sources */ = {isa = PBXBuildFile; fileRef = 044EB4651CE46C1A0076DCD6 /* ControllerNavi.m */; };
 		0450B7A21C902470001DD60A /* ModelInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0450B7A11C902470001DD60A /* ModelInterest.m */; };
 		0450B7A51C90248A001DD60A /* ModelInterests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0450B7A41C90248A001DD60A /* ModelInterests.m */; };
@@ -1119,6 +1122,11 @@
 		044AF7851C8FCEFE009AF59F /* CellMinePhotoBrowse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellMinePhotoBrowse.h; sourceTree = "<group>"; };
 		044AF7861C8FCEFE009AF59F /* CellMinePhotoBrowse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellMinePhotoBrowse.m; sourceTree = "<group>"; };
 		044AF7871C8FCEFE009AF59F /* CellMinePhotoBrowse.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellMinePhotoBrowse.xib; sourceTree = "<group>"; };
+		044B3F581CFEEC1700E9E46F /* ControllerCommunityNotifies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerCommunityNotifies.h; sourceTree = "<group>"; };
+		044B3F591CFEEC1700E9E46F /* ControllerCommunityNotifies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerCommunityNotifies.m; sourceTree = "<group>"; };
+		044B3F5B1CFEF4A300E9E46F /* CellCommunityNotifies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellCommunityNotifies.h; sourceTree = "<group>"; };
+		044B3F5C1CFEF4A300E9E46F /* CellCommunityNotifies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellCommunityNotifies.m; sourceTree = "<group>"; };
+		044B3F5D1CFEF4A300E9E46F /* CellCommunityNotifies.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellCommunityNotifies.xib; sourceTree = "<group>"; };
 		044EB4641CE46C1A0076DCD6 /* ControllerNavi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerNavi.h; sourceTree = "<group>"; };
 		044EB4651CE46C1A0076DCD6 /* ControllerNavi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerNavi.m; sourceTree = "<group>"; };
 		0450B7A01C902470001DD60A /* ModelInterest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelInterest.h; sourceTree = "<group>"; };
@@ -2701,6 +2709,19 @@
 			path = MineMainPhotoBrower;
 			sourceTree = "<group>";
 		};
+		044B3F541CFEEB6A00E9E46F /* ControllerNotifies */ = {
+			isa = PBXGroup;
+			children = (
+				044B3F581CFEEC1700E9E46F /* ControllerCommunityNotifies.h */,
+				044B3F591CFEEC1700E9E46F /* ControllerCommunityNotifies.m */,
+				044B3F5B1CFEF4A300E9E46F /* CellCommunityNotifies.h */,
+				044B3F5C1CFEF4A300E9E46F /* CellCommunityNotifies.m */,
+				044B3F5D1CFEF4A300E9E46F /* CellCommunityNotifies.xib */,
+			);
+			name = ControllerNotifies;
+			path = Community/ControllerNotifies;
+			sourceTree = "<group>";
+		};
 		0450B7BF1C906637001DD60A /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -4224,6 +4245,7 @@
 		6FBC68671CFBCE6600B45657 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				044B3F541CFEEB6A00E9E46F /* ControllerNotifies */,
 				046B49441CFC6B0B00946987 /* ControllerPostRelease */,
 				046B494E1CFC6B0B00946987 /* ControllerPostTags */,
 				6FBC686C1CFBCE9300B45657 /* ControllerCommunity.h */,
@@ -4648,6 +4670,7 @@
 				04471FC31C996C49000FD349 /* messageSendFail@2x.png in Resources */,
 				044727071C9F9A7F000FD349 /* icon_018.gif in Resources */,
 				044AF77B1C8EF863009AF59F /* CellMineMainCollectionTag.xib in Resources */,
+				044B3F5F1CFEF4A300E9E46F /* CellCommunityNotifies.xib in Resources */,
 				044727141C9F9A7F000FD349 /* icon_027_cover.png in Resources */,
 				0447280E1C9FAF9D000FD349 /* tabbar_setting@2x.png in Resources */,
 				044727081C9F9A7F000FD349 /* icon_018_cover.png in Resources */,
@@ -4805,6 +4828,7 @@
 				04B7D4E51CDB4C0500D74C6D /* EMBubbleView+Gif.m in Sources */,
 				044AF76E1C8E8604009AF59F /* ModelUser.m in Sources */,
 				04B7D0DF1CD9AA3200D74C6D /* UIResponder+Router.m in Sources */,
+				044B3F5A1CFEEC1700E9E46F /* ControllerCommunityNotifies.m in Sources */,
 				04B7D4C91CDB4BEB00D74C6D /* EaseCustomMessageCell.m in Sources */,
 				04B7D5A11CDB4CB600D74C6D /* EMCDDeviceManager+Microphone.m in Sources */,
 				047519BB1CA631CB009115CE /* BCQueryRefundsReq.m in Sources */,
@@ -5133,6 +5157,7 @@
 				04610B151CEDC35E0033B43E /* ModelBiuAccept.m in Sources */,
 				04DA95CC1CACFFB100A5BF37 /* XMHttpChat.m in Sources */,
 				04DA95DE1CAD5A1300A5BF37 /* XMActionSheetMineMainMore.m in Sources */,
+				044B3F5E1CFEF4A300E9E46F /* CellCommunityNotifies.m in Sources */,
 				044AF6C71C8C883D009AF59F /* DBSchools.m in Sources */,
 				047519C21CA631CB009115CE /* BCQueryBillResult.m in Sources */,
 				04B7D4D11CDB4BEB00D74C6D /* EaseBubbleView+Video.m in Sources */,

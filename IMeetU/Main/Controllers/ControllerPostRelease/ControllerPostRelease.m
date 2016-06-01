@@ -16,6 +16,8 @@
 
 @interface ControllerPostRelease ()<ControllerPostReleaseTextDelegate, ControllerPostReleaseImageDelegate, TZImagePickerControllerDelegate>
 
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewBG;
 @property (weak, nonatomic) IBOutlet UIButton *btnCancel;
 @property (weak, nonatomic) IBOutlet UIButton *btnPostText;
 @property (weak, nonatomic) IBOutlet UIButton *btnPostImage;
@@ -39,6 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.imageViewBG.alpha = 0;
     self.btnCancel.alpha = 0;
     self.btnPostText.alpha = 0;
     self.btnPostImage.alpha = 0;
@@ -48,7 +51,13 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     if (!self.animationExexFinish) {
-        [self animationOpen];
+        self.imageViewBG.frame = CGRectMake(0, 0, [UIScreen screenWidth], [UIScreen screenHeight]);
+        [UIView animateWithDuration:0.3 animations:^{
+            self.imageViewBG.alpha = 1;
+        } completion:^(BOOL finished) {
+            [self animationOpen];
+        }];
+        self.animationExexFinish = YES;
     }
 }
 
@@ -91,9 +100,13 @@
 - (IBAction)onClickBtnClose:(id)sender {
     [self animationClose];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*0.5), dispatch_get_main_queue(), ^{
-        [self.navigationController popViewControllerAnimated:YES];
-    });
+    [UIView animateWithDuration:0.5 animations:^{
+        self.imageViewBG.alpha = 0;
+    } completion:^(BOOL finished) {
+        self.tabBarController.tabBar.hidden = NO;
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+    }];
 }
 
 - (void)animationOpen{
@@ -110,8 +123,6 @@
         self.labelPostText.alpha = 1;
         self.labelPostImage.alpha = 1;
     } completion:nil];
-    
-    self.animationExexFinish = YES;
 }
 
 - (void)animationClose{
@@ -166,7 +177,8 @@
 /// User click cancel button
 /// 用户点击了取消
 - (void)imagePickerControllerDidCancel:(TZImagePickerController *)picker {
-    [self.navigationController popViewControllerAnimated:NO];
+    //[self.navigationController popViewControllerAnimated:NO];
+    [self cloaseController];
 }
 
 /// User finish picking photo，if assets are not empty, user picking original photo.
@@ -176,6 +188,7 @@
     //self.selectedAssets = [NSMutableArray arrayWithArray:assets];
     self.isSelectOriginalPhoto = isSelectOriginalPhoto;
     
+    [self animationOpen];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*0), dispatch_get_main_queue(), ^{
         UINavigationController *controllerNavi = [[UINavigationController alloc] init];
         controllerNavi.navigationBar.hidden = YES;
@@ -207,20 +220,29 @@
 
 #pragma mark - 发文字帖代理
 - (void)controllerPostReleaseTextCancel:(ControllerPostReleaseText *)controller{
-    [self.navigationController popViewControllerAnimated:NO];
+    //[self.navigationController popViewControllerAnimated:NO];
+    [self cloaseController];
 }
 
 - (void)controllerPostReleaseTextFinish:(ControllerPostReleaseText *)controller result:(BOOL)result{
-    [self.navigationController popViewControllerAnimated:NO];
+    //[self.navigationController popViewControllerAnimated:NO];
+    [self cloaseController];
 }
 
 #pragma mark - 发图片贴代理
 - (void)controllerPostReleaseImageCancel:(ControllerPostReleaseImage *)controller{
-    [self.navigationController popViewControllerAnimated:NO];
+    //[self.navigationController popViewControllerAnimated:NO];
+    [self cloaseController];
 }
 
 - (void)controllerPostReleaseImageFinish:(ControllerPostReleaseImage *)controller result:(BOOL)result{
-    [self.navigationController popViewControllerAnimated:NO];
+    //[self.navigationController popViewControllerAnimated:NO];
+    [self cloaseController];
 }
 
+- (void)cloaseController{
+    self.tabBarController.tabBar.hidden = NO;
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+}
 @end

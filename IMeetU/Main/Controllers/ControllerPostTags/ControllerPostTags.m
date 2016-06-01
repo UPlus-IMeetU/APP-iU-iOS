@@ -21,6 +21,8 @@
 #import "XMHttpCommunity.h"
 #import "MBProgressHUD+plug.h"
 
+#import "MJRefresh.h"
+
 #define CellReuseIdentifier @"CellPostTags"
 #define HeaderFooterViewReuseIdentifier @"ViewHeaderPostTags"
 
@@ -47,8 +49,6 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
 
 @property (nonatomic, copy) NSString *lastSearchContent;
 
-@property (nonatomic, copy) NSString *createTag;
-
 @property (nonatomic, strong) ModelTagsAll *modelTagsAll;
 @property (nonatomic, strong) ModelTagsSearch *modelTagsSearch;
 @end
@@ -72,6 +72,7 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
     
     [self.textFieldSearch addTarget:self action:@selector(onEditingChangeTextFieldSearch:) forControlEvents:UIControlEventEditingChanged];
     
+    MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.view label:@"" animated:YES];
     [[XMHttpCommunity http] allPostTagWithTime:0 postNum:0 callback:^(NSInteger code, ModelTagsAll *model, NSError *err) {
         if (code == 200) {
             self.modelTagsAll = model;
@@ -79,7 +80,9 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
         }else{
 
         }
+        [hud hide:YES afterDelay:0.2];
     }];
+    [self addFooterRefresh];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -159,6 +162,7 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
                 }else if (indexPath.section == 1){
                     //选择
                     [self.delegatePostTags controllerPostTags:self model:[self.modelTagsSearch modelWithIndexPath:indexPath]];
+                    
                 }
             }
         }
@@ -181,6 +185,7 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
             [self.labelSearchCountdown setText:[NSString stringWithFormat:@"%i", 30-(int)sender.text.length]];
             //搜索框中的内容与上次搜索不一致时才能再次进行搜索请求
             if (![sender.text isEqualToString:self.lastSearchContent]) {
+                self.tableViewTags.mj_footer = nil;
                 self.lastSearchContent = sender.text;
                 self.countOfSearchRequest ++;
                 
@@ -208,6 +213,7 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
         }else{
             self.postTagsShowContent = PostTagsShowContentAll;
             [self.tableViewTags reloadData];
+            [self addFooterRefresh];
         }
     }
 }
@@ -229,5 +235,29 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
         _modelTagsSearch = [[ModelTagsSearch alloc] init];
     }
     return _modelTagsSearch;
+}
+
+- (void)addFooterRefresh{
+    if (!self.tableViewTags.mj_footer) {
+        self.tableViewTags.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            [[XMHttpCommunity http] allPostTagWithTime:self.modelTagsAll.time postNum:self.modelTagsAll.postNum callback:^(NSInteger code, ModelTagsAll *model, NSError *err) {
+                if (code == 200) {
+                    [self.modelTagsAll additionalNewerWithTags:model.postNewest];
+                    self.modelTagsAll.hasNext = model.hasNext;
+                    self.modelTagsAll.time = model.time;
+                    self.modelTagsAll.postNum = model.postNum;
+                    
+                    if (!model.hasNext) {
+                        [self.tableViewTags.mj_footer endRefreshingWithNoMoreData];
+                    }else{
+                        [self.tableViewTags.mj_footer endRefreshing];
+                    }
+                    [self.tableViewTags reloadData];
+                }else{
+                    [self.tableViewTags.mj_footer endRefreshing];
+                }
+            }];
+        }];
+    }
 }
 @end

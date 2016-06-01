@@ -214,8 +214,17 @@
     return [XMUrlHttp connectWithComm:@"/app/community/post/createPost"];
 }
 
+
++ (NSString *)xmCreateComment{
+    return [XMUrlHttp connectWithComm:@"/app/community/comment/createComment"];
+}
+
++ (NSString *)xmDeleteComment{
+    return [XMUrlHttp connectWithComm:@"/app/community/comment/deleteComment"];
+}
+
 + (NSString *)connectWithComm:(NSString *)operation{
-    NSString *host = @"http://123.57.26.168:8080/meetu_community/";
+    NSString *host = @"http://123.57.26.168:8080/meetu_community";
     return [NSString stringWithFormat:@"%@%@", host, operation];
 }
 

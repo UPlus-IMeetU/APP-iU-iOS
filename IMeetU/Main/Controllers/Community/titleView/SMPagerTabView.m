@@ -306,18 +306,18 @@
 }
 - (UIColor *)tabButtonTitleColorForSelected {
     if (!_tabButtonTitleColorForSelected) {
-        self.tabButtonTitleColorForSelected = [UIColor often_33C6E5:1];
+        self.tabButtonTitleColorForSelected = [UIColor often_6CD1C9:1];
     }
     return _tabButtonTitleColorForSelected;
 }
 - (UIView *)selectedLine {
     if (!_selectedLine) {
         self.selectedLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.tabView.height - 1.5, self.selectedLineWidth, 1.5)];
-        _selectedLine.backgroundColor = [UIColor often_33C6E5:1];
+        _selectedLine.backgroundColor = [UIColor often_6CD1C9:1];
         [self addSubview:_selectedLine];
         //设置线
         _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.tabView.height - 0.5, self.tabView.width, 0.5)];
-        _lineView.backgroundColor = [UIColor often_33C6E5:1];
+        _lineView.backgroundColor = [UIColor often_6CD1C9:1];
         [self addSubview:_lineView];
     }
     return _selectedLine;

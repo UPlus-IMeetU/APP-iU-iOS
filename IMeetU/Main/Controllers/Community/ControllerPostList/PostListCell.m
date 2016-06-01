@@ -46,14 +46,6 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *tagsLabel;
 /**
- *  详细的内容
- */
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
-/**
- *  点赞的人数
- */
-@property (weak, nonatomic) IBOutlet UILabel *praiseLabel;
-/**
  *  评论的人数
  */
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
@@ -272,6 +264,11 @@
 - (IBAction)goHomePage:(id)sender {
     if (self.postViewGoHomePageBlock) {
         self.postViewGoHomePageBlock(_modelPost.userCode);
+    }
+}
+- (IBAction)createComment:(id)sender {
+    if (self.postViewCreateCommentBlock) {
+        self.postViewCreateCommentBlock();
     }
 }
 @end

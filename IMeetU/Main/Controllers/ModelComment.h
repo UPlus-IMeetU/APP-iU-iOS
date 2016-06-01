@@ -16,6 +16,7 @@
 @property (nonatomic,assign) NSInteger userFromCode;
 @property (nonatomic,copy) NSString *userFromName;
 @property (nonatomic,copy) NSString *userFromHead;
+@property (nonatomic,copy) NSString *userFromSchool;
 @property (nonatomic,assign) NSInteger userToCode;
 @property (nonatomic,copy) NSString *userToName;
 @property (nonatomic,copy) NSString *content;

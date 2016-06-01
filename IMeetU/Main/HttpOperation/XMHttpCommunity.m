@@ -147,4 +147,33 @@
         }
     }];
 }
+
+- (void)createCommentWithPostId:(NSInteger)postId withParentId:(NSInteger)parentId withToUserCode:(NSInteger)toUserCode
+                    withContent:(NSString *)content callback:(XMHttpCallBackNormal)callback{
+    NSString *url = [XMUrlHttp xmCreateComment];
+    NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{@"postId":[NSNumber numberWithInteger:postId],
+                                                                         @"parentId":[NSNumber numberWithInteger:parentId],
+                                                                         @"toUserCode":[NSNumber numberWithInteger:toUserCode],
+                                                                         @"content":content}];
+    [self NormalPOST:url parameters:param callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        if (code == 200) {
+            callback(code,response,nil);
+        }else{
+            callback(code,nil,error);
+        }
+    }];
+}
+- (void)deleteCommentWithId:(NSInteger) commentId withCallBack:(XMHttpCallBackNormal)callback{
+    NSString *url = [XMUrlHttp xmDeleteComment];
+    NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{@"commentId":[NSNumber numberWithInteger:commentId]}];
+    
+    [self NormalPOST:url parameters:param callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        if (code == 200) {
+            callback(code,response,nil);
+        }else{
+            callback(code,nil,error);
+        }
+    }];
+
+}
 @end

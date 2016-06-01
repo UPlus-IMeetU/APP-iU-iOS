@@ -16,18 +16,41 @@
 
 #import "MJRefresh.h"
 #import "MBProgressHUD.h"
+#import "MLToast.h"
 
 #import "CommunityReplyCell.h"
 #import "ModelPostDetail.h"
 #import "YYKit/YYKit.h"
 #import "PostListCell.h"
-@interface ControllerReply ()<UITableViewDelegate,UITableViewDataSource>
+#import "UserDefultAccount.h"
+#import "EnumHeader.h"
+#import "ControllerMineMain.h"
+
+@interface ControllerReply ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 /**
  *  评论列表
  */
+@property (weak, nonatomic) IBOutlet UILabel *placeHolderLabel;
 @property (weak, nonatomic) IBOutlet UITableView *replyTableView;
 @property (strong,nonatomic) NSMutableArray *commentArray;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+//输入框
+@property (weak, nonatomic) IBOutlet UIView *inputView;
+//输入框的高度
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputViewHeight;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomHeight;
+
+
+/**
+ *  回复的信息
+ */
+@property (strong, nonatomic) ModelComment *selectedModelComment;
+@property (strong, nonatomic) ModelComment *currentModelComment;
+@property (strong, nonatomic) ModelPost *modelPost;
+
+@property (nonatomic,assign) long long lastTime;
+@property (nonatomic,assign) BOOL isHasNext;
 @end
 
 @implementation ControllerReply
@@ -42,31 +65,58 @@
     [super viewDidLoad];
     [self prepareData];
     [self prepareUI];
+    //注册监听
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChanged:) name:UITextViewTextDidChangeNotification object:nil];
     // Do any additional setup after loading the view.
 }
 
 - (void)prepareData{
     _commentArray = [NSMutableArray array];
+    [self loadDataWithTime:0 withRefreshType:Refresh];
+}
+
+- (void)loadDataWithTime:(long long)time withRefreshType:(RefreshType)refreshType{
+    __weak typeof (self) weakSelf = self;
     [[XMHttpCommunity http] loadPostDetailWithPostId:self.postId withTimeStamp:0 withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
         if (code == 200) {
             ModelPostDetail *modelPostDetail = [ModelPostDetail modelWithJSON:response];
-            
             //创建视图
+            weakSelf.lastTime = modelPostDetail.time;
+            weakSelf.isHasNext = modelPostDetail.hasNext;
             PostListCell *postCell =  [[[NSBundle mainBundle] loadNibNamed:@"PostListCell" owner:self options:nil] lastObject];
             postCell.size = CGSizeMake(self.view.width, [ModelPost cellHeightWith:modelPostDetail.post]);
             postCell.modelPost = modelPostDetail.post;
-            _commentArray = [NSMutableArray arrayWithArray:modelPostDetail.commentList];
+            //保存一下当前的信息
+            weakSelf.modelPost = modelPostDetail.post;
+            if (refreshType == Refresh) {
+                [weakSelf.commentArray removeAllObjects];
+                weakSelf.commentArray = [NSMutableArray arrayWithArray:modelPostDetail.commentList];
+            }else{
+                weakSelf.commentArray = [NSMutableArray arrayWithObject:modelPostDetail.commentList];
+            }
+            
+            postCell.postViewCreateCommentBlock = ^(){
+                [weakSelf.textView becomeFirstResponder];
+            };
             _replyTableView.tableHeaderView = postCell;
             [_replyTableView reloadData];
         };
+        [_replyTableView.mj_header endRefreshing];
+        [_replyTableView.mj_footer endRefreshing];
+        
+        
     }];
 }
 - (void)prepareUI{
     _replyTableView.showsVerticalScrollIndicator = NO;
     _replyTableView.showsHorizontalScrollIndicator = NO;
+    _replyTableView.contentOffset = CGPointMake(0, 0);
     // 上拉刷新和下拉加载
+    __weak typeof (self) weakSelf = self;
     _replyTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [ _replyTableView.mj_header endRefreshing];
+        [weakSelf loadDataWithTime:0 withRefreshType:Refresh];
     }];
     MJRefreshNormalHeader *header = (MJRefreshNormalHeader *)_replyTableView.mj_header;
     header.stateLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
@@ -74,10 +124,15 @@
     header.stateLabel.font = [UIFont systemFontOfSize:12];
     header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
     
-    _replyTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [ _replyTableView.mj_footer endRefreshing];
+    _replyTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        if (!_isHasNext) {
+            [weakSelf.replyTableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [weakSelf.replyTableView.mj_footer endRefreshing];
+        }
+        
     }];
-    MJRefreshAutoNormalFooter *footer = (MJRefreshAutoNormalFooter *)_replyTableView.mj_footer;
+    MJRefreshBackNormalFooter *footer = (MJRefreshBackNormalFooter *)_replyTableView.mj_footer;
     footer.stateLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
     footer.stateLabel.font = [UIFont systemFontOfSize:12];
     //设置为没有颜色
@@ -85,12 +140,135 @@
     //进行列表的注册
     [_replyTableView registerNib:[UINib xmNibFromMainBundleWithName:@"CommunityReplyCell"] forCellReuseIdentifier:@"CommunityReplyCell"];
     
+    //设置textView的颜色
+    _textView.layer.cornerRadius = 4;
+    _textView.layer.borderWidth = 0.5;
+    _textView.layer.borderColor = [UIColor often_CCCCCC:1].CGColor;
+    _textView.clipsToBounds = YES;
+    _textView.delegate = self;
+    _textView.returnKeyType = UIReturnKeySend;
+    
+    _placeHolderLabel.text = @"你想说点什么呢?";
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark 监听的方法
+- (void)keyboardWillShow:(NSNotification*)notification //键盘出现
+{
+    //获取键盘的高度
+    //创建一个透明视图
+    
+    [self.view bringSubviewToFront:_inputView];
+    CGRect _keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    NSDictionary* userInfo = [notification userInfo];
+    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration;
+    [animationDurationValue getValue:&animationDuration];
+    
+    [UIView animateWithDuration:animationDuration animations:^{
+        _bottomHeight.constant = _keyboardRect.size.height;
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+- (void)keyboardWillHide:(NSNotification*)notification //键盘下落
+{
+    NSDictionary* userInfo = [notification userInfo];
+    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration;
+    [animationDurationValue getValue:&animationDuration];
+    
+    [UIView animateWithDuration:animationDuration animations:^{
+        _bottomHeight.constant = 0;
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+- (void)textDidChanged:(NSNotification *)notif //监听文字改变 换行时要更改输入框的位置
+{
+    NSString *textString = _textView.text;
+    CGSize titleSize = [textString sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(self.view.width - 40, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
+    if (ceil(titleSize.height) + 13 > _inputViewHeight.constant) {
+        [UIView animateWithDuration:0.1 animations:^{
+            _inputViewHeight.constant = ceil(titleSize.height) + 15 ;
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            _textView.contentOffset = CGPointZero;
+        }];
+    }else{
+        [UIView animateWithDuration:0.1 animations:^{
+            if (ceil(titleSize.height) + 13 <= 43) {
+                _inputViewHeight.constant = 43;
+            }else{
+                _inputViewHeight.constant = ceil(titleSize.height) + 15 ;
+            }
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+        }];
+    }
+}
 
+- (void)textViewDidChange:(UITextView *)textView{
+    if (textView.text.length == 0) {
+        self.placeHolderLabel.hidden = NO;
+    }else{
+        self.placeHolderLabel.hidden = YES;
+        if (textView.text.length > 300) {
+            textView.text = [textView.text substringToIndex:300];
+        }
+    }
+}
+
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        //点击确定按钮了
+        [self createComment];
+        return NO;
+    }
+    return YES;
+}
+
+//回复或者是评论
+- (void)createComment{
+    //是否有评论的人
+    NSInteger toUserCode = 0;
+    NSInteger parentId = 0;
+    if (_selectedModelComment) {
+        toUserCode = _selectedModelComment.userFromCode;
+        parentId = _selectedModelComment.commentId;
+    }
+    toUserCode = _modelPost.userCode;
+    __weak typeof(self) weakSelf = self;
+    [[XMHttpCommunity http] createCommentWithPostId:_modelPost.postId withParentId:parentId withToUserCode:toUserCode withContent:_textView.text callback:^(NSInteger code, NSString *postId, NSError *err) {
+        if (code == 200) {
+            [[MLToast toastInView:self.view content:@"评论成功了~"] show];
+            weakSelf.textView.text = @"";
+            [weakSelf.textView resignFirstResponder];
+            weakSelf.placeHolderLabel.text = @"你想说点什么...";
+            weakSelf.placeHolderLabel.hidden = NO;
+            weakSelf.selectedModelComment = nil;
+            [self loadDataWithTime:0 withRefreshType:Refresh];
+            
+            //进行通知
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            [dict setObject:[NSNumber numberWithInteger:_modelPost.postId] forKey:@"postId"];
+            [dict setObject:@(2) forKey:@"operation"];
+            [dict setObject:@(0) forKey:@"isDelete"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
+            //滑动到对应的位置
+            //_replyTableView.contentOffset = CGPointMake([], <#CGFloat y#>)
+        }else{
+            [[MLToast toastInView:self.view content:@"评论失败了~"] show];
+        }
+    }];
+}
 #pragma mark UITableViewDelegate,UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommunityReplyCell *replyCell = [tableView dequeueReusableCellWithIdentifier:@"CommunityReplyCell"];
@@ -98,8 +276,18 @@
     
     //进行删除或者举报操作
     typeof(self) weakSelf = self;
-    replyCell.replyOperationBlock = ^(NSInteger postId,OperationReplyType operationType){
-        [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType];
+    replyCell.modelComment = _commentArray[indexPath.row];
+    replyCell.replyOperationBlock = ^(NSInteger commentId,NSInteger userCode){
+        if ([[UserDefultAccount userCode] integerValue] == userCode) {
+              [weakSelf operationBtnClickWithPostId:commentId withOperationType:OperationCommentDelete];
+        }else{
+            [weakSelf operationBtnClickWithPostId:commentId withOperationType:OperationCommentReport];
+        }
+    };
+    
+    replyCell.replyGotoHomePage = ^(NSInteger userCode){
+        ControllerMineMain *mainMain = [ControllerMineMain controllerWithUserCode:[NSString stringWithFormat:@"%ld",(long)userCode] getUserCodeFrom:MineMainGetUserCodeFromParam];
+        [weakSelf.navigationController pushViewController:mainMain animated:YES];
     };
     return replyCell;
 }
@@ -107,7 +295,23 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 120.0;
+    ModelComment *modelComment = _commentArray[indexPath.row];
+    NSString *str;
+    if (modelComment.parentId == 1) {
+        str = [NSString stringWithFormat:@"回复 %@:%@",modelComment.userToName,modelComment.content];
+    }else{
+        str = modelComment.content;
+    }
+    CGSize titleSize = [str sizeWithFont:[UIFont systemFontOfSize:13.0] constrainedToSize:CGSizeMake(self.view.width - 63, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
+    return ceil(titleSize.height) + 30 + 35 + 18 + 15;
+}
+
+//点击操作进行评论
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    _selectedModelComment = _commentArray[indexPath.row];
+    //判断是否是自己
+    _placeHolderLabel.text = [NSString stringWithFormat:@"回复%@:",_selectedModelComment.userFromName];
+    [_textView becomeFirstResponder];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -122,8 +326,19 @@
 }
 - (void)operationBtnClickWithPostId:(NSInteger) postId withOperationType:(OperationType)operationType{
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"选择操作" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    NSString *operationStr = (operationType == OperationTypeDelete) ? @"删除":@"举报";
-    NSString *messageStr = (operationType == OperationTypeDelete) ?@"嗨，确定要删除内容么?":@"嗨，确定要举报TA么?";
+    NSString *operationStr = @"";
+    if (operationType == OperationTypeDelete || operationType == OperationCommentDelete) {
+        operationStr = @"删除";
+    }else{
+        operationStr = @"举报";
+    }
+    
+    NSString *messageStr = @"";
+    if (operationType == OperationTypeDelete || operationType == OperationCommentDelete) {
+        messageStr = @"嗨，确定要删除内容么?";
+    }else{
+        messageStr = @"嗨，确定要举报TA么?";
+    }
     [controller addAction:[UIAlertAction actionWithTitle:operationStr style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         //弹出框
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:operationStr message:messageStr preferredStyle:UIAlertControllerStyleAlert];
@@ -131,10 +346,10 @@
             
         }]];
         [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            if (operationType == OperationTypeDelete) {
-                [self deletePostWithId:postId];
+            if (operationType == OperationTypeDelete || operationType == OperationCommentDelete) {
+                [self deletePostWithId:postId withOperationType:operationType];
             }else{
-                [self reportPostWithId:postId];
+                [self reportPostWithId:postId withOperationType:operationType];
             }
         }]];
         [self presentViewController:alertController animated:YES completion:nil];
@@ -144,38 +359,69 @@
     }]];
     [self presentViewController:controller animated:YES completion:nil];
 }
+
+
+//滚动的时候让键盘落下
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self.textView resignFirstResponder];
+}
 /**
  *  进行删除操作
  *
  *  @param postId 删除的postId
  */
-- (void)deletePostWithId:(NSInteger)postId{
-    MBProgressHUD *hud = [MBProgressHUD xmShowHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"删除成功了";
-    hud.mode = MBProgressHUDModeText;
-    [hud hide:YES afterDelay:1];
-}
+- (void)deletePostWithId:(NSInteger)postId withOperationType:(OperationType)operation{
+    if (operation == OperationCommentDelete) {
+        [[XMHttpCommunity http] deleteCommentWithId:postId withCallBack:^(NSInteger code, id response, NSError *error) {
+            if (code == 200) {
+                //首先自己进行
+                int index = 0;
+                for(; index < _commentArray.count ; index++){
+                    ModelComment *modelComment = _commentArray[index];
+                    if (modelComment.commentId == postId) {
+                        break;
+                    }
+                }
 
-/**
- *  进行举报操作
- *
- *  @param postId 举报的postId
- */
-- (void)reportPostWithId:(NSInteger)postId{
-    MBProgressHUD *hud = [MBProgressHUD xmShowHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"举报成功了";
-    hud.mode = MBProgressHUDModeText;
-    [hud hide:YES afterDelay:1];
+                [_commentArray removeObjectAtIndex:index];
+                [_replyTableView reloadData];
+                //发送通知
+                NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+                [dict setObject:[NSNumber numberWithInteger:_modelPost.postId] forKey:@"postId"];
+                [dict setObject:@(2) forKey:@"operation"];
+                [dict setObject:@(1) forKey:@"isDelete"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
+                
+            }else{
+                [[MLToast toastInView:self.view content:@"删除失败了>_<"] show];
+            }
+        }];
+    }
+    else{
+        [[XMHttpCommunity http] deletePostWithId:postId withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+            if (code == 200) {
+                NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+                [dict setObject:[NSNumber numberWithInteger:postId] forKey:@"postId"];
+                [dict setObject:@(0) forKey:@"operation"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [[MLToast toastInView:self.view content:@"删除失败了>_<"] show];
+            }
+        }];
+    }
+}
+- (void)reportPostWithId:(NSInteger)postId withOperationType:(OperationType)operation{
+    
     
 }
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:nil];
+    
+}
 
 @end

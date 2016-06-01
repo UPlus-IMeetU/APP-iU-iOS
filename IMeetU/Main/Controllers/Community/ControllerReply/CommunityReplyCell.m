@@ -9,6 +9,10 @@
 #import "CommunityReplyCell.h"
 #import "YYKit/YYKit.h"
 #import "NSDate+MJ.h"
+#import "DBSchools.h"
+#import "UIColor+Plug.h"
+#import "UserDefultAccount.h"
+
 
 @interface CommunityReplyCell()
 @property (weak, nonatomic) IBOutlet UILabel *collegeNameLabel;
@@ -16,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentLabelHeight;
+
+
 @end
 @implementation CommunityReplyCell
 
@@ -26,17 +33,33 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
 - (void)setModelComment:(ModelComment *)modelComment{
     _modelComment = modelComment;
     [_headImageView setImageWithURL:[NSURL URLWithString:_modelComment.userFromHead] placeholder:[UIImage imageNamed:@"photo_fail"]];
-    _nickNameLabel.text = [_modelComment.userToName isEqualToString:@""] ? _modelComment.userFromName : [NSString stringWithFormat:@"%@回复:%@",_modelComment.userFromName,_modelComment.userToName];
-    _timeLabel.text = [self createdAt:_modelComment.createAt];
-    _contentLabel.text = modelComment.content;
-
+    _nickNameLabel.text = _modelComment.userFromName;
+    _nickNameLabel.textColor = [_modelComment.userFromSex isEqualToString:@"1"] ? [UIColor often_8883BC:1] : [UIColor often_F06E7F:1];
+    _collegeNameLabel.text = [self searchSchoolNameWithID:[_modelComment.userFromSchool integerValue]];
+    //为回复
+    NSString *str;
+    if (modelComment.parentId != 0) {
+        str = [NSString stringWithFormat:@"回复 %@:%@",_modelComment.userToName,_modelComment.content];
+         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str];
+        //进行范围设置
+        [attrStr addAttribute:NSForegroundColorAttributeName
+                        value: [_modelComment.userFromSex isEqualToString:@"1"] ? [UIColor often_8883BC:1] : [UIColor often_F06E7F:1]
+                        range:NSMakeRange(3, _modelComment.userFromName.length)];
+        _contentLabel.attributedText = attrStr;
+    }else{
+        str = _modelComment.content;
+        _contentLabel.text = _modelComment.content;
+    }
+    CGSize titleSize = [str sizeWithFont:[UIFont systemFontOfSize:13.0] constrainedToSize:CGSizeMake(self.width - 63, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
+    self.contentLabelHeight.constant = ceil(titleSize.height);
+    [self.contentLabel layoutIfNeeded];
 }
 
 - (NSString *)createdAt:(long long)time
@@ -52,32 +75,40 @@
     // 判断是否为今年
     if (createDate.isThisYear) {
         NSDateComponents *cmps = [createDate deltaWithNow];
+        
         if (createDate.isToday) { // 今天
-            
-            if (cmps.hour >= 1) { // 至少是1小时前发的
-                return [NSString stringWithFormat:@"%ld小时前", (long)cmps.hour];
-            } else if (cmps.minute >= 1) { // 1~59分钟之前发的
-                return [NSString stringWithFormat:@"%ld分钟前", (long)cmps.minute];
-            } else { // 1分钟内发的
-                return @"刚刚";
-            }
-        } else if (cmps.day > 1 && cmps.day <= 7) { // 昨天
-            return [NSString stringWithFormat:@"%ld天前",(long)cmps.day];
-        } else if (cmps.day > 7){
-            fmt.dateFormat = @"MM月dd日";
+            fmt.dateFormat = @"HH:mm";
             return [fmt stringFromDate:createDate];
+        } else if (cmps.day == 1) { // 昨天
+            fmt.dateFormat = @"HH:mm";
+            return [NSString stringWithFormat:@"昨天 %@",[fmt stringFromDate:createDate]];
+        } else if (cmps.day == 2){
+            fmt.dateFormat = @"HH:mm";
+            [NSString stringWithFormat:@"前天 %@",[fmt stringFromDate:createDate]];
         }
+        fmt.dateFormat = @"MM-dd";
+        return [fmt stringFromDate:createDate];
     } else { // 非今年
-        fmt.dateFormat = @"yyyy年MM月dd日";
+        fmt.dateFormat = @"yyyy-MM-dd";
         return [fmt stringFromDate:createDate];
     }
     return nil;
 }
 
+- (NSString *)searchSchoolNameWithID:(NSInteger)schoolID{
+    DBSchools *dbSchools = [DBSchools shareInstance];
+    return [[dbSchools schoolWithID:schoolID] objectForKey:@"schoolName"];
+}
+
 //进行相关的操作
 - (IBAction)operationBtnClick:(id)sender {
     if (self.replyOperationBlock) {
-        _replyOperationBlock(_modelComment.commentId,1);
+        _replyOperationBlock(_modelComment.commentId,_modelComment.userFromCode);
+    }
+}
+- (IBAction)goHomePage:(id)sender {
+    if (self.replyGotoHomePage) {
+        _replyGotoHomePage(_modelComment.userFromCode);
     }
 }
 

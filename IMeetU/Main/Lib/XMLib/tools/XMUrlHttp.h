@@ -176,4 +176,13 @@
  * 发布图文帖子
  */
 + (NSString *)xmPostTxtImgRelease;
+/**
+ *  创建评论
+ */
++ (NSString *)xmCreateComment;
+
+/**
+ *  删除评论
+ */
++ (NSString *)xmDeleteComment;
 @end

@@ -91,6 +91,15 @@
             ((ModelPost *)_postListArray[index]).praiseNum ++;
         }
         [_postListTableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
+    }else if([[dict objectForKey:@"operation"] integerValue] == 2){
+        NSInteger isDelete = [[dict objectForKey:@"delete"] integerValue];
+        if (isDelete == 1) {
+            //没有赞
+            ((ModelPost *)_postListArray[index]).commentNum --;
+        }else{
+            ((ModelPost *)_postListArray[index]).commentNum ++;
+        }
+        [_postListTableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
@@ -157,15 +166,14 @@
         header.stateLabel.font = [UIFont systemFontOfSize:12];
         header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
         
-        _postListTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _postListTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             if (_isHasNext) {
                 [weakSelf loadDataWithTime:_lastTime withType:Loading];
             }else{
-               [[MLToast toastInView:self.view content:@"没有更多帖子了～"] show];
-                [_postListTableView.mj_footer endRefreshing];
+                [_postListTableView.mj_footer endRefreshingWithNoMoreData];
             }
         }];
-        MJRefreshAutoNormalFooter *footer = (MJRefreshAutoNormalFooter *)_postListTableView.mj_footer;
+        MJRefreshBackNormalFooter *footer = (MJRefreshBackNormalFooter *)_postListTableView.mj_footer;
         footer.stateLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
         footer.stateLabel.font = [UIFont systemFontOfSize:12];
         //设置为没有颜色

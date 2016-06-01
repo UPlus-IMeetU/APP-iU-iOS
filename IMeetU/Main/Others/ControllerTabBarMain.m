@@ -98,9 +98,9 @@ controllerNaviCommunity;
     self.controllerNaviMine.tabBarItem.selectedImage = [[UIImage imageNamed:@"main_tab_icon_mine_light"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     
-    self.viewControllers = @[self.controllerNaviMsg,self.controllerNaviBiu,self.controllerNaviCommunity,self.controllerNaviMine];
+    self.viewControllers = @[self.controllerNaviBiu,self.controllerNaviCommunity,self.controllerNaviMsg,self.controllerNaviMine];
     //默认显示发送biubiu的页面
-    self.selectedIndex = 1;
+    self.selectedIndex = 0;
 }
 
 - (void)viewDidLoad {

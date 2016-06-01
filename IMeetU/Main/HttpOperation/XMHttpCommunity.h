@@ -16,6 +16,7 @@ typedef void(^XMHttpCallBackPostTagsAll)(NSInteger code, ModelTagsAll *model, NS
 typedef void(^XMHttpCallBackPostTagsSearch)(NSInteger code, ModelTagsSearch *model, NSError *err);
 typedef void(^XMHttpCallBackPostTagsCreate)(NSInteger code, ModelTag *model, NSError *err);
 typedef void(^XMHttpCallBackPostTxtImgCreate)(NSInteger code, NSString *postId, NSError *err);
+typedef void(^XMHttpCallBackNormal) (NSInteger code,id response, NSError *error);
 
 @interface XMHttpCommunity : XMHttp
 /**
@@ -63,4 +64,17 @@ typedef void(^XMHttpCallBackPostTxtImgCreate)(NSInteger code, NSString *postId, 
  *  @param 帖子文字内容
  */
 - (void)releasePostTxtImgWithTags:(NSArray*)tags imgs:(NSArray*)imgs content:(NSString*)content callback:(XMHttpCallBackPostTxtImgCreate)callback;
+/**
+ *  评论回复
+ *
+ *  @param postId     评论的帖子id
+ *  @param parentId   帖子id 当回复的时候要传
+ *  @param toUserCode 评论的人
+ *  @param content    评论或者回复的信息
+ */
+- (void)createCommentWithPostId:(NSInteger)postId withParentId:(NSInteger)parentId withToUserCode:(NSInteger)toUserCode
+                    withContent:(NSString *)content callback:(XMHttpCallBackNormal)callback;
+
+
+- (void)deleteCommentWithId:(NSInteger) commentId withCallBack:(XMHttpCallBackNormal)callback;
 @end

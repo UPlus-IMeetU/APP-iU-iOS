@@ -63,7 +63,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="＃今天天气好艳丽啊＃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwl-K1-5Q0">
                         <rect key="frame" x="10" y="101" width="150" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.95686274509803915" green="0.61568627450980395" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.42352941176470588" green="0.81960784313725488" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-06-29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6H-90-QNP">
@@ -114,6 +114,9 @@
                                     <constraint firstAttribute="height" constant="35" id="kbk-jk-l5t"/>
                                 </constraints>
                                 <state key="normal" image="found_btn_discuss"/>
+                                <connections>
+                                    <action selector="createComment:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="S6q-dg-h8a"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>

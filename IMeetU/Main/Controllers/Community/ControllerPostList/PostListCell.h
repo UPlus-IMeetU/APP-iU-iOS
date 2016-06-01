@@ -14,6 +14,7 @@ typedef void (^PostViewPraiseBlock) (NSInteger postId,NSInteger userCode,NSInteg
 typedef void (^PostViewGoSameTagListBlock) (ModelTag *modelTag);
 typedef void (^PostViewOperationBlock) (NSInteger postId,OperationType operationType,NSInteger userCode);
 typedef void (^PostViewGoHomePageBlock)(NSInteger userCode);
+typedef void (^PostViewCreateCommentBlock)();
 @interface PostListCell : UITableViewCell
 /**
  *  点赞操作
@@ -28,5 +29,15 @@ typedef void (^PostViewGoHomePageBlock)(NSInteger userCode);
  */
 @property (nonatomic,copy) PostViewOperationBlock postViewOperationBlock;
 @property (nonatomic,copy) PostViewGoHomePageBlock postViewGoHomePageBlock;
+@property (nonatomic,copy) PostViewCreateCommentBlock
+    postViewCreateCommentBlock;
 @property (nonatomic,strong) ModelPost *modelPost;
+/**
+ *  详细的内容
+ */
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+/**
+ *  点赞的人数
+ */
+@property (weak, nonatomic) IBOutlet UILabel *praiseLabel;
 @end

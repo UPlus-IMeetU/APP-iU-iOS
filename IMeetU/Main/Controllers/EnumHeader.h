@@ -8,22 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-
-typedef NS_ENUM(NSInteger,OperationReplyType) {
-    OperationReplyTypeDelete = 0,
-    OperationReplyTypeReport = 1
-};
-
-
 typedef NS_ENUM(NSInteger,PostListType) {
-    PostListTypeRecommend = 0,
-    PostListTypeNew = 1,
+    PostListTypeNew = 0,
+    PostListTypeRecommend = 1,
     PostListTypeBiuBiu = 2
 };
 
 typedef NS_ENUM(NSInteger,OperationType) {
     OperationTypeDelete = 0,
-    OperationTypeReport = 1
+    OperationTypeReport = 1,
+    OperationCommentDelete = 2,
+    OperationCommentReport = 3
 };
 
 typedef NS_ENUM(NSInteger,RefreshType) {

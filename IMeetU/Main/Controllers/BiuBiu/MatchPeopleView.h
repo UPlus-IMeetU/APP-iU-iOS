@@ -8,14 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ModelBiuFaceStar.h"
-typedef NS_ENUM(NSInteger,MatchRefreshType) {
-    Refresh = 0,
-    Loading = 1
-};
+#import "EnumHeader.h"
 @interface MatchPeopleView : UIView
 /**
  *  点击列表回调的block
  */
 @property (nonatomic,copy) void (^RecieveBiuBiuSelectBlock)(ModelBiuFaceStar *modelBiuFaceStar);
-- (void)initDataWithTime:(long long)time withType:(MatchRefreshType)refreshType;
+- (void)initDataWithTime:(long long)time withType:(RefreshType)refreshType;
 @end

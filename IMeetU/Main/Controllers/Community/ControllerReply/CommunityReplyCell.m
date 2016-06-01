@@ -77,7 +77,7 @@
 //进行相关的操作
 - (IBAction)operationBtnClick:(id)sender {
     if (self.replyOperationBlock) {
-        _replyOperationBlock(_modelComment.commentId,OperationTypeDelete);
+        _replyOperationBlock(_modelComment.commentId,1);
     }
 }
 

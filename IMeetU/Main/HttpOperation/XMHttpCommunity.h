@@ -31,7 +31,7 @@ typedef void(^XMHttpCallBackPostTxtImgCreate)(NSInteger code, NSString *postId, 
 
 - (void)deletePostWithId:(NSInteger) postId withCallBack:(XMHttpBlockStandard)callback;
 
-- (void)praisePostWithId:(NSInteger) postId withCallBack:(XMHttpBlockStandard)
+- (void)praisePostWithId:(NSInteger) postId withUserCode:(NSInteger)userCode withCallBack:(XMHttpBlockStandard)
     callback;
 
 - (void)allPostTagWithTime:(long long)time postNum:(long long)postNum callback:(XMHttpCallBackPostTagsAll)callback;

@@ -7,23 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ModelPost.h"
 @interface ModelPostDetail : NSObject
-@property (nonatomic,copy) NSString *token;
-@property (nonatomic,assign) NSInteger postId;
-@property (nonatomic,assign) NSInteger userCode;
-@property (nonatomic,copy) NSString *userName;
-@property (nonatomic,copy) NSString *
-userHead;
-@property (nonatomic,copy) NSString *userSchool;
-@property (nonatomic,assign) long long creatAt;
-@property (nonatomic,strong) NSArray *imgs;
-@property (nonatomic,copy) NSString *content;
-@property (nonatomic,assign) NSInteger praiseNum;
-@property (nonatomic,assign) NSInteger
-commentNum;
-@property (nonatomic,assign) BOOL isPraise;
-@property (nonatomic,strong) NSArray *tags;
+@property (nonatomic,strong) ModelPost *post;
+@property (nonatomic,assign) long long time;
 @property (nonatomic,assign) BOOL hasNext;
 @property (nonatomic,strong) NSArray *commentList;
 @end

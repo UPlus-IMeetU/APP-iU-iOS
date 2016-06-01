@@ -13,6 +13,7 @@
 #import "UIViewAdditions.h"
 #import "UINib+Plug.h"
 #import "PostListCell.h"
+#import "MLToast.h"
 
 
 #import "XMHttpCommunity.h"
@@ -20,6 +21,8 @@
 #import "ModelAdvert.h"
 #import "AdvertDetailController.h"
 #import "YYKit/YYKit.h"
+#import "ControllerSamePostList.h"
+#import "ControllerMineMain.h"
 @interface ControllerPostList ()<UITableViewDelegate,UITableViewDataSource,ZXCycleScrollViewDelegate,ZXCycleScrollViewDatasource>{
     //记录当前的位置
     CGFloat contentOffsetY;
@@ -37,6 +40,8 @@
  *  轮播图
  */
 @property (nonatomic,strong) NSMutableArray *bannerArray;
+@property (nonatomic,assign) long long lastTime;
+@property (nonatomic,assign) BOOL isHasNext;
 @end
 
 @implementation ControllerPostList
@@ -70,29 +75,58 @@
         return;
     }
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    
-    
     //进行删除操作
     if ([[dict objectForKey:@"operation"] integerValue] == 0) {
         //删除数据
         [_postListArray removeObjectAtIndex:index];
-        [_postListTableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        [_postListTableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
     }else if([[dict objectForKey:@"operation"] integerValue] == 1){
-        ((ModelPost *)_postListArray[index]).isPraise = [dict objectForKey:@"praise"];
+        NSInteger praise = [[dict objectForKey:@"praise"] integerValue];
+        if (praise == 1) {
+            //没有赞
+            ((ModelPost *)_postListArray[index]).isPraise = 0;
+            ((ModelPost *)_postListArray[index]).praiseNum --;
+        }else{
+            ((ModelPost *)_postListArray[index]).isPraise = 1;
+            ((ModelPost *)_postListArray[index]).praiseNum ++;
+        }
         [_postListTableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
 - (void)prepareData{
+    _lastTime = 0;
     _postListArray = [NSMutableArray array];
     _bannerArray = [NSMutableArray array];
     //进行处理
-    [[XMHttpCommunity http] loadCommunityListWithType:self.postListType withTimeStamp:0 withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
-        ModelCommunity *community = [ModelCommunity modelWithJSON:response];
-        _postListArray = [NSMutableArray arrayWithArray:community.postList];
-        _bannerArray = [NSMutableArray arrayWithArray:community.banner];
-        [_postListTableView reloadData];
-        [_cycleScrollView reloadData];
+    [self loadDataWithTime:_lastTime withType:Refresh];
+}
+
+- (void)loadDataWithTime:(long long)time withType:(RefreshType)refreshType{
+    __weak typeof (self) weakSelf = self;
+    [[XMHttpCommunity http] loadCommunityListWithType:self.postListType withTimeStamp:time withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        if (code == 200) {
+            ModelCommunity *community = [ModelCommunity modelWithJSON:response];
+            //获取最后时间
+            weakSelf.lastTime = community.time;
+            weakSelf.isHasNext = community.hasNext;
+            if (refreshType == Refresh) {
+                [weakSelf.postListArray removeAllObjects];
+                [weakSelf.bannerArray removeAllObjects];
+                weakSelf.postListArray = [NSMutableArray arrayWithArray:community.postList];
+                weakSelf.bannerArray = [NSMutableArray arrayWithArray:community.banner];
+                if (weakSelf.bannerArray.count != 0) {
+                    weakSelf.postListTableView.tableHeaderView = weakSelf.cycleScrollView;
+                }
+            }else{
+                [_postListArray addObjectsFromArray:community.postList];
+                [_bannerArray addObjectsFromArray:community.banner];
+            }
+            [_postListTableView reloadData];
+            [_cycleScrollView reloadData];
+        }
+        [_postListTableView.mj_footer endRefreshing];
+        [_postListTableView.mj_header endRefreshing];
     }];
 }
 - (void)prepareUI{
@@ -113,8 +147,9 @@
         _postListTableView.showsVerticalScrollIndicator = NO;
         _postListTableView.showsHorizontalScrollIndicator = NO;
         // 上拉刷新和下拉加载
+        __weak typeof (self) weakSelf = self;
         _postListTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [_postListTableView.mj_header endRefreshing];
+            [weakSelf loadDataWithTime:0 withType:Refresh];
         }];
         MJRefreshNormalHeader *header = (MJRefreshNormalHeader *)_postListTableView.mj_header;
         header.stateLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
@@ -123,14 +158,18 @@
         header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
         
         _postListTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-            [_postListTableView.mj_footer endRefreshing];
+            if (_isHasNext) {
+                [weakSelf loadDataWithTime:_lastTime withType:Loading];
+            }else{
+               [[MLToast toastInView:self.view content:@"没有更多帖子了～"] show];
+                [_postListTableView.mj_footer endRefreshing];
+            }
         }];
         MJRefreshAutoNormalFooter *footer = (MJRefreshAutoNormalFooter *)_postListTableView.mj_footer;
         footer.stateLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
         footer.stateLabel.font = [UIFont systemFontOfSize:12];
         //设置为没有颜色
         _postListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _postListTableView.tableHeaderView = self.cycleScrollView;
         //进行列表的注册
         [_postListTableView registerNib:[UINib xmNibFromMainBundleWithName:@"PostListCell"] forCellReuseIdentifier:@"PostListCell"];
     }
@@ -142,7 +181,7 @@
         _cycleScrollView = [[ZXCycleScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 138.0)];
         _cycleScrollView.delegate = self;
         _cycleScrollView.datasource = self;
-        [_cycleScrollView changePageControlColor:[UIColor blackColor] :[UIColor whiteColor] ];
+        [_cycleScrollView changePageControlColor:[UIColor colorWithRed:245/255.0 green:244.0/255.0 blue:145.0/255.0 alpha:1]:[UIColor whiteColor]];
         //Timer不启动
         [_cycleScrollView.timer setFireDate:[NSDate distantFuture]];
     }
@@ -154,12 +193,19 @@
     PostListCell *postListCell = [tableView dequeueReusableCellWithIdentifier:@"PostListCell"];
     postListCell.selectionStyle = UITableViewCellSelectionStyleNone;
     __weak typeof(self) weakSelf = self;
-    postListCell.postViewOperationBlock = ^(NSInteger postId,OperationType operationType){
-        [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType];
+    postListCell.postViewOperationBlock = ^(NSInteger postId,OperationType operationType,NSInteger userCode){
+        [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType withUserCode:userCode];
     };
     
-    postListCell.postViewPraiseBlock = ^(NSInteger postId,NSInteger praise){
-        [weakSelf doPraiseWithId:postId WithPraise:praise];
+    postListCell.postViewPraiseBlock = ^(NSInteger postId,NSInteger userCode,NSInteger praise){
+        [weakSelf doPraiseWithId:postId withUserCode:userCode withPraise:praise];
+    };
+    postListCell.postViewGoSameTagListBlock = ^(ModelTag *modelTag){
+        [weakSelf gotoTagListWithTag:modelTag];
+    };
+    
+    postListCell.postViewGoHomePageBlock = ^(NSInteger userCode){
+        [weakSelf gotoHomePage:userCode];
     };
     postListCell.width = self.view.width;
     postListCell.modelPost = _postListArray[indexPath.row];
@@ -169,26 +215,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     //计算cell的高度
     ModelPost *modelPost = self.postListArray[indexPath.row];
-    NSString *contentStr = modelPost.content;
-    CGSize titleSize = [contentStr sizeWithFont:[UIFont systemFontOfSize:15.0] constrainedToSize:CGSizeMake(self.view.width - 20, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
-    
-    
-    NSInteger imageCount = modelPost.imgs.count;
-    NSInteger photoViewWidth = 0;
-    if (imageCount == 0) {
-        photoViewWidth = -20;
-    }else if(imageCount == 1){
-        photoViewWidth = self.view.width - 20;
-    }else if(imageCount == 2){
-        photoViewWidth = (self.view.width - 20 - 5) * 0.5;
-    }else if(imageCount == 3){
-        photoViewWidth = ceil((self.view.width - 20 - 5 * 2) /  3);
-    }else if(imageCount >3 && imageCount <= 6){
-        photoViewWidth = ceil((self.view.width - 20 - 5 * 2) /  3) * 2 + 5;
-    }else{
-       photoViewWidth = ceil((self.view.width - 20 - 5 * 2) /  3) * 3 + 5 * 2;
-    }
-    return 165.0f +  ceil(titleSize.height) + photoViewWidth;
+    return [ModelPost cellHeightWith:modelPost];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -198,13 +225,15 @@
 //点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ControllerReply *controllerReply = [ControllerReply shareControllerReply];
+    ModelPost *modelPost = _postListArray[indexPath.row];
+    controllerReply.postId = modelPost.postId;
     if(self.delegate){
         [((UIViewController *)self.delegate).navigationController pushViewController:controllerReply animated:YES];
     }
-
+    
 }
 
-- (void)operationBtnClickWithPostId:(NSInteger) postId withOperationType:(OperationType)operationType{
+- (void)operationBtnClickWithPostId:(NSInteger) postId withOperationType:(OperationType)operationType withUserCode:(NSInteger) userCode{
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"选择操作" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     NSString *operationStr = (operationType == OperationTypeDelete) ? @"删除":@"举报";
     NSString *messageStr = (operationType == OperationTypeDelete) ?@"嗨，确定要删除内容么?":@"嗨，确定要举报TA么?";
@@ -218,7 +247,7 @@
             if (operationType == OperationTypeDelete) {
                 [self deletePostWithId:postId];
             }else{
-                [self reportPostWithId:postId];
+                [self reportPostWithId:postId withUserCode:userCode];
             }
         }]];
         if (self.delegate) {
@@ -236,35 +265,57 @@
 
 #pragma mark 删除操作
 - (void)deletePostWithId:(NSInteger)postId{
-//    [[XMHttpCommunity http] deletePostWithId:postId withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
-//        if (code == 200) {
+    [[XMHttpCommunity http] deletePostWithId:postId withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        if (code == 200) {
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
             [dict setObject:[NSNumber numberWithInteger:postId] forKey:@"postId"];
             [dict setObject:@(0) forKey:@"operation"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
-//        }
-//    }];
+        }else{
+            [[MLToast toastInView:self.view content:@"删除失败了>_<"] show];
+        }
+        
+    }];
 }
 
 #pragma mark 举报操作
-- (void)reportPostWithId:(NSInteger)postId{
-    
+- (void)reportPostWithId:(NSInteger)postId withUserCode:(NSInteger) userCode{
+    [[XMHttpCommunity http] createReportWithPostId:postId withCommentId:-1 withUserCode:userCode withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        if (code == 200) {
+            [[MLToast toastInView:self.view content:@"举报成功了"] show];
+        }else{
+            [[MLToast toastInView:self.view content:@"举报失败了"] show];
+        }
+    }];
 }
 #pragma mark 进行点赞操作
-- (void)doPraiseWithId:(NSInteger)postId WithPraise:(NSInteger)praise{
+- (void)doPraiseWithId:(NSInteger)postId withUserCode:(NSInteger) userCode withPraise:(NSInteger)praise{
+    [[XMHttpCommunity http] praisePostWithId:postId withUserCode:userCode withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        if (code == 200) {
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            [dict setObject:[NSNumber numberWithInteger:postId] forKey:@"postId"];
+            [dict setObject:@(1) forKey:@"operation"];
+            [dict setObject:[NSNumber numberWithInteger:praise] forKey:@"praise"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
+        }else{
+            [[MLToast toastInView:self.view content:@"点赞失败了>_<"] show];
+            
+        }
+    }];
     
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:[NSNumber numberWithInteger:postId] forKey:@"postId"];
-    [dict setObject:@(1) forKey:@"operation"];
-    if (praise == 0) {
-        praise = 1;
-    }else{
-        praise = 0;
-    }
-    [dict setObject:[NSNumber numberWithInteger:praise] forKey:@"praise"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
 }
-#pragma mark 进行通知删除
+#pragma mark 进入个人主页
+- (void)gotoHomePage:(NSInteger)userCode{
+    ControllerMineMain *mainMain = [ControllerMineMain controllerWithUserCode:[NSString stringWithFormat:@"%ld",(long)userCode] getUserCodeFrom:MineMainGetUserCodeFromParam];
+    [((UIViewController *)self.delegate).navigationController pushViewController:mainMain animated:YES];
+}
+#pragma mark 进入相同的列表
+- (void)gotoTagListWithTag:(ModelTag *)modelTag{
+    ControllerSamePostList *samePostList = [ControllerSamePostList controllerSamePostList];
+    samePostList.titleName = modelTag.content;
+    samePostList.tagId = modelTag.tagId;
+    [((UIViewController *)self.delegate).navigationController pushViewController:samePostList animated:YES];
+}
 #pragma mark UIScrollViewDelegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
@@ -303,9 +354,6 @@
 - (UIView *)pageAtIndex:(NSInteger)index
 {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.cycleScrollView.bounds];
-    if (_bannerArray.count == 0 || index >= _bannerArray.count) {
-        return imageView;
-    }
     ModelAdvert *advert = _bannerArray[index];
     [imageView setImageWithURL:[NSURL URLWithString:advert.cover] placeholder:[UIImage imageNamed:@"biu_activty_img_1"]];
     return imageView;

@@ -48,7 +48,7 @@ static NSString * const kIdentifierCell = @"MatchPeopleCell";
     return _matchPeopleArray;
 }
 
-- (void)initDataWithTime:(long long)time withType:(MatchRefreshType)refreshType{
+- (void)initDataWithTime:(long long)time withType:(RefreshType)refreshType{
     XMHttpBiuBiu *xmHttpBiuBiu = [XMHttpBiuBiu http];
     __weak typeof(self) weakSelf = self;
     [xmHttpBiuBiu loadMatchUserWithCount:20 timestamp:time callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {

@@ -12,6 +12,10 @@
 #import "ModelImage.h"
 
 #import <YYKit/YYKit.h>
+#import "MJPhotoBrowser.h"
+#import "DBSchools.h"
+#import "UIColor+Plug.h"
+#import "UserDefultAccount.h"
 @interface PostListCell()
 /**
  *  头像视图
@@ -70,6 +74,7 @@
  */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentLabelHeight;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *departHeight;
 
 @end
 @implementation PostListCell
@@ -85,15 +90,17 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
 
 - (void)setModelPost:(ModelPost *)modelPost{
     _modelPost = modelPost;
+    _departHeight.constant = 20;
+    
     //进行清理
-     [_praiseBtn setBackgroundImage:nil forState:UIControlStateNormal];
+    [_praiseBtn setBackgroundImage:nil forState:UIControlStateNormal];
     [_photoView removeAllSubviews];
     //进行cell的赋值
     [_headPortraitImage setImageWithURL:[NSURL URLWithString:modelPost.userHead] placeholder:[UIImage imageNamed:@"photo_fail"]];
@@ -103,23 +110,25 @@
     
     _tagsLabel.text = [NSString stringWithFormat:@"#%@#",modelTag.content];
     _contentLabel.text = _modelPost.content;
-    _praiseLabel.text = (_modelPost.praiseNum) == 0 ? @"":[NSString stringWithFormat:@"赞%ld",(long)_modelPost.praiseNum];
-    _commentLabel.text = (_modelPost.commentNum) == 0 ? @"":[NSString stringWithFormat:@"评论%ld",(long)_modelPost.commentNum];
+    _collegeNameLabel.text = [self searchSchoolNameWithID:[_modelPost.userSchool integerValue]];
+    _praiseLabel.text = (_modelPost.praiseNum) == 0 ? @"":[NSString stringWithFormat:@"赞 %ld",(long)_modelPost.praiseNum];
+    _commentLabel.text = (_modelPost.commentNum) == 0 ? @"":[NSString stringWithFormat:@"评论 %ld",(long)_modelPost.commentNum];
     NSString *contentStr = modelPost.content;
-    CGSize titleSize = [contentStr sizeWithFont:[UIFont systemFontOfSize:15.0] constrainedToSize:CGSizeMake(self.width - 20, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize titleSize = [contentStr sizeWithFont:[UIFont systemFontOfSize:13.0] constrainedToSize:CGSizeMake(self.width - 20, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
     _commentLabelHeight.constant = ceil(titleSize.height);
     if (_modelPost.isPraise) {
-        [_praiseBtn setImage:[UIImage imageNamed:@"found_btn_like_light"] forState:UIControlStateNormal];
+        [_praiseBtn setImage:[[UIImage imageNamed:@"found_btn_like_light"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     }else{
-        [_praiseBtn setImage:[UIImage imageNamed:@"found_btn_like_normal"] forState:UIControlStateNormal];
+        [_praiseBtn setImage:[[UIImage imageNamed:@"found_btn_like_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     }
     
     
     //进行图片的排版布局
     NSInteger imageCount = _modelPost.imgs.count;
     NSInteger photoWidth = 0;
-    if (imageCount == 0) {
-        _photoViewHeight.constant = -20;
+    if (imageCount == 0 ) {
+        _departHeight.constant = 0;
+        _photoViewHeight.constant = 0;
     }else if(imageCount == 1){
         _photoViewHeight.constant = self.width - 20;
         photoWidth = self.width - 20;
@@ -129,31 +138,67 @@
     }else if(imageCount == 3){
         _photoViewHeight.constant = ceil((self.width - 20 - 5 * 2) /  3);
         photoWidth = (self.width - 20 - 5 * 2) / 3;
-    }else if(imageCount >3 && imageCount <= 6){
+    }
+    else if(imageCount >3 && imageCount <= 6){
         _photoViewHeight.constant = ceil((self.width - 20 - 5 * 2) /  3) * 2 + 5;
-         photoWidth = (self.width - 20 - 5 * 2) / 3;
+        photoWidth = (self.width - 20 - 5 * 2) / 3;
     }else{
         _photoViewHeight.constant = ceil((self.width - 20 - 5 * 2) /  3) * 3 + 5 * 2;
-         photoWidth = (self.width - 20 - 5 * 2) / 3;
+        photoWidth = (self.width - 20 - 5 * 2) / 3;
     }
     
     
     //进行页面的布局
+    //特殊布局
+    NSInteger number = 3;
+    if (imageCount == 4) {
+        number = 2;
+    }
     for (int index = 0; index < imageCount; index ++) {
-        NSInteger column = index % 3;
-        NSInteger  line = index / 3;
+        NSInteger column = index % number;
+        NSInteger  line = index / number;
         NSInteger x = (photoWidth + 5) * column;
         NSInteger y = (photoWidth + 5) * line;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, photoWidth, photoWidth)];
         //放开权限
         ModelImage *modelImage = _modelPost.imgs[index];
-        [imageView setImageWithURL:[NSURL URLWithString:modelImage.imageUrl] placeholder:[UIImage imageNamed:@"global_photo_load_fail"]];
+        imageView.tag = index;
+        
+        //对数据进行处理
+        NSString *newStr = [NSString stringWithFormat:@"%@@%ldh_%ldw_1e_1c",modelImage.imageUrl,(long)photoWidth,(long)photoWidth];
+        [imageView setImageWithURL:[NSURL URLWithString:newStr] placeholder:[UIImage imageNamed:@"global_photo_load_fail"]];
         imageView.userInteractionEnabled = YES;
+        [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)]];
+        imageView.clipsToBounds = YES;
+        imageView.contentMode = UIViewContentModeScaleToFill;
         [self.photoView addSubview:imageView];
     }
     
     [self.photoView layoutIfNeeded];
 }
+
+#pragma mark 进入对应的页面
+- (void)tapImage:(UITapGestureRecognizer *)tap
+{
+    int count = (int)_modelPost.imgs.count;
+    // 1.封装图片数据
+    NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+    for (int i = 0; i<count; i++) {
+        ModelImage *modelImage = _modelPost.imgs[i];
+        NSString *url = modelImage.imageUrl;
+        MJPhoto *photo = [[MJPhoto alloc] init];
+        photo.url = [NSURL URLWithString:url]; // 图片路径
+        photo.srcImageView = self.photoView.subviews[i]; // 来源于哪个UIImageView
+        [photos addObject:photo];
+    }
+    
+    // 2.显示相册
+    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+    browser.currentPhotoIndex = tap.view.tag; // 弹出相册时显示的第一张图片是？
+    browser.photos = photos; // 设置所有的图片
+    [browser show];
+}
+
 
 
 - (NSString *)createdAt:(long long)time
@@ -169,43 +214,59 @@
     // 判断是否为今年
     if (createDate.isThisYear) {
         NSDateComponents *cmps = [createDate deltaWithNow];
+        
         if (createDate.isToday) { // 今天
-            
-            if (cmps.hour >= 1) { // 至少是1小时前发的
-                return [NSString stringWithFormat:@"%ld小时前", (long)cmps.hour];
-            } else if (cmps.minute >= 1) { // 1~59分钟之前发的
-                return [NSString stringWithFormat:@"%ld分钟前", (long)cmps.minute];
-            } else { // 1分钟内发的
-                return @"刚刚";
-            }
-        } else if (cmps.day > 1 && cmps.day <= 7) { // 昨天
-            return [NSString stringWithFormat:@"%ld天前",(long)cmps.day];
-        } else if (cmps.day > 7){
-            fmt.dateFormat = @"MM月dd日";
+            fmt.dateFormat = @"HH:mm";
             return [fmt stringFromDate:createDate];
+        } else if (cmps.day == 1) { // 昨天
+            fmt.dateFormat = @"HH:mm";
+            return [NSString stringWithFormat:@"昨天 %@",[fmt stringFromDate:createDate]];
+        } else if (cmps.day == 2){
+            fmt.dateFormat = @"HH:mm";
+            [NSString stringWithFormat:@"前天 %@",[fmt stringFromDate:createDate]];
         }
+        fmt.dateFormat = @"MM-dd";
+        return [fmt stringFromDate:createDate];
     } else { // 非今年
-        fmt.dateFormat = @"yyyy年MM月dd日";
+        fmt.dateFormat = @"yyyy-MM-dd";
         return [fmt stringFromDate:createDate];
     }
     return nil;
 }
 
+- (NSString *)searchSchoolNameWithID:(NSInteger)schoolID{
+    DBSchools *dbSchools = [DBSchools shareInstance];
+    return [[dbSchools schoolWithID:schoolID] objectForKey:@"schoolName"];
+}
+
 - (IBAction)operationBtnClick:(id)sender {
     if (self.postViewOperationBlock) {
-        self.postViewOperationBlock(_modelPost.postId,OperationTypeDelete);
+        //进行判断，如果userCode和自己的userCode一致，就可以进行删除，不一致进行举报操作
+        if (_modelPost.userCode != [[UserDefultAccount userCode] integerValue]) {
+            self.postViewOperationBlock(_modelPost.postId,OperationTypeReport,_modelPost.userCode);
+        }else{
+            self.postViewOperationBlock(_modelPost.postId,OperationTypeDelete,_modelPost.userCode);
+        }
     }
 }
 
 
 - (IBAction)praiseBtnClick:(id)sender {
     if (self.postViewPraiseBlock) {
-        self.postViewPraiseBlock(_modelPost.postId,_modelPost.isPraise);
+        self.postViewPraiseBlock(_modelPost.postId,_modelPost.userCode,_modelPost.isPraise);
     }
 }
 
 
 - (void)tagsClick:(UIGestureRecognizer *)gesture{
-    NSLog(@"进入对应标签的列表");
+    if (self.postViewGoSameTagListBlock) {
+        ModelTag *modelTag = _modelPost.tags[0];
+        self.postViewGoSameTagListBlock(modelTag);
+    }
+}
+- (IBAction)goHomePage:(id)sender {
+    if (self.postViewGoHomePageBlock) {
+        self.postViewGoHomePageBlock(_modelPost.userCode);
+    }
 }
 @end

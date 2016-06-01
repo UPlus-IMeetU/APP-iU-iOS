@@ -14,7 +14,7 @@
 @property (nonatomic,copy) NSString *userName;
 @property (nonatomic,copy) NSString *userHead;
 @property (nonatomic,copy) NSString *userSchool;
-@property (nonatomic,assign) long long creatAt;
+@property (nonatomic,assign) long long createAt;
 @property (nonatomic,strong) NSArray *imgs;
 @property (nonatomic,copy) NSString *content;
 @property (nonatomic,assign) NSInteger praiseNum;
@@ -23,4 +23,6 @@
 //0 未读,1 已读
 @property (nonatomic,assign) BOOL isPraise;
 @property (nonatomic,strong) NSArray *tags;
+
++ (CGFloat) cellHeightWith:(ModelPost *)modelPost;
 @end

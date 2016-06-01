@@ -8,11 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ModelComment.h"
-typedef NS_ENUM(NSInteger,OperationType) {
-    OperationTypeDelete = 0,
-    OperationTypeReport = 1
-};
-typedef void (^ReplyOperationBlock) (NSInteger userCode,OperationType operationType);
+#import "EnumHeader.h"
+typedef void (^ReplyOperationBlock) (NSInteger userCode,OperationReplyType operationType);
 @interface CommunityReplyCell : UITableViewCell
 @property (nonatomic,copy) ReplyOperationBlock replyOperationBlock;
 @property (nonatomic,strong) ModelComment *modelComment;

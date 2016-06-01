@@ -38,20 +38,6 @@ typedef void(^XMHttpCallBackPostTxtImgCreate)(NSInteger code, NSString *postId, 
 
 - (void)searchPostTagWithStr:(NSString*)str num:(int)num callback:(XMHttpCallBackPostTagsSearch)callback;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - (void)createPostTagWithContent:(NSString*)content callback:(XMHttpCallBackPostTagsCreate)callback;
 
 - (void)releasePostTxtImgWithTags:(NSArray*)tags imgs:(NSArray*)imgs content:(NSString*)content callback:(XMHttpCallBackPostTxtImgCreate)callback;

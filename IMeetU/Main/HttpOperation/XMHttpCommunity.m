@@ -72,12 +72,29 @@
     }];
 }
 
+- (void)createReportWithPostId:(NSInteger) postId withCommentId:(NSInteger) commentId withUserCode: (NSInteger) userCode withCallBack:(XMHttpBlockStandard)callback{
+    NSString *url = [XMUrlHttp xmCreateReport];
+    NSDictionary *dict ;
+    if (postId == -1) {
+        dict = @{@"commentId":[NSNumber numberWithInteger:commentId],@"userCode":[NSNumber numberWithInteger:userCode]};
+    }else{
+        dict = @{@"postId":[NSNumber numberWithInteger:postId],@"userCode":[NSNumber numberWithInteger:userCode]};
+    }
+    NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:dict];
+    [self.httpManager POST:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
+        callback(response.state,response.data,task,nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callback(RESPONSE_CODE_ERR,nil,task,error);
+    }];
+}
+
 - (void)allPostTagWithTime:(long long)time postNum:(long long)postNum callback:(XMHttpCallBackPostTagsAll)callback{
     NSString *url = [XMUrlHttp xmPostTagsAll];
     NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{
-                             @"time":[NSNumber numberWithLongLong:time],
-                             @"postNum":[NSNumber numberWithLongLong:postNum]
-                             }];
+                                                                         @"time":[NSNumber numberWithLongLong:time],
+                                                                         @"postNum":[NSNumber numberWithLongLong:postNum]
+                                                                         }];
     [self NormalPOST:url parameters:param callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
         callback (code, [ModelTagsAll modelWithJSON:response], error);
     }];
@@ -121,7 +138,6 @@
                                                                          @"imgs":imgs,
                                                                          @"content":content
                                                                          }];
-    NSLog(@"=======>%@", [param modelToJSONString]);
     [self NormalPOST:url parameters:param callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
         if (code == 200) {
             NSString *postId = response[@"postId"];

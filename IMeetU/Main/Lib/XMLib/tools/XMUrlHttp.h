@@ -138,41 +138,42 @@
 
 /**
  *  获取社区首页的列表
- *
- *  @return 返回社区的地址
  */
 + (NSString *)xmGetCommunityList;
-
 /**
  *  获取帖子详情
- *
- *  @return 返回地址
  */
 + (NSString *)xmGetPostDetail;
-
 /**
  *  删除帖子
  */
 + (NSString *)xmDeletePost;
-
 /**
  *  点赞
  */
 + (NSString *)xmDoPraise;
-
+/**
+ *  根据标签ID获取列表
+ */
++ (NSString *)xmGetPostListWithTagId;
+/**
+ *  举报
+ */
++ (NSString *)xmCreateReport;
 /**
  * 所有帖子标签
  */
 + (NSString *)xmPostTagsAll;
-
 /**
- * 查询帖子
+ * 查询帖子标签
  */
 + (NSString*)xmPostTagsSearch;
 /**
- * 创建帖子
+ * 创建标签
  */
 + (NSString *)xmPostTagsCreate;
-
+/**
+ * 发布图文帖子
+ */
 + (NSString *)xmPostTxtImgRelease;
 @end

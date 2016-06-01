@@ -190,6 +190,14 @@
     return [XMUrlHttp connectWithComm:@"/app/community/praise/doPraise"];
 }
 
++ (NSString *)xmGetPostListWithTagId{
+    return [XMUrlHttp connectWithComm:@"/app/community/post/getPostListByTag"];
+}
+
++ (NSString *)xmCreateReport{
+    return [XMUrlHttp connectWithComm:@"/app/community/report/createReport"];
+}
+
 + (NSString *)xmPostTagsAll{
     return [XMUrlHttp connectWithComm:@"/app/community/tag/getTagList"];
 }

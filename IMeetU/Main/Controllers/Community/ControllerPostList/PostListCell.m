@@ -105,10 +105,15 @@
     //进行cell的赋值
     [_headPortraitImage setImageWithURL:[NSURL URLWithString:modelPost.userHead] placeholder:[UIImage imageNamed:@"photo_fail"]];
     _nickNameLabel.text = _modelPost.userName;
-    _timeLabel.text = [self createdAt:_modelPost.creatAt];
-    ModelTag *modelTag = _modelPost.tags[0];
-    
-    _tagsLabel.text = [NSString stringWithFormat:@"#%@#",modelTag.content];
+    _nickNameLabel.textColor = [_modelPost.userSex isEqualToString:@"1"] ? [UIColor often_8883BC:1] : [UIColor often_F06E7F:1];
+    _timeLabel.text = [self createdAt:_modelPost.createAt];
+    if (_modelPost.tags.count == 0) {
+        _tagsLabel.text = @"";
+    }else{
+        ModelTag *modelTag = _modelPost.tags[0];
+        _tagsLabel.text = [NSString stringWithFormat:@"#%@#",modelTag.content];
+        _tagsLabel.tag = modelTag.tagId + 10000;
+    }
     _contentLabel.text = _modelPost.content;
     _collegeNameLabel.text = [self searchSchoolNameWithID:[_modelPost.userSchool integerValue]];
     _praiseLabel.text = (_modelPost.praiseNum) == 0 ? @"":[NSString stringWithFormat:@"赞 %ld",(long)_modelPost.praiseNum];

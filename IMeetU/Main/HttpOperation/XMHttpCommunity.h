@@ -34,11 +34,33 @@ typedef void(^XMHttpCallBackPostTxtImgCreate)(NSInteger code, NSString *postId, 
 - (void)praisePostWithId:(NSInteger) postId withUserCode:(NSInteger)userCode withCallBack:(XMHttpBlockStandard)
     callback;
 
+- (void)getPostListWithId:(NSInteger) postId withTimeStamp:(long long)timeStamp withCallBack:(XMHttpBlockStandard)callback;
+
+- (void)createReportWithPostId:(NSInteger) postId withCommentId:(NSInteger) commentId withUserCode: (NSInteger) userCode withCallBack:(XMHttpBlockStandard)callback;
+
+/**
+ *  获取所有帖子列表/上来加载更多
+ *  @param 标签创建时间
+ *  @param 标签下帖子数量
+ */
 - (void)allPostTagWithTime:(long long)time postNum:(long long)postNum callback:(XMHttpCallBackPostTagsAll)callback;
 
+/**
+ *  搜索标签
+ *  @param 关键词
+ *  @param 标识（网络请求顺序）
+ */
 - (void)searchPostTagWithStr:(NSString*)str num:(int)num callback:(XMHttpCallBackPostTagsSearch)callback;
-
+/**
+ *  创建标签
+ *  @param 标签内容
+ */
 - (void)createPostTagWithContent:(NSString*)content callback:(XMHttpCallBackPostTagsCreate)callback;
-
+/**
+ *  发布帖子
+ *  @param 标签数组（标签id）
+ *  @param 图片数组（[{url:"", w:"", h""},....]）
+ *  @param 帖子文字内容
+ */
 - (void)releasePostTxtImgWithTags:(NSArray*)tags imgs:(NSArray*)imgs content:(NSString*)content callback:(XMHttpCallBackPostTxtImgCreate)callback;
 @end

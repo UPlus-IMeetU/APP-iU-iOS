@@ -12,5 +12,5 @@
 
 @property (nonatomic, copy) NSString *token;
 @property (nonatomic, strong) NSDictionary *userinfo;
-
+@property (nonatomic, assign) NSInteger code;
 @end

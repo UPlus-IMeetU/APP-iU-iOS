@@ -185,4 +185,6 @@
  *  删除评论
  */
 + (NSString *)xmDeleteComment;
+
++ (NSString *)xmGrabCommBiu;
 @end

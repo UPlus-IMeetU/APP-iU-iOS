@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ModelCommunityNotice;
+@protocol CellCommunityNotifiesDelegate;
 
 @interface CellCommunityNotifies : UITableViewCell
+
+@property (nonatomic, weak) id<CellCommunityNotifiesDelegate> delegateNotice;
+- (void)initWithModel:(ModelCommunityNotice*)model;
+
+@end
+@protocol CellCommunityNotifiesDelegate <NSObject>
+@optional
+- (void)cell:(CellCommunityNotifies*)cell userCode:(NSInteger)userCode;
+
+- (void)cell:(CellCommunityNotifies*)cell postId:(long long)postId;
 
 @end

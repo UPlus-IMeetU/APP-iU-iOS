@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface ModelCommunityNotice : NSObject
 
@@ -21,5 +22,7 @@
 @property (nonatomic, assign) long long postId;
 @property (nonatomic, copy) NSString *postImg;
 @property (nonatomic, copy) NSString *postContent;
+
+@property (nonatomic, assign) CGFloat cellHeight;
 
 @end

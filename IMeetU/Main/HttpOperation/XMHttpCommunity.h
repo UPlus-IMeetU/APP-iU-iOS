@@ -11,11 +11,14 @@
 #import "ModelTag.h"
 #import "ModelTagsAll.h"
 #import "ModelTagsSearch.h"
+#import "ModelCommunityNotifies.h"
 
 typedef void(^XMHttpCallBackPostTagsAll)(NSInteger code, ModelTagsAll *model, NSError *err);
 typedef void(^XMHttpCallBackPostTagsSearch)(NSInteger code, ModelTagsSearch *model, NSError *err);
 typedef void(^XMHttpCallBackPostTagsCreate)(NSInteger code, ModelTag *model, NSError *err);
 typedef void(^XMHttpCallBackPostTxtImgCreate)(NSInteger code, NSString *postId, NSError *err);
+typedef void(^XMHttpCallBackCommunityNotifies)(NSInteger code, ModelCommunityNotifies *notifies, NSError *err);
+
 typedef void(^XMHttpCallBackNormal) (NSInteger code,id response, NSError *error);
 
 @interface XMHttpCommunity : XMHttp
@@ -79,4 +82,15 @@ typedef void(^XMHttpCallBackNormal) (NSInteger code,id response, NSError *error)
 - (void)deleteCommentWithId:(NSInteger) commentId withCallBack:(XMHttpCallBackNormal)callback;
 
 - (void)grabCommBiuWithUserCode:(NSInteger) userCode withCallBack:(XMHttpBlockStandard)callback;
+
+/**
+ *  获取社区通知
+ * @param time 时间分页
+ */
+- (void)communityNitifiesWithTime:(long long)time callback:(XMHttpCallBackCommunityNotifies)callback;
+
+/**
+ * 清空通知消息
+ */
+- (void)communityCleanNitifiesWithCallback:(void(^)(NSInteger code, NSError *err))callback;
 @end

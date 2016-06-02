@@ -187,4 +187,10 @@
 + (NSString *)xmDeleteComment;
 
 + (NSString *)xmGrabCommBiu;
+/**
+ *  社区通知
+ */
++ (NSString *)xmCommunityNitifies;
+
++ (NSString *)xmCommunityNitifiesClean;
 @end

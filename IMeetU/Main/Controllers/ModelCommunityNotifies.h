@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+@class ModelCommunityNotice;
 
 @interface ModelCommunityNotifies : NSObject
 
@@ -14,4 +16,11 @@
 @property (nonatomic, assign) NSInteger hasNext;
 @property (nonatomic, strong) NSMutableArray *notifies;
 
+- (ModelCommunityNotice*)modelWithIndexPath:(NSIndexPath*)indexPath;
+- (NSInteger)numberOfRowsInSection;
+- (CGFloat)heightForRowAtIndexPath:(NSIndexPath*)indexPath;
+
+- (long long)lastNoficeCreateAt;
+
+- (void)additionalNoticeWithArr:(NSArray*)notifies;
 @end

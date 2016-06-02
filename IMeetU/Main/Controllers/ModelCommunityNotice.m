@@ -7,8 +7,20 @@
 //
 
 #import "ModelCommunityNotice.h"
+#import "UIScreen+Plug.h"
 
 @implementation ModelCommunityNotice
+
+- (CGFloat)cellHeight{
+    if (_cellHeight < 150) {
+        UILabel *l = [[UILabel alloc] init];
+        l.numberOfLines = 0;
+        l.text = self.desc;
+        CGSize size = [l sizeThatFits:CGSizeMake([UIScreen screenWidth]-83, CGFLOAT_MAX)];
+        _cellHeight = size.height+150;
+    }
+    return _cellHeight;
+}
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{

@@ -10,4 +10,6 @@
 
 @interface ControllerCommunityNotifies : UIViewController
 
++ (instancetype)controller;
+
 @end

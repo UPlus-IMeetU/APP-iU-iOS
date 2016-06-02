@@ -227,6 +227,13 @@
     return [XMUrlHttp connectWithComm:@"/app/community/combiu/grabComBiu"];
 }
 
++ (NSString *)xmCommunityNitifies{
+    return [XMUrlHttp connectWithComm:@"/app/community/notify/getNotifyList"];
+}
+
++ (NSString *)xmCommunityNitifiesClean{
+    return [XMUrlHttp connectWithComm:@"/app/community/notify/deletNotifies"];
+}
 + (NSString *)connectWithComm:(NSString *)operation{
     NSString *host = @"http://123.57.26.168:8080/meetu_community";
     return [NSString stringWithFormat:@"%@%@", host, operation];

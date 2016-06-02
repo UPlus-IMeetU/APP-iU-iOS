@@ -15,7 +15,7 @@
 #import "UIColor+Plug.h"
 #import <YYKit/YYKit.h>
 #import "ModelTag.h"
-
+#import "ControllerCommunityNotifies.h"
 
 @interface ControllerCommunity ()<ControllerPostListDelegate,SMPagerTabViewDelegate, ControllerPostTagsDelegate>
 @property (strong, nonatomic) SMPagerTabView *titleView;
@@ -130,6 +130,11 @@
         self.titleView.tabButtonFontSize = 15;
     }
     return _titleView;
+}
+
+- (IBAction)onClickBtnNotifies:(id)sender {
+    ControllerCommunityNotifies *controller = [ControllerCommunityNotifies controller];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)onClickBtnTags:(id)sender {

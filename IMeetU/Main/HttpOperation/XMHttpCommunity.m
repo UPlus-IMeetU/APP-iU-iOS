@@ -8,6 +8,7 @@
 
 #import "XMHttpCommunity.h"
 #import <YYKit/YYKit.h>
+#import "MJRefresh.h"
 
 @implementation XMHttpCommunity
 
@@ -188,4 +189,23 @@
     }];
 
 }
+
+- (void)communityNitifiesWithTime:(long long)time callback:(XMHttpCallBackCommunityNotifies)callback{
+    NSString *url = [XMUrlHttp xmCommunityNitifies];
+    NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{
+                                                                         @"time":[NSNumber numberWithLongLong:time]
+                                                                         }];
+    [self NormalPOST:url parameters:param callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        callback (code, [ModelCommunityNotifies modelWithJSON:response], error);
+    }];
+}
+
+- (void)communityCleanNitifiesWithCallback:(void (^)(NSInteger, NSError *))callback{
+    NSString *url = [XMUrlHttp xmCommunityNitifiesClean];
+    NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{}];
+    [self NormalPOST:url parameters:param callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        callback (code, error);
+    }];
+}
+
 @end

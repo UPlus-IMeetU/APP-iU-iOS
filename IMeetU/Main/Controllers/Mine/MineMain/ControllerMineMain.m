@@ -220,14 +220,14 @@
                 self.mineInfo.profileCircle = self.mineInfo.profileOrigin;
                 [self.labelNameNick setText:self.mineInfo.nameNick];
                 //进行状态的判定
-                NSInteger code = mineHeader.code;
-                if (code == 0) {
+                NSInteger biuCode = self.mineInfo.biuCode;
+                if (biuCode == 0) {
                     [_biuButton setTitle:@"抢biu" forState:UIControlStateNormal];
                     _biuButton.tag = 10001;
-                }else if (code == 1){
+                }else if (biuCode == 1){
                     [_biuButton setTitle:@"已抢biu过啦～" forState:UIControlStateNormal];
                     _biuButton.enabled = NO;
-                }else if(code == 2){
+                }else if(biuCode == 2){
                     [_biuButton setTitle:@"和TA聊聊" forState:UIControlStateNormal];
                     _biuButton.tag = 10002;
                 }

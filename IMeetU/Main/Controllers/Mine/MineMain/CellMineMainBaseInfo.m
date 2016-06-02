@@ -36,17 +36,20 @@
     indexPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
     
     self.selectionStyle = [self selectionStyleWithIsMine:isMine indexPath:indexPath];
-    
+    //是否显示cell右边的指示器
     self.imageViewArrow.hidden = [self isHiddenImgViewArrowWithIndexPath:indexPath isMine:isMine];
+    //cell内容右边距
     self.constraintLabelContentRight.constant = isMine?44:20;
     [self layoutIfNeeded];
-    
+    //cell标题
     [self.labelTitle setText:[self titleWithIndexPath:indexPath mineInfo:mineInfo]];
+    //设置cell的内容
     [self setLabelContentWithIndexPath:indexPath mineInfo:mineInfo];
+    //设置cell图标
     [self.imgViewTitle setImage:[self imgViewTitleWithIndexPath:indexPath]];
     
     //cell分割线
-    if (indexPath.section==2 && indexPath.row==7) {
+    if (indexPath.section==1 && indexPath.section==2 && indexPath.row==7) {
         self.viewSeparator.hidden = YES;
     }else if (indexPath.section==3 && indexPath.row==2){
         self.viewSeparator.hidden = YES;
@@ -97,7 +100,11 @@
 }
 
 - (NSString *)titleWithIndexPath:(NSIndexPath*)indexPath mineInfo:(ModelResponseMine *)mineInfo{
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1){
+        switch (indexPath.row) {
+            case 1:return @"个人动态";
+        }
+    }else if (indexPath.section == 2){
         switch (indexPath.row) {
             case 0:return @"昵称"; break;
             case 1:return @"性别"; break;
@@ -135,7 +142,11 @@
 - (UIImage*)imgViewTitleWithIndexPath:(NSIndexPath*)indexPath{
     UIImage *img = [[UIImage alloc] init];
     NSInteger row = indexPath.row;
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1){
+        if (row == 1){
+            return [UIImage imageNamed:@"mine_main_imageview_post"];
+        }
+    }else if (indexPath.section == 2) {
         if (row == 0) {
             return [UIImage imageNamed:@"mine_main_imageview_name"];
         }else if (row == 1){

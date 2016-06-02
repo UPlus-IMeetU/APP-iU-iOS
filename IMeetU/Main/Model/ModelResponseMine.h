@@ -39,5 +39,7 @@
 
 @property (nonatomic, assign) NSInteger userIdentifier;
 @property (nonatomic, assign) NSInteger biuCode;
+@property (nonatomic, assign) NSInteger totalNum;
+@property (nonatomic, assign) NSInteger todayNum;
 
 @end

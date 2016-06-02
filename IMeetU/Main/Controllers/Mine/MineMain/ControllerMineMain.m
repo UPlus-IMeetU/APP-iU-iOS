@@ -77,6 +77,7 @@
 #import "XMHttpCommunity.h"
 #import "MLToast.h"
 #import "ControllerChatMsg.h"
+#import "ControllerSamePostList.h"
 
 @interface ControllerMineMain ()<UITableViewDataSource, UITableViewDelegate, CellMineMainPersonalIntroductionsDelegate, CellMineMainProfileAndPhotosDelegate, ControllerMineAlterCharacterDelegate, ControllerMineAlterInterestDelegate, ViewMineMainAlterProfileDelegate, ControllerMineAlterNameDelegate, ControllerMineAlterBirthdayDelegate, ControllerMineAlterConstellationDelegate, ControllerMineAlterAboutMeDelegate, ControllerMineAlterAddressDelegate, ControllerMineAlterBodyHeightWeightDelegate, ControllerMineAlterIdentityProfessionDelegate, ControllerMineAlterCompanyDelegate, ControllerSelectSchoolDelegate, ControllerMinePhotoBrowseDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, XMActionSheetMineMainMoreDelegate>
 
@@ -326,7 +327,6 @@
     if (indexPath.section == 0) {
         CellMineMainProfileAndPhotos *cellProfileAndPhotos = [tableView dequeueReusableCellWithIdentifier:NibXMCellMineMainProfileAndPhotos forIndexPath:indexPath];
         [cellProfileAndPhotos initWithMine:self.mineInfo isMine:self.isMine isShowBtnBack:(self.getUserCodeFrom == MineMainGetUserCodeFromParam)];
-        
         cellProfileAndPhotos.delegateCell = self;
         cell = cellProfileAndPhotos;
     }else if (indexPath.section == 1){
@@ -402,6 +402,14 @@
 
 #pragma mark - tableView选中代理
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+     if (indexPath.section==1 && indexPath.row==2) {
+        //进入个人动态
+        ControllerSamePostList *controllerSamePostList = [ControllerSamePostList controllerSamePostList];
+        controllerSamePostList.isMyPostList = YES;
+        controllerSamePostList.userCode = [self.userCode integerValue];
+        controllerSamePostList.titleName = _isMine ? @"个人动态":@"TA的动态";
+        [self.navigationController pushViewController:controllerSamePostList animated:YES];
+     }
     if (!self.isMine) {
         return;
     }
@@ -410,8 +418,6 @@
         controller.delegateAlterAboutMe = self;
         //[controller setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:controller animated:YES];
-    }else if (indexPath.section==1 && indexPath.row==2) {
-        //=========================================
     }else if (indexPath.section==2 && indexPath.row==1) {
         ControllerMineAlterName *controller = [ControllerMineAlterName controllerMyAlterName:self.mineInfo.nameNick];
         controller.delegateAlterName = self;

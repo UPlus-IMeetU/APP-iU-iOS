@@ -227,6 +227,9 @@
     return [XMUrlHttp connectWithComm:@"/app/community/combiu/grabComBiu"];
 }
 
++ (NSString *)xmGetMyPostList{
+    return [XMUrlHttp connectWithComm:@"/app/community/post/getMyPostList"];
+}
 + (NSString *)connectWithComm:(NSString *)operation{
     NSString *host = @"http://123.57.26.168:8080/meetu_community";
     return [NSString stringWithFormat:@"%@%@", host, operation];

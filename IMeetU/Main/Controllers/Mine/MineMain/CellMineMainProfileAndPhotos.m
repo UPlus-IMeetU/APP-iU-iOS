@@ -18,6 +18,7 @@
 
 #import "ModelMinePhoto.h"
 #import "NSDate+plug.h"
+#import "UIColor+Plug.h"
 
 
 @interface CellMineMainProfileAndPhotos()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -29,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelNameNick;
 
 @property (weak, nonatomic) IBOutlet UIView *viewHisInfo;
+@property (weak, nonatomic) IBOutlet UIView *viewMyInfo;
 @property (weak, nonatomic) IBOutlet UILabel *labelDistance;
 @property (weak, nonatomic) IBOutlet UILabel *labelMatchScore;
 @property (weak, nonatomic) IBOutlet UILabel *labelActyTime;
@@ -47,6 +49,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnSetting;
 @property (weak, nonatomic) IBOutlet UIButton *btnMore;
 
+@property (weak, nonatomic) IBOutlet UILabel *totalNumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *todayNumLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintCollectionPhotoLeft;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintLabelPhotosEmptyLeft;
@@ -105,7 +109,7 @@
         }
     }
     self.viewHisInfo.hidden = isMine;
-    
+    self.viewMyInfo.hidden = !isMine;
     if (mine.profileStatus == 1) {
         self.viewProfileStatus.hidden = NO;
         self.labelProfileStatus.text = @"审核中";
@@ -114,6 +118,42 @@
     }else if (mine.profileStatus==4 || mine.profileStatus==5 || mine.profileStatus==6){
         self.viewProfileStatus.hidden = NO;
         self.labelProfileStatus.text = @"未通过";
+    }
+    if (isMine) {
+        NSString *todayNumStr;
+        if (self.mineInfo.todayNum < 10000) {
+            todayNumStr = [NSString stringWithFormat:@"%ld",(long)self.mineInfo.todayNum];
+        }else{
+            todayNumStr = [NSString stringWithFormat:@"%ldw+",(long)self.mineInfo.todayNum / 10000];
+        }
+        todayNumStr = [NSString stringWithFormat:@"今日访问:%@",todayNumStr];
+        
+        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:todayNumStr];
+        //进行范围设置
+        [attrStr addAttribute:NSForegroundColorAttributeName
+                        value: [UIColor often_FCFCC8:1]
+                        range:NSMakeRange(0,4)];
+        [attrStr addAttribute:NSForegroundColorAttributeName
+                        value: [UIColor often_FFFFFF:1]
+                        range:NSMakeRange(4,todayNumStr.length - 4)];
+        _todayNumLabel.attributedText = attrStr;
+        
+        NSString *totalNumStr ;
+        if (self.mineInfo.totalNum < 10000) {
+            totalNumStr = [NSString stringWithFormat:@"%ld",(long)self.mineInfo.totalNum];
+        }else{
+            totalNumStr = [NSString stringWithFormat:@"%ldw+",(long)self.mineInfo.totalNum / 10000];
+        }
+        totalNumStr = [NSString stringWithFormat:@"总访问:%@",totalNumStr];
+        attrStr = [[NSMutableAttributedString alloc] initWithString:totalNumStr];
+        //进行范围设置
+        [attrStr addAttribute:NSForegroundColorAttributeName
+                        value: [UIColor often_FCFCC8:1]
+                        range:NSMakeRange(0,3)];
+        [attrStr addAttribute:NSForegroundColorAttributeName
+                        value: [UIColor often_FFFFFF:1]
+                        range:NSMakeRange(3,totalNumStr.length - 3)];
+        _totalNumLabel.attributedText = attrStr;
     }
 }
 

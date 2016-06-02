@@ -73,10 +73,12 @@ typedef void(^XMHttpCallBackNormal) (NSInteger code,id response, NSError *error)
  *  @param content    评论或者回复的信息
  */
 - (void)createCommentWithPostId:(NSInteger)postId withParentId:(NSInteger)parentId withToUserCode:(NSInteger)toUserCode
-                    withContent:(NSString *)content callback:(XMHttpCallBackNormal)callback;
+                    withContent:(NSString *)content callback:(XMHttpBlockStandard)callback;
 
 
 - (void)deleteCommentWithId:(NSInteger) commentId withCallBack:(XMHttpCallBackNormal)callback;
 
 - (void)grabCommBiuWithUserCode:(NSInteger) userCode withCallBack:(XMHttpBlockStandard)callback;
+- (void)getMyPostListWithTime:(long long)time withUserCode:(NSInteger)userCode withCallBack:(XMHttpBlockStandard)callback;
+
 @end

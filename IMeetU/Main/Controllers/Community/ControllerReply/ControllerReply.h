@@ -14,6 +14,14 @@
  */
 @property (nonatomic,assign) NSUInteger postId;
 /**
+ *  不准跳转到详情页
+ */
+@property (nonatomic,assign) BOOL notGoSameList;
+/**
+ *  输入框
+ */
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+/**
  *  单例方法
  *
  *  @return 返回页面的单例对象

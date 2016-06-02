@@ -666,6 +666,7 @@
 		307DFDCAED0FA4E06183F229 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782115C93935C5E2EF970E47 /* Pods.framework */; };
 		6F0495AD1CE382F000FB36A9 /* ModelAdvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0495AC1CE382F000FB36A9 /* ModelAdvert.m */; };
 		6F1588721CEB16BF0007AA9E /* NSDate+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1588701CEB16BF0007AA9E /* NSDate+MJ.m */; };
+		6F351CDC1D0037D600EB11F8 /* ModelPraise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F351CDB1D0037D600EB11F8 /* ModelPraise.m */; };
 		6F45F92C1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F45F92B1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m */; };
 		6F4A48451CE3061200D91B4C /* AdvertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A48441CE3061200D91B4C /* AdvertController.m */; };
 		6F4A48481CE3082400D91B4C /* AdvertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A48471CE3082400D91B4C /* AdvertCell.m */; };
@@ -1813,6 +1814,8 @@
 		6F1588701CEB16BF0007AA9E /* NSDate+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MJ.m"; sourceTree = "<group>"; };
 		6F1588711CEB16BF0007AA9E /* NSDate+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+MJ.h"; sourceTree = "<group>"; };
 		6F1B62F01CFD6E4100C84892 /* EnumHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumHeader.h; sourceTree = "<group>"; };
+		6F351CDA1D0037D600EB11F8 /* ModelPraise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelPraise.h; sourceTree = "<group>"; };
+		6F351CDB1D0037D600EB11F8 /* ModelPraise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelPraise.m; sourceTree = "<group>"; };
 		6F45F92A1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
 		6F45F92B1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		6F4A48431CE3061200D91B4C /* AdvertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertController.h; sourceTree = "<group>"; };
@@ -4314,6 +4317,8 @@
 				044B3F611CFFC87D00E9E46F /* ModelCommunityNotifies.m */,
 				044B3F631CFFCC3D00E9E46F /* ModelCommunityNotice.h */,
 				044B3F641CFFCC3D00E9E46F /* ModelCommunityNotice.m */,
+				6F351CDA1D0037D600EB11F8 /* ModelPraise.h */,
+				6F351CDB1D0037D600EB11F8 /* ModelPraise.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -4826,6 +4831,7 @@
 				6FBC687E1CFBCE9D00B45657 /* ControllerReply.m in Sources */,
 				047519C11CA631CB009115CE /* BCBaseResult.m in Sources */,
 				6FBC68731CFBCE9300B45657 /* ControllerCommunity.m in Sources */,
+				6F351CDC1D0037D600EB11F8 /* ModelPraise.m in Sources */,
 				0492A3F11CC908F100659FFD /* UserDefultMsg.m in Sources */,
 				6FF1DEE71CE459D300A05C54 /* ModelActivityContents.m in Sources */,
 				04B7D5F01CDB5C3600D74C6D /* ViewBiuPayB.m in Sources */,

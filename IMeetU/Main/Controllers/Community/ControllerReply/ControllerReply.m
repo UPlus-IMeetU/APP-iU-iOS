@@ -35,7 +35,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *placeHolderLabel;
 @property (weak, nonatomic) IBOutlet UITableView *replyTableView;
 @property (strong,nonatomic) NSMutableArray *commentArray;
-@property (weak, nonatomic) IBOutlet UITextView *textView;
 //输入框
 @property (weak, nonatomic) IBOutlet UIView *inputView;
 //输入框的高度
@@ -81,7 +80,7 @@
 
 - (void)loadDataWithTime:(long long)time withRefreshType:(RefreshType)refreshType{
     __weak typeof (self) weakSelf = self;
-    [[XMHttpCommunity http] loadPostDetailWithPostId:self.postId withTimeStamp:0 withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+    [[XMHttpCommunity http] loadPostDetailWithPostId:self.postId withTimeStamp:time withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
         if (code == 200) {
             ModelPostDetail *modelPostDetail = [ModelPostDetail modelWithJSON:response];
             //创建视图
@@ -96,24 +95,27 @@
                 [weakSelf.commentArray removeAllObjects];
                 weakSelf.commentArray = [NSMutableArray arrayWithArray:modelPostDetail.commentList];
             }else{
-                weakSelf.commentArray = [NSMutableArray arrayWithObject:modelPostDetail.commentList];
+                [weakSelf.commentArray addObjectsFromArray:modelPostDetail.commentList];
             }
             
-            postCell.postViewCreateCommentBlock = ^(){
+            postCell.postViewCreateCommentBlock = ^(NSInteger postId){
                 [weakSelf.textView becomeFirstResponder];
             };
             postCell.postViewOperationBlock = ^(NSInteger postId,OperationType operationType,NSInteger userCode){
-//                [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType withUserCode:userCode];
-             
+                [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType withUserCode:userCode];
             };
             
             postCell.postViewPraiseBlock = ^(NSInteger postId,NSInteger userCode,NSInteger praise){
                 [weakSelf doPraiseWithId:postId withUserCode:userCode withPraise:praise];
             };
-            postCell.postViewGoSameTagListBlock = ^(ModelTag *modelTag){
-                [weakSelf gotoTagListWithTag:modelTag];
+            if (!_notGoSameList) {
+                postCell.postViewGoSameTagListBlock = ^(ModelTag *modelTag){
+                    [weakSelf gotoTagListWithTag:modelTag];
+                };
+            }
+            postCell.postViewGoHomePageBlock = ^(NSInteger userCode){
+                [weakSelf gotoHomePage:userCode];
             };
-
             _replyTableView.tableHeaderView = postCell;
             [_replyTableView reloadData];
         };
@@ -142,7 +144,8 @@
         if (!_isHasNext) {
             [weakSelf.replyTableView.mj_footer endRefreshingWithNoMoreData];
         }else{
-            [weakSelf.replyTableView.mj_footer endRefreshing];
+            ModelComment *modelComment = [_commentArray lastObject];
+            [weakSelf loadDataWithTime:modelComment.createAt withRefreshType:Loading];
         }
         
     }];
@@ -206,10 +209,10 @@
 - (void)textDidChanged:(NSNotification *)notif //监听文字改变 换行时要更改输入框的位置
 {
     NSString *textString = _textView.text;
-    CGSize titleSize = [textString sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(self.view.width - 40, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize titleSize = [textString sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(self.view.width - 30, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
     if (ceil(titleSize.height) + 13 > _inputViewHeight.constant) {
         [UIView animateWithDuration:0.1 animations:^{
-            _inputViewHeight.constant = ceil(titleSize.height) + 15 ;
+            _inputViewHeight.constant = ceil(titleSize.height) + 13 ;
             [self.view layoutIfNeeded];
         } completion:^(BOOL finished) {
             _textView.contentOffset = CGPointZero;
@@ -219,7 +222,7 @@
             if (ceil(titleSize.height) + 13 <= 43) {
                 _inputViewHeight.constant = 43;
             }else{
-                _inputViewHeight.constant = ceil(titleSize.height) + 15 ;
+                _inputViewHeight.constant = ceil(titleSize.height) + 13 ;
             }
             [self.view layoutIfNeeded];
         } completion:^(BOOL finished) {
@@ -242,6 +245,9 @@
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
+        if ([[self.textView.text stringByTrim] isEqualToString:@""]) {
+            return NO;
+        }
         //点击确定按钮了
         [self createComment];
         return NO;
@@ -260,27 +266,37 @@
     }
     toUserCode = _modelPost.userCode;
     __weak typeof(self) weakSelf = self;
-    [[XMHttpCommunity http] createCommentWithPostId:_modelPost.postId withParentId:parentId withToUserCode:toUserCode withContent:_textView.text callback:^(NSInteger code, NSString *postId, NSError *err) {
-        if (code == 200) {
-            [[MLToast toastInView:self.view content:@"评论成功了~"] show];
-            weakSelf.textView.text = @"";
-            [weakSelf.textView resignFirstResponder];
-            weakSelf.placeHolderLabel.text = @"你想说点什么...";
-            weakSelf.placeHolderLabel.hidden = NO;
-            weakSelf.selectedModelComment = nil;
-            [self loadDataWithTime:0 withRefreshType:Refresh];
-            
-            //进行通知
-            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            [dict setObject:[NSNumber numberWithInteger:_modelPost.postId] forKey:@"postId"];
-            [dict setObject:@(2) forKey:@"operation"];
-            [dict setObject:@(0) forKey:@"delete"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
-            //滑动到对应的位置
-            //_replyTableView.contentOffset = CGPointMake([], <#CGFloat y#>)
-        }else{
-            [[MLToast toastInView:self.view content:@"评论失败了~"] show];
-        }
+    [[XMHttpCommunity http] createCommentWithPostId:_modelPost.postId withParentId:parentId withToUserCode:toUserCode withContent:_textView.text callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+            if (code == 200) {
+                [[MLToast toastInView:self.view content:@"评论成功了~"] show];
+                weakSelf.textView.text = @"";
+                [weakSelf.textView resignFirstResponder];
+                weakSelf.placeHolderLabel.text = @"你想说点什么...";
+                weakSelf.placeHolderLabel.hidden = NO;
+                weakSelf.selectedModelComment = nil;
+                ModelComment *modelComment = [ModelComment modelWithJSON:[response objectForKey:@"comment"]];
+                [_commentArray insertObject:modelComment atIndex:0];
+                [_replyTableView reloadData];
+                
+                self.modelPost.commentNum ++;
+                [((PostListCell *)_replyTableView.tableHeaderView) setModelPost:self.modelPost];
+                
+                //进行通知
+                NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+                [dict setObject:[NSNumber numberWithInteger:_modelPost.postId] forKey:@"postId"];
+                [dict setObject:@(2) forKey:@"operation"];
+                [dict setObject:@(0) forKey:@"delete"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
+                
+                weakSelf.inputViewHeight.constant = 46;
+                [weakSelf.view layoutIfNeeded];
+                
+                //滑动到对应的位置
+                //_replyTableView.contentOffset = CGPointMake([], <#CGFloat y#>)
+            }else{
+                [[MLToast toastInView:self.view content:@"评论失败了~"] show];
+            }
+
     }];
 }
 #pragma mark UITableViewDelegate,UITableViewDataSource
@@ -399,6 +415,8 @@
 
                 [_commentArray removeObjectAtIndex:index];
                 [_replyTableView reloadData];
+                self.modelPost.commentNum --;
+                [((PostListCell *)_replyTableView.tableHeaderView) setModelPost:self.modelPost];
                 //发送通知
                 NSMutableDictionary *dict = [NSMutableDictionary dictionary];
                 [dict setObject:[NSNumber numberWithInteger:_modelPost.postId] forKey:@"postId"];
@@ -452,6 +470,14 @@
 - (void)doPraiseWithId:(NSInteger)postId withUserCode:(NSInteger) userCode withPraise:(NSInteger)praise{
     [[XMHttpCommunity http] praisePostWithId:postId withUserCode:userCode withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
         if (code == 200) {
+            
+            self.modelPost.isPraise = !self.modelPost.isPraise;
+            if (praise == 0) {
+                self.modelPost.praiseNum ++;
+            }else{
+                self.modelPost.praiseNum --;
+            }
+            [((PostListCell *)_replyTableView.tableHeaderView) setModelPost:self.modelPost];
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
             [dict setObject:[NSNumber numberWithInteger:postId] forKey:@"postId"];
             [dict setObject:@(1) forKey:@"operation"];

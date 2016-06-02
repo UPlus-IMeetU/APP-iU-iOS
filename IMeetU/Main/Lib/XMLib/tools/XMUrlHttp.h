@@ -187,4 +187,6 @@
 + (NSString *)xmDeleteComment;
 
 + (NSString *)xmGrabCommBiu;
+
++ (NSString *)xmGetMyPostList;
 @end

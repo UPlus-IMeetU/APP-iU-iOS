@@ -146,22 +146,24 @@
             callback (code, nil, error);
         }
     }];
+    
 }
 
 - (void)createCommentWithPostId:(NSInteger)postId withParentId:(NSInteger)parentId withToUserCode:(NSInteger)toUserCode
-                    withContent:(NSString *)content callback:(XMHttpCallBackNormal)callback{
+                    withContent:(NSString *)content callback:(XMHttpBlockStandard)callback{
     NSString *url = [XMUrlHttp xmCreateComment];
     NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{@"postId":[NSNumber numberWithInteger:postId],
                                                                          @"parentId":[NSNumber numberWithInteger:parentId],
                                                                          @"toUserCode":[NSNumber numberWithInteger:toUserCode],
                                                                          @"content":content}];
-    [self NormalPOST:url parameters:param callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
-        if (code == 200) {
-            callback(code,response,nil);
-        }else{
-            callback(code,nil,error);
-        }
+    [self.httpManager POST:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
+        callback(response.state,response.data,task,nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callback(RESPONSE_CODE_ERR,nil,task,error);
     }];
+
+    
 }
 - (void)deleteCommentWithId:(NSInteger) commentId withCallBack:(XMHttpCallBackNormal)callback{
     NSString *url = [XMUrlHttp xmDeleteComment];
@@ -180,6 +182,19 @@
 - (void)grabCommBiuWithUserCode:(NSInteger) userCode withCallBack:(XMHttpBlockStandard)callback{
     NSString *url = [XMUrlHttp xmGrabCommBiu];
     NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{@"userCode":[NSNumber numberWithInteger:userCode]}];
+    [self.httpManager POST:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
+        callback(response.state,response.data,task,nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callback(RESPONSE_CODE_ERR,nil,task,error);
+    }];
+
+}
+
+
+- (void)getMyPostListWithTime:(long long)time withUserCode:(NSInteger) userCode withCallBack:(XMHttpBlockStandard)callback{
+    NSString *url = [XMUrlHttp xmGetMyPostList];
+    NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{@"time":[NSNumber numberWithLongLong:time],@"userCode":[NSNumber numberWithInteger:userCode]}];
     [self.httpManager POST:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         ModelResponse *response = [ModelResponse responselWithObject:responseObject];
         callback(response.state,response.data,task,nil);

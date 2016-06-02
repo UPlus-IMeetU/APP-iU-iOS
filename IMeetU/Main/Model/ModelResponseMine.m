@@ -48,7 +48,8 @@
              @"distanceToTA":@"distance",
              @"matchScore":@"matching_score",
              @"actyTime":@"activity_time",
-             @"userIdentifier":@"superman"
+             @"userIdentifier":@"superman",
+             @"biuCode":@"code"
              };
 }
 

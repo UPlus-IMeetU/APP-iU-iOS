@@ -38,5 +38,6 @@
 @property (nonatomic, assign) NSInteger actyTime;
 
 @property (nonatomic, assign) NSInteger userIdentifier;
+@property (nonatomic, assign) NSInteger biuCode;
 
 @end

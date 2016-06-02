@@ -74,6 +74,10 @@
 
 #import "ControllerTabBarMain.h"
 
+#import "XMHttpCommunity.h"
+#import "MLToast.h"
+#import "ControllerChatMsg.h"
+
 @interface ControllerMineMain ()<UITableViewDataSource, UITableViewDelegate, CellMineMainPersonalIntroductionsDelegate, CellMineMainProfileAndPhotosDelegate, ControllerMineAlterCharacterDelegate, ControllerMineAlterInterestDelegate, ViewMineMainAlterProfileDelegate, ControllerMineAlterNameDelegate, ControllerMineAlterBirthdayDelegate, ControllerMineAlterConstellationDelegate, ControllerMineAlterAboutMeDelegate, ControllerMineAlterAddressDelegate, ControllerMineAlterBodyHeightWeightDelegate, ControllerMineAlterIdentityProfessionDelegate, ControllerMineAlterCompanyDelegate, ControllerSelectSchoolDelegate, ControllerMinePhotoBrowseDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, XMActionSheetMineMainMoreDelegate>
 
 @property (nonatomic, copy) NSString *userCode;
@@ -107,7 +111,7 @@
 @property (nonatomic, assign) BOOL userInfoIsLoaded;
 
 @property (nonatomic, assign) MineMainGetUserCodeFrom getUserCodeFrom;
-
+@property (nonatomic, strong) UIButton *biuButton;
 @end
 
 @implementation ControllerMineMain
@@ -148,6 +152,30 @@
     [self.labelNameNick setText:@""];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    if (!_isMine) {
+        if (self.tabBarController.tabBar.hidden) {
+            [self.view addSubview:self.biuButton];
+        }
+    }
+}
+
+- (void)biuButtonClick:(UIButton *)button{
+    //建立关系
+    if (button.tag == 10001) {
+        [[XMHttpCommunity http] grabCommBiuWithUserCode:[_userCode integerValue]  withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+            if (code == 200) {
+                [_biuButton setTitle:@"已抢biu过啦～" forState:UIControlStateNormal];
+            }else{
+                [[MLToast toastInView:self.view content:@"抢biu失败了"] show];
+            }
+        }];
+    }
+    //进入聊天页面
+    else if(button.tag == 10002){
+         ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:[NSString stringWithFormat:@"%lu", (long)_userCode] conversationType:EMConversationTypeChat backController:self];
+        [self.navigationController pushViewController:controllerChat animated:YES];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -191,7 +219,18 @@
                 self.mineInfo = [ModelResponseMine modelWithJSON:mineHeader.userinfo];
                 self.mineInfo.profileCircle = self.mineInfo.profileOrigin;
                 [self.labelNameNick setText:self.mineInfo.nameNick];
-                
+                //进行状态的判定
+                NSInteger code = mineHeader.code;
+                if (code == 0) {
+                    [_biuButton setTitle:@"抢biu" forState:UIControlStateNormal];
+                    _biuButton.tag = 10001;
+                }else if (code == 1){
+                    [_biuButton setTitle:@"已抢biu过啦～" forState:UIControlStateNormal];
+                    _biuButton.enabled = NO;
+                }else if(code == 2){
+                    [_biuButton setTitle:@"和TA聊聊" forState:UIControlStateNormal];
+                    _biuButton.tag = 10002;
+                }
                 [self.tableView reloadData];
                 
                 if ((!self.mineInfo.school || self.mineInfo.school.length==0) && self.isMine){
@@ -419,18 +458,6 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-//#pragma mark - tableView滚动回调：状态栏背景显示/隐藏
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    if (scrollView.contentOffset.y>([CellMineMainProfileAndPhotos viewHeaderHeight]-20) && self.viewStateBarBackgroundView.alpha==0) {
-//        [UIView animateWithDuration:0.3 animations:^{
-//            self.viewStateBarBackgroundView.alpha = 1;
-//        }];
-//    }else if(scrollView.contentOffset.y<([CellMineMainProfileAndPhotos viewHeaderHeight]-20) && self.viewStateBarBackgroundView.alpha==1){
-//        [UIView animateWithDuration:0.3 animations:^{
-//            self.viewStateBarBackgroundView.alpha = 0;
-//        }];
-//    }
-//}
 
 #pragma mark - 个人介绍：展开关闭按钮回调
 - (void)cellMineMainPersonalIntroductions:(CellMineMainPersonalIntroductions *)cell isOpen:(BOOL)isOpen{
@@ -916,4 +943,17 @@
     return _userCode;
 }
 
+
+- (UIButton *)biuButton{
+    if (!_biuButton) {
+        _biuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _biuButton.frame = CGRectMake(0, self.view.frame.size.height - 49, self.view.frame.size.width, 49);
+        [_biuButton setBackgroundColor:[UIColor often_6CD1C9:1]];
+        [_biuButton setTitle:@"抢biu" forState:UIControlStateNormal];
+        [_biuButton setTintColor:[UIColor whiteColor]];
+        [_biuButton addTarget:self action:@selector(biuButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_biuButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    }
+    return _biuButton;
+}
 @end

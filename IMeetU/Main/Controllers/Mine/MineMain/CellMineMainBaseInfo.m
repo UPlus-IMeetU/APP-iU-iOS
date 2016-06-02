@@ -53,6 +53,11 @@
     }else{
         self.viewSeparator.hidden = NO;
     }
+    
+    //判断是否可以发biu
+    UIButton *biuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    biuButton.frame = CGRectMake(0, self.frame.size.width - 49, self.frame.size.width , 49);
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

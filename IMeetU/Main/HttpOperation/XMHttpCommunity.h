@@ -77,4 +77,6 @@ typedef void(^XMHttpCallBackNormal) (NSInteger code,id response, NSError *error)
 
 
 - (void)deleteCommentWithId:(NSInteger) commentId withCallBack:(XMHttpCallBackNormal)callback;
+
+- (void)grabCommBiuWithUserCode:(NSInteger) userCode withCallBack:(XMHttpBlockStandard)callback;
 @end

@@ -25,6 +25,8 @@
 #import "UserDefultAccount.h"
 #import "EnumHeader.h"
 #import "ControllerMineMain.h"
+#import "ControllerSamePostList.h"
+#import "ControllerMineMain.h"
 
 @interface ControllerReply ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 /**
@@ -100,6 +102,18 @@
             postCell.postViewCreateCommentBlock = ^(){
                 [weakSelf.textView becomeFirstResponder];
             };
+            postCell.postViewOperationBlock = ^(NSInteger postId,OperationType operationType,NSInteger userCode){
+//                [weakSelf operationBtnClickWithPostId:postId withOperationType:operationType withUserCode:userCode];
+             
+            };
+            
+            postCell.postViewPraiseBlock = ^(NSInteger postId,NSInteger userCode,NSInteger praise){
+                [weakSelf doPraiseWithId:postId withUserCode:userCode withPraise:praise];
+            };
+            postCell.postViewGoSameTagListBlock = ^(ModelTag *modelTag){
+                [weakSelf gotoTagListWithTag:modelTag];
+            };
+
             _replyTableView.tableHeaderView = postCell;
             [_replyTableView reloadData];
         };
@@ -260,7 +274,7 @@
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
             [dict setObject:[NSNumber numberWithInteger:_modelPost.postId] forKey:@"postId"];
             [dict setObject:@(2) forKey:@"operation"];
-            [dict setObject:@(0) forKey:@"isDelete"];
+            [dict setObject:@(0) forKey:@"delete"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
             //滑动到对应的位置
             //_replyTableView.contentOffset = CGPointMake([], <#CGFloat y#>)
@@ -279,9 +293,9 @@
     replyCell.modelComment = _commentArray[indexPath.row];
     replyCell.replyOperationBlock = ^(NSInteger commentId,NSInteger userCode){
         if ([[UserDefultAccount userCode] integerValue] == userCode) {
-              [weakSelf operationBtnClickWithPostId:commentId withOperationType:OperationCommentDelete];
+              [weakSelf operationBtnClickWithPostId:commentId withOperationType:OperationCommentDelete withUserCode:nil];
         }else{
-            [weakSelf operationBtnClickWithPostId:commentId withOperationType:OperationCommentReport];
+            [weakSelf operationBtnClickWithPostId:commentId withOperationType:OperationCommentReport withUserCode:userCode];
         }
     };
     
@@ -324,7 +338,7 @@
 - (IBAction)backBtnClick:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (void)operationBtnClickWithPostId:(NSInteger) postId withOperationType:(OperationType)operationType{
+- (void)operationBtnClickWithPostId:(NSInteger) postId withOperationType:(OperationType)operationType withUserCode:(NSInteger) userCode{
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"选择操作" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     NSString *operationStr = @"";
     if (operationType == OperationTypeDelete || operationType == OperationCommentDelete) {
@@ -349,7 +363,7 @@
             if (operationType == OperationTypeDelete || operationType == OperationCommentDelete) {
                 [self deletePostWithId:postId withOperationType:operationType];
             }else{
-                [self reportPostWithId:postId withOperationType:operationType];
+                [self reportPostWithId:postId withOperationType:operationType withUserCode:userCode];
             }
         }]];
         [self presentViewController:alertController animated:YES completion:nil];
@@ -389,7 +403,7 @@
                 NSMutableDictionary *dict = [NSMutableDictionary dictionary];
                 [dict setObject:[NSNumber numberWithInteger:_modelPost.postId] forKey:@"postId"];
                 [dict setObject:@(2) forKey:@"operation"];
-                [dict setObject:@(1) forKey:@"isDelete"];
+                [dict setObject:@(1) forKey:@"delete"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
                 
             }else{
@@ -411,9 +425,56 @@
         }];
     }
 }
-- (void)reportPostWithId:(NSInteger)postId withOperationType:(OperationType)operation{
+- (void)reportPostWithId:(NSInteger)postId withOperationType:(OperationType)operation withUserCode:(NSInteger) userCode{
+    if (operation == OperationCommentReport) {
+        [[XMHttpCommunity http] createReportWithPostId:-1 withCommentId:postId withUserCode:userCode withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+            if (code == 200) {
+                [[MLToast toastInView:self.view content:@"评论举报成功了"] show];
+            }else{
+                [[MLToast toastInView:self.view content:@"评论举报失败了"] show];
+            }
+        }];
+    }else{
+        [[XMHttpCommunity http] createReportWithPostId:postId withCommentId:-1 withUserCode:userCode withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+            if (code == 200) {
+                [[MLToast toastInView:self.view content:@"举报成功了"] show];
+            }else{
+                [[MLToast toastInView:self.view content:@"举报失败了"] show];
+            }
+        }];
+        
+    }
+}
+
+
+
+#pragma mark 进行点赞操作
+- (void)doPraiseWithId:(NSInteger)postId withUserCode:(NSInteger) userCode withPraise:(NSInteger)praise{
+    [[XMHttpCommunity http] praisePostWithId:postId withUserCode:userCode withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        if (code == 200) {
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            [dict setObject:[NSNumber numberWithInteger:postId] forKey:@"postId"];
+            [dict setObject:@(1) forKey:@"operation"];
+            [dict setObject:[NSNumber numberWithInteger:praise] forKey:@"praise"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"postStatusChange" object:dict];
+        }else{
+            [[MLToast toastInView:self.view content:@"点赞失败了>_<"] show];
+            
+        }
+    }];
     
-    
+}
+#pragma mark 进入个人主页
+- (void)gotoHomePage:(NSInteger)userCode{
+    ControllerMineMain *mainMain = [ControllerMineMain controllerWithUserCode:[NSString stringWithFormat:@"%ld",(long)userCode] getUserCodeFrom:MineMainGetUserCodeFromParam];
+    [self.navigationController pushViewController:mainMain animated:YES];
+}
+#pragma mark 进入相同的列表
+- (void)gotoTagListWithTag:(ModelTag *)modelTag{
+    ControllerSamePostList *samePostList = [ControllerSamePostList controllerSamePostList];
+    samePostList.titleName = modelTag.content;
+    samePostList.tagId = modelTag.tagId;
+    [self.navigationController pushViewController:samePostList animated:YES];
 }
 
 

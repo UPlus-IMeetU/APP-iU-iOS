@@ -8,15 +8,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="132" id="KGk-i7-Jjw" customClass="CellMineMainPersonalIntroductions">
-            <rect key="frame" x="0.0" y="0.0" width="332" height="138"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="110" id="KGk-i7-Jjw" customClass="CellMineMainPersonalIntroductions">
+            <rect key="frame" x="0.0" y="0.0" width="332" height="116"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="332" height="137.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="332" height="115.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEM-z1-c2H">
-                        <rect key="frame" x="282" y="121" width="30" height="16"/>
+                        <rect key="frame" x="282" y="99" width="30" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="2Pq-Dr-afq"/>
                         </constraints>
@@ -27,27 +27,38 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_main_cell_accessory" translatesAutoresizingMaskIntoConstraints="NO" id="VzT-Jq-vGM">
-                        <rect key="frame" x="307" y="63" width="5" height="11"/>
+                        <rect key="frame" x="307" y="52.5" width="5" height="11"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="5" id="PIC-LL-29C"/>
                             <constraint firstAttribute="height" constant="11" id="QNt-N3-Z3q"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在这里介绍一下自己咯，关于爱情、关于成长、关于生活的种种......你想着什么样的人，最终会遇到什么样的人。So，给每一位来到这里的TA送上你的祝福。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDy-2r-FxT">
-                        <rect key="frame" x="10" y="16" width="278" height="105"/>
+                        <rect key="frame" x="10" y="16" width="278" height="83"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PuQ-dq-AGP">
+                        <rect key="frame" x="40" y="115" width="275" height="0.5"/>
+                        <color key="backgroundColor" red="0.97254901959999995" green="0.96470588239999999" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="nnk-sC-oWn"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="vDy-2r-FxT" secondAttribute="trailing" constant="44" id="8Vb-xe-p1g"/>
+                    <constraint firstItem="PuQ-dq-AGP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="EnA-Pk-5kU"/>
                     <constraint firstAttribute="trailing" secondItem="sEM-z1-c2H" secondAttribute="trailing" constant="20" id="IJ0-Ho-dlB"/>
+                    <constraint firstAttribute="bottom" secondItem="PuQ-dq-AGP" secondAttribute="bottom" id="JIX-ED-ie6"/>
                     <constraint firstItem="vDy-2r-FxT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Kko-o1-Kes"/>
+                    <constraint firstAttribute="trailing" secondItem="PuQ-dq-AGP" secondAttribute="trailing" constant="17" id="U6E-nh-YVw"/>
                     <constraint firstAttribute="trailing" secondItem="VzT-Jq-vGM" secondAttribute="trailing" constant="20" id="UvS-E6-566"/>
                     <constraint firstItem="vDy-2r-FxT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Xm8-Gs-Oti"/>
                     <constraint firstItem="sEM-z1-c2H" firstAttribute="top" secondItem="vDy-2r-FxT" secondAttribute="bottom" id="Yd7-bU-9gT"/>
                     <constraint firstAttribute="bottomMargin" secondItem="sEM-z1-c2H" secondAttribute="bottom" constant="-7.5" id="ajX-vU-huX"/>
+                    <constraint firstItem="VzT-Jq-vGM" firstAttribute="leading" secondItem="PuQ-dq-AGP" secondAttribute="trailing" id="cuP-zc-QIs"/>
                     <constraint firstItem="sEM-z1-c2H" firstAttribute="top" secondItem="vDy-2r-FxT" secondAttribute="bottom" id="jQY-Lm-dDY"/>
                     <constraint firstItem="VzT-Jq-vGM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kvX-Se-T9I"/>
                     <constraint firstItem="vDy-2r-FxT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="tS5-ge-uEY"/>
@@ -55,6 +66,7 @@
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="Kko-o1-Kes"/>
+                        <exclude reference="cuP-zc-QIs"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -63,7 +75,7 @@
                 <outlet property="imgViewArrow" destination="VzT-Jq-vGM" id="vQV-IQ-UnM"/>
                 <outlet property="labelContent" destination="vDy-2r-FxT" id="sUI-9z-KBW"/>
             </connections>
-            <point key="canvasLocation" x="180" y="308"/>
+            <point key="canvasLocation" x="180" y="297"/>
         </tableViewCell>
     </objects>
     <resources>

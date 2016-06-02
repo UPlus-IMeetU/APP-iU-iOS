@@ -263,7 +263,7 @@
     if (section == 0) {
         return 1;
     }else if (section == 1){
-        return 2;
+        return 3;
     }else if (section == 2){
         return 8;
     }else if (section == 3){
@@ -285,8 +285,11 @@
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
             return 35;
+        }else if (indexPath.row == 1){
+            return [CellMineMainPersonalIntroductions viewHeightWithContent:self.mineInfo.aboutMe isOpen:self.isOpen isMine:self.isMine];
+        }else if (indexPath.row == 2){
+            return [CellMineMainBaseInfo viewHeight];
         }
-        return [CellMineMainPersonalIntroductions viewHeightWithContent:self.mineInfo.aboutMe isOpen:self.isOpen isMine:self.isMine];
     }else if (indexPath.section == 2){
         if (indexPath.row == 0) {
             return 35;
@@ -331,11 +334,15 @@
             CellMineMainTableViewHeader *cellHeader = [tableView dequeueReusableCellWithIdentifier:NibXMCellMineMainTableViewHeader forIndexPath:indexPath];
             [cellHeader initWithSection:indexPath.section];
             cell = cellHeader;
-        }else{
+        }else if(indexPath.row == 1){
             CellMineMainPersonalIntroductions *cellPersonalIntroductions = [tableView dequeueReusableCellWithIdentifier:NibXMCellMineMainPersonalIntroductions forIndexPath:indexPath];
             [cellPersonalIntroductions initWithContent:self.mineInfo.aboutMe isOpen:self.isOpen isMine:self.isMine];
             cellPersonalIntroductions.delegateCell = self;
             cell = cellPersonalIntroductions;
+        }else if (indexPath.row == 2){
+            CellMineMainBaseInfo *cellBaseInfo = [tableView dequeueReusableCellWithIdentifier:NibXMCellMineMainBaseInfo forIndexPath:indexPath];
+            [cellBaseInfo initWithIsMine:self.isMine indexPath:indexPath mineInfo:nil];
+            cell = cellBaseInfo;
         }
     }else if (indexPath.section == 2){
         if (indexPath.row == 0) {
@@ -403,6 +410,8 @@
         controller.delegateAlterAboutMe = self;
         //[controller setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:controller animated:YES];
+    }else if (indexPath.section==1 && indexPath.row==2) {
+        //=========================================
     }else if (indexPath.section==2 && indexPath.row==1) {
         ControllerMineAlterName *controller = [ControllerMineAlterName controllerMyAlterName:self.mineInfo.nameNick];
         controller.delegateAlterName = self;

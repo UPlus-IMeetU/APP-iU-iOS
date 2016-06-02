@@ -141,7 +141,11 @@
 
 - (IBAction)onClickBtnPostRelease:(id)sender {
     ControllerPostRelease *controller = [ControllerPostRelease controller];
-    [self.navigationController pushViewController:controller animated:YES];
+    //[self.navigationController pushViewController:controller animated:NO];
+    
+    [self addChildViewController:controller];
+    [self.view addSubview:controller.view];
+    self.tabBarController.tabBar.hidden = YES;
 }
 
 - (void)controllerPostTags:(ControllerPostTags *)controller model:(ModelTag *)model{

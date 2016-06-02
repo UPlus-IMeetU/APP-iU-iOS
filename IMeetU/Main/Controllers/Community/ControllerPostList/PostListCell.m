@@ -105,7 +105,7 @@
         ModelTag *modelTag = _modelPost.tags[0];
         _tagsLabel.text = [NSString stringWithFormat:@"#%@#",modelTag.content];
         _tagsLabel.tag = modelTag.tagId + 10000;
-    }
+    } 
     _contentLabel.text = _modelPost.content;
     _collegeNameLabel.text = [self searchSchoolNameWithID:[_modelPost.userSchool integerValue]];
     _praiseLabel.text = (_modelPost.praiseNum) == 0 ? @"":[NSString stringWithFormat:@"赞 %ld",(long)_modelPost.praiseNum];

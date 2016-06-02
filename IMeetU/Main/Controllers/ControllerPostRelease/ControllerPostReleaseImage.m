@@ -34,7 +34,10 @@
 @property (nonatomic, strong) ModelTag *tagModel;
 @property (nonatomic, strong) NSArray *photos;
 @property (nonatomic, strong) NSMutableArray *photosModelReq;
-
+/**
+ *  发帖时间
+ */
+@property (nonatomic, copy) NSString *timepost;
 @end
 
 @implementation ControllerPostReleaseImage
@@ -110,6 +113,7 @@
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.color = [UIColor colorWithR:0 G:0 B:0 A:0.7];
         hud.minSize = CGSizeMake(100, 100);
+        self.timepost = [NSString stringWithFormat:@"%lu", [NSDate currentTimeMillisSecond]];
         [self releasePostWithImgIndex:0 hud:hud];
     }else if (!self.tagModel){
         [[MLToast toastInView:self.view content:@"请选择话题"] show];
@@ -164,7 +168,7 @@
         hud.labelText = [NSString stringWithFormat:@"%li/%li", index+1, self.photos.count];
         
         UIImage *img = self.photos[index];
-        NSString *fileName = [NSString stringWithFormat:@"community/post/img/%@_%li_%li.jpeg", [UserDefultAccount userCode], [NSDate currentTimeMillisSecond], index];
+        NSString *fileName = [NSString stringWithFormat:@"community/post/img/%@_%@_%li.jpeg", [UserDefultAccount userCode], self.timepost, index];
         [self.photosModelReq addObject:@{
                                          @"url":fileName,
                                          @"w":[NSNumber numberWithFloat:img.size.width],
@@ -173,8 +177,14 @@
         
         [XMOSS uploadFileWithData:UIImageJPEGRepresentation(img, 0.8) fileName:fileName progress:^(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend) {
             hud.progress = totalByteSent/1.0/totalBytesExpectedToSend;
+            
         } finish:^id(OSSTask *task, NSString *fileName) {
-            [self releasePostWithImgIndex:index+1 hud:hud];
+            if (task.error) {
+                [self releasePostWithImgIndex:index+1 hud:hud];
+            }else{
+                [hud xmSetCustomModeWithResult:NO label:@"图片上传失败"];
+                [hud hide:YES afterDelay:0.3];
+            }
             return nil;
         }];
     }else{

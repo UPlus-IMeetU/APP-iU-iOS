@@ -8,6 +8,16 @@
 
 #import "CellBiuMe.h"
 
+@interface CellBiuMe()
+
+@property (weak, nonatomic) IBOutlet UIButton *btnProfile;
+@property (weak, nonatomic) IBOutlet UILabel *labelNameNick;
+@property (weak, nonatomic) IBOutlet UILabel *labelAge;
+@property (weak, nonatomic) IBOutlet UILabel *labelConstellation;
+@property (weak, nonatomic) IBOutlet UILabel *labelSchool;
+
+
+@end
 @implementation CellBiuMe
 
 - (void)awakeFromNib {

@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -16,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ng6-Kh-Qkt">
-                        <rect key="frame" x="24" y="7" width="46" height="46"/>
+                        <rect key="frame" x="16" y="7" width="46" height="46"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="46" id="hHg-mX-jAc"/>
                             <constraint firstAttribute="height" constant="46" id="qSF-Di-pm6"/>
@@ -27,10 +26,10 @@
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2p-ny-iuu">
-                        <rect key="frame" x="79" y="0.0" width="241" height="61"/>
+                        <rect key="frame" x="71" y="0.0" width="249" height="61"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LT9-hp-8G9">
-                                <rect key="frame" x="157" y="0.0" width="84" height="61"/>
+                                <rect key="frame" x="165" y="0.0" width="84" height="61"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xfc-qg-jhC">
                                         <rect key="frame" x="10" y="11.5" width="64" height="38"/>
@@ -84,7 +83,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujr-zN-3Hd">
-                                <rect key="frame" x="0.0" y="10" width="157" height="42"/>
+                                <rect key="frame" x="0.0" y="10" width="165" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAW-Vh-cxA">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="18"/>
@@ -93,7 +92,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D1w-cq-aNZ">
-                                        <rect key="frame" x="0.0" y="27" width="157" height="14.5"/>
+                                        <rect key="frame" x="0.0" y="27" width="165" height="14.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24岁" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wp-re-DJI">
                                                 <rect key="frame" x="0.0" y="0.0" width="27" height="15"/>
@@ -155,7 +154,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5o-QF-dgf">
-                                <rect key="frame" x="0.0" y="60.5" width="241" height="0.5"/>
+                                <rect key="frame" x="0.0" y="60.5" width="249" height="0.5"/>
                                 <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="C6X-CK-0z4"/>
@@ -181,7 +180,7 @@
                     <constraint firstItem="Ng6-Kh-Qkt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LYb-LC-DKH"/>
                     <constraint firstAttribute="bottom" secondItem="I2p-ny-iuu" secondAttribute="bottom" id="T2T-nj-IaL"/>
                     <constraint firstItem="I2p-ny-iuu" firstAttribute="leading" secondItem="Ng6-Kh-Qkt" secondAttribute="trailing" constant="9" id="o3C-G0-PfS"/>
-                    <constraint firstItem="Ng6-Kh-Qkt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="qia-mz-h2t"/>
+                    <constraint firstItem="Ng6-Kh-Qkt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="qia-mz-h2t"/>
                     <constraint firstAttribute="trailing" secondItem="I2p-ny-iuu" secondAttribute="trailing" id="ug6-zl-qeG"/>
                 </constraints>
             </tableViewCellContentView>
@@ -195,7 +194,7 @@
                 <outlet property="labelSchool" destination="iLy-t5-tci" id="fsN-uh-bJ2"/>
                 <outlet property="labelStatus" destination="km4-dZ-6wG" id="NDb-zi-HZn"/>
             </connections>
-            <point key="canvasLocation" x="259" y="404.5"/>
+            <point key="canvasLocation" x="330" y="354.5"/>
         </tableViewCell>
     </objects>
     <resources>

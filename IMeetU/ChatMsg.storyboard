@@ -47,6 +47,9 @@
                                                     <constraint firstAttribute="width" constant="60" id="EYG-jm-BCU"/>
                                                 </constraints>
                                                 <state key="normal" image="global_navigation_back_ffffff"/>
+                                                <connections>
+                                                    <action selector="onClickBtnBack:" destination="jte-gS-s8w" eventType="touchUpInside" id="c2l-GN-fgW"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="biu我的人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcx-4M-YKa">
                                                 <rect key="frame" x="263" y="11" width="74.5" height="21"/>
@@ -62,6 +65,9 @@
                                                 <state key="normal" title="清空">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onClickBtnClean:" destination="jte-gS-s8w" eventType="touchUpInside" id="Ac3-uX-8va"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.42352941179999998" green="0.81960784310000001" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -114,6 +120,10 @@
                             <constraint firstItem="ihe-ey-hJf" firstAttribute="leading" secondItem="8Zi-Ld-2Hy" secondAttribute="leading" id="nni-wD-Yt4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableViewBiuMe" destination="0b7-aa-uNx" id="lsy-Hn-VB0"/>
+                        <outlet property="viewMain" destination="S0O-OV-T8G" id="Ozc-TY-SBq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2B1-Zo-nBT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

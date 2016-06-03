@@ -7,6 +7,7 @@
 //
 
 #import "XMHttp.h"
+#import "ModelsBiuMe.h"
 
 @interface XMHttpChat : XMHttp
 
@@ -18,4 +19,9 @@
  */
 - (void)xmUnfriendYouWithUserCode:(NSString*)userCode block:(XMHttpBlockStandard)block;
 
+- (void)getBiuMeListWithTime:(long long)time callback:(void(^)(NSInteger code, ModelsBiuMe *models, NSError *err))callback;
+
+- (void)acceptBiuMeWithCode:(NSInteger)usercode callback:(void(^)(NSInteger code, NSString *token, NSError* err))callback;
+
+- (void)cleanBiuMeWithCallback:(void(^)(NSInteger code, NSString *token, NSError* err))callback;
 @end

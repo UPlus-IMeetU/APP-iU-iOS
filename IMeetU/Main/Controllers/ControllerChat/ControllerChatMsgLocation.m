@@ -25,7 +25,7 @@
 @implementation ControllerChatMsgLocation
 
 + (instancetype)controllerWithLatitude:(float)latitude longitude:(float)longitude{
-    ControllerChatMsgLocation *controller = [UIStoryboard xmControllerWithName:xmStoryboardNameMsg indentity:@"ControllerChatMsgLocation"];
+    ControllerChatMsgLocation *controller = [UIStoryboard xmControllerWithName:xmStoryboardNameChatMsg indentity:@"ControllerChatMsgLocation"];
     controller.latitude = latitude;
     controller.longitude = longitude;
     

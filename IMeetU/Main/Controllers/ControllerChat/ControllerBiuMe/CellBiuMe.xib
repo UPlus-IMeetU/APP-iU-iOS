@@ -21,6 +21,9 @@
                             <constraint firstAttribute="width" constant="46" id="txd-xH-wVK"/>
                         </constraints>
                         <state key="normal" backgroundImage="global_profile_defult"/>
+                        <connections>
+                            <action selector="onClickBtnProfile:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wp0-ke-uqk"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AMz-n6-ssN">
                         <rect key="frame" x="71" y="0.0" width="249" height="61"/>
@@ -39,6 +42,9 @@
                                         <state key="normal" title="接受">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onClickBtnAccept:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZRb-AD-1nZ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -163,6 +169,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="btnAccept" destination="XnP-3e-Jea" id="olg-0b-kCU"/>
                 <outlet property="btnProfile" destination="gJE-Q3-0Sf" id="9pf-Zw-Kky"/>
                 <outlet property="labelAge" destination="Q9E-CG-jKz" id="H8K-GO-9m4"/>
                 <outlet property="labelConstellation" destination="Ki3-D0-111" id="wpo-Wd-rs8"/>

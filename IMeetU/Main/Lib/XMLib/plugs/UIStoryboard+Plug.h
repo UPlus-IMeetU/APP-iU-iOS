@@ -14,7 +14,6 @@
 #define xmStoryboardNameChatMsg @"ChatMsg"
 #define xmStoryboardNameBuiBui @"BiuBiu"
 #define xmStoryboardNameSetting @"Setting"
-#define xmStoryboardNameMsg @"Msg"
 #define xmStoryboardNameCommunity @"Community"
 
 @interface UIStoryboard(Plug)

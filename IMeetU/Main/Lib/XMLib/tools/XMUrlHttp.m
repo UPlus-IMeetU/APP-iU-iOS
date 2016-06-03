@@ -243,6 +243,18 @@
     return [XMUrlHttp connectWithComm:@"/app/overall/getStatus"];
 }
 
++ (NSString *)xmBiuMeListGet{
+    return [XMUrlHttp connectWithComm:@"/app/community/combiu/getComBiuList"];
+}
+
++ (NSString *)xmBiuMeListClean{
+    return [XMUrlHttp connectWithComm:@"/app/community/combiu/deleteComBiu"];
+}
+
++ (NSString *)xmBiuMeListAccept{
+    return [XMUrlHttp connectWithComm:@"/app/community/combiu/acceptComBiu"];
+}
+
 + (NSString *)connectWithComm:(NSString *)operation{
     NSString *host = @"http://123.57.26.168:8080/meetu_community";
     return [NSString stringWithFormat:@"%@%@", host, operation];

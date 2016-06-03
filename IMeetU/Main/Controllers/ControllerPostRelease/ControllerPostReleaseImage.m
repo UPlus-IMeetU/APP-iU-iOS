@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *textViewContent;
 @property (weak, nonatomic) IBOutlet UILabel *labelCountdown;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionViewImages;
+@property (weak, nonatomic) IBOutlet UIView *viewMain;
 
 @property (nonatomic, strong) ModelTag *tagModel;
 @property (nonatomic, strong) NSArray *photos;
@@ -110,7 +111,7 @@
     [self.textViewContent resignFirstResponder];
     
     if (self.tagModel && self.photos && self.photos.count) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewMain animated:YES];
         hud.color = [UIColor colorWithR:0 G:0 B:0 A:0.7];
         hud.minSize = CGSizeMake(100, 100);
         self.timepost = [NSString stringWithFormat:@"%lu", [NSDate currentTimeMillisSecond]];
@@ -179,10 +180,11 @@
             hud.progress = totalByteSent/1.0/totalBytesExpectedToSend;
             
         } finish:^id(OSSTask *task, NSString *fileName) {
-            if (task.error) {
+            if (!task.error) {
                 [self releasePostWithImgIndex:index+1 hud:hud];
             }else{
                 [hud xmSetCustomModeWithResult:NO label:@"图片上传失败"];
+                NSLog(@"============>%@", task.error);
                 [hud hide:YES afterDelay:0.3];
             }
             return nil;

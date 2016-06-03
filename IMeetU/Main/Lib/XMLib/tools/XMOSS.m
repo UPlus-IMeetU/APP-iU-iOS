@@ -93,26 +93,24 @@
 }
 
 + (void)uploadFileWithData:(NSData *)data fileName:(NSString *)fileName progress:(void (^)(int64_t, int64_t, int64_t))progress finish:(id (^)(OSSTask *, NSString *))finish{
-    [self ossClientWithBlock:^(OSSClient *client, BOOL res) {
-        if (res) {
-            OSSPutObjectRequest * put = [[OSSPutObjectRequest alloc] init];
-            
-            put.objectKey = fileName;
-            put.bucketName = @"protect-app";
-            
-            put.uploadingData = data;
-            
-            put.uploadProgress = progress;
-            
-            OSSTask * putTask = [client putObject:put];
-            [putTask continueWithBlock:^id(OSSTask *task) {
-                return finish(task, fileName);
-            }];
-        }else{
-            OSSTask *task = [OSSTask taskWithError:[NSError errorWithDomain:@"获取客户端失败" code:0 userInfo:nil]];
-            finish (task, nil);
-        }
+    
+    NSString *endpoint = @"http://oss-cn-beijing.aliyuncs.com";
+    id<OSSCredentialProvider> credential = [[OSSPlainTextAKSKPairCredentialProvider alloc] initWithPlainTextAccessKey:@"XWp6VLND94vZ8WNJ" secretKey:@"DSi9RRCv4bCmJQZOOlnEqCefW4l1eP"];
+    OSSClient *client = [[OSSClient alloc] initWithEndpoint:endpoint credentialProvider:credential];
+    OSSPutObjectRequest * put = [[OSSPutObjectRequest alloc] init];
+    
+    put.objectKey = fileName;
+    put.bucketName = @"protect-app";
+    
+    put.uploadingData = data;
+    
+    put.uploadProgress = progress;
+    
+    OSSTask * putTask = [client putObject:put];
+    [putTask continueWithBlock:^id(OSSTask *task) {
+        return finish(task, fileName);
     }];
+    
 }
 
 + (void)ossClientWithBlock:(void(^)(OSSClient *client, BOOL res))block{
@@ -128,7 +126,7 @@
         ModelResponse *response = [ModelResponse responselWithObject:responseObject];
         if (response.state == 200) {
             ModelResponseOSSSecurityToke *ossToken = [ModelResponseOSSSecurityToke modelWithJSON:response.data];
-            id<OSSCredentialProvider> credential = [[OSSStsTokenCredentialProvider alloc] initWithAccessKeyId:ossToken.accessKeyId secretKeyId:ossToken.secretKeyId securityToken:ossToken.securityToken];;
+            id<OSSCredentialProvider> credential = [[OSSStsTokenCredentialProvider alloc] initWithAccessKeyId:ossToken.accessKeyId secretKeyId:ossToken.secretKeyId securityToken:ossToken.securityToken];
             OSSClient *client = [[OSSClient alloc] initWithEndpoint:endpoint credentialProvider:credential];
             block(client, YES);
         }else{

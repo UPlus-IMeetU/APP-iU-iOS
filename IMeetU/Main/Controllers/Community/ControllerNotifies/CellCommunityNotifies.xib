@@ -37,14 +37,14 @@
                                             <action selector="onClickBtnUserProfile:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="02M-Tk-vcO"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CIJ-Qg-B7Q">
-                                        <rect key="frame" x="3" y="3" width="8" height="8"/>
-                                        <color key="backgroundColor" red="1" green="0.35961094799999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2W4-6p-dao">
+                                        <rect key="frame" x="3" y="3" width="6" height="6"/>
+                                        <color key="backgroundColor" red="0.42352941179999998" green="0.81960784310000001" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="8" id="tKY-M7-j5g"/>
-                                            <constraint firstAttribute="height" constant="8" id="vD1-hc-gfg"/>
+                                            <constraint firstAttribute="width" constant="6" id="1nI-qp-Tb4"/>
+                                            <constraint firstAttribute="height" constant="6" id="bWd-dn-lNT"/>
                                         </constraints>
-                                    </imageView>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEY-be-blg">
                                         <rect key="frame" x="42" y="0.0" width="35.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -58,7 +58,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbz-OG-yzj">
-                                        <rect key="frame" x="379.5" y="0.0" width="23" height="13.5"/>
+                                        <rect key="frame" x="375" y="0.0" width="23" height="13.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -66,17 +66,17 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="fAZ-DT-wj2" firstAttribute="top" secondItem="PIF-Z1-7He" secondAttribute="top" id="9Ln-ja-Ujo"/>
+                                    <constraint firstItem="2W4-6p-dao" firstAttribute="top" secondItem="PIF-Z1-7He" secondAttribute="top" constant="3" id="FS2-wl-epF"/>
                                     <constraint firstItem="QEY-be-blg" firstAttribute="top" secondItem="PIF-Z1-7He" secondAttribute="top" id="MHw-nW-3cH"/>
                                     <constraint firstAttribute="height" constant="35" id="N4f-Tf-JCG"/>
                                     <constraint firstItem="fAZ-DT-wj2" firstAttribute="leading" secondItem="PIF-Z1-7He" secondAttribute="leading" constant="2" id="QQs-G2-hW5"/>
                                     <constraint firstAttribute="bottom" secondItem="fAZ-DT-wj2" secondAttribute="bottom" id="UVD-bt-0w1"/>
-                                    <constraint firstItem="CIJ-Qg-B7Q" firstAttribute="top" secondItem="PIF-Z1-7He" secondAttribute="top" constant="3" id="XwM-0h-9d1"/>
                                     <constraint firstItem="Tbz-OG-yzj" firstAttribute="top" secondItem="PIF-Z1-7He" secondAttribute="top" id="fAS-2j-2Mq"/>
                                     <constraint firstItem="vmN-Pn-Prq" firstAttribute="leading" secondItem="fAZ-DT-wj2" secondAttribute="trailing" constant="5" id="iiB-yD-5nM"/>
-                                    <constraint firstAttribute="trailing" secondItem="Tbz-OG-yzj" secondAttribute="trailing" id="sJD-ro-qRg"/>
-                                    <constraint firstItem="CIJ-Qg-B7Q" firstAttribute="leading" secondItem="PIF-Z1-7He" secondAttribute="leading" constant="3" id="sva-pi-l40"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tbz-OG-yzj" secondAttribute="trailing" constant="5" id="sJD-ro-qRg"/>
                                     <constraint firstAttribute="bottom" secondItem="vmN-Pn-Prq" secondAttribute="bottom" id="tdW-WP-yp9"/>
                                     <constraint firstItem="QEY-be-blg" firstAttribute="leading" secondItem="fAZ-DT-wj2" secondAttribute="trailing" constant="5" id="ujX-28-vvU"/>
+                                    <constraint firstItem="2W4-6p-dao" firstAttribute="leading" secondItem="PIF-Z1-7He" secondAttribute="leading" constant="3" id="ulS-h0-tjg"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="noticeContent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wa3-58-2jG">
@@ -154,12 +154,12 @@
                 <outlet property="btnProfile" destination="fAZ-DT-wj2" id="lMi-Pu-07v"/>
                 <outlet property="constraintPostContentMarginLeft" destination="qe6-PN-T3B" id="mWf-Ud-TBs"/>
                 <outlet property="imgViewPostCover" destination="HSy-Eh-xIi" id="7hX-bY-md9"/>
-                <outlet property="imgViewUnread" destination="CIJ-Qg-B7Q" id="3ie-Sg-Ipt"/>
                 <outlet property="labelNameNick" destination="QEY-be-blg" id="MbK-Cg-zmO"/>
                 <outlet property="labelNoticeContent" destination="Wa3-58-2jG" id="fJs-TX-9bJ"/>
                 <outlet property="labelPostContent" destination="bZA-Zx-b06" id="UaH-Gt-maa"/>
                 <outlet property="labelSchool" destination="vmN-Pn-Prq" id="c0Q-ci-0RE"/>
                 <outlet property="labelTime" destination="Tbz-OG-yzj" id="qPz-1p-gPW"/>
+                <outlet property="viewUnread" destination="2W4-6p-dao" id="5lq-jC-XYW"/>
             </connections>
             <point key="canvasLocation" x="254.5" y="433.5"/>
         </tableViewCell>

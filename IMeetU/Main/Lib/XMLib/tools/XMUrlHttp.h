@@ -201,4 +201,10 @@
  *  获取程序全局状态
  */
 + (NSString *)xmGetAppGlobalStatus;
+
++ (NSString *)xmBiuMeListGet;
+
++ (NSString *)xmBiuMeListClean;
+
++ (NSString *)xmBiuMeListAccept;
 @end

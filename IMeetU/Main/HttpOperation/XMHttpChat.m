@@ -7,6 +7,7 @@
 //
 
 #import "XMHttpChat.h"
+#import <YYKit/YYKit.h>
 
 @implementation XMHttpChat
 
@@ -35,4 +36,34 @@
     }];
 }
 
+- (void)getBiuMeListWithTime:(long long)time callback:(void (^)(NSInteger, ModelsBiuMe *, NSError *))callback{
+    NSString *url = [XMUrlHttp xmBiuMeListGet];
+    NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{
+                                                                         @"time":[NSNumber numberWithLongLong:time]
+                                                                         }];
+    
+    [self NormalPOST:url parameters:param callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        callback (code, [ModelsBiuMe modelWithJSON:response], error);
+    }];
+}
+
+- (void)acceptBiuMeWithCode:(NSInteger)usercode callback:(void (^)(NSInteger, NSString *, NSError *))callback{
+    NSString *url = [XMUrlHttp xmBiuMeListAccept];
+    NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{
+                                                                         @"userCode":[NSNumber numberWithInteger:usercode]
+                                                                             }];
+    
+    [self NormalPOST:url parameters:param callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        callback (code, response[@"token"], error);
+    }];
+}
+
+- (void)cleanBiuMeWithCallback:(void (^)(NSInteger, NSString *, NSError *))callback{
+    NSString *url = [XMUrlHttp xmBiuMeListClean];
+    NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{}];
+    
+    [self NormalPOST:url parameters:param callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        callback (code, response[@"token"], error);
+    }];
+}
 @end

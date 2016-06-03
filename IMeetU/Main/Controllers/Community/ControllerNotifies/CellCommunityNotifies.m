@@ -10,11 +10,11 @@
 #import "ModelCommunityNotice.h"
 #import <YYKit/YYKit.h>
 #import "DBSchools.h"
-
+#import "NSDate+plug.h"
 
 @interface CellCommunityNotifies()
 
-@property (weak, nonatomic) IBOutlet UIImageView *imgViewUnread;
+@property (weak, nonatomic) IBOutlet UIView *viewUnread;
 @property (weak, nonatomic) IBOutlet UIButton *btnProfile;
 @property (weak, nonatomic) IBOutlet UILabel *labelNameNick;
 @property (weak, nonatomic) IBOutlet UILabel *labelSchool;
@@ -38,16 +38,20 @@
     self.labelPostContent.text = @"";
     
     self.selectionStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.viewUnread.layer.cornerRadius = 3;
+    self.viewUnread.layer.masksToBounds = YES;
 }
 
 - (void)initWithModel:(ModelCommunityNotice*)model{
     self.model = model;
-    self.imgViewUnread.hidden = model.isRead;
+    self.viewUnread.hidden = model.isRead;
     [self.btnProfile setBackgroundImageWithURL:[NSURL URLWithString:model.userProfile] forState:UIControlStateNormal placeholder:[UIImage imageNamed:@""]];
     [self.labelNameNick setText:model.userName];
     [self.labelSchool setText:[[DBSchools shareInstance] schoolNameWithID:[model.userSchool integerValue]]];
     [self.labelNoticeContent setText:model.desc];
     
+    [self.labelTime setText:[[NSDate dateWithTimeIntervalSince1970:model.createAt] xmTimeTextOfDate]];
     if (!model.postImg || model.postImg.length<1) {
         self.imgViewPostCover.hidden = YES;
         self.constraintPostContentMarginLeft.constant = 10;
@@ -71,6 +75,8 @@
 - (IBAction)onClickBtnPost:(id)sender {
     if (self.delegateNotice) {
         if ([self.delegateNotice respondsToSelector:@selector(cell:postId:)]) {
+            self.model.isRead = YES;
+            self.viewUnread.hidden = YES;
             [self.delegateNotice cell:self postId:self.model.postId];
         }
     }

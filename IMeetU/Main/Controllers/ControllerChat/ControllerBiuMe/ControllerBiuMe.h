@@ -10,4 +10,6 @@
 
 @interface ControllerBiuMe : UIViewController
 
++ (instancetype)controller;
+
 @end

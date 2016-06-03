@@ -45,6 +45,8 @@
 #import "ViewChatMsgBtnBiu.h"
 #import "UserDefultAppGlobalStatus.h"
 
+#import "ControllerBiuMe.h"
+
 @interface ControllerDrawerRight ()<EaseConversationListViewControllerDelegate, EaseConversationListViewControllerDataSource, ViewDrawerRightLoginRegisterDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) UIView *networkStateView;
@@ -558,6 +560,10 @@
         self.test = 9;
         _viewBtnBiu = [ViewChatMsgBtnBiu viewWithCallback:^{
             [_viewBtnBiu setNumber:0];
+            [UserDefultAppGlobalStatus setCountOfBiuMe:0];
+            
+            ControllerBiuMe *controller = [ControllerBiuMe controller];
+            [self.navigationController pushViewController:controller animated:YES];
         }];
     }
     return _viewBtnBiu;

@@ -54,6 +54,14 @@
  */
 @property (weak, nonatomic) IBOutlet UIButton *praiseBtn;
 /**
+ *  详细的内容
+ */
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+/**
+ *  点赞的人数
+ */
+@property (weak, nonatomic) IBOutlet UILabel *praiseLabel;
+/**
  *  评论按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
@@ -108,8 +116,8 @@
     } 
     _contentLabel.text = _modelPost.content;
     _collegeNameLabel.text = [self searchSchoolNameWithID:[_modelPost.userSchool integerValue]];
-    _praiseLabel.text = (_modelPost.praiseNum) == 0 ? @"":[NSString stringWithFormat:@"赞 %ld",(long)_modelPost.praiseNum];
-    _commentLabel.text = (_modelPost.commentNum) == 0 ? @"":[NSString stringWithFormat:@"评论 %ld",(long)_modelPost.commentNum];
+    _praiseLabel.text = [NSString stringWithFormat:@"赞 %ld",(long)_modelPost.praiseNum];
+    _commentLabel.text = [NSString stringWithFormat:@"评论 %ld",(long)_modelPost.commentNum];
     NSString *contentStr = modelPost.content;
     CGSize titleSize = [contentStr sizeWithFont:[UIFont systemFontOfSize:13.0] constrainedToSize:CGSizeMake(self.width - 20, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
     _commentLabelHeight.constant = ceil(titleSize.height);
@@ -268,7 +276,7 @@
 }
 - (IBAction)createComment:(id)sender {
     if (self.postViewCreateCommentBlock) {
-        self.postViewCreateCommentBlock();
+        self.postViewCreateCommentBlock(_modelPost.postId);
     }
 }
 @end

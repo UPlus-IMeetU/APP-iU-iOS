@@ -150,7 +150,7 @@
 
 - (UITableView *)postListTableView{
     if (!_postListTableView) {
-        _postListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64)];
+        _postListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64 - 49)];
         _postListTableView.delegate = self;
         _postListTableView.dataSource = self;
         _postListTableView.showsVerticalScrollIndicator = NO;
@@ -214,6 +214,14 @@
     
     postListCell.postViewGoHomePageBlock = ^(NSInteger userCode){
         [weakSelf gotoHomePage:userCode];
+    };
+    
+    postListCell.postViewCreateCommentBlock  = ^(NSInteger postId){
+        if(weakSelf.delegate){
+            ControllerReply *controllerReply = [ControllerReply shareControllerReply];
+            controllerReply.postId = postId;
+            [((UIViewController *)weakSelf.delegate).navigationController pushViewController:controllerReply animated:YES];  
+        }
     };
     postListCell.width = self.view.width;
     postListCell.modelPost = _postListArray[indexPath.row];

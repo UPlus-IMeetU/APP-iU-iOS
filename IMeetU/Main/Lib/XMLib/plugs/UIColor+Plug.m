@@ -88,6 +88,10 @@
     return [UIColor colorWithRed:1.0 green:92/255.0 blue:1.0 alpha:alpha];
 }
 
++ (instancetype)often_FCFCC8:(float)alpha{
+    return [UIColor colorWithRed:252/255.0 green:252/255.0 blue:200/255.0 alpha:alpha];
+}
+
 - (void)setRandomColors:(NSArray *)randomColors{
 }
 

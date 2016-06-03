@@ -49,7 +49,9 @@
              @"matchScore":@"matching_score",
              @"actyTime":@"activity_time",
              @"userIdentifier":@"superman",
-             @"biuCode":@"code"
+             @"biuCode":@"code",
+             @"todayNum":@"today_num",
+             @"totalNum":@"total_num"
              };
 }
 

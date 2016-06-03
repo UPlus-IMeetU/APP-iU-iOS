@@ -105,22 +105,41 @@
 
 - (void)loadDataWithTime:(long long)time withType:(RefreshType)refreshType{
     __weak typeof (self) weakSelf = self;
-    [[XMHttpCommunity http] getPostListWithId:_tagId withTimeStamp:time withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
-        if (code == 200) {
-            ModelCommunity *community = [ModelCommunity modelWithJSON:response];
-            _lastTime = community.time;
-            _isHasNext = community.hasNext;
-            if (refreshType == Refresh) {
-                [weakSelf.postListArray removeAllObjects];
-                weakSelf.postListArray = [NSMutableArray arrayWithArray:community.postList];
-            }else{
-                [weakSelf.postListArray addObjectsFromArray:community.postList];
+    if (!_isMyPostList) {
+        [[XMHttpCommunity http] getPostListWithId:_tagId withTimeStamp:time withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+            if (code == 200) {
+                ModelCommunity *community = [ModelCommunity modelWithJSON:response];
+                _lastTime = community.time;
+                _isHasNext = community.hasNext;
+                if (refreshType == Refresh) {
+                    [weakSelf.postListArray removeAllObjects];
+                    weakSelf.postListArray = [NSMutableArray arrayWithArray:community.postList];
+                }else{
+                    [weakSelf.postListArray addObjectsFromArray:community.postList];
+                }
+                [weakSelf.postListTableView reloadData];
+                [weakSelf.postListTableView.mj_header endRefreshing];
+                [weakSelf.postListTableView.mj_footer endRefreshing];
             }
-            [weakSelf.postListTableView reloadData];
-            [weakSelf.postListTableView.mj_header endRefreshing];
-            [weakSelf.postListTableView.mj_footer endRefreshing];
-        }
-    }];
+        }];
+    }else{
+        [[XMHttpCommunity http] getMyPostListWithTime:time withUserCode:_userCode withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+            if (code == 200) {
+                ModelCommunity *community = [ModelCommunity modelWithJSON:response];
+                _lastTime = community.time;
+                _isHasNext = community.hasNext;
+                if (refreshType == Refresh) {
+                    [weakSelf.postListArray removeAllObjects];
+                    weakSelf.postListArray = [NSMutableArray arrayWithArray:community.postList];
+                }else{
+                    [weakSelf.postListArray addObjectsFromArray:community.postList];
+                }
+                [weakSelf.postListTableView reloadData];
+                [weakSelf.postListTableView.mj_header endRefreshing];
+                [weakSelf.postListTableView.mj_footer endRefreshing];
+            }
+        }];
+    }
 }
 - (void)prepareUI{
     _postListTableView.delegate = self;
@@ -135,12 +154,11 @@
     header.stateLabel.font = [UIFont systemFontOfSize:12];
     header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
     
-    _postListTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    _postListTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         if (_isHasNext) {
             [weakSelf loadDataWithTime:_lastTime withType:Loading];
         }else{
-            [[MLToast toastInView:self.view content:@"没有更多帖子了～"] show];
-            [weakSelf.postListTableView.mj_footer endRefreshing];
+            [weakSelf.postListTableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
     MJRefreshBackNormalFooter *footer = (MJRefreshBackNormalFooter *)_postListTableView.mj_footer;
@@ -193,6 +211,9 @@
 //点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ControllerReply *controllerReply = [ControllerReply shareControllerReply];
+    ModelPost *modelPost = _postListArray[indexPath.row];
+    controllerReply.postId = modelPost.postId;
+    controllerReply.notGoSameList = YES;
     [self.navigationController pushViewController:controllerReply  animated:YES];
 }
 

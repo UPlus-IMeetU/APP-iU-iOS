@@ -14,23 +14,34 @@
     NSInteger hex = 0;
     NSString *hexStr = [string uppercaseString];
     
-    for (int i=0; i<hexStr.length; i++) {
-        char num = [hexStr characterAtIndex:i];
-        
-        //次方数
-        int powerNum = 1;
-        for(int j=0; j<hexStr.length-i-1; j++){
-            powerNum *= 16;
-        }
-        
-        if (num >= '0' && num <= '9') {
-            hex += (num-'0')*powerNum;
+    int power = 0;
+    for (int i = (int)string.length-1; i>=0; i--){
+        char now = [hexStr characterAtIndex:i];
+        int num = 0;
+        if (now >= '0' && now <= '9') {
+            num = now - '0';
+        }else if (now >= 'A' && now <= 'F'){
+            num = now - 'A' + 10;
         }else{
-            hex += (num-'A'+10)*powerNum;
+            return 0;
         }
+        
+        int k = 1;
+        for (int j=0; j<power; j++) {
+            k *= 16;
+        }
+        
+        hex += num*k;
+        
+        power ++;
     }
     
     return hex;
+}
+
+- (NSString *)stringByTrim {
+    NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    return [self stringByTrimmingCharactersInSet:set];
 }
 
 - (NSURL *)url{

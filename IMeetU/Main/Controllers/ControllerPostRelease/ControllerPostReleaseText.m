@@ -15,6 +15,8 @@
 #import "MBProgressHUD+plug.h"
 #import "XMHttpCommunity.h"
 
+#import "UIColor+Plug.h"
+
 @interface ControllerPostReleaseText ()<UITextViewDelegate, ControllerPostTagsDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *btnFinish;
@@ -46,6 +48,10 @@
     [self.labelTag addGestureRecognizer:tapGestureRecognizer];
     
     self.textViewContent.delegate = self;
+    
+    self.btnFinish.layer.cornerRadius = 5;
+    self.btnFinish.layer.masksToBounds = YES;
+    
 }
 
 - (IBAction)onClickBtnCancel:(id)sender {
@@ -93,6 +99,11 @@
     [self.navigationController popViewControllerAnimated:YES];
     self.tagModel = model;
     [self.labelTag setText:[NSString stringWithFormat:@"#%@#", model.content]];
+    
+    if(self.textViewContent.text.length>0){
+        [self.btnFinish setBackgroundColor:[UIColor whiteColor]];
+        [self.btnFinish setTitleColor:[UIColor often_6CD1C9:1] forState:UIControlStateNormal];
+    }
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
@@ -109,6 +120,12 @@
             if (toBeString.length > kMaxLength) {
                 textView.text = [toBeString substringToIndex:kMaxLength];
             }
+            
+            //设置行间距
+            NSMutableAttributedString *contentText = [[NSMutableAttributedString alloc] initWithString:textView.text];
+            contentText.font = [UIFont systemFontOfSize:13];
+            contentText.lineSpacing = 2.6;
+            [textView setAttributedText:contentText];
         }
         // 有高亮选择的字符串，则暂不对文字进行统计和限制
         else{
@@ -125,6 +142,16 @@
     int countdown = 300 - (int)textView.text.length;
     self.labelCountdown.text = [NSString stringWithFormat:@"%03i", countdown>=0?countdown:0];
     self.labelPlaceholder.hidden = textView.text.length>0;
+    
+    if(self.textViewContent.text.length>0 && self.tagModel){
+        [self.btnFinish setBackgroundColor:[UIColor whiteColor]];
+        [self.btnFinish setTitleColor:[UIColor often_6CD1C9:1] forState:UIControlStateNormal];
+    }else{
+        [self.btnFinish setBackgroundColor:[UIColor colorWithR:233 G:231 B:222]];
+        [self.btnFinish setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    
+    
 }
 
 @end

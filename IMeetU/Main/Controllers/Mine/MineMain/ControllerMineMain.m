@@ -80,6 +80,8 @@
 #import "ControllerChatMsg.h"
 #import "ControllerSamePostList.h"
 
+#import "UIColor+Plug.h"
+
 @interface ControllerMineMain ()<UITableViewDataSource, UITableViewDelegate, CellMineMainPersonalIntroductionsDelegate, CellMineMainProfileAndPhotosDelegate, ControllerMineAlterCharacterDelegate, ControllerMineAlterInterestDelegate, ViewMineMainAlterProfileDelegate, ControllerMineAlterNameDelegate, ControllerMineAlterBirthdayDelegate, ControllerMineAlterConstellationDelegate, ControllerMineAlterAboutMeDelegate, ControllerMineAlterAddressDelegate, ControllerMineAlterBodyHeightWeightDelegate, ControllerMineAlterIdentityProfessionDelegate, ControllerMineAlterCompanyDelegate, ControllerSelectSchoolDelegate, ControllerMinePhotoBrowseDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, XMActionSheetMineMainMoreDelegate>
 
 @property (nonatomic, copy) NSString *userCode;
@@ -160,8 +162,7 @@
             [self.view addSubview:self.biuButton];
         }
     }
-    
-   
+
 }
 
 - (void)biuButtonClick:(UIButton *)button{

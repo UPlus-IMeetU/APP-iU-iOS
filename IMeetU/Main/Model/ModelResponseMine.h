@@ -35,7 +35,7 @@
 
 @property (nonatomic, assign) NSInteger distanceToTA;
 @property (nonatomic, assign) NSInteger matchScore;
-@property (nonatomic, assign) NSInteger actyTime;
+@property (nonatomic, assign) long long actyTime;
 
 @property (nonatomic, assign) NSInteger userIdentifier;
 @property (nonatomic, assign) NSInteger biuCode;

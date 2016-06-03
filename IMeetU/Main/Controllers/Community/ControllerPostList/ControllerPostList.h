@@ -25,4 +25,8 @@
 @property (nonatomic,strong) ZXCycleScrollView *cycleScrollView;
 @property (nonatomic,assign) PostListType postListType;
 @property (nonatomic,weak) id <ControllerPostListDelegate> delegate;
+
+//登陆过后，让列表刷新
+- (void)refreshView;
+- (void)updateView;
 @end

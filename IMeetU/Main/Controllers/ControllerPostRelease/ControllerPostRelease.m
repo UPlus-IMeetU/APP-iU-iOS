@@ -225,6 +225,9 @@
 }
 
 - (void)controllerPostReleaseTextFinish:(ControllerPostReleaseText *)controller result:(BOOL)result{
+    if (self.postReleaseSuccessBlock) {
+        self.postReleaseSuccessBlock(result);
+    }
     //[self.navigationController popViewControllerAnimated:NO];
     [self cloaseController];
 }
@@ -236,6 +239,9 @@
 }
 
 - (void)controllerPostReleaseImageFinish:(ControllerPostReleaseImage *)controller result:(BOOL)result{
+    if (self.postReleaseSuccessBlock) {
+        self.postReleaseSuccessBlock(result);
+    }
     //[self.navigationController popViewControllerAnimated:NO];
     [self cloaseController];
 }

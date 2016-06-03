@@ -15,6 +15,7 @@
 #import "XMNibStoryboardFilesName.h"
 
 #import "ModelUser.h"
+#import "EmptyController.h"
 
 #import "CellMineMainProfileAndPhotos.h"
 #import "CellMineMainPersonalIntroductions.h"
@@ -159,6 +160,8 @@
             [self.view addSubview:self.biuButton];
         }
     }
+    
+   
 }
 
 - (void)biuButtonClick:(UIButton *)button{
@@ -174,7 +177,8 @@
     }
     //进入聊天页面
     else if(button.tag == 10002){
-         ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:[NSString stringWithFormat:@"%lu", (long)_userCode] conversationType:EMConversationTypeChat backController:self];
+        ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:_userCode    conversationType:EMConversationTypeChat backController:self];
+        [controllerChat setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:controllerChat animated:YES];
     }
 }
@@ -197,6 +201,11 @@
         self.userInfoIsLoaded = NO;
         self.mineInfo = nil;
     }
+    
+    if (self.navigationController.viewControllers.count != 1) {
+        self.tabBarController.tabBar.hidden = YES;
+    }
+
 }
 
 - (void)loadUserInfo:(NSString *)userCode{

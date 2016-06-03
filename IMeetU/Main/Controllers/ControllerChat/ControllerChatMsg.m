@@ -336,6 +336,7 @@
 
 - (void)onClickNavigationBtnBack:(UIButton*)sender{
     [self.navigationController popToViewController:self.backController animated:YES];
+    
 }
 
 #pragma mark - 更多

@@ -14,7 +14,6 @@ typedef NS_ENUM(NSInteger, MineMainGetUserCodeFrom) {
 };
 
 @interface ControllerMineMain : UIViewController
-
 + (instancetype)controllerWithUserCode:(NSString*)userCode getUserCodeFrom:(MineMainGetUserCodeFrom)getUserCodeFrom;
 
 

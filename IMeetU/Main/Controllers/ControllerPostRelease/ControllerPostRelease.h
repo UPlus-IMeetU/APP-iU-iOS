@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void (^PostReleaseSuccessBlock) (BOOL success);
 @interface ControllerPostRelease : UIViewController
-
+@property (nonatomic,copy) PostReleaseSuccessBlock postReleaseSuccessBlock;
 + (instancetype)controller;
-
 @end

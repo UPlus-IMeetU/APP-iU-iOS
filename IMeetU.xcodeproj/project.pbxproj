@@ -326,6 +326,13 @@
 		044B3F5F1CFEF4A300E9E46F /* CellCommunityNotifies.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044B3F5D1CFEF4A300E9E46F /* CellCommunityNotifies.xib */; };
 		044B3F621CFFC87D00E9E46F /* ModelCommunityNotifies.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F611CFFC87D00E9E46F /* ModelCommunityNotifies.m */; };
 		044B3F651CFFCC3D00E9E46F /* ModelCommunityNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F641CFFCC3D00E9E46F /* ModelCommunityNotice.m */; };
+		044B3F681D0026C900E9E46F /* XMHttpGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F671D0026C900E9E46F /* XMHttpGlobal.m */; };
+		044B3F6B1D00292800E9E46F /* UserDefultAppGlobalStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F6A1D00292800E9E46F /* UserDefultAppGlobalStatus.m */; };
+		044B3F6E1D00358A00E9E46F /* ViewChatMsgBtnBiu.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F6D1D00358A00E9E46F /* ViewChatMsgBtnBiu.m */; };
+		044B3F721D0035AE00E9E46F /* ViewChatMsgBtnBiu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044B3F711D0035AE00E9E46F /* ViewChatMsgBtnBiu.xib */; };
+		044B3F761D00452000E9E46F /* ControllerBiuMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F751D00452000E9E46F /* ControllerBiuMe.m */; };
+		044B3F7A1D00637700E9E46F /* CellBiuMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F781D00637700E9E46F /* CellBiuMe.m */; };
+		044B3F7B1D00637700E9E46F /* CellBiuMe.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044B3F791D00637700E9E46F /* CellBiuMe.xib */; };
 		044EB4661CE46C1A0076DCD6 /* ControllerNavi.m in Sources */ = {isa = PBXBuildFile; fileRef = 044EB4651CE46C1A0076DCD6 /* ControllerNavi.m */; };
 		0450B7A21C902470001DD60A /* ModelInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0450B7A11C902470001DD60A /* ModelInterest.m */; };
 		0450B7A51C90248A001DD60A /* ModelInterests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0450B7A41C90248A001DD60A /* ModelInterests.m */; };
@@ -1133,6 +1140,18 @@
 		044B3F611CFFC87D00E9E46F /* ModelCommunityNotifies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelCommunityNotifies.m; sourceTree = "<group>"; };
 		044B3F631CFFCC3D00E9E46F /* ModelCommunityNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelCommunityNotice.h; sourceTree = "<group>"; };
 		044B3F641CFFCC3D00E9E46F /* ModelCommunityNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelCommunityNotice.m; sourceTree = "<group>"; };
+		044B3F661D0026C900E9E46F /* XMHttpGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMHttpGlobal.h; sourceTree = "<group>"; };
+		044B3F671D0026C900E9E46F /* XMHttpGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMHttpGlobal.m; sourceTree = "<group>"; };
+		044B3F691D00292800E9E46F /* UserDefultAppGlobalStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefultAppGlobalStatus.h; sourceTree = "<group>"; };
+		044B3F6A1D00292800E9E46F /* UserDefultAppGlobalStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefultAppGlobalStatus.m; sourceTree = "<group>"; };
+		044B3F6C1D00358A00E9E46F /* ViewChatMsgBtnBiu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewChatMsgBtnBiu.h; sourceTree = "<group>"; };
+		044B3F6D1D00358A00E9E46F /* ViewChatMsgBtnBiu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewChatMsgBtnBiu.m; sourceTree = "<group>"; };
+		044B3F711D0035AE00E9E46F /* ViewChatMsgBtnBiu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewChatMsgBtnBiu.xib; sourceTree = "<group>"; };
+		044B3F741D00452000E9E46F /* ControllerBiuMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerBiuMe.h; sourceTree = "<group>"; };
+		044B3F751D00452000E9E46F /* ControllerBiuMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerBiuMe.m; sourceTree = "<group>"; };
+		044B3F771D00637700E9E46F /* CellBiuMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellBiuMe.h; sourceTree = "<group>"; };
+		044B3F781D00637700E9E46F /* CellBiuMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellBiuMe.m; sourceTree = "<group>"; };
+		044B3F791D00637700E9E46F /* CellBiuMe.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellBiuMe.xib; sourceTree = "<group>"; };
 		044EB4641CE46C1A0076DCD6 /* ControllerNavi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerNavi.h; sourceTree = "<group>"; };
 		044EB4651CE46C1A0076DCD6 /* ControllerNavi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerNavi.m; sourceTree = "<group>"; };
 		0450B7A01C902470001DD60A /* ModelInterest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelInterest.h; sourceTree = "<group>"; };
@@ -1963,6 +1982,8 @@
 				045F983B1CE6D07F008AEBC6 /* XMHttpBiuBiu.m */,
 				6FBC689F1CFBE9EA00B45657 /* XMHttpCommunity.h */,
 				6FBC68A01CFBE9EA00B45657 /* XMHttpCommunity.m */,
+				044B3F661D0026C900E9E46F /* XMHttpGlobal.h */,
+				044B3F671D0026C900E9E46F /* XMHttpGlobal.m */,
 			);
 			path = HttpOperation;
 			sourceTree = "<group>";
@@ -1984,6 +2005,8 @@
 				045C01371CCA3D4400AFA3C3 /* UserDefultSetting.m */,
 				04610B071CEDAB250033B43E /* UserDefultBiu.h */,
 				04610B081CEDAB250033B43E /* UserDefultBiu.m */,
+				044B3F691D00292800E9E46F /* UserDefultAppGlobalStatus.h */,
+				044B3F6A1D00292800E9E46F /* UserDefultAppGlobalStatus.m */,
 			);
 			path = UserDefult;
 			sourceTree = "<group>";
@@ -2148,6 +2171,7 @@
 		044726D21C9E9849000FD349 /* ControllerChat */ = {
 			isa = PBXGroup;
 			children = (
+				044B3F731D0044E200E9E46F /* ControllerBiuMe */,
 				04B7D4DD1CDB4C0500D74C6D /* CustomizableCell */,
 				044726D31C9E98C8000FD349 /* ControllerChatMsg.h */,
 				044726D41C9E98C8000FD349 /* ControllerChatMsg.m */,
@@ -2161,6 +2185,9 @@
 				04E7B99E1CC65A7A0047ABE8 /* CellChatMsgImgBrowser.h */,
 				04E7B99F1CC65A7A0047ABE8 /* CellChatMsgImgBrowser.m */,
 				04E7B9A01CC65A7A0047ABE8 /* CellChatMsgImgBrowser.xib */,
+				044B3F6C1D00358A00E9E46F /* ViewChatMsgBtnBiu.h */,
+				044B3F6D1D00358A00E9E46F /* ViewChatMsgBtnBiu.m */,
+				044B3F711D0035AE00E9E46F /* ViewChatMsgBtnBiu.xib */,
 			);
 			path = ControllerChat;
 			sourceTree = "<group>";
@@ -2726,6 +2753,18 @@
 			);
 			name = ControllerNotifies;
 			path = Community/ControllerNotifies;
+			sourceTree = "<group>";
+		};
+		044B3F731D0044E200E9E46F /* ControllerBiuMe */ = {
+			isa = PBXGroup;
+			children = (
+				044B3F741D00452000E9E46F /* ControllerBiuMe.h */,
+				044B3F751D00452000E9E46F /* ControllerBiuMe.m */,
+				044B3F771D00637700E9E46F /* CellBiuMe.h */,
+				044B3F781D00637700E9E46F /* CellBiuMe.m */,
+				044B3F791D00637700E9E46F /* CellBiuMe.xib */,
+			);
+			path = ControllerBiuMe;
 			sourceTree = "<group>";
 		};
 		0450B7BF1C906637001DD60A /* Setting */ = {
@@ -4478,6 +4517,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044B3F721D0035AE00E9E46F /* ViewChatMsgBtnBiu.xib in Resources */,
 				040F4FE21CABD1AB00AD8334 /* chat_receiver_bg.png in Resources */,
 				044727FD1C9FAF9D000FD349 /* group_invitee_delete@2x.png in Resources */,
 				046B49601CFC6B0B00946987 /* ViewHeaderPostTags.xib in Resources */,
@@ -4553,6 +4593,7 @@
 				04471FA91C996C49000FD349 /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
 				04471FB91C996C49000FD349 /* chatBar_moreSelected@2x.png in Resources */,
 				044727E51C9FAF9D000FD349 /* icon_024.gif in Resources */,
+				044B3F7B1D00637700E9E46F /* CellBiuMe.xib in Resources */,
 				044728011C9FAF9D000FD349 /* groupPrivateHeader@2x.png in Resources */,
 				044727BA1C9FAF9D000FD349 /* chat_location_detail_disclosure@2x.png in Resources */,
 				044727EE1C9FAF9D000FD349 /* icon_035_cover.png in Resources */,
@@ -4919,6 +4960,7 @@
 				04B165E51C89D87E00EE6DB8 /* ControllerDrawerRight.m in Sources */,
 				04B7D0DB1CD9AA3200D74C6D /* NSDate+Category.m in Sources */,
 				04B7D4D01CDB4BEB00D74C6D /* EaseBubbleView+Text.m in Sources */,
+				044B3F7A1D00637700E9E46F /* CellBiuMe.m in Sources */,
 				0450B8141C925CF0001DD60A /* ControllerMineAlterInterest.m in Sources */,
 				04B7D4D41CDB4BEB00D74C6D /* EaseChatToolbar.m in Sources */,
 				6FBC68871CFBCECA00B45657 /* ZXCycleScrollView.m in Sources */,
@@ -5095,6 +5137,7 @@
 				044AF7171C8D3061009AF59F /* ControllerMineAlterName.m in Sources */,
 				04B7D0DD1CD9AA3200D74C6D /* NSString+Valid.m in Sources */,
 				04B7D5D11CDB4CB600D74C6D /* NSData+EMImageContentType.m in Sources */,
+				044B3F6E1D00358A00E9E46F /* ViewChatMsgBtnBiu.m in Sources */,
 				04B7D4D51CDB4BEB00D74C6D /* EaseChatToolbarItem.m in Sources */,
 				0450B8211C93EEA5001DD60A /* Model.m in Sources */,
 				04B7D4B61CDB4BEB00D74C6D /* NSString+Valid.m in Sources */,
@@ -5177,6 +5220,7 @@
 				04B7D5B41CDB4CB600D74C6D /* MJRefreshAutoStateFooter.m in Sources */,
 				044AF6851C8C85E7009AF59F /* ModelSchools.m in Sources */,
 				04B7D59F1CDB4CB600D74C6D /* EMAudioRecorderUtil.m in Sources */,
+				044B3F6B1D00292800E9E46F /* UserDefultAppGlobalStatus.m in Sources */,
 				040F4F891CAA896100AD8334 /* CellBiuContact.m in Sources */,
 				044AF72A1C8D3ADD009AF59F /* UIFont+Plug.m in Sources */,
 				04B7D5B81CDB4CB600D74C6D /* MJRefreshGifHeader.m in Sources */,
@@ -5192,8 +5236,10 @@
 				04B7D4D31CDB4BEB00D74C6D /* EaseBubbleView.m in Sources */,
 				04B7D5DF1CDB4CB600D74C6D /* PSTCollectionViewItemKey.m in Sources */,
 				040F4F9F1CAB8C6500AD8334 /* UserDefultDB.m in Sources */,
+				044B3F761D00452000E9E46F /* ControllerBiuMe.m in Sources */,
 				04B7D5A31CDB4CB600D74C6D /* EMCDDeviceManager+Remind.m in Sources */,
 				047519CE1CA631CB009115CE /* NSString+IsValid.m in Sources */,
+				044B3F681D0026C900E9E46F /* XMHttpGlobal.m in Sources */,
 				044726AC1C9D5CC7000FD349 /* AppDelegateDelegate.m in Sources */,
 				04B7D4D81CDB4BEB00D74C6D /* EaseFaceView.m in Sources */,
 				04B7D4C81CDB4BEB00D74C6D /* EaseBaseMessageCell.m in Sources */,

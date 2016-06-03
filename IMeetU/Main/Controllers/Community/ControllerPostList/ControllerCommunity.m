@@ -17,12 +17,16 @@
 #import "ModelTag.h"
 #import "ControllerCommunityNotifies.h"
 
+#import "UserDefultAppGlobalStatus.h"
+
 @interface ControllerCommunity ()<ControllerPostListDelegate,SMPagerTabViewDelegate, ControllerPostTagsDelegate>
 @property (strong, nonatomic) SMPagerTabView *titleView;
 /**
  *  存储子视图控制器
  */
 @property (strong,nonatomic) NSMutableArray *subViewArray;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnNotifies;
 
 @end
 
@@ -50,6 +54,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    
+    if ([UserDefultAppGlobalStatus countOfNoticeCommunity]) {
+        [self.btnNotifies setImage:[UIImage imageNamed:@"btn_activity_light"] forState:UIControlStateNormal];
+    }else{
+        [self.btnNotifies setImage:[UIImage imageNamed:@"biu_btn_activity_nor"] forState:UIControlStateNormal];
+    }
 }
 
 /**
@@ -132,7 +142,10 @@
     return _titleView;
 }
 
-- (IBAction)onClickBtnNotifies:(id)sender {
+- (IBAction)onClickBtnNotifies:(UIButton*)sender {
+    [sender setImage:[UIImage imageNamed:@"btn_activity_light"] forState:UIControlStateNormal];
+    [UserDefultAppGlobalStatus resetCountOfNoticeCommunity];
+    
     ControllerCommunityNotifies *controller = [ControllerCommunityNotifies controller];
     [self.navigationController pushViewController:controller animated:YES];
 }

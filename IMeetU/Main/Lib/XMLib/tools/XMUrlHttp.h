@@ -191,6 +191,12 @@
  *  社区通知
  */
 + (NSString *)xmCommunityNitifies;
-
+/**
+ *  清空社区通知
+ */
 + (NSString *)xmCommunityNitifiesClean;
+/**
+ *  获取程序全局状态
+ */
++ (NSString *)xmGetAppGlobalStatus;
 @end

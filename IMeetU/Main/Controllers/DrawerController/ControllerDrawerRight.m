@@ -42,6 +42,9 @@
 #import "EmptyController.h"
 #import "ControllerTabBarMain.h"
 
+#import "ViewChatMsgBtnBiu.h"
+#import "UserDefultAppGlobalStatus.h"
+
 @interface ControllerDrawerRight ()<EaseConversationListViewControllerDelegate, EaseConversationListViewControllerDataSource, ViewDrawerRightLoginRegisterDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) UIView *networkStateView;
@@ -49,9 +52,13 @@
 @property (nonatomic, strong) UILabel *navigationTitle;
 @property (nonatomic, strong) UIButton *navigationBtn;
 
+@property (nonatomic, strong) ViewChatMsgBtnBiu *viewBtnBiu;
+
 @property (nonatomic, strong) ViewDrawerRightLoginRegister *viewLoginRegister;
 
 @property (nonatomic, strong) UIImagePickerController *imgPickController;
+
+@property (nonatomic, assign) NSInteger test;
 @end
 
 @implementation ControllerDrawerRight
@@ -90,6 +97,9 @@
     self.viewLoginRegister.frame = CGRectMake(0, 64, [UIScreen screenWidth], [UIScreen screenHeight]-64);
     [self.view addSubview:self.viewLoginRegister];
     
+    self.viewBtnBiu.frame = CGRectMake(0, 20, 60, 44);
+    [self.navigationView addSubview:self.viewBtnBiu];
+    
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 66, 0);
 }
 
@@ -114,6 +124,8 @@
     
     //设置TabBarItem未读消息数
     [ControllerTabBarMain setBadgeMsgWithCount:[UserDefultMsg unreadMsgCount]];
+    
+    [self.viewBtnBiu setNumber:[UserDefultAppGlobalStatus countOfBiuMe]];
 }
 
 
@@ -539,6 +551,16 @@
         _imgPickController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     return _imgPickController;
+}
+
+- (ViewChatMsgBtnBiu *)viewBtnBiu{
+    if (!_viewBtnBiu) {
+        self.test = 9;
+        _viewBtnBiu = [ViewChatMsgBtnBiu viewWithCallback:^{
+            [_viewBtnBiu setNumber:0];
+        }];
+    }
+    return _viewBtnBiu;
 }
 
 @end

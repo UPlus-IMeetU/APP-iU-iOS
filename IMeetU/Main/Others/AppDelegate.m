@@ -51,6 +51,7 @@
 #import "UserDefultAccount.h"
 
 #import "ControllerTabBarMain.h"
+#import "XMHttpGlobal.h"
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
@@ -167,6 +168,8 @@
     [self changeForeOrBackGround:1];
     
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
+    [[XMHttpGlobal http] globalGetAppStatusWithCallback:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

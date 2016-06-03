@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ViewChatMsgBtnBiu">
+            <rect key="frame" x="0.0" y="0.0" width="60" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WTH-45-vJ9">
+                    <rect key="frame" x="0.0" y="0.0" width="60" height="44"/>
+                    <state key="normal" image="msg_btn_new_biu"/>
+                    <connections>
+                        <action selector="onClickBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="bTz-qf-asg"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLT-rE-rl3">
+                    <rect key="frame" x="9" y="10" width="22" height="10"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4xc-uN-8L2">
+                            <rect key="frame" x="6" y="0.0" width="11.5" height="10"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dm6-Dy-6hB">
+                                    <rect key="frame" x="3" y="0.0" width="5.5" height="10"/>
+                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="Dm6-Dy-6hB" firstAttribute="leading" secondItem="4xc-uN-8L2" secondAttribute="leading" constant="3" id="5dF-KB-heL"/>
+                                <constraint firstItem="Dm6-Dy-6hB" firstAttribute="centerY" secondItem="4xc-uN-8L2" secondAttribute="centerY" id="UQl-HN-lpI"/>
+                                <constraint firstAttribute="trailing" secondItem="Dm6-Dy-6hB" secondAttribute="trailing" constant="3" id="ssV-0r-vPH"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="4xc-uN-8L2" firstAttribute="centerX" secondItem="mLT-rE-rl3" secondAttribute="centerX" id="OdQ-WV-kGH"/>
+                        <constraint firstAttribute="height" constant="10" id="R2e-8i-jgP"/>
+                        <constraint firstItem="4xc-uN-8L2" firstAttribute="top" secondItem="mLT-rE-rl3" secondAttribute="top" id="RKC-EN-hai"/>
+                        <constraint firstAttribute="bottom" secondItem="4xc-uN-8L2" secondAttribute="bottom" id="Sw9-vB-jG9"/>
+                        <constraint firstAttribute="width" constant="22" id="psL-bp-zy9"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.42352941179999998" green="0.81960784310000001" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="mLT-rE-rl3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="0ug-ON-QB2"/>
+                <constraint firstItem="WTH-45-vJ9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5W0-Ch-Xxx"/>
+                <constraint firstAttribute="trailing" secondItem="WTH-45-vJ9" secondAttribute="trailing" id="5lQ-tv-Haa"/>
+                <constraint firstItem="mLT-rE-rl3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="9" id="AV8-ca-kwE"/>
+                <constraint firstAttribute="bottom" secondItem="WTH-45-vJ9" secondAttribute="bottom" id="R89-bM-8yl"/>
+                <constraint firstItem="WTH-45-vJ9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="b2A-W0-Rdm"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="labelNumber" destination="Dm6-Dy-6hB" id="b4n-ZV-66g"/>
+                <outlet property="viewNumber" destination="4xc-uN-8L2" id="sor-SF-tom"/>
+            </connections>
+            <point key="canvasLocation" x="179" y="269"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="msg_btn_new_biu" width="20" height="17"/>
+    </resources>
+</document>

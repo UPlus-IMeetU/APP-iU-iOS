@@ -83,6 +83,7 @@ typedef void(^XMHttpCallBackNormal) (NSInteger code,id response, NSError *error)
 
 - (void)grabCommBiuWithUserCode:(NSInteger) userCode withCallBack:(XMHttpBlockStandard)callback;
 
+- (void)getMyPostListWithTime:(long long)time withUserCode:(NSInteger) userCode withCallBack:(XMHttpBlockStandard)callback;
 /**
  *  获取社区通知
  * @param time 时间分页

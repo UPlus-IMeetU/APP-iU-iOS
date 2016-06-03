@@ -227,6 +227,10 @@
     return [XMUrlHttp connectWithComm:@"/app/community/combiu/grabComBiu"];
 }
 
++ (NSString *)xmGetMyPostList{
+    return [XMUrlHttp connectWithComm:@"/app/community/post/getMyPostList"];
+}
+
 + (NSString *)xmCommunityNitifies{
     return [XMUrlHttp connectWithComm:@"/app/community/notify/getNotifyList"];
 }

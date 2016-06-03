@@ -202,6 +202,17 @@
     }];
 }
 
+- (void)getMyPostListWithTime:(long long)time withUserCode:(NSInteger) userCode withCallBack:(XMHttpBlockStandard)callback{
+    NSString *url = [XMUrlHttp xmGetMyPostList];
+    NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{@"time":[NSNumber numberWithLongLong:time],@"userCode":[NSNumber numberWithInteger:userCode]}];
+    [self.httpManager POST:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        ModelResponse *response = [ModelResponse responselWithObject:responseObject];
+        callback(response.state,response.data,task,nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callback(RESPONSE_CODE_ERR,nil,task,error);
+    }];
+}
+
 - (void)communityCleanNitifiesWithCallback:(void (^)(NSInteger, NSError *))callback{
     NSString *url = [XMUrlHttp xmCommunityNitifiesClean];
     NSDictionary *param = [self parametersFactoryAppendTokenDeviceCode:@{}];

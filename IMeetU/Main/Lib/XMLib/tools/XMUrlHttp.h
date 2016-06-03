@@ -187,6 +187,8 @@
 + (NSString *)xmDeleteComment;
 
 + (NSString *)xmGrabCommBiu;
+
++ (NSString *)xmGetMyPostList;
 /**
  *  社区通知
  */

@@ -28,6 +28,8 @@
 #import "ControllerSamePostList.h"
 #import "ControllerMineMain.h"
 
+#import "UIFont+Plug.h"
+
 @interface ControllerReply ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 /**
  *  评论列表
@@ -332,8 +334,8 @@
     }else{
         str = modelComment.content;
     }
-    CGSize titleSize = [str sizeWithFont:[UIFont systemFontOfSize:13.0] constrainedToSize:CGSizeMake(self.view.width - 63, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
-    return ceil(titleSize.height) + 30 + 35 + 18 + 15;
+    CGFloat commentSizeHeight = [UIFont getSpaceLabelHeight:modelComment.content withFont:[UIFont systemFontOfSize:13] withWidth:(self.view.width - 63) withLineSpacing:2.6];
+    return ceil(commentSizeHeight) + 30 + 35 + 18 + 15;
 }
 
 //点击操作进行评论

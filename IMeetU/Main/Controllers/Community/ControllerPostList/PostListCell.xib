@@ -35,7 +35,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5H-i5-gdZ">
-                        <rect key="frame" x="318" y="13" width="20" height="20"/>
+                        <rect key="frame" x="326" y="13" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="Brl-kt-bI7"/>
                             <constraint firstAttribute="height" constant="20" id="MC7-Yt-4qj"/>
@@ -148,6 +148,7 @@
                     <constraint firstItem="w5H-i5-gdZ" firstAttribute="top" secondItem="13p-lc-bRO" secondAttribute="top" id="9Dt-W5-fBx"/>
                     <constraint firstItem="13p-lc-bRO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="AQy-9g-CHV"/>
                     <constraint firstItem="nZo-n5-rKh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="B0e-5e-Ci1"/>
+                    <constraint firstAttribute="trailing" secondItem="w5H-i5-gdZ" secondAttribute="trailing" constant="10" id="BpO-Gp-cE6"/>
                     <constraint firstItem="vwl-K1-5Q0" firstAttribute="top" secondItem="mJd-Ei-UKe" secondAttribute="bottom" constant="20" id="Lh0-Y2-Mvw"/>
                     <constraint firstAttribute="trailing" secondItem="D6H-90-QNP" secondAttribute="trailing" constant="10" id="LuS-Ww-y8r"/>
                     <constraint firstAttribute="bottom" secondItem="acq-Lc-cPP" secondAttribute="bottom" id="PNU-Ba-zCW"/>
@@ -169,6 +170,11 @@
                     <constraint firstItem="D6H-90-QNP" firstAttribute="baseline" secondItem="KS6-hh-kNc" secondAttribute="baseline" id="yZ8-Xn-rnl"/>
                     <constraint firstItem="13p-lc-bRO" firstAttribute="leading" secondItem="nZo-n5-rKh" secondAttribute="trailing" constant="10" id="yrm-03-rj1"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="mCh-O8-xsv"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="collegeNameLabel" destination="KS6-hh-kNc" id="tll-OK-klV"/>

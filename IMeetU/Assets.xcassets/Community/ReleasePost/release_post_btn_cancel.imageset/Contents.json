@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "release_post_btn_cancel.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "release_post_btn_cancel.png",
       "scale" : "2x"
     },
     {

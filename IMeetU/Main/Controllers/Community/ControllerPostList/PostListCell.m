@@ -16,6 +16,7 @@
 #import "DBSchools.h"
 #import "UIColor+Plug.h"
 #import "UserDefultAccount.h"
+#import "UIFont+Plug.h"
 @interface PostListCell()
 /**
  *  头像视图
@@ -56,7 +57,7 @@
 /**
  *  详细的内容
  */
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet YYLabel *contentLabel;
 /**
  *  点赞的人数
  */
@@ -113,19 +114,25 @@
         ModelTag *modelTag = _modelPost.tags[0];
         _tagsLabel.text = [NSString stringWithFormat:@"#%@#",modelTag.content];
         _tagsLabel.tag = modelTag.tagId + 10000;
-    } 
-    _contentLabel.text = _modelPost.content;
+    }
+    
+    //进行相应的修改
+    NSMutableAttributedString *contentText = [[NSMutableAttributedString alloc] initWithString:_modelPost.content];
+    contentText.font = [UIFont systemFontOfSize:13];
+    contentText.lineSpacing = 2.6;
+    _contentLabel.attributedText= contentText;
     _collegeNameLabel.text = [self searchSchoolNameWithID:[_modelPost.userSchool integerValue]];
     _praiseLabel.text = [NSString stringWithFormat:@"赞 %ld",(long)_modelPost.praiseNum];
     _commentLabel.text = [NSString stringWithFormat:@"评论 %ld",(long)_modelPost.commentNum];
-    NSString *contentStr = modelPost.content;
-    CGSize titleSize = [contentStr sizeWithFont:[UIFont systemFontOfSize:13.0] constrainedToSize:CGSizeMake(self.width - 20, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
-    _commentLabelHeight.constant = ceil(titleSize.height);
+    CGFloat titleSizeHeight = [UIFont getSpaceLabelHeight:modelPost.content withFont:_contentLabel.font withWidth:(self.width - 20) withLineSpacing:2.6];
+    _commentLabelHeight.constant = ceil(titleSizeHeight);
     if (_modelPost.isPraise) {
         [_praiseBtn setImage:[[UIImage imageNamed:@"found_btn_like_light"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     }else{
         [_praiseBtn setImage:[[UIImage imageNamed:@"found_btn_like_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     }
+    
+   
     
     
     //进行图片的排版布局

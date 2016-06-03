@@ -11,6 +11,7 @@
 #import "NSDate+MJ.h"
 #import "DBSchools.h"
 #import "UIColor+Plug.h"
+#import "UIFont+Plug.h"
 #import "UserDefultAccount.h"
 
 
@@ -19,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet YYLabel *contentLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentLabelHeight;
 
 
@@ -57,9 +58,17 @@
         str = _modelComment.content;
         _contentLabel.text = _modelComment.content;
     }
-    CGSize titleSize = [str sizeWithFont:[UIFont systemFontOfSize:13.0] constrainedToSize:CGSizeMake(self.width - 63, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
-    self.contentLabelHeight.constant = ceil(titleSize.height);
+    NSMutableAttributedString *contentText = [[NSMutableAttributedString alloc] initWithString:str];
+    contentText.font = [UIFont systemFontOfSize:13];
+    contentText.lineSpacing = 2.6;
+    _contentLabel.attributedText = contentText;
+    CGFloat commentSizeHeight = [UIFont getSpaceLabelHeight:modelComment.content withFont:_contentLabel.font withWidth:(self.width - 63) withLineSpacing:2.6];
+    self.contentLabelHeight.constant = ceil(commentSizeHeight);
     [self.contentLabel layoutIfNeeded];
+
+//    CGFloat titleSizeHeight = [UIFont getSpaceLabelHeight:modelPost.content withFont:_contentLabel.font withWidth:(self.width - 20) withLineSpacing:2.6];
+//    _commentLabelHeight.constant = ceil(titleSizeHeight);
+
 }
 
 - (NSString *)createdAt:(long long)time

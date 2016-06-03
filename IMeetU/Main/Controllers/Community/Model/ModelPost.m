@@ -10,6 +10,7 @@
 #import "ModelTag.h"
 #import "ModelImage.h"
 #import "UIScreen+plug.h"
+#import "UIFont+Plug.h"
 @implementation ModelPost
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{
@@ -21,9 +22,7 @@
 + (CGFloat) cellHeightWith:(ModelPost *)modelPost{
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     NSString *contentStr = modelPost.content;
-    CGSize titleSize = [contentStr sizeWithFont:[UIFont systemFontOfSize:13.0] constrainedToSize:CGSizeMake(width - 20, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
-    
-    
+    CGFloat titleSizeHeight = [UIFont getSpaceLabelHeight:modelPost.content withFont:[UIFont systemFontOfSize:13.0] withWidth:(width - 20) withLineSpacing:2.6];
     NSInteger imageCount = modelPost.imgs.count;
     NSInteger photoViewWidth = 0;
     if (imageCount == 0 || modelPost.imgs == nil) {
@@ -39,6 +38,6 @@
     }else{
         photoViewWidth = ceil((width - 20 - 5 * 2) /  3) * 3 + 5 * 2;
     }
-    return 180.0f +  ceil(titleSize.height) + photoViewWidth;
+    return 180.0f +  ceil(titleSizeHeight) + photoViewWidth;
 }
 @end

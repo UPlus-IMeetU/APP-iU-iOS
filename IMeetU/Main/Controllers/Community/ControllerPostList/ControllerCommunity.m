@@ -16,10 +16,13 @@
 #import <YYKit/YYKit.h>
 #import "ModelTag.h"
 #import "ControllerCommunityNotifies.h"
-
+#import "ViewDrawerRightLoginRegister.h"
 #import "UserDefultAppGlobalStatus.h"
+#import "ControllerUserLogin.h"
+#import "ControllerUserRegisterThirdStep.h"
+#import "UserDefultAccount.h"
 
-@interface ControllerCommunity ()<ControllerPostListDelegate,SMPagerTabViewDelegate, ControllerPostTagsDelegate>
+@interface ControllerCommunity ()<ControllerPostListDelegate,SMPagerTabViewDelegate, ControllerPostTagsDelegate,ViewDrawerRightLoginRegisterDelegate>
 @property (strong, nonatomic) SMPagerTabView *titleView;
 /**
  *  存储子视图控制器
@@ -27,7 +30,6 @@
 @property (strong,nonatomic) NSMutableArray *subViewArray;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnNotifies;
-
 @end
 
 @implementation ControllerCommunity
@@ -60,6 +62,9 @@
     }else{
         [self.btnNotifies setImage:[UIImage imageNamed:@"biu_btn_activity_nor"] forState:UIControlStateNormal];
     }
+    [(ControllerPostList *)[_subViewArray objectAtIndex:0] refreshView];
+    [(ControllerPostList *)[_subViewArray objectAtIndex:1] refreshView];
+    [(ControllerPostList *)[_subViewArray objectAtIndex:2] refreshView];
 }
 
 /**
@@ -117,16 +122,16 @@
     if (isHidden && _titleView.tabFrameHeight == 36.0) {
         [UIView animateWithDuration:1 animations:^{
             _titleView.tabFrameHeight = 0.5;
-            [_titleView setHide];
         } completion:^(BOOL finished) {
+            [_titleView setHide];
             [_titleView setNeedsLayout];
         }];
     }
     if (!isHidden && _titleView.tabFrameHeight == 0.5) {
         [UIView animateWithDuration:1 animations:^{
             _titleView.tabFrameHeight = 36.0;
-            [_titleView setShow];
         } completion:^(BOOL finished) {
+            [_titleView setShow];
             [_titleView setNeedsLayout];
         }];
     }
@@ -145,7 +150,6 @@
 - (IBAction)onClickBtnNotifies:(UIButton*)sender {
     [sender setImage:[UIImage imageNamed:@"btn_activity_light"] forState:UIControlStateNormal];
     [UserDefultAppGlobalStatus resetCountOfNoticeCommunity];
-    
     ControllerCommunityNotifies *controller = [ControllerCommunityNotifies controller];
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -160,7 +164,11 @@
 - (IBAction)onClickBtnPostRelease:(id)sender {
     ControllerPostRelease *controller = [ControllerPostRelease controller];
     //[self.navigationController pushViewController:controller animated:NO];
-    
+    controller.postReleaseSuccessBlock = ^(BOOL success){
+        if (success) {
+             [(ControllerPostList *)[_subViewArray objectAtIndex:1] updateView];
+        }
+    };
     [self addChildViewController:controller];
     [self.view addSubview:controller.view];
     self.tabBarController.tabBar.hidden = YES;
@@ -169,4 +177,16 @@
 - (void)controllerPostTags:(ControllerPostTags *)controller model:(ModelTag *)model{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark ViewDrawerRightLoginRegisterDelegate
+- (void)viewDrawerRightLogin:(ViewDrawerRightLoginRegister *)view{
+    ControllerUserLogin *controller = [ControllerUserLogin controller];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)viewDrawerRightRegister:(ViewDrawerRightLoginRegister *)view{
+    ControllerUserRegisterThirdStep *controller = [ControllerUserRegisterThirdStep controller];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 @end

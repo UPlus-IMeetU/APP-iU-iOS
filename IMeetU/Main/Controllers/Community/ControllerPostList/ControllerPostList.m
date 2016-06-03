@@ -57,6 +57,16 @@
 }
 
 
+- (void)refreshView{
+    if (_postListArray.count == 0) {
+        [self loadDataWithTime:0 withType:Refresh];
+    }
+}
+
+- (void)updateView{
+    [self loadDataWithTime:0 withType:Refresh];
+}
+
 - (void)postStatusChange:(NSNotification *)noti{
     NSDictionary *dict = noti.object;
     //首先遍历出要操作的对象
@@ -348,7 +358,7 @@
                 }
             }
             contentOffsetY = scrollView.contentOffset.y;
-        } else if ((contentOffsetY - scrollView.contentOffset.y) > 15.0f) {   // 向下拖拽
+        } else if ((contentOffsetY - scrollView.contentOffset.y) > 15.0f || scrollView.contentOffset.y <= 0) {   // 向下拖拽
             if (self.delegate) {
                 if ([self.delegate respondsToSelector:@selector(hideTitleView:)]) {
                     [self.delegate hideTitleView:NO];

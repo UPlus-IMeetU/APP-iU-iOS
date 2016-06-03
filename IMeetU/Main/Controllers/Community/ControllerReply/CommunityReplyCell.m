@@ -45,30 +45,25 @@
     _nickNameLabel.textColor = [_modelComment.userFromSex isEqualToString:@"1"] ? [UIColor often_8883BC:1] : [UIColor often_F06E7F:1];
     _collegeNameLabel.text = [self searchSchoolNameWithID:[_modelComment.userFromSchool integerValue]];
     //为回复
-    NSString *str;
+    NSString *str = @"";
+    NSMutableAttributedString *contentText = [[NSMutableAttributedString alloc] initWithString:str];
     if (modelComment.parentId != 0) {
         str = [NSString stringWithFormat:@"回复 %@:%@",_modelComment.userToName,_modelComment.content];
-         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str];
-        //进行范围设置
-        [attrStr addAttribute:NSForegroundColorAttributeName
-                        value: [_modelComment.userFromSex isEqualToString:@"1"] ? [UIColor often_8883BC:1] : [UIColor often_F06E7F:1]
-                        range:NSMakeRange(3, _modelComment.userFromName.length)];
-        _contentLabel.attributedText = attrStr;
+        contentText = [[NSMutableAttributedString alloc] initWithString:str];
+        UIColor *fontColor = [_modelComment.userFromSex isEqualToString:@"1"] ? [UIColor often_8883BC:1] : [UIColor often_F06E7F:1];
+        [contentText setColor:fontColor range:NSMakeRange(3, _modelComment.userToName.length)];
+        
     }else{
         str = _modelComment.content;
+        contentText = [[NSMutableAttributedString alloc] initWithString:str];
         _contentLabel.text = _modelComment.content;
     }
-    NSMutableAttributedString *contentText = [[NSMutableAttributedString alloc] initWithString:str];
     contentText.font = [UIFont systemFontOfSize:13];
     contentText.lineSpacing = 2.6;
     _contentLabel.attributedText = contentText;
     CGFloat commentSizeHeight = [UIFont getSpaceLabelHeight:modelComment.content withFont:_contentLabel.font withWidth:(self.width - 63) withLineSpacing:2.6];
     self.contentLabelHeight.constant = ceil(commentSizeHeight);
     [self.contentLabel layoutIfNeeded];
-
-//    CGFloat titleSizeHeight = [UIFont getSpaceLabelHeight:modelPost.content withFont:_contentLabel.font withWidth:(self.width - 20) withLineSpacing:2.6];
-//    _commentLabelHeight.constant = ceil(titleSizeHeight);
-
 }
 
 - (NSString *)createdAt:(long long)time

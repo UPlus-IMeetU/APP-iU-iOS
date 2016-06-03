@@ -17,6 +17,8 @@
 #import "UIColor+Plug.h"
 #import "UserDefultAccount.h"
 #import "UIFont+Plug.h"
+
+#import <CoreText/CoreText.h>
 @interface PostListCell()
 /**
  *  头像视图
@@ -120,12 +122,13 @@
     NSMutableAttributedString *contentText = [[NSMutableAttributedString alloc] initWithString:_modelPost.content];
     contentText.font = [UIFont systemFontOfSize:13];
     contentText.lineSpacing = 2.6;
+    
+    CGFloat titleSizeHeight = [UIFont getSpaceLabelHeight:modelPost.content withFont:_contentLabel.font withWidth:(self.width - 20) withLineSpacing:2.6];
+    _commentLabelHeight.constant = ceil(titleSizeHeight);
     _contentLabel.attributedText= contentText;
     _collegeNameLabel.text = [self searchSchoolNameWithID:[_modelPost.userSchool integerValue]];
     _praiseLabel.text = [NSString stringWithFormat:@"赞 %ld",(long)_modelPost.praiseNum];
     _commentLabel.text = [NSString stringWithFormat:@"评论 %ld",(long)_modelPost.commentNum];
-    CGFloat titleSizeHeight = [UIFont getSpaceLabelHeight:modelPost.content withFont:_contentLabel.font withWidth:(self.width - 20) withLineSpacing:2.6];
-    _commentLabelHeight.constant = ceil(titleSizeHeight);
     if (_modelPost.isPraise) {
         [_praiseBtn setImage:[[UIImage imageNamed:@"found_btn_like_light"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     }else{

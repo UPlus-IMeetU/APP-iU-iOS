@@ -53,6 +53,8 @@
 #import "ControllerTabBarMain.h"
 #import "XMHttpGlobal.h"
 
+#import "NSString+Plug.h"
+
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
 @property (nonatomic, strong) ControllerFirstLaunch *controllerFirstLaunch;

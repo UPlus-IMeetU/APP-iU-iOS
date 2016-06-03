@@ -10,7 +10,18 @@
 
 @interface UIColor(Plug)
 
-+ (instancetype)colorWithString:(NSString*)colorStr alpha:(CGFloat)alpha;
+/**
+ * 没有透明RGB颜色 RRGGBB
+ */
++ (instancetype)xmColorWithHexStrRGB:(NSString*)colorStr;
+/**
+ * 有透明RGBA颜色 RRGGBBAA
+ */
++ (instancetype)xmColorWithHexStrRGBA:(NSString*)colorStr;
+/**
+ * 有透明RGB颜色 RRGGBB，alpha为透明度（0~1.0）
+ */
++ (instancetype)xmColorWithHexStrRGB:(NSString*)colorStr alpha:(CGFloat)alpha;
 
 #pragma mark - 常用颜色
 + (instancetype)often_000000:(float)alpha;

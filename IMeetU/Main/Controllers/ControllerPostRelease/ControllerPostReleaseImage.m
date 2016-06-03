@@ -72,6 +72,9 @@
     self.collectionViewImages.dataSource = self;
     self.collectionViewImages.showsHorizontalScrollIndicator = NO;
     self.collectionViewImages.backgroundColor = [UIColor whiteColor];
+    
+    self.btnFinish.layer.cornerRadius = 5;
+    self.btnFinish.layer.masksToBounds = YES;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -127,6 +130,9 @@
     [self.navigationController popViewControllerAnimated:YES];
     self.tagModel = model;
     [self.labelTag setText:[NSString stringWithFormat:@"#%@#", model.content]];
+    
+    [self.btnFinish setBackgroundColor:[UIColor whiteColor]];
+    [self.btnFinish setTitleColor:[UIColor often_6CD1C9:1] forState:UIControlStateNormal];
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
@@ -143,6 +149,12 @@
             if (toBeString.length > kMaxLength) {
                 textView.text = [toBeString substringToIndex:kMaxLength];
             }
+            
+            //设置行间距
+            NSMutableAttributedString *contentText = [[NSMutableAttributedString alloc] initWithString:textView.text];
+            contentText.font = [UIFont systemFontOfSize:13];
+            contentText.lineSpacing = 2.6;
+            [textView setAttributedText:contentText];
         }
         // 有高亮选择的字符串，则暂不对文字进行统计和限制
         else{
@@ -184,7 +196,6 @@
                 [self releasePostWithImgIndex:index+1 hud:hud];
             }else{
                 [hud xmSetCustomModeWithResult:NO label:@"图片上传失败"];
-                NSLog(@"============>%@", task.error);
                 [hud hide:YES afterDelay:0.3];
             }
             return nil;

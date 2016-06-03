@@ -335,6 +335,7 @@
 		044B3F7B1D00637700E9E46F /* CellBiuMe.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044B3F791D00637700E9E46F /* CellBiuMe.xib */; };
 		044B3F7E1D011F6800E9E46F /* ModelBiuMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F7D1D011F6800E9E46F /* ModelBiuMe.m */; };
 		044B3F811D011F7900E9E46F /* ModelsBiuMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F801D011F7900E9E46F /* ModelsBiuMe.m */; };
+		044B3F841D0176F400E9E46F /* DBCacheKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F831D0176F400E9E46F /* DBCacheKeyValue.m */; };
 		044EB4661CE46C1A0076DCD6 /* ControllerNavi.m in Sources */ = {isa = PBXBuildFile; fileRef = 044EB4651CE46C1A0076DCD6 /* ControllerNavi.m */; };
 		0450B7A21C902470001DD60A /* ModelInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0450B7A11C902470001DD60A /* ModelInterest.m */; };
 		0450B7A51C90248A001DD60A /* ModelInterests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0450B7A41C90248A001DD60A /* ModelInterests.m */; };
@@ -1159,6 +1160,8 @@
 		044B3F7D1D011F6800E9E46F /* ModelBiuMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelBiuMe.m; sourceTree = "<group>"; };
 		044B3F7F1D011F7900E9E46F /* ModelsBiuMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelsBiuMe.h; sourceTree = "<group>"; };
 		044B3F801D011F7900E9E46F /* ModelsBiuMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelsBiuMe.m; sourceTree = "<group>"; };
+		044B3F821D0176F400E9E46F /* DBCacheKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCacheKeyValue.h; sourceTree = "<group>"; };
+		044B3F831D0176F400E9E46F /* DBCacheKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCacheKeyValue.m; sourceTree = "<group>"; };
 		044EB4641CE46C1A0076DCD6 /* ControllerNavi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerNavi.h; sourceTree = "<group>"; };
 		044EB4651CE46C1A0076DCD6 /* ControllerNavi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerNavi.m; sourceTree = "<group>"; };
 		0450B7A01C902470001DD60A /* ModelInterest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelInterest.h; sourceTree = "<group>"; };
@@ -1958,6 +1961,8 @@
 				040F4F931CAAC30000AD8334 /* DBCacheBiuContact.m */,
 				049AA3F41CEA08A600B1AD93 /* DBCacheBiuBiu.h */,
 				049AA3F51CEA08A600B1AD93 /* DBCacheBiuBiu.m */,
+				044B3F821D0176F400E9E46F /* DBCacheKeyValue.h */,
+				044B3F831D0176F400E9E46F /* DBCacheKeyValue.m */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -5053,6 +5058,7 @@
 				044727271C9FA63E000FD349 /* MLAnnotation.m in Sources */,
 				04B7D4CA1CDB4BEB00D74C6D /* EaseMessageCell.m in Sources */,
 				046B495F1CFC6B0B00946987 /* ViewHeaderPostTags.m in Sources */,
+				044B3F841D0176F400E9E46F /* DBCacheKeyValue.m in Sources */,
 				04B7D5B61CDB4CB600D74C6D /* MJRefreshBackNormalFooter.m in Sources */,
 				6FBC689B1CFBCFD100B45657 /* ModelTag.m in Sources */,
 				04B7D4B01CDB4BEB00D74C6D /* EaseSDKHelper.m in Sources */,

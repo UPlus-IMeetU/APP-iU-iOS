@@ -11,17 +11,57 @@
 
 @implementation UIColor(Plug)
 
-+ (UIColor*)colorWithString:(NSString *)colorStr alpha:(CGFloat)alpha{
++ (instancetype)xmColorWithHexStrRGB:(NSString *)colorStr{
     UIColor *color;
     
-    if (colorStr.length == 6 && alpha >= 0 && alpha <= 1) {
+    if (colorStr.length == 6) {
         
         NSInteger r = [NSString hexNumberWithString:[colorStr substringWithRange:NSMakeRange(0, 2)]];
         NSInteger g = [NSString hexNumberWithString:[colorStr substringWithRange:NSMakeRange(2, 2)]];
         NSInteger b = [NSString hexNumberWithString:[colorStr substringWithRange:NSMakeRange(4, 2)]];
+        
+        color = [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0];
+    }else{
+        color = [UIColor redColor];
+    }
+    
+    return color;
+}
+
++ (instancetype)xmColorWithHexStrRGBA:(NSString *)colorStr{
+    UIColor *color;
+    
+    if (colorStr.length == 8) {
+        
+        NSInteger r = [NSString hexNumberWithString:[colorStr substringWithRange:NSMakeRange(0, 2)]];
+        NSInteger g = [NSString hexNumberWithString:[colorStr substringWithRange:NSMakeRange(2, 2)]];
+        NSInteger b = [NSString hexNumberWithString:[colorStr substringWithRange:NSMakeRange(4, 2)]];
+        NSInteger a = [NSString hexNumberWithString:[colorStr substringWithRange:NSMakeRange(6, 2)]];
+        
+        color = [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a/255.0];
+    }else{
+        color = [UIColor redColor];
+    }
+    
+    return color;
+}
+
++ (instancetype)xmColorWithHexStrRGB:(NSString*)colorStr alpha:(CGFloat)alpha{
+    UIColor *color;
+    
+    if (colorStr.length == 6) {
+        //透明度小于0
+        alpha = alpha<0?0:alpha;
+        //透明度大于1
+        alpha = alpha>1?1:alpha;
+        
+        NSInteger r = [NSString hexNumberWithString:[colorStr substringWithRange:NSMakeRange(0, 2)]];
+        NSInteger g = [NSString hexNumberWithString:[colorStr substringWithRange:NSMakeRange(2, 2)]];
+        NSInteger b = [NSString hexNumberWithString:[colorStr substringWithRange:NSMakeRange(4, 2)]];
+        
         color = [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:alpha];
     }else{
-        color = [UIColor whiteColor];
+        color = [UIColor redColor];
     }
     
     return color;

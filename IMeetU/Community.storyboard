@@ -377,7 +377,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNO-1c-jYz">
-                                <rect key="frame" x="278" y="536" width="52" height="52"/>
+                                <rect key="frame" x="278" y="536" width="42" height="44"/>
                                 <state key="normal" image="release_post_btn_cancel"/>
                                 <connections>
                                     <action selector="onClickBtnClose:" destination="LCh-gp-cFO" eventType="touchUpInside" id="71M-0X-BBm"/>
@@ -799,7 +799,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hj7-3g-QSu">
                                                 <rect key="frame" x="60" y="0.0" width="480" height="44"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="glE-Fd-dB3">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="创建／选择话题标签" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="glE-Fd-dB3">
                                                         <rect key="frame" x="20" y="7" width="460" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -978,7 +978,7 @@
         <image name="found_btn_huati" width="17" height="17"/>
         <image name="found_btn_publish" width="17" height="17"/>
         <image name="global_navigation_back_ffffff" width="10" height="17"/>
-        <image name="release_post_btn_cancel" width="44" height="44"/>
+        <image name="release_post_btn_cancel" width="22" height="22"/>
         <image name="release_post_btn_img" width="140" height="140"/>
         <image name="release_post_btn_txt" width="140" height="140"/>
         <image name="release_post_img_bg" width="750" height="1294"/>

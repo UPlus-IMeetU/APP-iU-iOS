@@ -63,7 +63,8 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.textFieldSearch.layer.cornerRadius = self.textFieldSearch.frame.size.height * 0.5;
+    [self.textFieldSearch clipsToBounds];
     [self.tableViewTags registerNib:[UINib xmNibFromMainBundleWithName:@"CellPostTags"] forCellReuseIdentifier:CellReuseIdentifier];
     [self.tableViewTags registerNib:[UINib xmNibFromMainBundleWithName:@"ViewHeaderPostTags"] forHeaderFooterViewReuseIdentifier:HeaderFooterViewReuseIdentifier];
     self.tableViewTags.dataSource = self;

@@ -60,7 +60,7 @@
     if ([UserDefultAppGlobalStatus countOfNoticeCommunity]) {
         [self.btnNotifies setImage:[UIImage imageNamed:@"btn_activity_light"] forState:UIControlStateNormal];
     }else{
-        [self.btnNotifies setImage:[UIImage imageNamed:@"biu_btn_activity_nor"] forState:UIControlStateNormal];
+        [self.btnNotifies setImage:[UIImage imageNamed:@"found_btn_activity_nor"] forState:UIControlStateNormal];
     }
     [(ControllerPostList *)[_subViewArray objectAtIndex:0] refreshView];
     [(ControllerPostList *)[_subViewArray objectAtIndex:1] refreshView];

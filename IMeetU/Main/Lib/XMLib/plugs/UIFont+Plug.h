@@ -10,5 +10,6 @@
 
 @interface UIFont(Plug)
 
++ (CGFloat)getSpaceLabelHeight:(NSString*)str withFont:(UIFont*)font withWidth:(CGFloat)width withLineSpacing:(CGFloat)lineSpacing;
 
 @end

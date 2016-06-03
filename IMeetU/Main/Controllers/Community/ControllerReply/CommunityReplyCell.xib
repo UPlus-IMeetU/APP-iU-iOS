@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -35,7 +34,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yiq-6r-nya">
-                        <rect key="frame" x="323" y="28" width="15" height="22"/>
+                        <rect key="frame" x="331" y="28" width="15" height="22"/>
                         <state key="normal" image="found_btn_more"/>
                         <connections>
                             <action selector="operationBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7p8-3o-vRw"/>
@@ -82,7 +81,6 @@
                     <constraint firstItem="e0y-id-FUX" firstAttribute="leading" secondItem="YBH-Ew-FyS" secondAttribute="trailing" constant="8" id="L3F-zK-XpV"/>
                     <constraint firstItem="e0y-id-FUX" firstAttribute="bottom" secondItem="YBH-Ew-FyS" secondAttribute="bottom" id="OwC-7g-A06"/>
                     <constraint firstAttribute="trailing" secondItem="ujr-8B-e0S" secondAttribute="trailing" constant="10" id="Oy3-zI-JGC"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Yiq-6r-nya" secondAttribute="trailing" constant="10" id="PQM-G9-dDS"/>
                     <constraint firstItem="Yiq-6r-nya" firstAttribute="centerY" secondItem="reB-sC-yIp" secondAttribute="centerY" id="TNz-23-Nqh"/>
                     <constraint firstItem="Fot-y0-NQh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="Tpd-ae-cuC"/>
                     <constraint firstItem="IB4-Et-RFh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="53" id="dPA-PS-NlA"/>
@@ -90,6 +88,7 @@
                     <constraint firstItem="reB-sC-yIp" firstAttribute="top" secondItem="YBH-Ew-FyS" secondAttribute="top" id="gmR-wj-yqk"/>
                     <constraint firstAttribute="trailing" secondItem="IB4-Et-RFh" secondAttribute="trailing" constant="10" id="h3d-sv-Vn9"/>
                     <constraint firstItem="YBH-Ew-FyS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="kTa-fY-5Fk"/>
+                    <constraint firstAttribute="trailing" secondItem="Yiq-6r-nya" secondAttribute="trailing" constant="10" id="kut-Ju-vCT"/>
                     <constraint firstItem="ujr-8B-e0S" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="53" id="mTE-4s-809"/>
                     <constraint firstAttribute="bottom" secondItem="ujr-8B-e0S" secondAttribute="bottom" id="rwd-0e-ZHT"/>
                     <constraint firstItem="oab-zV-I4V" firstAttribute="bottom" secondItem="e0y-id-FUX" secondAttribute="bottom" id="vAm-x7-LQJ"/>

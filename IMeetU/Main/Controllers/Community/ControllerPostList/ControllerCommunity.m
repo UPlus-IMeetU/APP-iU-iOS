@@ -155,7 +155,7 @@
 }
 
 - (IBAction)onClickBtnTags:(id)sender {
-    ControllerPostTags *controller = [ControllerPostTags controller];
+    ControllerPostTags *controller = [ControllerPostTags controllerWithType:ControllerPostTagsTypeSearch];
     controller.delegatePostTags = self;
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -163,7 +163,6 @@
 
 - (IBAction)onClickBtnPostRelease:(id)sender {
     ControllerPostRelease *controller = [ControllerPostRelease controller];
-    //[self.navigationController pushViewController:controller animated:NO];
     controller.postReleaseSuccessBlock = ^(BOOL success){
         if (success) {
              [(ControllerPostList *)[_subViewArray objectAtIndex:1] updateView];

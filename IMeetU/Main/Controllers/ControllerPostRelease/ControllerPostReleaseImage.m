@@ -54,7 +54,7 @@
     [super viewDidLoad];
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
-        ControllerPostTags *controller = [ControllerPostTags controller];
+        ControllerPostTags *controller = [ControllerPostTags controllerWithType:ControllerPostTagsTypeSearchCreate];
         controller.delegatePostTags = self;
         [self.navigationController pushViewController:controller animated:YES];
     }];

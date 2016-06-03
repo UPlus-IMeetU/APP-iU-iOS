@@ -358,7 +358,8 @@
                 }
             }
             contentOffsetY = scrollView.contentOffset.y;
-        } else if ((contentOffsetY - scrollView.contentOffset.y) > 15.0f || scrollView.contentOffset.y <= 0) {   // 向下拖拽
+        } else if ((contentOffsetY - scrollView.contentOffset.y) > 15.0f || scrollView.contentOffset.y <= 0) {
+            // 向下拖拽
             if (self.delegate) {
                 if ([self.delegate respondsToSelector:@selector(hideTitleView:)]) {
                     [self.delegate hideTitleView:NO];
@@ -376,6 +377,7 @@
 - (NSInteger)numberOfPages{
     return _bannerArray.count;
 }
+
 //定义ScrollView
 - (UIView *)pageAtIndex:(NSInteger)index
 {
@@ -395,22 +397,8 @@
         [((UIViewController *)self.delegate).navigationController pushViewController:advertController animated:YES];
     }
 }
-
-
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

@@ -17,10 +17,18 @@
         if ([model.content isEqualToString:self.searchStr]) {
             return 1;
         }else{
-            return 2;
+            if (self.isCreate) {
+                return 2;
+            }else{
+                return 1;
+            }
         }
     }else{
-        return 2;
+        if (self.isCreate){
+            return 2;
+        }else{
+            return 1;
+        }
     }
     return 0;
 }

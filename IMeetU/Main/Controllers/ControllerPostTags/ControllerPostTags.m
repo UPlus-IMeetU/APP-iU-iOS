@@ -51,12 +51,15 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
 
 @property (nonatomic, strong) ModelTagsAll *modelTagsAll;
 @property (nonatomic, strong) ModelTagsSearch *modelTagsSearch;
+
+@property (nonatomic, assign) ControllerPostTagsType type;
 @end
 
 @implementation ControllerPostTags
 
-+ (instancetype)controller{
++ (instancetype)controllerWithType:(ControllerPostTagsType)type{
     ControllerPostTags *controller = [UIStoryboard xmControllerWithName:xmStoryboardNameCommunity indentity:@"ControllerPostTags"];
+    controller.type = type;
     
     return controller;
 }
@@ -84,6 +87,12 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
         [hud hide:YES afterDelay:0.2];
     }];
     [self addFooterRefresh];
+    
+    if (self.type == ControllerPostTagsTypeSearch) {
+        self.textFieldSearch.placeholder = @"选择话题标签";
+    }else if (self.type == ControllerPostTagsTypeSearchCreate){
+        self.textFieldSearch.placeholder = @"创建/选择话题标签";
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -163,7 +172,6 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
                 }else if (indexPath.section == 1){
                     //选择
                     [self.delegatePostTags controllerPostTags:self model:[self.modelTagsSearch modelWithIndexPath:indexPath]];
-                    
                 }
             }
         }
@@ -206,6 +214,12 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
                             self.modelTagsSearch = model;
                             self.modelTagsSearch.searchStr = self.lastSearchContent;
                             
+                            if (self.type == ControllerPostTagsTypeSearch) {
+                                _modelTagsSearch.isCreate = NO;
+                            }else if (self.type == ControllerPostTagsTypeSearchCreate){
+                                _modelTagsSearch.isCreate = YES;
+                            }
+                            
                             [self.tableViewTags reloadData];
                         }
                     }
@@ -234,6 +248,11 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
 - (ModelTagsSearch *)modelTagsSearch{
     if (!_modelTagsSearch) {
         _modelTagsSearch = [[ModelTagsSearch alloc] init];
+        if (self.type == ControllerPostTagsTypeSearch) {
+            _modelTagsSearch.isCreate = NO;
+        }else if (self.type == ControllerPostTagsTypeSearchCreate){
+            _modelTagsSearch.isCreate = YES;
+        }
     }
     return _modelTagsSearch;
 }

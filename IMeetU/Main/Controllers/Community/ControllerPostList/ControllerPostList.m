@@ -161,7 +161,6 @@
      }else if(self.postListType == PostListTypeRecommend){
         _emptyLabel.text = @"iU推荐的内容动态会呈现在这里哦";
      }
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -369,6 +368,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    NSLog(@"---------y= %f-----------",scrollView.contentOffset.y);
     if (scrollView.dragging) {  // 拖拽
         if ((scrollView.contentOffset.y - contentOffsetY) > 15.0f && _postListArray.count != 0) {  // 向上拖拽
             if (self.delegate) {
@@ -387,6 +387,14 @@
             contentOffsetY = scrollView.contentOffset.y;
         } else {
             
+        }
+    }
+    
+    if (scrollView.contentOffset.y == - 36) {
+        if (self.delegate) {
+            if ([self.delegate respondsToSelector:@selector(hideTitleView:)]) {
+                [self.delegate hideTitleView:NO];
+            }
         }
     }
 }

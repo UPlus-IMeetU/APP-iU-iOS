@@ -120,14 +120,14 @@
 
 #pragma mark ControllerPostListDelegate
 - (void)hideTitleView:(BOOL)isHidden{
-    if (isHidden) {
+    if (isHidden && _titleView.tabView.alpha == 1) {
         [_titleView setHide];
         [UIView animateWithDuration:0.25f animations:^{
             _titleView.tabView.alpha = 0;
         } completion:^(BOOL finished) {
         }];
     }
-    if (!isHidden) {
+    if (!isHidden && _titleView.tabView.alpha == 0) {
         
         [UIView animateWithDuration:0.25f animations:^{
             _titleView.tabView.alpha = 1;

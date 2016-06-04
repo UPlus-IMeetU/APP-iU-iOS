@@ -170,7 +170,7 @@
     if (button.tag == 10001) {
         [[XMHttpCommunity http] grabCommBiuWithUserCode:[_userCode integerValue]  withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
             if (code == 200) {
-                [[MLToast toastInView:self.view content:@"biu成功啦~"] show];
+                [[MLToast toastInView:self.view content:@"biu成功啦,等待对方确认"] show];
             }else{
                 [[MLToast toastInView:self.view content:@"biu失败了~"] show];
             }

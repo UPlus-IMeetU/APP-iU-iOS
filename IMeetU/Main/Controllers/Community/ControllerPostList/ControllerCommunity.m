@@ -120,22 +120,19 @@
 
 #pragma mark ControllerPostListDelegate
 - (void)hideTitleView:(BOOL)isHidden{
-    if (isHidden && _titleView.tabFrameHeight == 36.0) {
+    if (isHidden) {
+        [_titleView setHide];
         [UIView animateWithDuration:0.25f animations:^{
             _titleView.tabView.alpha = 0;
-            _titleView.tabFrameHeight = 0.5;
         } completion:^(BOOL finished) {
-            [_titleView setHide];
-            [_titleView setNeedsLayout];
         }];
     }
-    if (!isHidden && _titleView.tabFrameHeight == 0.5) {
+    if (!isHidden) {
+        
         [UIView animateWithDuration:0.25f animations:^{
             _titleView.tabView.alpha = 1;
-            _titleView.tabFrameHeight = 36.0;
         } completion:^(BOOL finished) {
             [_titleView setShow];
-            [_titleView setNeedsLayout];
         }];
     }
 }

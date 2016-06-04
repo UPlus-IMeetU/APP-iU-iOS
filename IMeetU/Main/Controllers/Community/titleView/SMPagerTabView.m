@@ -21,8 +21,6 @@
 @property (nonatomic, assign) BOOL isBuildUI;
 @property (nonatomic, assign) BOOL isUseDragging; //是否使用手拖动的，自动的就设置为NO
 @property (nonatomic, assign) BOOL isEndDecelerating;
-
-
 @property (nonatomic, strong) UIView* tabSelectedLine;
 @property (nonatomic, strong) NSMutableArray* tabButtons;
 @property (nonatomic, strong) NSMutableArray* tabRedDots; //按钮上的红点
@@ -101,7 +99,7 @@
         self.bodyScrollView.contentSize = CGSizeMake(self.width * [self.viewsArray count], self.tabFrameHeight);
         for (int i = 0; i < [self.viewsArray count]; i++) {
             UIViewController* vc = self.viewsArray[i];
-            vc.view.frame = CGRectMake(self.bodyScrollView.width * i, self.tabFrameHeight, self.bodyScrollView.width, self.bodyScrollView.height);
+            vc.view.frame = CGRectMake(self.bodyScrollView.width * i, 0, self.bodyScrollView.width, self.bodyScrollView.height);
         }
     }
 }
@@ -341,7 +339,7 @@
  */
 - (UIScrollView*)bodyScrollView {
     if (!_bodyScrollView) {
-        self.bodyScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, _tabFrameHeight, self.width, self.height - _tabFrameHeight)];
+        self.bodyScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
         _bodyScrollView.delegate = self;
         _bodyScrollView.pagingEnabled = YES;
         _bodyScrollView.userInteractionEnabled = YES;
@@ -366,7 +364,6 @@
         btn.hidden=YES;
     }
     self.selectedLine.hidden=YES;
-    self.tabView.hidden=YES;
     self.lineView.hidden = YES;
 }
 -(void)setShow{
@@ -375,7 +372,6 @@
         btn.hidden=NO;
         
     }
-    self.tabView.hidden=NO;
     self.selectedLine.hidden=NO;
     self.lineView.hidden = NO;
 }

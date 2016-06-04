@@ -65,20 +65,30 @@
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="生活好像波澜不惊，一条动态也没有呢" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VI1-II-Gs7">
+                                <rect key="frame" x="0.0" y="104" width="414" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cbr-A2-3k1" firstAttribute="leading" secondItem="0ME-8P-eIX" secondAttribute="leading" id="54N-Vg-SHD"/>
+                            <constraint firstItem="VI1-II-Gs7" firstAttribute="top" secondItem="bsB-od-VYt" secondAttribute="bottom" constant="40" id="II1-Tj-NFw"/>
                             <constraint firstItem="HwN-lQ-eWc" firstAttribute="top" secondItem="cbr-A2-3k1" secondAttribute="bottom" id="PUU-xR-w3b"/>
                             <constraint firstItem="bsB-od-VYt" firstAttribute="top" secondItem="0ME-8P-eIX" secondAttribute="top" id="XgK-BB-gcM"/>
                             <constraint firstAttribute="trailing" secondItem="bsB-od-VYt" secondAttribute="trailing" id="aUI-1J-W2q"/>
                             <constraint firstItem="bsB-od-VYt" firstAttribute="leading" secondItem="0ME-8P-eIX" secondAttribute="leading" id="bab-AC-bU4"/>
+                            <constraint firstAttribute="trailing" secondItem="VI1-II-Gs7" secondAttribute="trailing" id="eXg-dO-nfK"/>
                             <constraint firstItem="cbr-A2-3k1" firstAttribute="top" secondItem="bsB-od-VYt" secondAttribute="bottom" id="gk5-dv-FeT"/>
+                            <constraint firstItem="VI1-II-Gs7" firstAttribute="leading" secondItem="0ME-8P-eIX" secondAttribute="leading" id="pcd-GX-Jbd"/>
                             <constraint firstAttribute="trailing" secondItem="cbr-A2-3k1" secondAttribute="trailing" id="wdZ-hg-MAl"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="emptyLabel" destination="VI1-II-Gs7" id="aga-gx-ICj"/>
                         <outlet property="postListTableView" destination="cbr-A2-3k1" id="sGa-rO-vNx"/>
                         <outlet property="titleLabel" destination="KzY-8y-TuG" id="RI0-sM-tJi"/>
                     </connections>
@@ -850,7 +860,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还没有人创建这个标签呢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeO-cS-PCj">
                                         <rect key="frame" x="206.5" y="180" width="187" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>

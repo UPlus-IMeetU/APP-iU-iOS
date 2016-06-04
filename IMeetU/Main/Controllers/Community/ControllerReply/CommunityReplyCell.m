@@ -60,9 +60,10 @@
     }
     contentText.font = [UIFont systemFontOfSize:13];
     contentText.lineSpacing = 2.6;
+    contentText.lineBreakMode = NSLineBreakByCharWrapping;
     _contentLabel.attributedText = contentText;
     _timeLabel.text = [self createdAt:_modelComment.createAt];
-    CGFloat commentSizeHeight = [UIFont getSpaceLabelHeight:modelComment.content withFont:_contentLabel.font withWidth:(self.width - 63) withLineSpacing:2.8];
+    CGFloat commentSizeHeight = [UIFont getSpaceLabelHeight:str withFont:_contentLabel.font withWidth:(self.width - 63) withLineSpacing:2.6];
     self.contentLabelHeight.constant = ceil(commentSizeHeight);
     [self.contentLabel layoutIfNeeded];
 }
@@ -79,7 +80,7 @@
     NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:time];
     // 判断是否为今年
     if (createDate.isThisYear) {
-    if (createDate.isToday) { // 今天
+       if (createDate.isToday) { // 今天
             fmt.dateFormat = @"HH:mm";
             return [fmt stringFromDate:createDate];
         } else if (createDate.isYesterday) { // 昨天

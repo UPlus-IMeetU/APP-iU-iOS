@@ -16,6 +16,9 @@
 
 @property (nonatomic, copy) NSString *searchStr;
 
+//未搜索到时是否需要创建
+@property (nonatomic, assign) BOOL isCreate;
+
 - (NSInteger)numberOfSections;
 
 - (NSInteger)numberOfRowsInSection:(NSInteger)section;

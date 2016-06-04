@@ -153,9 +153,11 @@
                 });
             }else{
                 [hud xmSetCustomModeWithResult:NO label:@"接受失败"];
+                NSLog(@"========|>%@", response);
             }
         }else{
             [hud xmSetCustomModeWithResult:NO label:@"接受失败"];
+            NSLog(@"========||>%@", error);
         }
         [hud hide:YES afterDelay:1];
     }];

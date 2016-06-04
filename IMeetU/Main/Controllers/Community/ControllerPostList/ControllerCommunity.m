@@ -151,14 +151,14 @@
 }
 
 - (IBAction)onClickBtnNotifies:(UIButton*)sender {
-    [sender setImage:[UIImage imageNamed:@"btn_activity_light"] forState:UIControlStateNormal];
+    [sender setImage:[UIImage imageNamed:@"biu_btn_activity_nor"] forState:UIControlStateNormal];
     [UserDefultAppGlobalStatus resetCountOfNoticeCommunity];
     ControllerCommunityNotifies *controller = [ControllerCommunityNotifies controller];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)onClickBtnTags:(id)sender {
-    ControllerPostTags *controller = [ControllerPostTags controller];
+    ControllerPostTags *controller = [ControllerPostTags controllerWithType:ControllerPostTagsTypeSearch];
     controller.delegatePostTags = self;
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -166,7 +166,6 @@
 
 - (IBAction)onClickBtnPostRelease:(id)sender {
     ControllerPostRelease *controller = [ControllerPostRelease controller];
-    //[self.navigationController pushViewController:controller animated:NO];
     controller.postReleaseSuccessBlock = ^(BOOL success){
         if (success) {
              [(ControllerPostList *)[_subViewArray objectAtIndex:1] updateView];

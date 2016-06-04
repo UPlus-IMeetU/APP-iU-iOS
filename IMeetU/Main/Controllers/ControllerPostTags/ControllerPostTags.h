@@ -11,9 +11,13 @@
 @class ModelTag;
 @protocol ControllerPostTagsDelegate;
 
+typedef NS_ENUM(NSInteger, ControllerPostTagsType) {
+    ControllerPostTagsTypeSearch,
+    ControllerPostTagsTypeSearchCreate
+};
 @interface ControllerPostTags : UIViewController
 
-+ (instancetype)controller;
++ (instancetype)controllerWithType:(ControllerPostTagsType)type;
 
 @property (nonatomic, weak) id<ControllerPostTagsDelegate> delegatePostTags;
 

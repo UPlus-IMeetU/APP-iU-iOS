@@ -17,17 +17,27 @@
         if ([model.content isEqualToString:self.searchStr]) {
             return 1;
         }else{
-            return 2;
+            if (self.isCreate) {
+                return 2;
+            }else{
+                return 1;
+            }
         }
     }else{
-        return 2;
+        if (self.isCreate){
+            return 2;
+        }else{
+            return 1;
+        }
     }
     return 0;
 }
 
 - (NSInteger)numberOfRowsInSection:(NSInteger)section{
     if ([self numberOfSections] == 1) {
-        return self.postTags.count;
+        if (section == 0) {
+            return self.postTags.count;
+        }
     }else if([self numberOfSections] == 2){
         if (section == 0) {
             return 1;

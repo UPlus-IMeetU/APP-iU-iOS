@@ -374,6 +374,13 @@
 #pragma mark ZXCycleScrollViewDelegate,ZXCycleScrollViewDatasource
 //返回滚动视图的个数
 - (NSInteger)numberOfPages{
+    if (_bannerArray.count == 1) {
+        _cycleScrollView.pageControl.hidden = YES;
+        _cycleScrollView.scrollView.scrollEnabled = NO;
+    }else{
+        _cycleScrollView.pageControl.hidden = NO;
+        _cycleScrollView.scrollView.scrollEnabled = YES;
+    }
     return _bannerArray.count;
 }
 //定义ScrollView

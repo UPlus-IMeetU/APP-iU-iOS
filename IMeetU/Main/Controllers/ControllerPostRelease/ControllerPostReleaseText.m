@@ -57,12 +57,18 @@
 - (IBAction)onClickBtnCancel:(id)sender {
     [self.view endEditing:YES];
     
-    if (self.delegatePostText) {
-        if ([self.delegatePostText respondsToSelector:@selector(controllerPostReleaseTextCancel:)]) {
-            [self.delegatePostText controllerPostReleaseTextCancel:self];
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"取消发帖" message:@"要退出内容编辑么？" preferredStyle:UIAlertControllerStyleAlert];
+    [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [controller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (self.delegatePostText) {
+            if ([self.delegatePostText respondsToSelector:@selector(controllerPostReleaseTextCancel:)]) {
+                [self.delegatePostText controllerPostReleaseTextCancel:self];
+            }
         }
-    }
-    [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    [self presentViewController:controller animated:YES completion:nil];
+
 }
 
 - (IBAction)onClickBtnFinish:(id)sender {

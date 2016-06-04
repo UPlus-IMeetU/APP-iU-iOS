@@ -35,6 +35,8 @@
     
     self.btnAccept.layer.cornerRadius = 3;
     self.btnAccept.layer.masksToBounds = YES;
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)initWithModel:(ModelBiuMe *)model{

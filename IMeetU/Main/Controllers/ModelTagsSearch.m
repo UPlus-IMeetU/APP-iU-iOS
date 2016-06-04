@@ -35,7 +35,9 @@
 
 - (NSInteger)numberOfRowsInSection:(NSInteger)section{
     if ([self numberOfSections] == 1) {
-        return self.postTags.count;
+        if (section == 0) {
+            return self.postTags.count;
+        }
     }else if([self numberOfSections] == 2){
         if (section == 0) {
             return 1;

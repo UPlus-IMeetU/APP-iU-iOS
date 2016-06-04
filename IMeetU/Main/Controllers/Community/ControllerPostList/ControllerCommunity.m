@@ -148,7 +148,7 @@
 }
 
 - (IBAction)onClickBtnNotifies:(UIButton*)sender {
-    [sender setImage:[UIImage imageNamed:@"btn_activity_light"] forState:UIControlStateNormal];
+    [sender setImage:[UIImage imageNamed:@"biu_btn_activity_nor"] forState:UIControlStateNormal];
     [UserDefultAppGlobalStatus resetCountOfNoticeCommunity];
     ControllerCommunityNotifies *controller = [ControllerCommunityNotifies controller];
     [self.navigationController pushViewController:controller animated:YES];

@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
 
 @interface ControllerPostTags ()<UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *labelNoCreated;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewTags;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldSearch;
 @property (weak, nonatomic) IBOutlet UILabel *labelSearchCountdown;
@@ -93,6 +94,8 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
     }else if (self.type == ControllerPostTagsTypeSearchCreate){
         self.textFieldSearch.placeholder = @"创建/选择话题标签";
     }
+    
+    self.labelNoCreated.hidden = YES;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -220,6 +223,20 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
                                 _modelTagsSearch.isCreate = YES;
                             }
                             
+                            if ([self.modelTagsSearch numberOfSections] == 1) {
+                                if ([self.modelTagsSearch numberOfRowsInSection:0] == 0){
+                                    self.labelNoCreated.hidden = NO;
+                                }else{
+                                    self.labelNoCreated.hidden = YES;
+                                }
+                            }else if ([self.modelTagsSearch numberOfSections] == 2){
+                                if ([self.modelTagsSearch numberOfRowsInSection:1] == 0){
+                                    self.labelNoCreated.hidden = NO;
+                                }else{
+                                    self.labelNoCreated.hidden = YES;
+                                }
+                            }
+                            
                             [self.tableViewTags reloadData];
                         }
                     }
@@ -228,6 +245,7 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
         }else{
             self.postTagsShowContent = PostTagsShowContentAll;
             [self.tableViewTags reloadData];
+            self.labelNoCreated.hidden = YES;
             [self addFooterRefresh];
         }
     }
@@ -273,6 +291,8 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
                         [self.tableViewTags.mj_footer endRefreshing];
                     }
                     [self.tableViewTags reloadData];
+                    
+                    [self.modelTagsSearch numberOfRowsInSection:1];
                 }else{
                     [self.tableViewTags.mj_footer endRefreshing];
                 }

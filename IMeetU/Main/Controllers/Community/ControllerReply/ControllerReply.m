@@ -265,8 +265,9 @@
     if (_selectedModelComment) {
         toUserCode = _selectedModelComment.userFromCode;
         parentId = _selectedModelComment.commentId;
+    }else{
+          toUserCode = _modelPost.userCode;
     }
-    toUserCode = _modelPost.userCode;
     __weak typeof(self) weakSelf = self;
     [[XMHttpCommunity http] createCommentWithPostId:_modelPost.postId withParentId:parentId withToUserCode:toUserCode withContent:_textView.text callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
             if (code == 200) {

@@ -90,9 +90,11 @@
 }
 
 - (BOOL)isHiddenImgViewArrowWithIndexPath:(NSIndexPath*)indexPath isMine:(BOOL)isMine{
-    if (indexPath.section==2 && indexPath.row==1) {
+    if (indexPath.section == 1 && indexPath.row == 1) {
+        return NO;
+    }else if (indexPath.section==2 && indexPath.row==1) {
         return YES;
-    }else if (!isMine){
+    }else if (!isMine && (indexPath.section == 1 && indexPath.row)){
         return YES;
     }
     return NO;

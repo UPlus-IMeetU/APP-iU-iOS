@@ -22,7 +22,7 @@
 @property (nonatomic, assign) BOOL isUseDragging; //是否使用手拖动的，自动的就设置为NO
 @property (nonatomic, assign) BOOL isEndDecelerating;
 
-@property (nonatomic, strong) UIView* tabView;
+
 @property (nonatomic, strong) UIView* tabSelectedLine;
 @property (nonatomic, strong) NSMutableArray* tabButtons;
 @property (nonatomic, strong) NSMutableArray* tabRedDots; //按钮上的红点

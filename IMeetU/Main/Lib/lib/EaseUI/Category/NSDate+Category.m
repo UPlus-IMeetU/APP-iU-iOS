@@ -179,6 +179,10 @@
 	return [NSDate dateWithDaysFromNow:1];
 }
 
++ (NSDate *)dateTheDayBefore{
+    return [NSDate dateWithDaysBeforeNow:2];
+}
+
 + (NSDate *) dateYesterday
 {
 	return [NSDate dateWithDaysBeforeNow:1];
@@ -231,6 +235,11 @@
 - (BOOL) isTomorrow
 {
 	return [self isEqualToDateIgnoringTime:[NSDate dateTomorrow]];
+}
+
+
+- (BOOL) isTheDayBefore{
+    return [self isEqualToDateIgnoringTime:[NSDate dateTheDayBefore]];
 }
 
 - (BOOL) isYesterday

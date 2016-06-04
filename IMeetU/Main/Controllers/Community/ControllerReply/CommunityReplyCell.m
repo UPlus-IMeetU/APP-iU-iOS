@@ -50,7 +50,7 @@
     if (modelComment.parentId != 0) {
         str = [NSString stringWithFormat:@"回复 %@:%@",_modelComment.userToName,_modelComment.content];
         contentText = [[NSMutableAttributedString alloc] initWithString:str];
-        UIColor *fontColor = [_modelComment.userFromSex isEqualToString:@"1"] ? [UIColor often_8883BC:1] : [UIColor often_F06E7F:1];
+        UIColor *fontColor = [_modelComment.userToSex isEqualToString:@"1"] ? [UIColor often_8883BC:1] : [UIColor often_F06E7F:1];
         [contentText setColor:fontColor range:NSMakeRange(3, _modelComment.userToName.length)];
         
     }else{
@@ -61,7 +61,8 @@
     contentText.font = [UIFont systemFontOfSize:13];
     contentText.lineSpacing = 2.6;
     _contentLabel.attributedText = contentText;
-    CGFloat commentSizeHeight = [UIFont getSpaceLabelHeight:modelComment.content withFont:_contentLabel.font withWidth:(self.width - 63) withLineSpacing:2.6];
+    _timeLabel.text = [self createdAt:_modelComment.createAt];
+    CGFloat commentSizeHeight = [UIFont getSpaceLabelHeight:modelComment.content withFont:_contentLabel.font withWidth:(self.width - 63) withLineSpacing:2.8];
     self.contentLabelHeight.constant = ceil(commentSizeHeight);
     [self.contentLabel layoutIfNeeded];
 }
@@ -78,15 +79,13 @@
     NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:time];
     // 判断是否为今年
     if (createDate.isThisYear) {
-        NSDateComponents *cmps = [createDate deltaWithNow];
-        
-        if (createDate.isToday) { // 今天
+    if (createDate.isToday) { // 今天
             fmt.dateFormat = @"HH:mm";
             return [fmt stringFromDate:createDate];
-        } else if (cmps.day == 1) { // 昨天
+        } else if (createDate.isYesterday) { // 昨天
             fmt.dateFormat = @"HH:mm";
             return [NSString stringWithFormat:@"昨天 %@",[fmt stringFromDate:createDate]];
-        } else if (cmps.day == 2){
+        } else if ([[createDate dateByAddingDays:2] isToday]){
             fmt.dateFormat = @"HH:mm";
             [NSString stringWithFormat:@"前天 %@",[fmt stringFromDate:createDate]];
         }

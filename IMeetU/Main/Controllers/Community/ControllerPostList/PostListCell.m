@@ -228,15 +228,13 @@
     NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:time];
     // 判断是否为今年
     if (createDate.isThisYear) {
-        NSDateComponents *cmps = [createDate deltaWithNow];
-        
         if (createDate.isToday) { // 今天
             fmt.dateFormat = @"HH:mm";
             return [fmt stringFromDate:createDate];
-        } else if (cmps.day == 1) { // 昨天
+        } else if (createDate.isYesterday) { // 昨天
             fmt.dateFormat = @"HH:mm";
             return [NSString stringWithFormat:@"昨天 %@",[fmt stringFromDate:createDate]];
-        } else if (cmps.day == 2){
+        } else if ([[createDate dateByAddingDays:2] isToday]){
             fmt.dateFormat = @"HH:mm";
             [NSString stringWithFormat:@"前天 %@",[fmt stringFromDate:createDate]];
         }

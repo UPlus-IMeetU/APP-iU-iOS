@@ -35,6 +35,7 @@
 @property (nonatomic, strong) XMAlertDialogUnfriendYou *alertViewUnfriendYou;
 @property (weak, nonatomic) IBOutlet UIView *viewMain;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewContact;
+@property (weak, nonatomic) IBOutlet UIView *viewEmptyNotice;
 @property (nonatomic, strong) ModelContacts *contacts;
 @property (nonatomic, weak) UIViewController *superController;
 @end
@@ -50,6 +51,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.viewEmptyNotice.hidden = YES;
     
     [self.tableViewContact registerNib:[UINib xmNibFromMainBundleWithName:CellReuseIdentifier] forCellReuseIdentifier:CellReuseIdentifier];
     self.tableViewContact.dataSource = self;
@@ -68,6 +71,9 @@
         if (result) {
             self.contacts = contacts;
             [self.tableViewContact reloadData];
+            if ([contacts numberOfRowsInSection:0]<1) {
+                self.viewEmptyNotice.hidden = NO;
+            }
         }
     }];
 }

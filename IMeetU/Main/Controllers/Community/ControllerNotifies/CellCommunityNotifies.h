@@ -20,6 +20,4 @@
 @optional
 - (void)cell:(CellCommunityNotifies*)cell userCode:(NSInteger)userCode;
 
-- (void)cell:(CellCommunityNotifies*)cell postId:(long long)postId;
-
 @end

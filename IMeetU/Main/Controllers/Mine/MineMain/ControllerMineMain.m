@@ -162,7 +162,6 @@
             [self.view addSubview:self.biuButton];
         }
     }
-
 }
 
 - (void)biuButtonClick:(UIButton *)button{
@@ -226,7 +225,6 @@
             ModelResponse *response = [ModelResponse responselWithObject:responseObject];
             if (response.state == 200) {
                 ModelResponseMineHeader *mineHeader = [ModelResponseMineHeader modelWithJSON:response.data];
-                
                 self.mineInfo = [ModelResponseMine modelWithJSON:mineHeader.userinfo];
                 self.mineInfo.profileCircle = self.mineInfo.profileOrigin;
                 [self.labelNameNick setText:self.mineInfo.nameNick];
@@ -864,9 +862,8 @@
         if (successed) {
             self.mineInfo.interests = selecteds;
             [self.tableView reloadSection:5 withRowAnimation:UITableViewRowAnimationAutomatic];
-            NSLog(@"------**>success");
         }else{
-            NSLog(@"----------->failed");
+            
         }
     }];
     
@@ -877,11 +874,16 @@
     [self presentViewController:self.pickControllerProfile animated:YES completion:^{
         [self.viewMineMainAlterProfile hiddenAndRemove];
     }];
-    self.tabBarController.tabBar.hidden = NO;
+    
+    if (self.getUserCodeFrom == MineMainGetUserCodeFromUserDefult) {
+        self.tabBarController.tabBar.hidden = NO;
+    }
 }
 
 - (void)viewMineMainAlterProfileClose:(ViewMineMainAlterProfile *)view{
-    self.tabBarController.tabBar.hidden = NO;
+    if (self.getUserCodeFrom == MineMainGetUserCodeFromUserDefult) {
+        self.tabBarController.tabBar.hidden = NO;
+    }
 }
 
 - (UIImagePickerController *)pickControllerImg{

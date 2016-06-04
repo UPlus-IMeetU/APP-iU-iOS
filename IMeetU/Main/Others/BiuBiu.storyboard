@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1220,6 +1220,23 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfE-5I-K2h">
+                                        <rect key="frame" x="225.5" y="257.5" width="149" height="21"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还没有biubiu关系呢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-Cj-ifs">
+                                                <rect key="frame" x="0.0" y="0.0" width="149" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="6jR-Cj-ifs" secondAttribute="bottom" id="4hC-Pv-fUc"/>
+                                            <constraint firstAttribute="trailing" secondItem="6jR-Cj-ifs" secondAttribute="trailing" id="ATc-yC-UnE"/>
+                                            <constraint firstItem="6jR-Cj-ifs" firstAttribute="top" secondItem="pfE-5I-K2h" secondAttribute="top" id="B0O-8X-RA3"/>
+                                            <constraint firstItem="6jR-Cj-ifs" firstAttribute="leading" secondItem="pfE-5I-K2h" secondAttribute="leading" id="dGI-x5-yft"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1227,6 +1244,8 @@
                                     <constraint firstAttribute="bottom" secondItem="rVm-sd-Dmw" secondAttribute="bottom" id="MRg-Zn-w9d"/>
                                     <constraint firstItem="rVm-sd-Dmw" firstAttribute="leading" secondItem="7IV-2o-I3C" secondAttribute="leading" id="awx-cG-r23"/>
                                     <constraint firstAttribute="trailing" secondItem="rVm-sd-Dmw" secondAttribute="trailing" id="sPc-QW-D6c"/>
+                                    <constraint firstItem="pfE-5I-K2h" firstAttribute="centerY" secondItem="7IV-2o-I3C" secondAttribute="centerY" id="vMQ-Ov-RM6"/>
+                                    <constraint firstItem="pfE-5I-K2h" firstAttribute="centerX" secondItem="7IV-2o-I3C" secondAttribute="centerX" id="w35-aG-a3M"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1243,6 +1262,7 @@
                     </view>
                     <connections>
                         <outlet property="tableViewContact" destination="rVm-sd-Dmw" id="zPg-tq-ihi"/>
+                        <outlet property="viewEmptyNotice" destination="pfE-5I-K2h" id="PrW-VP-CPk"/>
                         <outlet property="viewMain" destination="7IV-2o-I3C" id="HFb-WM-hLH"/>
                     </connections>
                 </viewController>

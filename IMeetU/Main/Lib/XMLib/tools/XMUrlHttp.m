@@ -261,8 +261,8 @@
 }
 
 + (NSString *)connectWithOperation:(NSString *)operation{
-   NSString *host = @"http://app.iu.imeetu.cc/meetu_maven_new/";
-   //NSString *host = @"http://123.57.26.168:8080/meetu_maven_new/";
+   //NSString *host = @"http://app.iu.imeetu.cc/meetu_maven_new/";
+   NSString *host = @"http://123.57.26.168:8080/meetu_maven_new/";
     return [NSString stringWithFormat:@"%@%@", host, operation];
 }
 @end

@@ -12,7 +12,9 @@
 #import "XMHttpCommunity.h"
 #import "MBProgressHUD+plug.h"
 
+
 #import "UINib+Plug.h"
+#import "UIColor+Plug.h"
 #import "UIStoryboard+Plug.h"
 
 #import "CellCommunityNotifies.h"
@@ -20,12 +22,15 @@
 #import "ControllerReply.h"
 #import "MJRefresh.h"
 
+#import "XMNetworkErr.h"
+
 #define CellReuseIdentifier @"CellCommunityNotifies"
 
 @interface ControllerCommunityNotifies ()<UITableViewDelegate, UITableViewDataSource, CellCommunityNotifiesDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *viewMain;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewNotifies;
+@property (weak, nonatomic) IBOutlet UIView *viewEmptyNotice;
 @property (nonatomic, strong) ModelCommunityNotifies *notifies;
 
 @end
@@ -39,6 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.viewEmptyNotice.hidden = YES;
     
     [self.tableViewNotifies registerNib:[UINib xmNibFromMainBundleWithName:@"CellCommunityNotifies"] forCellReuseIdentifier:CellReuseIdentifier];
     self.tableViewNotifies.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -50,6 +56,10 @@
         if (code == 200) {
             self.notifies = notifies;
             [self.tableViewNotifies reloadData];
+            
+            if ([self.notifies numberOfRowsInSection] < 1) {
+                self.viewEmptyNotice.hidden = NO;
+            }
         }else{
             [hud xmSetCustomModeWithResult:NO label:@"加载失败"];
         }
@@ -72,6 +82,8 @@
             }
         }];
     }];
+    
+    self.tableViewNotifies.backgroundColor = [UIColor xmColorWithHexStrRGB:@"EEEEEE"];
 }
 
 
@@ -96,6 +108,14 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ModelCommunityNotice *notice = [self.notifies modelWithIndexPath:indexPath];
+    ControllerReply *controller = [ControllerReply shareControllerReply];
+    
+    controller.postId = (NSUInteger)notice.postId;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 - (IBAction)onClickBtnClean:(id)sender {
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"清空通知消息" message:@"嗨，清空通知消息后将无法恢复哦" preferredStyle:UIAlertControllerStyleAlert];
     [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
@@ -114,6 +134,7 @@
     }]];
     
     [self presentViewController:controller animated:YES completion:nil];
+    
 }
 
 - (IBAction)onClickBtnBack:(id)sender {
@@ -122,13 +143,6 @@
 
 - (void)cell:(CellCommunityNotifies *)cell userCode:(NSInteger)userCode{
     ControllerMineMain *controller = [ControllerMineMain controllerWithUserCode:[NSString stringWithFormat:@"%ld", (long)userCode] getUserCodeFrom:MineMainGetUserCodeFromParam];
-    [self.navigationController pushViewController:controller animated:YES];
-}
-
-- (void)cell:(CellCommunityNotifies *)cell postId:(long long)postId{
-    ControllerReply *controller = [ControllerReply shareControllerReply];
-    
-    controller.postId = (NSUInteger)postId;
     [self.navigationController pushViewController:controller animated:YES];
 }
 

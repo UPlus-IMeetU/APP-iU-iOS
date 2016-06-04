@@ -72,14 +72,4 @@
     }
 }
 
-- (IBAction)onClickBtnPost:(id)sender {
-    if (self.delegateNotice) {
-        if ([self.delegateNotice respondsToSelector:@selector(cell:postId:)]) {
-            self.model.isRead = YES;
-            self.viewUnread.hidden = YES;
-            [self.delegateNotice cell:self postId:self.model.postId];
-        }
-    }
-}
-
 @end

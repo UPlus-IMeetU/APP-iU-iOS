@@ -336,6 +336,8 @@
 		044B3F7E1D011F6800E9E46F /* ModelBiuMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F7D1D011F6800E9E46F /* ModelBiuMe.m */; };
 		044B3F811D011F7900E9E46F /* ModelsBiuMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F801D011F7900E9E46F /* ModelsBiuMe.m */; };
 		044B3F841D0176F400E9E46F /* DBCacheKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3F831D0176F400E9E46F /* DBCacheKeyValue.m */; };
+		044B3FC71D02F0B200E9E46F /* XMNetworkErr.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B3FC61D02F0B200E9E46F /* XMNetworkErr.m */; };
+		044B3FC91D02F0BF00E9E46F /* XMNetworkErr.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044B3FC81D02F0BF00E9E46F /* XMNetworkErr.xib */; };
 		044EB4661CE46C1A0076DCD6 /* ControllerNavi.m in Sources */ = {isa = PBXBuildFile; fileRef = 044EB4651CE46C1A0076DCD6 /* ControllerNavi.m */; };
 		0450B7A21C902470001DD60A /* ModelInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0450B7A11C902470001DD60A /* ModelInterest.m */; };
 		0450B7A51C90248A001DD60A /* ModelInterests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0450B7A41C90248A001DD60A /* ModelInterests.m */; };
@@ -1162,6 +1164,9 @@
 		044B3F801D011F7900E9E46F /* ModelsBiuMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelsBiuMe.m; sourceTree = "<group>"; };
 		044B3F821D0176F400E9E46F /* DBCacheKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCacheKeyValue.h; sourceTree = "<group>"; };
 		044B3F831D0176F400E9E46F /* DBCacheKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCacheKeyValue.m; sourceTree = "<group>"; };
+		044B3FC51D02F0B200E9E46F /* XMNetworkErr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNetworkErr.h; sourceTree = "<group>"; };
+		044B3FC61D02F0B200E9E46F /* XMNetworkErr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNetworkErr.m; sourceTree = "<group>"; };
+		044B3FC81D02F0BF00E9E46F /* XMNetworkErr.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMNetworkErr.xib; sourceTree = "<group>"; };
 		044EB4641CE46C1A0076DCD6 /* ControllerNavi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerNavi.h; sourceTree = "<group>"; };
 		044EB4651CE46C1A0076DCD6 /* ControllerNavi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerNavi.m; sourceTree = "<group>"; };
 		0450B7A01C902470001DD60A /* ModelInterest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelInterest.h; sourceTree = "<group>"; };
@@ -2785,6 +2790,16 @@
 			path = ControllerBiuMe;
 			sourceTree = "<group>";
 		};
+		044B3FC41D02F0A200E9E46F /* XMNetworkErr */ = {
+			isa = PBXGroup;
+			children = (
+				044B3FC51D02F0B200E9E46F /* XMNetworkErr.h */,
+				044B3FC61D02F0B200E9E46F /* XMNetworkErr.m */,
+				044B3FC81D02F0BF00E9E46F /* XMNetworkErr.xib */,
+			);
+			path = XMNetworkErr;
+			sourceTree = "<group>";
+		};
 		0450B7BF1C906637001DD60A /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -3429,6 +3444,7 @@
 		04B165C01C89D87E00EE6DB8 /* XMLib */ = {
 			isa = PBXGroup;
 			children = (
+				044B3FC41D02F0A200E9E46F /* XMNetworkErr */,
 				044724B81C9A5B95000FD349 /* MLToast */,
 				04B165C11C89D87E00EE6DB8 /* plugs */,
 				044AF7181C8D390D009AF59F /* tools */,
@@ -4770,6 +4786,7 @@
 				0450B8161C925CF0001DD60A /* ReusableViewMineAlterInterestFooter.xib in Resources */,
 				04B165FA1C89D87E00EE6DB8 /* Mine.storyboard in Resources */,
 				0450B7D31C907F6B001DD60A /* ReusableViewMatchSettingFooter.xib in Resources */,
+				044B3FC91D02F0BF00E9E46F /* XMNetworkErr.xib in Resources */,
 				0450B8131C925CF0001DD60A /* CellTableViewMineAlterInterestFooter.xib in Resources */,
 				04471FB01C996C49000FD349 /* chatBar_colorMore_video@2x.png in Resources */,
 				04B7D5E61CDB4CB600D74C6D /* MWPhotoBrowser.bundle in Resources */,
@@ -5272,6 +5289,7 @@
 				04B7D5C41CDB4CB600D74C6D /* MWPhotoBrowser.m in Sources */,
 				04151AA71C95AEC4008955C2 /* XMOSS.m in Sources */,
 				04B7D4B51CDB4BEB00D74C6D /* NSDateFormatter+Category.m in Sources */,
+				044B3FC71D02F0B200E9E46F /* XMNetworkErr.m in Sources */,
 				04B7D4CF1CDB4BEB00D74C6D /* EaseBubbleView+Location.m in Sources */,
 				0450B7DA1C910EA4001DD60A /* CellCollectionMatchSettingCharacter.m in Sources */,
 				04B7D4D61CDB4BEB00D74C6D /* EaseImageView.m in Sources */,

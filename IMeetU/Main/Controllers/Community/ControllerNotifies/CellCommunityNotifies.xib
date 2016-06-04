@@ -101,25 +101,15 @@
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="er2-9y-Cqf">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="59"/>
-                                        <connections>
-                                            <action selector="onClickBtnPost:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xZQ-ei-Drv"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="er2-9y-Cqf" secondAttribute="bottom" id="8VS-GG-bxA"/>
                                     <constraint firstAttribute="trailing" secondItem="bZA-Zx-b06" secondAttribute="trailing" id="OPa-sw-OHv"/>
-                                    <constraint firstItem="er2-9y-Cqf" firstAttribute="top" secondItem="7aq-G2-hEI" secondAttribute="top" id="R9J-U9-umu"/>
                                     <constraint firstAttribute="height" constant="59" id="Ubg-YI-syL"/>
                                     <constraint firstItem="HSy-Eh-xIi" firstAttribute="top" secondItem="7aq-G2-hEI" secondAttribute="top" constant="5" id="Yl6-VG-bHy"/>
                                     <constraint firstItem="HSy-Eh-xIi" firstAttribute="leading" secondItem="7aq-G2-hEI" secondAttribute="leading" constant="5" id="cfI-dt-uD5"/>
                                     <constraint firstItem="bZA-Zx-b06" firstAttribute="centerY" secondItem="7aq-G2-hEI" secondAttribute="centerY" id="e23-kz-dCK"/>
                                     <constraint firstItem="bZA-Zx-b06" firstAttribute="leading" secondItem="7aq-G2-hEI" secondAttribute="leading" constant="59" id="qe6-PN-T3B"/>
-                                    <constraint firstAttribute="trailing" secondItem="er2-9y-Cqf" secondAttribute="trailing" id="r4I-NS-lL6"/>
-                                    <constraint firstItem="er2-9y-Cqf" firstAttribute="leading" secondItem="7aq-G2-hEI" secondAttribute="leading" id="y1Z-tc-ZWY"/>
                                 </constraints>
                             </view>
                         </subviews>

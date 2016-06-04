@@ -26,6 +26,7 @@
 @property (nonatomic, strong) ModelsBiuMe *models;
 @property (weak, nonatomic) IBOutlet UIView *viewMain;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewBiuMe;
+@property (weak, nonatomic) IBOutlet UIView *viewEmptyNotice;
 
 @end
 
@@ -45,11 +46,16 @@
     self.tableViewBiuMe.delegate = self;
     self.tableViewBiuMe.dataSource = self;
     
+    self.viewEmptyNotice.hidden = YES;
     MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"" animated:YES];
     [[XMHttpChat http] getBiuMeListWithTime:0 callback:^(NSInteger code, ModelsBiuMe *models, NSError *err) {
         if (code == 200) {
             self.models = models;
             [self.tableViewBiuMe reloadData];
+            //如果内容为空显示提示
+            if ([models numberOfRowsInSection:0] == 0) {
+                self.viewEmptyNotice.hidden = NO;
+            }
         }else{
             [hud xmSetCustomModeWithResult:NO label:@""];
         }

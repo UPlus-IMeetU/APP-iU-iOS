@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface MLToast : UIView
 
 + (instancetype)toastInView:(UIView*)view content:(NSString*)content;
-
 - (void)show;
 
 @end

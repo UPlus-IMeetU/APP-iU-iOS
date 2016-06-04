@@ -42,6 +42,7 @@
 @property (nonatomic,strong) NSMutableArray *bannerArray;
 @property (nonatomic,assign) long long lastTime;
 @property (nonatomic,assign) BOOL isHasNext;
+@property (nonatomic,strong) UILabel *emptyLabel;
 @end
 
 @implementation ControllerPostList
@@ -149,7 +150,17 @@
     }];
 }
 - (void)prepareUI{
-    [self.view addSubview:self.postListTableView];
+     [self.view addSubview:self.postListTableView];
+    _emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, self.view.width, 20)];
+    _emptyLabel.font = [UIFont systemFontOfSize:14];
+    _emptyLabel.textColor = [UIColor often_808080:1];
+    _emptyLabel.textAlignment = NSTextAlignmentCenter;
+     [self.view addSubview:_emptyLabel];
+     if (self.postListType == PostListTypeBiuBiu) {
+        _emptyLabel.text = @"biubiu好友的内容动态会呈现在这里哦";
+     }else if(self.postListType == PostListTypeRecommend){
+        _emptyLabel.text = @"iU推荐的内容动态会呈现在这里哦";
+     }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -161,6 +172,7 @@
 - (UITableView *)postListTableView{
     if (!_postListTableView) {
         _postListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64 - 49)];
+        _postListTableView.contentInset = UIEdgeInsetsMake(36, 0, 0, 0);
         _postListTableView.delegate = self;
         _postListTableView.dataSource = self;
         _postListTableView.showsVerticalScrollIndicator = NO;
@@ -245,6 +257,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (_postListArray.count == 0) {
+        _emptyLabel.hidden = NO;
+    }else{
+        _emptyLabel.hidden = YES;
+    }
     return _postListArray.count;
 }
 
@@ -348,17 +365,19 @@
     contentOffsetY = scrollView.contentOffset.y;
 }
 
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    NSLog(@"---------y= %f-----------",scrollView.contentOffset.y);
     if (scrollView.dragging) {  // 拖拽
-        if ((scrollView.contentOffset.y - contentOffsetY) > 15.0f) {  // 向上拖拽
+        if ((scrollView.contentOffset.y - contentOffsetY) > 15.0f && _postListArray.count != 0) {  // 向上拖拽
             if (self.delegate) {
                 if ([self.delegate respondsToSelector:@selector(hideTitleView:)]) {
                     [self.delegate hideTitleView:YES];
                 }
             }
             contentOffsetY = scrollView.contentOffset.y;
-        } else if ((contentOffsetY - scrollView.contentOffset.y) > 15.0f || scrollView.contentOffset.y <= 0) {
+        } else if ((contentOffsetY - scrollView.contentOffset.y) > 15.0f) {
             // 向下拖拽
             if (self.delegate) {
                 if ([self.delegate respondsToSelector:@selector(hideTitleView:)]) {
@@ -370,11 +389,26 @@
             
         }
     }
+    
+    if (scrollView.contentOffset.y == - 36) {
+        if (self.delegate) {
+            if ([self.delegate respondsToSelector:@selector(hideTitleView:)]) {
+                [self.delegate hideTitleView:NO];
+            }
+        }
+    }
 }
 
 #pragma mark ZXCycleScrollViewDelegate,ZXCycleScrollViewDatasource
 //返回滚动视图的个数
 - (NSInteger)numberOfPages{
+    if (_bannerArray.count == 1) {
+        _cycleScrollView.pageControl.hidden = YES;
+        _cycleScrollView.scrollView.scrollEnabled = NO;
+    }else{
+        _cycleScrollView.pageControl.hidden = NO;
+        _cycleScrollView.scrollView.scrollEnabled = YES;
+    }
     return _bannerArray.count;
 }
 

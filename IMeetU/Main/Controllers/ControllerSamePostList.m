@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (assign,nonatomic) BOOL isHasNext;
 @property (assign,nonatomic) long long lastTime;
+@property (weak, nonatomic) IBOutlet UILabel *emptyLabel;
 
 /**
  *  帖子
@@ -205,6 +206,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (_postListArray.count == 0 && _isMyPostList) {
+        _emptyLabel.hidden = NO;
+    }else{
+        _emptyLabel.hidden = YES;
+    }
     return _postListArray.count;
 }
 

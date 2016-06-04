@@ -21,7 +21,7 @@
 @property (nonatomic, assign) UIColor* tabButtonTitleColorForNormal;
 @property (nonatomic, assign) UIColor* tabButtonTitleColorForSelected;
 @property (nonatomic, assign) CGFloat selectedLineWidth; //下划线的宽
-
+@property (nonatomic, strong) UIView* tabView;
 
 
 -(void)setHide;

@@ -16,6 +16,8 @@
 #import "ControllerBiuBiu.h"
 #import "ControllerMineMain.h"
 #import "ControllerCommunity.h"
+#import "MLToast.h"
+#import "Reachability.h"
 
 @interface ControllerTabBarMain ()
 
@@ -88,7 +90,7 @@ controllerNaviCommunity;
     self.controllerNaviCommunity = [[ControllerNavi alloc] initWithRootViewController:self.controllerCommunity];
     self.controllerNaviCommunity.tabBarItem.image = [[UIImage imageNamed:@"tab_icon_found_nor"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.controllerNaviCommunity.tabBarItem.selectedImage = [[UIImage imageNamed:@"tab_icon_found_light"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    self.controllerNaviCommunity.title = @"社区";
+    self.controllerNaviCommunity.title = @"发现";
     
     
     self.controllerMine = [ControllerMineMain  controllerWithUserCode:nil getUserCodeFrom:MineMainGetUserCodeFromUserDefult];
@@ -101,6 +103,16 @@ controllerNaviCommunity;
     self.viewControllers = @[self.controllerNaviBiu,self.controllerNaviCommunity,self.controllerNaviMsg,self.controllerNaviMine];
     //默认显示发送biubiu的页面
     self.selectedIndex = 0;
+    
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.baidu.com"];
+    reach.reachableBlock = ^(Reachability*reach)
+    {
+    };
+    reach.unreachableBlock = ^(Reachability*reach)
+    {
+        [[MLToast toastInView:self.view content:@"网络连接失败"] show];
+    };
+    [reach startNotifier];
 }
 
 - (void)viewDidLoad {

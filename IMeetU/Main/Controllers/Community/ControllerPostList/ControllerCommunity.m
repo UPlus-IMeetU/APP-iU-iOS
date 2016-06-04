@@ -21,6 +21,7 @@
 #import "ControllerUserLogin.h"
 #import "ControllerUserRegisterThirdStep.h"
 #import "UserDefultAccount.h"
+#import "ControllerSamePostList.h"
 
 @interface ControllerCommunity ()<ControllerPostListDelegate,SMPagerTabViewDelegate, ControllerPostTagsDelegate,ViewDrawerRightLoginRegisterDelegate>
 @property (strong, nonatomic) SMPagerTabView *titleView;
@@ -120,7 +121,8 @@
 #pragma mark ControllerPostListDelegate
 - (void)hideTitleView:(BOOL)isHidden{
     if (isHidden && _titleView.tabFrameHeight == 36.0) {
-        [UIView animateWithDuration:1 animations:^{
+        [UIView animateWithDuration:0.25f animations:^{
+            _titleView.tabView.alpha = 0;
             _titleView.tabFrameHeight = 0.5;
         } completion:^(BOOL finished) {
             [_titleView setHide];
@@ -128,7 +130,8 @@
         }];
     }
     if (!isHidden && _titleView.tabFrameHeight == 0.5) {
-        [UIView animateWithDuration:1 animations:^{
+        [UIView animateWithDuration:0.25f animations:^{
+            _titleView.tabView.alpha = 1;
             _titleView.tabFrameHeight = 36.0;
         } completion:^(BOOL finished) {
             [_titleView setShow];
@@ -175,7 +178,10 @@
 }
 
 - (void)controllerPostTags:(ControllerPostTags *)controller model:(ModelTag *)model{
-    [self.navigationController popViewControllerAnimated:YES];
+    ControllerSamePostList *samePostList = [ControllerSamePostList controllerSamePostList];
+    samePostList.titleName = model.content;
+    samePostList.tagId = model.tagId;
+    [self.navigationController pushViewController:samePostList animated:YES];
 }
 
 #pragma mark ViewDrawerRightLoginRegisterDelegate
@@ -188,5 +194,6 @@
     ControllerUserRegisterThirdStep *controller = [ControllerUserRegisterThirdStep controller];
     [self.navigationController pushViewController:controller animated:YES];
 }
+
 
 @end

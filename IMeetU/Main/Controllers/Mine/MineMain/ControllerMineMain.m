@@ -170,9 +170,9 @@
     if (button.tag == 10001) {
         [[XMHttpCommunity http] grabCommBiuWithUserCode:[_userCode integerValue]  withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
             if (code == 200) {
-                [_biuButton setTitle:@"已抢biu过啦～" forState:UIControlStateNormal];
+                [[MLToast toastInView:self.view content:@"biu成功啦~"] show];
             }else{
-                [[MLToast toastInView:self.view content:@"抢biu失败了"] show];
+                [[MLToast toastInView:self.view content:@"biu失败了~"] show];
             }
         }];
     }
@@ -232,12 +232,9 @@
                 [self.labelNameNick setText:self.mineInfo.nameNick];
                 //进行状态的判定
                 NSInteger biuCode = self.mineInfo.biuCode;
-                if (biuCode == 0) {
-                    [_biuButton setTitle:@"抢biu" forState:UIControlStateNormal];
+                if (biuCode == 0 || biuCode == 1) {
+                    [_biuButton setTitle:@"biu一下" forState:UIControlStateNormal];
                     _biuButton.tag = 10001;
-                }else if (biuCode == 1){
-                    [_biuButton setTitle:@"已抢biu过啦～" forState:UIControlStateNormal];
-                    _biuButton.enabled = NO;
                 }else if(biuCode == 2){
                     [_biuButton setTitle:@"和TA聊聊" forState:UIControlStateNormal];
                     _biuButton.tag = 10002;

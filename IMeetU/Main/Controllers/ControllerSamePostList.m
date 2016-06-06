@@ -20,7 +20,7 @@
 #import "YYKit/YYKit.h"
 #import "UIStoryboard+Plug.h"
 #import "MLToast.h"
-
+#import "XmNetworkErr.h"
 #import "ControllerMineMain.h"
 
 @interface ControllerSamePostList ()<UITableViewDelegate,UITableViewDataSource>
@@ -29,6 +29,7 @@
 @property (assign,nonatomic) BOOL isHasNext;
 @property (assign,nonatomic) long long lastTime;
 @property (weak, nonatomic) IBOutlet UILabel *emptyLabel;
+@property (nonatomic,strong) XMNetworkErr *xmNetworkErr;
 
 /**
  *  帖子
@@ -126,6 +127,7 @@
     }else{
         [[XMHttpCommunity http] getMyPostListWithTime:time withUserCode:_userCode withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
             if (code == 200) {
+                [_xmNetworkErr destroyView];
                 ModelCommunity *community = [ModelCommunity modelWithJSON:response];
                 _lastTime = community.time;
                 _isHasNext = community.hasNext;
@@ -138,6 +140,14 @@
                 [weakSelf.postListTableView reloadData];
                 [weakSelf.postListTableView.mj_header endRefreshing];
                 [weakSelf.postListTableView.mj_footer endRefreshing];
+            }else{
+                if (!_xmNetworkErr) {
+                    _xmNetworkErr = [[XMNetworkErr viewWithSuperView:self.view y:80 titles:@[@"呜呜，内容加载失败了",@"点击重新加载"] callback:^(XMNetworkErr *view) {
+                        [weakSelf loadDataWithTime:0 withType:Refresh];
+                    }] showView];
+                    _emptyLabel.hidden = YES;
+                }
+
             }
         }];
     }

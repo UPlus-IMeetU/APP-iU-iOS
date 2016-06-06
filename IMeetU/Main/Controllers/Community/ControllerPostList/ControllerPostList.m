@@ -23,6 +23,8 @@
 #import "YYKit/YYKit.h"
 #import "ControllerSamePostList.h"
 #import "ControllerMineMain.h"
+
+#import "XMNetworkErr.h"
 @interface ControllerPostList ()<UITableViewDelegate,UITableViewDataSource,ZXCycleScrollViewDelegate,ZXCycleScrollViewDatasource>{
     //记录当前的位置
     CGFloat contentOffsetY;
@@ -43,6 +45,7 @@
 @property (nonatomic,assign) long long lastTime;
 @property (nonatomic,assign) BOOL isHasNext;
 @property (nonatomic,strong) UILabel *emptyLabel;
+@property (nonatomic,strong) XMNetworkErr *xmNetworkErr;
 @end
 
 @implementation ControllerPostList
@@ -126,6 +129,7 @@
     __weak typeof (self) weakSelf = self;
     [[XMHttpCommunity http] loadCommunityListWithType:self.postListType withTimeStamp:time withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
         if (code == 200) {
+            [_xmNetworkErr destroyView];
             ModelCommunity *community = [ModelCommunity modelWithJSON:response];
             //获取最后时间
             weakSelf.lastTime = community.time;
@@ -144,6 +148,13 @@
             }
             [_postListTableView reloadData];
             [_cycleScrollView reloadData];
+        }else if(code == -1 && _postListArray.count == 0){
+            if (!_xmNetworkErr) {
+                _xmNetworkErr = [[XMNetworkErr viewWithSuperView:self.view y:80 titles:@[@"呜呜，内容加载失败了",@"点击重新加载"] callback:^(XMNetworkErr *view) {
+                    [weakSelf loadDataWithTime:0 withType:Refresh];
+                }] showView];
+                _emptyLabel.hidden = YES;
+            }
         }
         [_postListTableView.mj_footer endRefreshing];
         [_postListTableView.mj_header endRefreshing];

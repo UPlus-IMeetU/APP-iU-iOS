@@ -140,7 +140,7 @@
                 [weakSelf.postListTableView reloadData];
                 [weakSelf.postListTableView.mj_header endRefreshing];
                 [weakSelf.postListTableView.mj_footer endRefreshing];
-            }else{
+            }else if(code == -1 && _postListArray.count == 0){
                 if (!_xmNetworkErr) {
                     _xmNetworkErr = [[XMNetworkErr viewWithSuperView:self.view y:80 titles:@[@"呜呜，内容加载失败了",@"点击重新加载"] callback:^(XMNetworkErr *view) {
                         [weakSelf loadDataWithTime:0 withType:Refresh];

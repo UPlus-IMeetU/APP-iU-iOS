@@ -677,6 +677,7 @@
 		04F0BBF01CA2C88E0025408D /* ModelBiuReceive.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F0BBEF1CA2C88E0025408D /* ModelBiuReceive.m */; };
 		307DFDCAED0FA4E06183F229 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782115C93935C5E2EF970E47 /* Pods.framework */; };
 		6F0495AD1CE382F000FB36A9 /* ModelAdvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0495AC1CE382F000FB36A9 /* ModelAdvert.m */; };
+		6F0CC15D1D0574E6002B6D9D /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CC15C1D0574E5002B6D9D /* MJPhotoBrowser.bundle */; };
 		6F1588721CEB16BF0007AA9E /* NSDate+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1588701CEB16BF0007AA9E /* NSDate+MJ.m */; };
 		6F351CDC1D0037D600EB11F8 /* ModelPraise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F351CDB1D0037D600EB11F8 /* ModelPraise.m */; };
 		6F45F92C1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F45F92B1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m */; };
@@ -1844,6 +1845,7 @@
 		13B58D6812D48FB900FADECB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6F0495AB1CE382F000FB36A9 /* ModelAdvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelAdvert.h; sourceTree = "<group>"; };
 		6F0495AC1CE382F000FB36A9 /* ModelAdvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelAdvert.m; sourceTree = "<group>"; };
+		6F0CC15C1D0574E5002B6D9D /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
 		6F1588701CEB16BF0007AA9E /* NSDate+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MJ.m"; sourceTree = "<group>"; };
 		6F1588711CEB16BF0007AA9E /* NSDate+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+MJ.h"; sourceTree = "<group>"; };
 		6F1B62F01CFD6E4100C84892 /* EnumHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumHeader.h; sourceTree = "<group>"; };
@@ -3435,6 +3437,7 @@
 		04B165BF1C89D87E00EE6DB8 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				6F0CC15C1D0574E5002B6D9D /* MJPhotoBrowser.bundle */,
 				04B166031C8A803200EE6DB8 /* lib */,
 				04B165C01C89D87E00EE6DB8 /* XMLib */,
 			);
@@ -4643,6 +4646,7 @@
 				044727DC1C9FAF9D000FD349 /* icon_018_cover.png in Resources */,
 				044AF7601C8E7491009AF59F /* CellMineMainTags.xib in Resources */,
 				044727C31C9FAF9D000FD349 /* chat_receiver_audio_playing000@2x.png in Resources */,
+				6F0CC15D1D0574E6002B6D9D /* MJPhotoBrowser.bundle in Resources */,
 				6F4A48541CE3117300D91B4C /* BiuBiu.storyboard in Resources */,
 				04471FD21C996C49000FD349 /* VoiceSearchFeedback014@2x.png in Resources */,
 				04EE42841CE584700043053E /* ViewDrawerRightLoginRegister.xib in Resources */,

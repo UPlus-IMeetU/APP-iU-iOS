@@ -97,7 +97,7 @@
     
     _titleView.delegate = self;
     [_titleView buildUI];
-    [_titleView selectTabWithIndex:0 animate:NO];
+    [_titleView selectTabWithIndex:1 animate:NO];
 }
 
 #pragma mark - DBPagerTabView Delegate

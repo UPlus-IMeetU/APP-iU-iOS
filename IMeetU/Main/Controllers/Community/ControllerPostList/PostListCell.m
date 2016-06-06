@@ -17,8 +17,9 @@
 #import "UIColor+Plug.h"
 #import "UserDefultAccount.h"
 #import "UIFont+Plug.h"
-
+#import "MWPhotoBrowser.h"
 #import <CoreText/CoreText.h>
+#import "UIImage+Plug.h"
 @interface PostListCell()
 /**
  *  头像视图
@@ -180,17 +181,21 @@
         imageView.tag = index;
         
         //对数据进行处理
-        NSString *newStr = [NSString stringWithFormat:@"%@@%ldh_%ldw_1e_1c",modelImage.imageUrl,(long)photoWidth,(long)photoWidth];
+        NSString *newStr = [NSString stringWithFormat:@"%@@%ldh_%ldw_1e_1c_0o",modelImage.imageUrl,(long)photoWidth,(long)photoWidth];
         [imageView setImageWithURL:[NSURL URLWithString:newStr] placeholder:[UIImage imageNamed:@"global_photo_load_fail"]];
+        imageView.image = [imageView.image rotateImageToOrientationUp];
         imageView.userInteractionEnabled = YES;
         [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)]];
         imageView.clipsToBounds = YES;
         imageView.contentMode = UIViewContentModeScaleToFill;
+        //imageView.image.imageOrientation = UIImageOrientationUp;
         [self.photoView addSubview:imageView];
     }
     
     [self.photoView layoutIfNeeded];
 }
+
+
 
 #pragma mark 进入对应的页面
 - (void)tapImage:(UITapGestureRecognizer *)tap
@@ -200,7 +205,7 @@
     NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
     for (int i = 0; i<count; i++) {
         ModelImage *modelImage = _modelPost.imgs[i];
-        NSString *url = modelImage.imageUrl;
+        NSString *url = [NSString stringWithFormat:@"%@@_0o",modelImage.imageUrl];
         MJPhoto *photo = [[MJPhoto alloc] init];
         photo.url = [NSURL URLWithString:url]; // 图片路径
         photo.srcImageView = self.photoView.subviews[i]; // 来源于哪个UIImageView
@@ -211,6 +216,7 @@
     MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
     browser.currentPhotoIndex = tap.view.tag; // 弹出相册时显示的第一张图片是？
     browser.photos = photos; // 设置所有的图片
+    browser.showSaveBtn = YES;
     [browser show];
 }
 

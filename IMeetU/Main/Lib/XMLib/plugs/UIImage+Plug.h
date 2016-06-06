@@ -15,4 +15,6 @@
 +(instancetype)cusImageOfSysWithName:(NSString*)name;
 
 - (UIImage *)clipEllipseWithR:(CGFloat)r G:(CGFloat)g B:(CGFloat)b A:(CGFloat)a boardWidth:(CGFloat)boardWidth;
+
+- (UIImage*)rotateImageToOrientationUp;
 @end

@@ -162,9 +162,9 @@
 }
 - (void)prepareUI{
      [self.view addSubview:self.postListTableView];
-    _emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, self.view.width, 20)];
-    _emptyLabel.font = [UIFont systemFontOfSize:14];
-    _emptyLabel.textColor = [UIColor often_808080:1];
+    _emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 122, self.view.width, 20)];
+    _emptyLabel.font = [UIFont systemFontOfSize:13];
+    _emptyLabel.textColor = [UIColor often_999999:1];
     _emptyLabel.textAlignment = NSTextAlignmentCenter;
      [self.view addSubview:_emptyLabel];
      if (self.postListType == PostListTypeBiuBiu) {
@@ -379,8 +379,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSLog(@"---------y= %f-----------",scrollView.contentOffset.y);
-    if (scrollView.dragging) {  // 拖拽
+     if (scrollView.dragging) {  // 拖拽
         if ((scrollView.contentOffset.y - contentOffsetY) > 15.0f && _postListArray.count != 0) {  // 向上拖拽
             if (self.delegate) {
                 if ([self.delegate respondsToSelector:@selector(hideTitleView:)]) {

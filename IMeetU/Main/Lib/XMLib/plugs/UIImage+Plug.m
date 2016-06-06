@@ -41,4 +41,20 @@
     
     return UIGraphicsGetImageFromCurrentImageContext();
 }
+
+- (UIImage*)rotateImageToOrientationUp
+{
+    CGSize size = CGSizeMake(self.size.width * self.scale, self.size.height * self.scale);
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextClearRect(context, CGRectMake(0, 0, size.width, size.height));
+    
+    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
 @end

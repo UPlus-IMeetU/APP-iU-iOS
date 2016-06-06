@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -66,16 +66,16 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="生活好像波澜不惊，一条动态也没有呢" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VI1-II-Gs7">
-                                <rect key="frame" x="0.0" y="104" width="414" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="186" width="414" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cbr-A2-3k1" firstAttribute="leading" secondItem="0ME-8P-eIX" secondAttribute="leading" id="54N-Vg-SHD"/>
-                            <constraint firstItem="VI1-II-Gs7" firstAttribute="top" secondItem="bsB-od-VYt" secondAttribute="bottom" constant="40" id="II1-Tj-NFw"/>
+                            <constraint firstItem="VI1-II-Gs7" firstAttribute="top" secondItem="bsB-od-VYt" secondAttribute="bottom" constant="122" id="II1-Tj-NFw"/>
                             <constraint firstItem="HwN-lQ-eWc" firstAttribute="top" secondItem="cbr-A2-3k1" secondAttribute="bottom" id="PUU-xR-w3b"/>
                             <constraint firstItem="bsB-od-VYt" firstAttribute="top" secondItem="0ME-8P-eIX" secondAttribute="top" id="XgK-BB-gcM"/>
                             <constraint firstAttribute="trailing" secondItem="bsB-od-VYt" secondAttribute="trailing" id="aUI-1J-W2q"/>
@@ -969,23 +969,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMV-iC-zLZ">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xIr-mN-9Ib">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yrT-Dl-XxO">
-                                        <rect key="frame" x="223" y="247" width="154" height="42"/>
+                                        <rect key="frame" x="241" y="122" width="118.5" height="32"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还没有通知消息呢    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnX-Je-tlJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="154" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="118.5" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="先去勾搭一下呀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00M-aZ-aS9">
-                                                <rect key="frame" x="0.0" y="21" width="154" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <rect key="frame" x="0.0" y="16" width="118.5" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -1000,16 +996,28 @@
                                             <constraint firstItem="00M-aZ-aS9" firstAttribute="top" secondItem="VnX-Je-tlJ" secondAttribute="bottom" id="tCb-IS-aAu"/>
                                         </constraints>
                                     </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xIr-mN-9Ib">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="yrT-Dl-XxO" firstAttribute="centerX" secondItem="nMV-iC-zLZ" secondAttribute="centerX" id="0IJ-92-20E"/>
                                     <constraint firstAttribute="bottom" secondItem="xIr-mN-9Ib" secondAttribute="bottom" id="GGz-Ri-c9e"/>
                                     <constraint firstItem="yrT-Dl-XxO" firstAttribute="centerY" secondItem="nMV-iC-zLZ" secondAttribute="centerY" id="NES-15-cTK"/>
+                                    <constraint firstItem="yrT-Dl-XxO" firstAttribute="top" secondItem="nMV-iC-zLZ" secondAttribute="top" constant="122" id="QQm-ed-ws9"/>
                                     <constraint firstItem="xIr-mN-9Ib" firstAttribute="top" secondItem="nMV-iC-zLZ" secondAttribute="top" id="eSg-Dd-8ta"/>
                                     <constraint firstAttribute="trailing" secondItem="xIr-mN-9Ib" secondAttribute="trailing" id="o7I-mx-kxv"/>
+                                    <constraint firstItem="yrT-Dl-XxO" firstAttribute="centerX" secondItem="nMV-iC-zLZ" secondAttribute="centerX" id="oC7-Cv-8Nv"/>
                                     <constraint firstItem="xIr-mN-9Ib" firstAttribute="leading" secondItem="nMV-iC-zLZ" secondAttribute="leading" id="xsQ-WA-067"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="0IJ-92-20E"/>
+                                        <exclude reference="NES-15-cTK"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -51,7 +51,7 @@
         [self.labelStatus setText:@"已接受"];
     }else{
         self.btnAccept.enabled = YES;
-        self.labelStatus.backgroundColor = [UIColor often_33C6E5:1.0];
+        self.labelStatus.backgroundColor = [UIColor often_6CD1C9:1.0];
         [self.labelStatus setText:@"接受"];
     }
     

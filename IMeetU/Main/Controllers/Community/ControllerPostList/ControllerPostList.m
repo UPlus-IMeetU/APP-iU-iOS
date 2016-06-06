@@ -73,6 +73,7 @@
 
 - (void)postStatusChange:(NSNotification *)noti{
     NSDictionary *dict = noti.object;
+    __weak typeof (self) weakSelf = self;
     //首先遍历出要操作的对象
     NSInteger postId = [[dict objectForKey:@"postId"] integerValue];
     int index = 0;
@@ -104,8 +105,10 @@
             ((ModelPost *)_postListArray[index]).isPraise = 1;
             ((ModelPost *)_postListArray[index]).praiseNum ++;
         }
-        [_postListTableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
-    }else if([[dict objectForKey:@"operation"] integerValue] == 2){
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.45 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.postListTableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
+        });
+        }else if([[dict objectForKey:@"operation"] integerValue] == 2){
         NSInteger isDelete = [[dict objectForKey:@"delete"] integerValue];
         if (isDelete == 1) {
             //没有赞

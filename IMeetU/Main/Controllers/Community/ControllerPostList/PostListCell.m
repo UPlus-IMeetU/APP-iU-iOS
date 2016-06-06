@@ -20,6 +20,7 @@
 #import "MWPhotoBrowser.h"
 #import <CoreText/CoreText.h>
 #import "UIImage+Plug.h"
+#import "UIView+Plug.h"
 @interface PostListCell()
 /**
  *  头像视图
@@ -270,8 +271,9 @@
 }
 
 
-- (IBAction)praiseBtnClick:(id)sender {
+- (IBAction)praiseBtnClick:(UIButton *)sender {
     if (self.postViewPraiseBlock) {
+        [_praiseBtn startDuangAnimation];
         self.postViewPraiseBlock(_modelPost.postId,_modelPost.userCode,_modelPost.isPraise);
     }
 }

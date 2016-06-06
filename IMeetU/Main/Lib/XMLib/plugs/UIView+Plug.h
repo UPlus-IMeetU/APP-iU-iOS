@@ -37,5 +37,13 @@
 - (void)addCliclkListenerToSelf;
 
 - (void)onClickSelfWithTapGestureRecognizer:(UITapGestureRecognizer*)tapGestureRecognizer;
+/**
+ *  点击动画
+ */
+- (void)startDuangAnimation;
+/**
+ *  转场动画
+ */
+- (void)startTransitionAnimation;
 
 @end

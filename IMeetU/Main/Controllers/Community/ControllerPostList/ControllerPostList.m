@@ -162,9 +162,9 @@
 }
 - (void)prepareUI{
      [self.view addSubview:self.postListTableView];
-    _emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, self.view.width, 20)];
-    _emptyLabel.font = [UIFont systemFontOfSize:14];
-    _emptyLabel.textColor = [UIColor often_808080:1];
+    _emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 122, self.view.width, 20)];
+    _emptyLabel.font = [UIFont systemFontOfSize:13];
+    _emptyLabel.textColor = [UIColor often_999999:1];
     _emptyLabel.textAlignment = NSTextAlignmentCenter;
      [self.view addSubview:_emptyLabel];
      if (self.postListType == PostListTypeBiuBiu) {

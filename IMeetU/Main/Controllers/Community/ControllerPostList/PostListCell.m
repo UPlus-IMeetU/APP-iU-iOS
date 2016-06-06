@@ -17,7 +17,7 @@
 #import "UIColor+Plug.h"
 #import "UserDefultAccount.h"
 #import "UIFont+Plug.h"
-
+#import "MWPhotoBrowser.h"
 #import <CoreText/CoreText.h>
 @interface PostListCell()
 /**
@@ -186,6 +186,7 @@
         [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)]];
         imageView.clipsToBounds = YES;
         imageView.contentMode = UIViewContentModeScaleToFill;
+        //imageView.image.imageOrientation = UIImageOrientationUp;
         [self.photoView addSubview:imageView];
     }
     
@@ -211,6 +212,7 @@
     MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
     browser.currentPhotoIndex = tap.view.tag; // 弹出相册时显示的第一张图片是？
     browser.photos = photos; // 设置所有的图片
+    browser.showSaveBtn = YES;
     [browser show];
 }
 

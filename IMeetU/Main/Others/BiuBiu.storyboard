@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1221,12 +1221,12 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfE-5I-K2h">
-                                        <rect key="frame" x="225.5" y="257.5" width="149" height="21"/>
+                                        <rect key="frame" x="0.0" y="122" width="600" height="16"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还没有biubiu关系呢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-Cj-ifs">
-                                                <rect key="frame" x="0.0" y="0.0" width="149" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还没有biubiu关系呢" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-Cj-ifs">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -1240,13 +1240,23 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="pfE-5I-K2h" secondAttribute="trailing" id="5Ah-su-cly"/>
+                                    <constraint firstItem="pfE-5I-K2h" firstAttribute="leading" secondItem="7IV-2o-I3C" secondAttribute="leading" id="8pZ-Da-Fdf"/>
                                     <constraint firstItem="rVm-sd-Dmw" firstAttribute="top" secondItem="7IV-2o-I3C" secondAttribute="top" id="H2N-IB-m3m"/>
                                     <constraint firstAttribute="bottom" secondItem="rVm-sd-Dmw" secondAttribute="bottom" id="MRg-Zn-w9d"/>
+                                    <constraint firstItem="pfE-5I-K2h" firstAttribute="centerX" secondItem="7IV-2o-I3C" secondAttribute="centerX" id="OhE-v5-iyq"/>
+                                    <constraint firstItem="pfE-5I-K2h" firstAttribute="top" secondItem="7IV-2o-I3C" secondAttribute="top" constant="122" id="Vij-rl-xRh"/>
                                     <constraint firstItem="rVm-sd-Dmw" firstAttribute="leading" secondItem="7IV-2o-I3C" secondAttribute="leading" id="awx-cG-r23"/>
                                     <constraint firstAttribute="trailing" secondItem="rVm-sd-Dmw" secondAttribute="trailing" id="sPc-QW-D6c"/>
                                     <constraint firstItem="pfE-5I-K2h" firstAttribute="centerY" secondItem="7IV-2o-I3C" secondAttribute="centerY" id="vMQ-Ov-RM6"/>
                                     <constraint firstItem="pfE-5I-K2h" firstAttribute="centerX" secondItem="7IV-2o-I3C" secondAttribute="centerX" id="w35-aG-a3M"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="vMQ-Ov-RM6"/>
+                                        <exclude reference="w35-aG-a3M"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

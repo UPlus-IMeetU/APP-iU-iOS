@@ -60,10 +60,8 @@
             //正常加载数据
             [UserDefultAccount setHaveToView:1];
         }else{
-            NSLog(@"%@", responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", error);
     }];
     
     

@@ -37,6 +37,9 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
 @property (weak, nonatomic) IBOutlet UITableView *tableViewTags;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldSearch;
 @property (weak, nonatomic) IBOutlet UILabel *labelSearchCountdown;
+@property (weak, nonatomic) IBOutlet UIView *viewMain;
+
+
 /**
  * 当前发起搜索请求的总次数
  */
@@ -77,7 +80,7 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
     
     [self.textFieldSearch addTarget:self action:@selector(onEditingChangeTextFieldSearch:) forControlEvents:UIControlEventEditingChanged];
     
-    MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.view label:@"" animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"" animated:YES];
     [[XMHttpCommunity http] allPostTagWithTime:0 postNum:0 callback:^(NSInteger code, ModelTagsAll *model, NSError *err) {
         if (code == 200) {
             self.modelTagsAll = model;
@@ -161,7 +164,7 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
                         [self.delegatePostTags controllerPostTags:self model:[self.modelTagsSearch modelWithIndexPath:indexPath]];
                     }else if ([self.modelTagsSearch numberOfSections]==2){
                         //新建
-                        MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.view label:@"" animated:YES];
+                        MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"" animated:YES];
                         [[XMHttpCommunity http] createPostTagWithContent:[self.modelTagsSearch tagContentWithIndexPath:indexPath] callback:^(NSInteger code, ModelTag *model, NSError *err) {
                             if (code == 200) {
                                 [hud xmSetCustomModeWithResult:YES label:@"创建成功"];

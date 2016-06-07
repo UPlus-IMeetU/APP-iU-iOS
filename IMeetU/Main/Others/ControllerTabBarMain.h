@@ -18,4 +18,6 @@
  *  @param badge 总未读消息数
  */
 + (void)setBadgeMsgWithCount:(NSInteger)badge;
+
++ (void)setBadgeCommunityWithIsShow:(BOOL)isShow;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "UserDefultAppGlobalStatus.h"
+#import "ControllerTabBarMain.h"
 
 @implementation UserDefultAppGlobalStatus
 
@@ -26,10 +27,12 @@
 + (void)setCountOfBiuMe:(NSInteger)count{
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:count] forKey:AppGlobalStatusCountOfBiuMe];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [ControllerTabBarMain setBadgeCommunityWithIsShow:YES];
 }
 + (void)resetCountOfBiuMe{
     [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:AppGlobalStatusCountOfBiuMe];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [ControllerTabBarMain setBadgeCommunityWithIsShow:NO];
 }
 + (NSInteger)countOfBiuMe{
     return [[[NSUserDefaults standardUserDefaults] objectForKey:AppGlobalStatusCountOfBiuMe] integerValue];

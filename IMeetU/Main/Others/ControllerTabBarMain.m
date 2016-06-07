@@ -66,6 +66,13 @@ controllerNaviCommunity;
     }
 }
 
++ (void)setBadgeCommunityWithIsShow:(BOOL)isShow{
+    ControllerTabBarMain *controller = [ControllerTabBarMain shareController];
+    UITabBarItem *tabBarItem = controller.controllerNaviMsg.tabBarItem;
+    
+    tabBarItem.badgeValue = isShow? @" ":@"";
+}
+
 - (void)initial{
     
     UIView *bgView = [[UIView alloc] initWithFrame:self.tabBar.bounds];

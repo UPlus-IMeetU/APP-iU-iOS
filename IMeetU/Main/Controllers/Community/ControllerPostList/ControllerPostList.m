@@ -147,7 +147,6 @@
                 }
             }else{
                 [_postListArray addObjectsFromArray:community.postList];
-                [_bannerArray addObjectsFromArray:community.banner];
             }
             [_postListTableView reloadData];
             [_cycleScrollView reloadData];

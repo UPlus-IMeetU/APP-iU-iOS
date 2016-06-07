@@ -227,7 +227,7 @@
         _cycleScrollView.datasource = self;
         [_cycleScrollView changePageControlColor:[UIColor colorWithRed:245/255.0 green:244.0/255.0 blue:145.0/255.0 alpha:1]:[UIColor whiteColor]];
         //Timer不启动
-        [_cycleScrollView.timer setFireDate:[NSDate distantFuture]];
+        //[_cycleScrollView.timer setFireDate:[NSDate distantFuture]];
     }
     return _cycleScrollView;
 }

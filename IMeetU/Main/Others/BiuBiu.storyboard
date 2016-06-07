@@ -614,10 +614,6 @@
                                     <constraint firstItem="33P-Zo-gvg" firstAttribute="leading" secondItem="GED-lq-uxp" secondAttribute="leading" id="Vtk-o4-Kc0"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="js1-vA-tHG">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BiQ-92-ZXd">
                                 <rect key="frame" x="181.5" y="186" width="237.5" height="64"/>
                                 <subviews>
@@ -653,6 +649,10 @@
                                     <constraint firstItem="Wmo-45-JKG" firstAttribute="leading" secondItem="BiQ-92-ZXd" secondAttribute="leading" id="yf2-4y-cMJ"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="js1-vA-tHG">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

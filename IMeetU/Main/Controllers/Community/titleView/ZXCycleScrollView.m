@@ -7,7 +7,7 @@
 //
 
 #import "ZXCycleScrollView.h"
-
+#define timeZone 3.0
 @implementation ZXCycleScrollView
 - (id)initWithFrame:(CGRect)frame
 {
@@ -32,7 +32,7 @@
         [self addSubview:_pageControl];
         
         _curPage = 0;
-        _timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(timeStart) userInfo:self repeats:YES];
+        _timer = [NSTimer timerWithTimeInterval:timeZone target:self selector:@selector(timeStart) userInfo:self repeats:YES];
         [[NSRunLoop currentRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
     }
     return self;
@@ -45,7 +45,7 @@
         _curPage = [self validPageValue:_curPage+1];
         [self loadData];
     }else{
-        _scrollView.contentOffset = CGPointMake(_scrollView.contentOffset.x + x, _scrollView.contentOffset.y);
+        [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x + x, _scrollView.contentOffset.y) animated:YES];
         
     }
 }
@@ -55,7 +55,7 @@
     _timer = nil;
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(timeStart) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:timeZone target:self selector:@selector(timeStart) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 //=============================================

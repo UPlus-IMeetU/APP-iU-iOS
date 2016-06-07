@@ -68,7 +68,7 @@ controllerNaviCommunity;
 
 + (void)setBadgeCommunityWithIsShow:(BOOL)isShow{
     ControllerTabBarMain *controller = [ControllerTabBarMain shareController];
-    UITabBarItem *tabBarItem = controller.controllerNaviMsg.tabBarItem;
+    UITabBarItem *tabBarItem = controller.controllerNaviCommunity.tabBarItem;
     
     tabBarItem.badgeValue = isShow? @" ":@"";
 }

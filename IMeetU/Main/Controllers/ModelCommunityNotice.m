@@ -16,6 +16,7 @@
         UILabel *l = [[UILabel alloc] init];
         l.numberOfLines = 0;
         l.text = self.desc;
+        l.font = [UIFont systemFontOfSize:13];
         CGSize size = [l sizeThatFits:CGSizeMake([UIScreen screenWidth]-83, CGFLOAT_MAX)];
         _cellHeight = size.height+150;
     }

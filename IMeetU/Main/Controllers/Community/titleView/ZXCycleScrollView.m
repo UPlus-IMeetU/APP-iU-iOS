@@ -45,7 +45,7 @@
         _curPage = [self validPageValue:_curPage+1];
         [self loadData];
     }else{
-        [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x + x, _scrollView.contentOffset.y) animated:YES];
+        [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x + x, _scrollView.contentOffset.y) animated:NO];
         
     }
 }

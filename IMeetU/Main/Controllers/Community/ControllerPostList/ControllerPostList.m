@@ -129,6 +129,8 @@
 }
 
 - (void)loadDataWithTime:(long long)time withType:(RefreshType)refreshType{
+    //请求数据的时候，先关闭轮播视图
+    [_cycleScrollView.timer setFireDate:[NSDate distantFuture]];
     __weak typeof (self) weakSelf = self;
     [[XMHttpCommunity http] loadCommunityListWithType:self.postListType withTimeStamp:time withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
         if (code == 200) {
@@ -164,7 +166,7 @@
 }
 - (void)prepareUI{
      [self.view addSubview:self.postListTableView];
-    _emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 122, self.view.width, 20)];
+    _emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 240, self.view.width, 20)];
     _emptyLabel.font = [UIFont systemFontOfSize:13];
     _emptyLabel.textColor = [UIColor often_999999:1];
     _emptyLabel.textAlignment = NSTextAlignmentCenter;
@@ -434,7 +436,7 @@
 {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.cycleScrollView.bounds];
     ModelAdvert *advert = _bannerArray[index];
-    [imageView setImageWithURL:[NSURL URLWithString:advert.cover] placeholder:[UIImage imageNamed:@"biu_activty_img_1"]];
+    [imageView setImageWithURL:[NSURL URLWithString:advert.cover] placeholder:[UIImage imageNamed:@"banner_fail"]];
     return imageView;
 }
 

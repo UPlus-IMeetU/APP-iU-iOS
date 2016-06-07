@@ -680,6 +680,7 @@
 		6F0CC15D1D0574E6002B6D9D /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CC15C1D0574E5002B6D9D /* MJPhotoBrowser.bundle */; };
 		6F1588721CEB16BF0007AA9E /* NSDate+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1588701CEB16BF0007AA9E /* NSDate+MJ.m */; };
 		6F351CDC1D0037D600EB11F8 /* ModelPraise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F351CDB1D0037D600EB11F8 /* ModelPraise.m */; };
+		6F35633A1D06B65B0083AB90 /* banner_fail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F3563391D06B65B0083AB90 /* banner_fail@2x.png */; };
 		6F45F92C1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F45F92B1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m */; };
 		6F4A48451CE3061200D91B4C /* AdvertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A48441CE3061200D91B4C /* AdvertController.m */; };
 		6F4A48481CE3082400D91B4C /* AdvertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A48471CE3082400D91B4C /* AdvertCell.m */; };
@@ -1851,6 +1852,7 @@
 		6F1B62F01CFD6E4100C84892 /* EnumHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumHeader.h; sourceTree = "<group>"; };
 		6F351CDA1D0037D600EB11F8 /* ModelPraise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelPraise.h; sourceTree = "<group>"; };
 		6F351CDB1D0037D600EB11F8 /* ModelPraise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelPraise.m; sourceTree = "<group>"; };
+		6F3563391D06B65B0083AB90 /* banner_fail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_fail@2x.png"; sourceTree = "<group>"; };
 		6F45F92A1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
 		6F45F92B1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		6F4A48431CE3061200D91B4C /* AdvertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertController.h; sourceTree = "<group>"; };
@@ -3284,6 +3286,7 @@
 				6FBC68881CFBCEE000B45657 /* Community.storyboard */,
 				0447271D1C9FA2DB000FD349 /* Msg.storyboard */,
 				04B165711C89CC0B00EE6DB8 /* Assets.xcassets */,
+				6F3563391D06B65B0083AB90 /* banner_fail@2x.png */,
 				04B165761C89CC0B00EE6DB8 /* Info.plist */,
 				04B165651C89CC0B00EE6DB8 /* Supporting Files */,
 			);
@@ -4782,6 +4785,7 @@
 				047335F11CF844D50055A0C6 /* msg.wav in Resources */,
 				04B165721C89CC0B00EE6DB8 /* Assets.xcassets in Resources */,
 				046B49781CFC6B3A00946987 /* TZImagePickerController.bundle in Resources */,
+				6F35633A1D06B65B0083AB90 /* banner_fail@2x.png in Resources */,
 				044728071C9FAF9D000FD349 /* tabbar_chatsHL.png in Resources */,
 				044727C21C9FAF9D000FD349 /* messageSendFail@2x.png in Resources */,
 				044727011C9F9A7F000FD349 /* icon_010.gif in Resources */,

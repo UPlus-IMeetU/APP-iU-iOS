@@ -44,6 +44,9 @@
     _nickNameLabel.text = _modelComment.userFromName;
     _nickNameLabel.textColor = [_modelComment.userFromSex isEqualToString:@"1"] ? [UIColor often_8883BC:1] : [UIColor often_F06E7F:1];
     _collegeNameLabel.text = [self searchSchoolNameWithID:[_modelComment.userFromSchool integerValue]];
+    if (!_collegeNameLabel.text) {
+        _collegeNameLabel.text = @"   ";
+    }
     //为回复
     NSString *str = @"";
     NSMutableAttributedString *contentText = [[NSMutableAttributedString alloc] initWithString:str];

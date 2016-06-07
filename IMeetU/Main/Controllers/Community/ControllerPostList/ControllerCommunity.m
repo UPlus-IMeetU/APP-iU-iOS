@@ -91,7 +91,7 @@
     
     ControllerPostList *postListBiuBiu = [[ControllerPostList alloc] init];
     postListBiuBiu.postListType = PostListTypeBiuBiu;
-    postListBiuBiu.title = @"biubiu";
+    postListBiuBiu.title = @"BiuBiu";
     postListBiuBiu.delegate = self;
     [self.subViewArray addObject:postListBiuBiu];
     

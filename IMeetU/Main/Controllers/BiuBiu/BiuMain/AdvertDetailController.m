@@ -30,8 +30,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.labelTitle setText:self.model.name];
+    NSString *titleName =@"";
+    if (!self.model.name) {
+        titleName = self.model.title;
+    }else{
+        titleName = self.model.name;
+    }
+    [self.labelTitle setText:titleName];
     NSURL *url = [NSURL URLWithString:self.model.url];
     self.advertWebView.delegate = self;
     

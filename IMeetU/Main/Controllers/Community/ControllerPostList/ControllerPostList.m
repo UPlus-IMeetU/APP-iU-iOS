@@ -227,7 +227,7 @@
         _cycleScrollView.datasource = self;
         [_cycleScrollView changePageControlColor:[UIColor colorWithRed:245/255.0 green:244.0/255.0 blue:145.0/255.0 alpha:1]:[UIColor whiteColor]];
         //Timer不启动
-        //[_cycleScrollView.timer setFireDate:[NSDate distantFuture]];
+        [_cycleScrollView.timer setFireDate:[NSDate distantFuture]];
     }
     return _cycleScrollView;
 }
@@ -418,9 +418,14 @@
     if (_bannerArray.count == 1) {
         _cycleScrollView.pageControl.hidden = YES;
         _cycleScrollView.scrollView.scrollEnabled = NO;
+        [_cycleScrollView.timer setFireDate:[NSDate distantFuture]];
     }else{
+        __weak typeof (self) weakSelf = self;
         _cycleScrollView.pageControl.hidden = NO;
         _cycleScrollView.scrollView.scrollEnabled = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+              [weakSelf.cycleScrollView.timer setFireDate:[NSDate distantPast]];
+        });
     }
     return _bannerArray.count;
 }

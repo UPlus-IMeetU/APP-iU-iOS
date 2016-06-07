@@ -110,7 +110,6 @@
 
 
 - (void)whenSelectOnPager:(NSUInteger)number {
-
 }
 
 - (void)didReceiveMemoryWarning {

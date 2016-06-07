@@ -129,6 +129,9 @@
     _commentLabelHeight.constant = ceil(titleSizeHeight);
     _contentLabel.attributedText= contentText;
     _collegeNameLabel.text = [self searchSchoolNameWithID:[_modelPost.userSchool integerValue]];
+    if (!_collegeNameLabel.text) {
+        _collegeNameLabel.text = @"   ";
+    }
     _praiseLabel.text = [NSString stringWithFormat:@"赞 %ld",(long)_modelPost.praiseNum];
     _commentLabel.text = [NSString stringWithFormat:@"评论 %ld",(long)_modelPost.commentNum];
     if (_modelPost.isPraise) {

@@ -208,6 +208,11 @@
 
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
 - (void)loadUserInfo:(NSString *)userCode{
     if (!self.userInfoIsLoading){
         self.userInfoIsLoading = YES;

@@ -51,12 +51,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self prepareUI];
-    // Do any additional setup after loading the view from its nib
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
     if ([UserDefultAppGlobalStatus countOfNoticeCommunity]) {
         [self.btnNotifies setImage:[UIImage imageNamed:@"btn_activity_light"] forState:UIControlStateNormal];
@@ -66,6 +63,11 @@
     [(ControllerPostList *)[_subViewArray objectAtIndex:0] refreshView];
     [(ControllerPostList *)[_subViewArray objectAtIndex:1] refreshView];
     [(ControllerPostList *)[_subViewArray objectAtIndex:2] refreshView];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 /**

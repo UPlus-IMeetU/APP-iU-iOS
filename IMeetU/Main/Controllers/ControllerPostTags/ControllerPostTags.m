@@ -101,6 +101,11 @@ typedef NS_ENUM(NSInteger, PostTagsShowContent) {
     self.labelNoCreated.hidden = YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (self.postTagsShowContent == PostTagsShowContentAll) {
         return [self.modelTagsAll numberOfSections];

@@ -91,8 +91,8 @@
     [MobClick startWithAppkey:@"56f6b0c7e0f55a5a7c00146d" reportPolicy:BATCH channelId:nil];
     //友盟分享
     [UMSocialData setAppKey:@"56f6b0c7e0f55a5a7c00146d"];
-    [UMSocialWechatHandler setWXAppId:@"wxc38cdfe5049cb17e" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.imeetu.cc"];
-    [UMSocialQQHandler setQQWithAppId:@"1105300664" appKey:@"8JNlUhShRkfINnHp" url:@"http://www.imeetu.cc"];
+    [UMSocialWechatHandler setWXAppId:@"wxc38cdfe5049cb17e" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.imeetu.cc/mobile/index.html"];
+    [UMSocialQQHandler setQQWithAppId:@"1105300664" appKey:@"8JNlUhShRkfINnHp" url:@"http://www.imeetu.cc/mobile/index.html"];
     
     //支付
     [BeeCloud initWithAppID:@"3adc89a6-617f-4445-8f23-2b805df90fe4" andAppSecret:@"2f5add66-01cf-4024-9efe-e4c183f79205"];

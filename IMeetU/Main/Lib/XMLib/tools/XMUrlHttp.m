@@ -175,94 +175,93 @@
 }
 
 + (NSString *)xmGetCommunityList{
-    return [XMUrlHttp connectWithComm:@"/app/community/post/getPostListByType"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/post/getPostListByType"];
 }
 
 + (NSString *)xmGetPostDetail{
-    return [XMUrlHttp connectWithComm:@"/app/community/post/getPostDetail"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/post/getPostDetail"];
 }
 
 + (NSString *)xmDeletePost{
-    return [XMUrlHttp connectWithComm:@"/app/community/post/deletePost"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/post/deletePost"];
 }
 
 + (NSString *)xmDoPraise{
-    return [XMUrlHttp connectWithComm:@"/app/community/praise/doPraise"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/praise/doPraise"];
 }
 
 + (NSString *)xmGetPostListWithTagId{
-    return [XMUrlHttp connectWithComm:@"/app/community/post/getPostListByTag"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/post/getPostListByTag"];
 }
 
 + (NSString *)xmCreateReport{
-    return [XMUrlHttp connectWithComm:@"/app/community/report/createReport"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/report/createReport"];
 }
 
 + (NSString *)xmPostTagsAll{
-    return [XMUrlHttp connectWithComm:@"/app/community/tag/getTagList"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/tag/getTagList"];
 }
 
 + (NSString *)xmPostTagsSearch{
-    return [XMUrlHttp connectWithComm:@"/app/community/tag/getTagByName"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/tag/getTagByName"];
 }
 
 + (NSString *)xmPostTagsCreate{
-    return [XMUrlHttp connectWithComm:@"/app/community/tag/createTag"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/tag/createTag"];
 }
 
 + (NSString *)xmPostTxtImgRelease{
-    return [XMUrlHttp connectWithComm:@"/app/community/post/createPost"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/post/createPost"];
 }
 
 
 + (NSString *)xmCreateComment{
-    return [XMUrlHttp connectWithComm:@"/app/community/comment/createComment"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/comment/createComment"];
 }
 
 + (NSString *)xmDeleteComment{
-    return [XMUrlHttp connectWithComm:@"/app/community/comment/deleteComment"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/comment/deleteComment"];
 }
 
 + (NSString *)xmGrabCommBiu{
-    return [XMUrlHttp connectWithComm:@"/app/community/combiu/grabComBiu"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/combiu/grabComBiu"];
 }
 
 + (NSString *)xmGetMyPostList{
-    return [XMUrlHttp connectWithComm:@"/app/community/post/getMyPostList"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/post/getMyPostList"];
 }
 
 + (NSString *)xmCommunityNitifies{
-    return [XMUrlHttp connectWithComm:@"/app/community/notify/getNotifyList"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/notify/getNotifyList"];
 }
 
 + (NSString *)xmCommunityNitifiesClean{
-    return [XMUrlHttp connectWithComm:@"/app/community/notify/deletNotifies"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/notify/deletNotifies"];
 }
 
 + (NSString *)xmGetAppGlobalStatus{
-    return [XMUrlHttp connectWithComm:@"/app/overall/getStatus"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/overall/getStatus"];
 }
 
 + (NSString *)xmBiuMeListGet{
-    return [XMUrlHttp connectWithComm:@"/app/community/combiu/getComBiuList"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/combiu/getComBiuList"];
 }
 
 + (NSString *)xmBiuMeListClean{
-    return [XMUrlHttp connectWithComm:@"/app/community/combiu/deleteComBiu"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/combiu/deleteComBiu"];
 }
 
 + (NSString *)xmBiuMeListAccept{
-    return [XMUrlHttp connectWithComm:@"/app/community/combiu/acceptComBiu"];
+    return [XMUrlHttp connectCommWithOperation:@"/app/community/combiu/acceptComBiu"];
 }
 
-+ (NSString *)connectWithComm:(NSString *)operation{
-    NSString *host = @"http://123.57.26.168:8080/meetu_community";
++ (NSString *)connectCommWithOperation:(NSString *)operation{
+    NSString *host = @"http://app.iu.imeetu.cc/meetu_community";
     return [NSString stringWithFormat:@"%@%@", host, operation];
 }
 
 + (NSString *)connectWithOperation:(NSString *)operation{
-   //NSString *host = @"http://app.iu.imeetu.cc/meetu_maven_new/";
-   NSString *host = @"http://123.57.26.168:8080/meetu_maven_new";
+   NSString *host = @"http://app.iu.imeetu.cc/meetu_maven_new";
     return [NSString stringWithFormat:@"%@%@", host, operation];
 }
 @end

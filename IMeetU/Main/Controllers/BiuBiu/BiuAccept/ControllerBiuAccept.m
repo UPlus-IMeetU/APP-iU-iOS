@@ -52,6 +52,7 @@
     self.tableViewAcceptList.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.viewEmptyNotice.hidden = YES;
+    [self.view bringSubviewToFront:self.viewEmptyNotice];
     [[XMHttpBiuBiu http] loadGrabBiuListWithCallback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
         if (code == 200) {
             ModelBiuAccepts *models = [ModelBiuAccepts modelWithJSON:response];
@@ -164,6 +165,14 @@
 }
 
 - (IBAction)onClickBtnShutdownBiu:(id)sender {
+    if ([UserDefultBiu biuOvertime])
+    {
+        UIAlertController *controllerAlert = [UIAlertController alertControllerWithTitle:@"结束本次biubiu" message:@"你的BiuBiu还没有结束～" preferredStyle:UIAlertControllerStyleAlert];
+        [controllerAlert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        [self presentViewController:controllerAlert animated:YES completion:nil];
+        return;
+    }
+
     UIAlertController *controllerAlertShutdownBiu = [UIAlertController alertControllerWithTitle:@"结束本次biubiu" message:@"结束后，本次biubiu将失效，也可以重新发biu哦" preferredStyle:UIAlertControllerStyleAlert];
     [controllerAlertShutdownBiu addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     [controllerAlertShutdownBiu addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

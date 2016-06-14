@@ -38,4 +38,13 @@
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithLongLong:[NSDate currentTimeMillis]] forKey:BIU_SEND_TIME];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
++ (BOOL)biuOvertime{
+    long long biuSendTime = [UserDefultBiu biuSendTime];
+    long long timeZone = ([NSDate currentTimeMillis] - biuSendTime) / 1000;
+    if (timeZone >= 90) {
+        return NO;
+    }
+    return YES;
+}
 @end

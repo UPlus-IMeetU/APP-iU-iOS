@@ -316,7 +316,6 @@
 }
 #pragma mark 点击抢到我发出的biu的用户头像
 - (void)biuCenterButton:(XMBiuCenterView *)biuCenterButton onClickBtnSuccessfulMatches:(UIButton *)btn model:(ModelBiuFaceStar *)model{
-    
     if ([UserDefultAccount isLogin]) {
         ControllerBiuAccept *controller = [ControllerBiuAccept controller];
         [self.navigationController pushViewController:controller animated:YES];

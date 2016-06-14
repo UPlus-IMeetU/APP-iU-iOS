@@ -20,4 +20,5 @@
 
 + (long long)biuSendTime;
 + (void)setBiuSendTime;
++ (BOOL)biuOvertime;
 @end

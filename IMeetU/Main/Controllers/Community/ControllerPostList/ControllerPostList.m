@@ -133,6 +133,10 @@
     [_cycleScrollView.timer setFireDate:[NSDate distantFuture]];
     __weak typeof (self) weakSelf = self;
     [[XMHttpCommunity http] loadCommunityListWithType:self.postListType withTimeStamp:time withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+        
+        [_postListTableView.mj_footer endRefreshing];
+        [_postListTableView.mj_header endRefreshing];
+
         if (code == 200) {
             [_xmNetworkErr destroyView];
             ModelCommunity *community = [ModelCommunity modelWithJSON:response];
@@ -160,9 +164,7 @@
                 _emptyLabel.hidden = YES;
             }
         }
-        [_postListTableView.mj_footer endRefreshing];
-        [_postListTableView.mj_header endRefreshing];
-    }];
+   }];
 }
 - (void)prepareUI{
      [self.view addSubview:self.postListTableView];

@@ -38,7 +38,12 @@
              @"password":@"password",
              @"urlProfile":@"icon_url",
              @"urlProfileOriginal":@"original_icon_url",
+             @"deviceType":@"device_type"
              };
+}
+
+- (int)deviceType{
+    return 4;
 }
 
 + (NSArray *)modelPropertyBlacklist {

@@ -20,4 +20,6 @@
 + (void)setBadgeMsgWithCount:(NSInteger)badge;
 
 + (void)setBadgeCommunityWithIsShow:(BOOL)isShow;
+
+- (void)loginOrRegister;
 @end

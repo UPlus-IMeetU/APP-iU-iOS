@@ -25,6 +25,7 @@
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, copy) NSString *urlProfile;
 @property (nonatomic, copy) NSString *urlProfileOriginal;
+@property (nonatomic, assign) int deviceType;
 
 @property (nonatomic, strong) NSDictionary *httpParameters;
 

@@ -41,6 +41,7 @@
 #import "ControllerTabBarMain.h"
 
 #import "DBCacheBiuBiu.h"
+#import "ControllerTabBarMain.h"
 
 #define CellCollectionMatchSettingCharacterIdentifier @"CellCollectionMatchSettingCharacter"
 #define ReusableViewMatchSettingHeaderIdentifier @"ReusableViewMatchSettingHeader"
@@ -367,6 +368,7 @@
 
         
     }
+    
 }
 - (void)reusableViewMatchSettingFooter:(ReusableViewMatchSettingFooter *)reusableView onLogout:(UIButton *)btnLogout{
     

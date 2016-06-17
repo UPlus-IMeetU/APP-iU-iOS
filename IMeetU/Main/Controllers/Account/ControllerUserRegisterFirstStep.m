@@ -34,6 +34,8 @@
 
 #import "MBProgressHUD+plug.h"
 
+#import "AppDelegate.h"
+
 @interface ControllerUserRegisterFirstStep ()<XMInputViewGenderDelegate, XMInputViewGenderDataSource, XMInputViewBirthdayDelegate, XMAlertDialogRealProfileDelegate, YYKeyboardObserver>
 
 @property (nonatomic, strong) ModelRequestRegister *modelRequestRegister;
@@ -144,28 +146,43 @@
                     [UserDefultAccount setImName:responseData.imName];
                     [UserDefultAccount setImPasswork:responseData.imPasswork];
                     
+                    //信鸽推送注册设备
+                    [AppDelegate registerDeviceToken];
                     [self.navigationController popToRootViewControllerAnimated:YES];
+                    
+                    [[EMClient sharedClient].options setIsAutoLogin:YES];
+                    dispatch_queue_t queue = dispatch_queue_create("tk.bourne.testQueue", DISPATCH_QUEUE_SERIAL);
+                    dispatch_async(queue, ^{
+                        EMError *error = [[EMClient sharedClient] loginWithUsername:responseData.imName password:responseData.imPasswork];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            if (!error){
+                                
+                            }else{
+                                hud.mode = MBProgressHUDModeCustomView;
+                                hud.labelText = @"im登录失败";
+                                [hud hide:YES afterDelay:1];
+                            }
+                        });
+                        
+                    });
                 }else{
                     //注册失败
                     [hud xmSetCustomModeWithResult:NO label:@"注册失败"];
                 }
                 [hud hide:YES afterDelay:0.3];
-                NSLog(@"================>%@", responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 //网络请求失败
                 [hud xmSetCustomModeWithResult:NO label:@"注册失败"];
                 [hud hide:YES afterDelay:0.3];
-                NSLog(@"================>%@", error);
             }];
         }else{
             //上传头像失败
             [hud xmSetCustomModeWithResult:NO label:@"注册失败"];
             [hud hide:YES afterDelay:0.3];
-            NSLog(@"================>%@", task.error);
         }
         return nil;
     }];
-
 }
 
 - (IBAction)onClickBtnBack:(id)sender {

@@ -31,8 +31,12 @@
 + (NSString *)userProfileUrlThumbnail;
 + (void)setUserProfileUrlThumbnail:(NSString *)userProfileUrlThumbnail;
 
-+ (NSString*)bPushChannelId;
-+ (void)setBPushChannelId:(NSString*)channelId;
+/**
+ * 信鸽设备Token
+ */
++ (NSString*)xgDeviceToken;
++ (BOOL)xgHaveDeviceToken;
++ (void)xgSetDeviceToken:(NSString*)deviceToken;
 
 /**
  *  活动的信息

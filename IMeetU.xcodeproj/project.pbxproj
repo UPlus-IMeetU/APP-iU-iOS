@@ -243,8 +243,6 @@
 		044728121C9FAF9D000FD349 /* tabbarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 044727A21C9FAF9C000FD349 /* tabbarBackground@2x.png */; };
 		044728131C9FAF9D000FD349 /* tabbarSelectBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 044727A31C9FAF9C000FD349 /* tabbarSelectBg.png */; };
 		044728141C9FAF9D000FD349 /* tabbarSelectBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 044727A41C9FAF9C000FD349 /* tabbarSelectBg@2x.png */; };
-		044728191C9FD6FA000FD349 /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 044728171C9FD6FA000FD349 /* libBPush.a */; };
-		0447281A1C9FD6FA000FD349 /* test.caf in Resources */ = {isa = PBXBuildFile; fileRef = 044728181C9FD6FA000FD349 /* test.caf */; };
 		0447281C1C9FD740000FD349 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0447281B1C9FD740000FD349 /* CoreTelephony.framework */; };
 		0447281F1C9FFB2A000FD349 /* ModelBiuSendChatTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447281E1C9FFB2A000FD349 /* ModelBiuSendChatTopic.m */; };
 		044728221CA00720000FD349 /* ModelBiuSendChatTopics.m in Sources */ = {isa = PBXBuildFile; fileRef = 044728211CA00720000FD349 /* ModelBiuSendChatTopics.m */; };
@@ -457,6 +455,7 @@
 		049AA3FC1CEAB83F00B1AD93 /* DBUserMatchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 049AA3FB1CEAB83F00B1AD93 /* DBUserMatchTest.m */; };
 		049E799C1CC65691009928F0 /* ViewChatMsgImgBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 049E799B1CC65691009928F0 /* ViewChatMsgImgBrowser.m */; };
 		049E799E1CC656A7009928F0 /* ViewChatMsgImgBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049E799D1CC656A7009928F0 /* ViewChatMsgImgBrowser.xib */; };
+		04A0B70F1D139AD700746A4C /* ModelRemoteNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B70E1D139AD700746A4C /* ModelRemoteNotification.m */; };
 		04A31D7B1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A31D791C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.m */; };
 		04A31D7C1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A31D7A1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.xib */; };
 		04A31D801C97E0CC00BCBAE0 /* ReusableViewBiuReceiveFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A31D7E1C97E0CC00BCBAE0 /* ReusableViewBiuReceiveFooter.m */; };
@@ -675,6 +674,7 @@
 		04EE42821CE584640043053E /* ViewDrawerRightLoginRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE42811CE584640043053E /* ViewDrawerRightLoginRegister.m */; };
 		04EE42841CE584700043053E /* ViewDrawerRightLoginRegister.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04EE42831CE584700043053E /* ViewDrawerRightLoginRegister.xib */; };
 		04F0BBF01CA2C88E0025408D /* ModelBiuReceive.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F0BBEF1CA2C88E0025408D /* ModelBiuReceive.m */; };
+		04FA88281D11816D00F81A24 /* libXG-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FA88251D11816D00F81A24 /* libXG-SDK.a */; };
 		307DFDCAED0FA4E06183F229 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782115C93935C5E2EF970E47 /* Pods.framework */; };
 		6F0495AD1CE382F000FB36A9 /* ModelAdvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0495AC1CE382F000FB36A9 /* ModelAdvert.m */; };
 		6F0CC15D1D0574E6002B6D9D /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CC15C1D0574E5002B6D9D /* MJPhotoBrowser.bundle */; };
@@ -1004,9 +1004,6 @@
 		044727A21C9FAF9C000FD349 /* tabbarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbarBackground@2x.png"; sourceTree = "<group>"; };
 		044727A31C9FAF9C000FD349 /* tabbarSelectBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbarSelectBg.png; sourceTree = "<group>"; };
 		044727A41C9FAF9C000FD349 /* tabbarSelectBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbarSelectBg@2x.png"; sourceTree = "<group>"; };
-		044728161C9FD6FA000FD349 /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
-		044728171C9FD6FA000FD349 /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
-		044728181C9FD6FA000FD349 /* test.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.caf; sourceTree = "<group>"; };
 		0447281B1C9FD740000FD349 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		0447281D1C9FFB2A000FD349 /* ModelBiuSendChatTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelBiuSendChatTopic.h; sourceTree = "<group>"; };
 		0447281E1C9FFB2A000FD349 /* ModelBiuSendChatTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelBiuSendChatTopic.m; sourceTree = "<group>"; };
@@ -1394,6 +1391,8 @@
 		049E799A1CC65691009928F0 /* ViewChatMsgImgBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewChatMsgImgBrowser.h; sourceTree = "<group>"; };
 		049E799B1CC65691009928F0 /* ViewChatMsgImgBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewChatMsgImgBrowser.m; sourceTree = "<group>"; };
 		049E799D1CC656A7009928F0 /* ViewChatMsgImgBrowser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewChatMsgImgBrowser.xib; sourceTree = "<group>"; };
+		04A0B70D1D139AD700746A4C /* ModelRemoteNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelRemoteNotification.h; sourceTree = "<group>"; };
+		04A0B70E1D139AD700746A4C /* ModelRemoteNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelRemoteNotification.m; sourceTree = "<group>"; };
 		04A31D781C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReusableViewBiuReceiveHeader.h; sourceTree = "<group>"; };
 		04A31D791C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReusableViewBiuReceiveHeader.m; sourceTree = "<group>"; };
 		04A31D7A1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReusableViewBiuReceiveHeader.xib; sourceTree = "<group>"; };
@@ -1843,6 +1842,9 @@
 		04EE42831CE584700043053E /* ViewDrawerRightLoginRegister.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewDrawerRightLoginRegister.xib; sourceTree = "<group>"; };
 		04F0BBEE1CA2C88E0025408D /* ModelBiuReceive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelBiuReceive.h; sourceTree = "<group>"; };
 		04F0BBEF1CA2C88E0025408D /* ModelBiuReceive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelBiuReceive.m; sourceTree = "<group>"; };
+		04FA88251D11816D00F81A24 /* libXG-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libXG-SDK.a"; sourceTree = "<group>"; };
+		04FA88261D11816D00F81A24 /* XGPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGPush.h; sourceTree = "<group>"; };
+		04FA88271D11816D00F81A24 /* XGSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGSetting.h; sourceTree = "<group>"; };
 		13B58D6812D48FB900FADECB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6F0495AB1CE382F000FB36A9 /* ModelAdvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelAdvert.h; sourceTree = "<group>"; };
 		6F0495AC1CE382F000FB36A9 /* ModelAdvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelAdvert.m; sourceTree = "<group>"; };
@@ -1925,7 +1927,6 @@
 				047519D31CA631CB009115CE /* AlipaySDK.framework in Frameworks */,
 				04B7D5A91CDB4CB600D74C6D /* libopencore-amrwb.a in Frameworks */,
 				04B1663C1C8A810E00EE6DB8 /* libsqlite3.tbd in Frameworks */,
-				044728191C9FD6FA000FD349 /* libBPush.a in Frameworks */,
 				04B1663A1C8A810200EE6DB8 /* libstdc++.tbd in Frameworks */,
 				04DA95D61CAD246800A5BF37 /* libWeChatSDK.a in Frameworks */,
 				04B166381C8A80F900EE6DB8 /* libz.tbd in Frameworks */,
@@ -1937,6 +1938,7 @@
 				04B1662E1C8A809300EE6DB8 /* MobileCoreServices.framework in Frameworks */,
 				04B1662C1C8A807500EE6DB8 /* AVFoundation.framework in Frameworks */,
 				04B1662A1C8A806D00EE6DB8 /* AudioToolbox.framework in Frameworks */,
+				04FA88281D11816D00F81A24 /* libXG-SDK.a in Frameworks */,
 				04B166281C8A806300EE6DB8 /* CoreMedia.framework in Frameworks */,
 				04B166261C8A803200EE6DB8 /* libHyphenateSDK.a in Frameworks */,
 				04B7D5E81CDB4CB600D74C6D /* Parse.framework in Frameworks */,
@@ -2455,16 +2457,6 @@
 			path = tabbar;
 			sourceTree = "<group>";
 		};
-		044728151C9FD6FA000FD349 /* LibBPush */ = {
-			isa = PBXGroup;
-			children = (
-				044728161C9FD6FA000FD349 /* BPush.h */,
-				044728171C9FD6FA000FD349 /* libBPush.a */,
-				044728181C9FD6FA000FD349 /* test.caf */,
-			);
-			path = LibBPush;
-			sourceTree = "<group>";
-		};
 		044728A11CA04157000FD349 /* BiuMain */ = {
 			isa = PBXGroup;
 			children = (
@@ -2709,6 +2701,7 @@
 		044AF76B1C8E85E9009AF59F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04A0B70C1D139A9F00746A4C /* RemoteNotification */,
 				0450B81F1C93EEA5001DD60A /* Model.h */,
 				0450B8201C93EEA5001DD60A /* Model.m */,
 				044AF76C1C8E8604009AF59F /* ModelUser.h */,
@@ -3234,6 +3227,15 @@
 			path = BCWXPayAdapter;
 			sourceTree = "<group>";
 		};
+		04A0B70C1D139A9F00746A4C /* RemoteNotification */ = {
+			isa = PBXGroup;
+			children = (
+				04A0B70D1D139AD700746A4C /* ModelRemoteNotification.h */,
+				04A0B70E1D139AD700746A4C /* ModelRemoteNotification.m */,
+			);
+			path = RemoteNotification;
+			sourceTree = "<group>";
+		};
 		04B0F41C1CBF96F300268082 /* ControllerUserIdentifierGuide */ = {
 			isa = PBXGroup;
 			children = (
@@ -3515,7 +3517,6 @@
 				04DA95D71CAD2AEC00A5BF37 /* TencentOpenAPI */,
 				04DA95D01CAD246800A5BF37 /* WeChat */,
 				047518EE1CA631CB009115CE /* BCPaySDK */,
-				044728151C9FD6FA000FD349 /* LibBPush */,
 				044724C21C9AAE93000FD349 /* EaseUI */,
 				04B166041C8A803200EE6DB8 /* HyphenateSDK */,
 			);
@@ -4256,6 +4257,7 @@
 		04DA95D71CAD2AEC00A5BF37 /* TencentOpenAPI */ = {
 			isa = PBXGroup;
 			children = (
+				04FA88241D11816D00F81A24 /* push */,
 				04DA95D81CAD2AEC00A5BF37 /* TencentOpenAPI.framework */,
 				04DA95D91CAD2AEC00A5BF37 /* TencentOpenApi_IOS_Bundle.bundle */,
 			);
@@ -4295,6 +4297,16 @@
 				04F0BBEF1CA2C88E0025408D /* ModelBiuReceive.m */,
 			);
 			path = BiuBiuReceive;
+			sourceTree = "<group>";
+		};
+		04FA88241D11816D00F81A24 /* push */ = {
+			isa = PBXGroup;
+			children = (
+				04FA88251D11816D00F81A24 /* libXG-SDK.a */,
+				04FA88261D11816D00F81A24 /* XGPush.h */,
+				04FA88271D11816D00F81A24 /* XGSetting.h */,
+			);
+			path = push;
 			sourceTree = "<group>";
 		};
 		6F4A48491CE3083500D91B4C /* Adert */ = {
@@ -4643,7 +4655,6 @@
 				04A31D901C9805F800BCBAE0 /* ReusableViewMineAlterCharacter.xib in Resources */,
 				044727F31C9FAF9D000FD349 /* password.png in Resources */,
 				04471FC11C996C49000FD349 /* group@2x.png in Resources */,
-				0447281A1C9FD6FA000FD349 /* test.caf in Resources */,
 				04471FAB1C996C49000FD349 /* chatBar_colorMore_cameraSelected@2x.png in Resources */,
 				04471FC91C996C49000FD349 /* VoiceSearchFeedback005@2x.png in Resources */,
 				044727DC1C9FAF9D000FD349 /* icon_018_cover.png in Resources */,
@@ -4953,6 +4964,7 @@
 				044AF7571C8E7210009AF59F /* CellMineMainBaseInfo.m in Sources */,
 				0450B7E91C91D1AD001DD60A /* ControllerMineAlterAboutMe.m in Sources */,
 				047519CF1CA631CB009115CE /* BeeCloudAdapter.m in Sources */,
+				04A0B70F1D139AD700746A4C /* ModelRemoteNotification.m in Sources */,
 				047519C71CA631CB009115CE /* BCURLRequestSerialization.m in Sources */,
 				044AF7261C8D390D009AF59F /* MLToolsID.m in Sources */,
 				04B7D4C01CDB4BEB00D74C6D /* FixFopen.c in Sources */,
@@ -5483,6 +5495,7 @@
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/WeChat/WXSDK",
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/TencentOpenAPI/push",
 				);
 				MACH_O_TYPE = mh_execute;
 				OTHER_LDFLAGS = (
@@ -5585,6 +5598,7 @@
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/WeChat/WXSDK",
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/TencentOpenAPI/push",
 				);
 				MACH_O_TYPE = mh_execute;
 				OTHER_LDFLAGS = (

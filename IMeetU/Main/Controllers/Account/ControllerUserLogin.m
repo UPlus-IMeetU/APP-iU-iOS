@@ -94,77 +94,48 @@
     httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    NSDictionary *parameters = @{@"phone":self.textPhoneNumber.text, @"password":self.textPasswd.text, @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString]};
+    NSDictionary *parameters = @{@"phone":self.textPhoneNumber.text, @"password":self.textPasswd.text, @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"device_type":[NSNumber numberWithInt:4]};
     [httpManager POST:[XMUrlHttp xmLogin] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         ModelResponse *response = [ModelResponse responselWithObject:responseObject];
         if (response.state == 200) {
             ModelResponseRegisterLogin *responseData = [ModelResponseRegisterLogin modelWithJSON:response.data];
             
-            BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
-            if (!isAutoLogin) {
-                
-                
-                [[EMClient sharedClient].options setIsAutoLogin:YES];
-                [UserDefultAccount updateToken:responseData.token];
-                [UserDefultAccount setImName:responseData.imName];
-                [UserDefultAccount setImPasswork:responseData.imPasswork];
-                
-                [UserDefultAccount setUserName:responseData.userName];
-                [UserDefultAccount setUserCode:responseData.userCode];
-                [UserDefultAccount setUserProfileUrlThumbnail:responseData.userProfileUrl];
-                
-                hud.mode = MBProgressHUDModeCustomView;
-                hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mbhud_yes"]];
-                hud.labelText = @"登录成功";
-                
-                //更新channelID
-                [self updateBPushChannelId];
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [hud hide:YES];
-                    [self.navigationController popToRootViewControllerAnimated:NO];
-                });
-                
-                
-                
-                dispatch_queue_t queue = dispatch_queue_create("tk.bourne.testQueue", DISPATCH_QUEUE_SERIAL);
-                dispatch_async(queue, ^{
-                    
-                    EMError *error = [[EMClient sharedClient] loginWithUsername:responseData.imName password:responseData.imPasswork];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        if (!error){
-                            
-                        }else{
-                            hud.mode = MBProgressHUDModeCustomView;
-                            hud.labelText = @"im登录失败";
-                            [hud hide:YES afterDelay:1];
-                        }
-                    });
-                    
-                });
-            }else{
-                [UserDefultAccount updateToken:responseData.token];
-                [UserDefultAccount setImName:responseData.imName];
-                [UserDefultAccount setImPasswork:responseData.imPasswork];
-                
-                [UserDefultAccount setUserName:responseData.userName];
-                [UserDefultAccount setUserCode:responseData.userCode];
-                [UserDefultAccount setUserProfileUrlThumbnail:responseData.userProfileUrl];
-                
-                hud.mode = MBProgressHUDModeCustomView;
-                hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mbhud_yes"]];
-                hud.labelText = @"登录成功";
-                
-                //更新channelID
-                [self updateBPushChannelId];
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW,0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [hud hide:YES];
-                    [self.navigationController popToRootViewControllerAnimated:NO];
-                });
-            }
+            [UserDefultAccount updateToken:responseData.token];
+            [UserDefultAccount setImName:responseData.imName];
+            [UserDefultAccount setImPasswork:responseData.imPasswork];
             
+            [UserDefultAccount setUserName:responseData.userName];
+            [UserDefultAccount setUserCode:responseData.userCode];
+            [UserDefultAccount setUserProfileUrlThumbnail:responseData.userProfileUrl];
+            
+            hud.mode = MBProgressHUDModeCustomView;
+            hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mbhud_yes"]];
+            hud.labelText = @"登录成功";
+            
+            //信鸽推送注册设备
+            [AppDelegate registerDeviceToken];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [hud hide:YES];
+                [self.navigationController popToRootViewControllerAnimated:NO];
+            });
+            
+            
+            [[EMClient sharedClient].options setIsAutoLogin:YES];
+            dispatch_queue_t queue = dispatch_queue_create("tk.bourne.testQueue", DISPATCH_QUEUE_SERIAL);
+            dispatch_async(queue, ^{
+                EMError *error = [[EMClient sharedClient] loginWithUsername:responseData.imName password:responseData.imPasswork];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (!error){
+                        
+                    }else{
+                        hud.mode = MBProgressHUDModeCustomView;
+                        hud.labelText = @"im登录失败";
+                        [hud hide:YES afterDelay:1];
+                    }
+                });
+                
+            });
         }else{
             hud.mode = MBProgressHUDModeCustomView;
             hud.labelText = @"登录失败..";
@@ -200,26 +171,6 @@
         self.btnLogin.enabled = YES;
     }else{
         self.btnLogin.enabled = NO;
-    }
-}
-
-- (void)updateBPushChannelId{
-    NSString *channelId = [UserDefultAccount bPushChannelId];
-    if ([UserDefultAccount isLogin]){
-        AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
-        httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
-        
-        NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"channelId":channelId ,@"deviceType":@"4"};
-        
-        [httpManager POST:[XMUrlHttp xmUpdateChannel] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            ModelResponse *response = [ModelResponse responselWithObject:responseObject];
-            if (response.state == 200) {
-                //[UserDefultAccount setBPushChannelId:nil];
-            }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
-        }];
     }
 }
 

@@ -528,8 +528,6 @@
                 }
             }
             
-            
-            
         }else{
             
         }
@@ -604,6 +602,7 @@
     }else if ([UIScreen is55Screen]){
         return 64;
     }
+    
     return 0;
 }
 

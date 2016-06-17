@@ -25,8 +25,6 @@
 
 #import "EMSDK.h"
 
-#import "BPush.h"
-
 #import "AFNetworking.h"
 #import "XMUrlHttp.h"
 #import "ModelResponse.h"
@@ -55,6 +53,9 @@
 
 #import "NSString+Plug.h"
 
+#import "XGPush.h"
+#import "XGSetting.h"
+
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
 @property (nonatomic, strong) ControllerFirstLaunch *controllerFirstLaunch;
@@ -81,7 +82,6 @@
     
     NSDictionary *remoteNotification = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     if (remoteNotification) {
-        [BPush handleNotification:remoteNotification];
         self.remoteNotificationUserInfo = [ModelRemoteNotification modelWithDictionary:remoteNotification];
     }
     
@@ -107,7 +107,6 @@
         self.window.rootViewController = self.controllerFirstLaunch;
     }else{
         self.window.rootViewController = [ControllerTabBarMain shareController];
-        //[self.controllerNavigationRoot pushViewController:self.tabBarController animated:NO];
     }
     [self.window makeKeyAndVisible];
     
@@ -127,23 +126,24 @@
             }
         });
     }else{
-        
+
     }
-    
-    //百度推送
-    [BPush registerChannel:launchOptions apiKey:@"mzcoltwtcXphB5YTxDr6NuFs" pushMode:BPushModeProduction withFirstAction:@"抢" withSecondAction:nil withCategory:nil isDebug:YES];
     
     //表情云
     [[MMEmotionCentre defaultCentre] setAppId:@"5ca457f4bf624e31ac2dbc1ba3bc398e" secret:@"eafc5215121a4075927f4317e6ab67d5"];
     
     //腾讯崩溃日志跟踪
     [Bugly startWithAppId:@"i1400009724"];
+    //腾讯信鸽
+    [[XGSetting getInstance] enableDebug:YES];
+    [XGPush startApp:2200204436 appKey:@"IXMK2751PC1F"];
+    [XGPush handleLaunching:launchOptions];
+    [AppDelegate registerDeviceToken];
     
     [self changeForeOrBackGround:1];
     
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
-    //[[UIApplication sharedApplication] cancelAllLocalNotifications];
     return YES;
 }
 
@@ -172,10 +172,11 @@
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
     [[XMHttpGlobal http] globalGetAppStatusWithCallback:nil];
+    
+    [AppDelegate registerDeviceToken];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     self.isEnterFromRemoteNotification = NO;
 }
 
@@ -185,37 +186,9 @@
 
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
-    //环信
-    //[[EMClient sharedClient] bindDeviceToken:deviceToken];
-    //百度推送
-    [BPush registerDeviceToken:deviceToken];
-    [BPush bindChannelWithCompleteHandler:^(id result, NSError *error) {
-        if (result) {
-            [UserDefultAccount setBPushChannelId:result[@"channel_id"]];
-            
-            //向后台更新channelId
-            NSString *channelId = [UserDefultAccount bPushChannelId];
-            if ([UserDefultAccount isLogin]){
-                AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
-                httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-                httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
-                
-                NSDictionary *parameters = @{@"token":[UserDefultAccount token], @"device_code":[[UIDevice currentDevice].identifierForVendor UUIDString], @"channelId":channelId ,@"deviceType":@"4"};
-                
-                [httpManager POST:[XMUrlHttp xmUpdateChannel] parameters:@{@"data":[parameters modelToJSONString]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                    ModelResponse *response = [ModelResponse responselWithObject:responseObject];
-                    if (response.state == 200) {
-                        //[UserDefultAccount setBPushChannelId:nil];
-                    }
-                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                    
-                }];
-            }
-        }else{
-            [UserDefultAccount setBPushChannelId:nil];
-        }
-    }];
+    [UserDefultAccount xgSetDeviceToken:[XGPush getDeviceToken:deviceToken]];
     
+    [AppDelegate registerDeviceToken];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
@@ -225,7 +198,9 @@
 #pragma mark - 推送相关
 #pragma mark 收到推送消息
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
-    [BPush handleNotification:userInfo];
+    
+    [XGPush handleReceiveNotification:userInfo];
+
     //判断程序是否在前台
     //self.isEnterFromRemoteNotification = (application.applicationState == UIApplicationStateActive);
     
@@ -240,9 +215,7 @@
         if (self.isEnterFromRemoteNotification) {
             NSString *userCode = notification.userInfo[@"userCode"];
             if (userCode) {
-                ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:userCode conversationType:EMConversationTypeChat];
-                
-#warning 推送未完成，跳转聊天页面
+                //ControllerChatMsg *controllerChat = [[ControllerChatMsg alloc] initWithConversationChatter:userCode conversationType:EMConversationTypeChat];
             }
         }
     }
@@ -301,6 +274,14 @@
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     }];
+}
+
+
++ (void)registerDeviceToken{
+    if ([UserDefultAccount isLogin] && [UserDefultAccount xgHaveDeviceToken]) {
+        [XGPush setAccount:[UserDefultAccount userCode]];
+        [XGPush registerDeviceStr:[UserDefultAccount xgDeviceToken]];
+    }
 }
 
 + (instancetype)shareAppDelegate{

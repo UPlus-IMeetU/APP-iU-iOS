@@ -14,11 +14,11 @@
 #define USER_NAME @"userName"
 #define USER_CODE @"userCode"
 #define USER_PROFILE_URL_THUMBNAIL @"userProfileUrlThumbnail"
-#define B_PUSH_CHANNEL_ID @"bPushChannelId"
 #define DIALOYURL @"dialogURL"
 #define UPDATEAT @"updateAt"
 #define HAVETOVIEW @"haveToView"
 #define TOPIC @"topic"
+#define XG_DEVICE_TOKEN @"XGDeviceToken"
 
 @implementation UserDefultAccount
 
@@ -93,12 +93,16 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (NSString *)bPushChannelId{
-    NSString *channelId = [[NSUserDefaults standardUserDefaults] objectForKey:B_PUSH_CHANNEL_ID];
-    return channelId?channelId:@"";
++ (NSString *)xgDeviceToken{
+    NSString *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:XG_DEVICE_TOKEN];
+    return deviceToken?deviceToken:@"";
 }
-+ (void)setBPushChannelId:(NSString *)channelId{
-    [[NSUserDefaults standardUserDefaults] setObject:channelId forKey:B_PUSH_CHANNEL_ID];
++ (BOOL)xgHaveDeviceToken{
+    NSString *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:XG_DEVICE_TOKEN];
+    return deviceToken&&deviceToken.length>0;
+}
++ (void)xgSetDeviceToken:(NSString *)deviceToken{
+    [[NSUserDefaults standardUserDefaults] setObject:deviceToken forKey:XG_DEVICE_TOKEN];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -135,8 +139,6 @@
 + (void)setTopic:(NSString *)topic{
     [[NSUserDefaults standardUserDefaults] setObject:topic forKey:TOPIC];
 }
-
-
 
 + (void)cleanAccountCache{
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:TOPIC];

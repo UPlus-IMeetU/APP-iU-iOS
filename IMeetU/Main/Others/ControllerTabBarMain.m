@@ -73,6 +73,20 @@ controllerNaviCommunity;
     tabBarItem.badgeValue = isShow? @" ":@"";
 }
 
+- (void)loginOrRegister{
+    UIAlertController *c = [UIAlertController alertControllerWithTitle:@"请登录" message:@"如果要继续操作需要登录" preferredStyle:UIAlertControllerStyleAlert];
+    [c addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        ControllerUserLoginOrRegister *userLoginOrRegister = [ControllerUserLoginOrRegister shareController];
+        UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:userLoginOrRegister];
+        controller.navigationBar.hidden = YES;
+        
+        [self presentViewController:controller animated:NO completion:nil];
+    }]];
+    
+    [self presentViewController:c animated:YES completion:^{}];
+    
+}
+
 - (void)initial{
     
     UIView *bgView = [[UIView alloc] initWithFrame:self.tabBar.bounds];

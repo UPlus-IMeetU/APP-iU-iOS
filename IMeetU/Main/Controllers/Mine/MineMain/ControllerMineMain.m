@@ -231,6 +231,8 @@
             if (response.state == 200) {
                 ModelResponseMineHeader *mineHeader = [ModelResponseMineHeader modelWithJSON:response.data];
                 self.mineInfo = [ModelResponseMine modelWithJSON:mineHeader.userinfo];
+                [UserDefultAccount setUserProfileStatus:self.mineInfo.profileStatus];
+                
                 self.mineInfo.profileCircle = self.mineInfo.profileOrigin;
                 [self.labelNameNick setText:self.mineInfo.nameNick];
                 //进行状态的判定
@@ -620,8 +622,8 @@
                             if (self.pickControllerProfile == picker) {
                                 self.mineInfo.profileCircle = dicRes[@"icon_thumbnailUrl"];
                                 self.mineInfo.profileOrigin = dicRes[@"icon_url"];
-                                //NSLog(@"---------->%@", photo.photoUrlThumbnail);
                                 [UserDefultAccount setUserProfileUrlThumbnail:dicRes[@"icon_thumbnailUrl"]];
+                                [UserDefultAccount setUserProfileStatus:1];
                             }else if (self.pickControllerImg == picker){
                                 ModelMinePhoto *photo = [[ModelMinePhoto alloc] init];
                                 photo.photoName = dicRes[@"photo_name"];

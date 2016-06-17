@@ -12,7 +12,7 @@
 
 @property (nonatomic, copy) NSString *profileCircle;
 @property (nonatomic, copy) NSString *profileOrigin;
-@property (nonatomic, assign) NSInteger profileStatus;
+@property (nonatomic, assign) int profileStatus;
 
 @property (nonatomic, strong) NSMutableArray *photos;
 @property (nonatomic, copy) NSString *aboutMe;

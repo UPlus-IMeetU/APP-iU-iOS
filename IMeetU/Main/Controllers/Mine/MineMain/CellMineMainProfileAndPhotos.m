@@ -20,6 +20,8 @@
 #import "NSDate+plug.h"
 #import "UIColor+Plug.h"
 
+#import "UserDefultAccount.h"
+
 
 @interface CellMineMainProfileAndPhotos()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
@@ -99,7 +101,6 @@
         }
         self.labelMatchScore.text = [NSString stringWithFormat:@"%lu%%", (long)mine.matchScore];
         NSInteger time = ([NSDate currentTimeMillis]-mine.actyTime)/1000/60;
-        //NSLog(@"=====%lu", mine.matchScore)
         if (time<60) {
             self.labelActyTime.text = [NSString stringWithFormat:@"%lumin", (long)time];
         }else if (time>60 && time<60*24){
@@ -110,12 +111,12 @@
     }
     self.viewHisInfo.hidden = isMine;
     self.viewMyInfo.hidden = !isMine;
-    if (mine.profileStatus == 1) {
+    if ([UserDefultAccount userProfileStatus] == 1) {
         self.viewProfileStatus.hidden = NO;
         self.labelProfileStatus.text = @"审核中";
-    }else if (mine.profileStatus==2 || mine.profileStatus==3){
+    }else if ([UserDefultAccount userProfileStatus]  == 3){
         self.viewProfileStatus.hidden = YES;
-    }else if (mine.profileStatus==4 || mine.profileStatus==5 || mine.profileStatus==6){
+    }else if ([UserDefultAccount userProfileStatus]  == 5){
         self.viewProfileStatus.hidden = NO;
         self.labelProfileStatus.text = @"未通过";
     }

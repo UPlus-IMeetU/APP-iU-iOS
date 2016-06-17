@@ -1,19 +1,17 @@
 //
-//  ModelRemoteNotification.m
+//  ModelRemoteNotificationSendBiu.m
 //  IMeetU
 //
-//  Created by zhanghao on 16/3/19.
+//  Created by zhanghao on 16/6/17.
 //  Copyright © 2016年 zhanghao. All rights reserved.
 //
 
-#import "ModelRemoteNotification.h"
+#import "ModelRemoteNotificationSendBiu.h"
 
-@implementation ModelRemoteNotification
+@implementation ModelRemoteNotificationSendBiu
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{
-             @"typeNotifi":@"messageType",
-             
              @"biuCode":@"chat_id",
              @"referenceId":@"reference_id",
              

@@ -1,16 +1,14 @@
 //
-//  ModelRemoteNotification.h
+//  ModelRemoteNotificationSendBiu.h
 //  IMeetU
 //
-//  Created by zhanghao on 16/3/19.
+//  Created by zhanghao on 16/6/17.
 //  Copyright © 2016年 zhanghao. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface ModelRemoteNotification : NSObject
-
-@property (nonatomic, assign) NSInteger typeNotifi;
+@interface ModelRemoteNotificationSendBiu : NSObject
 
 @property (nonatomic, copy) NSString *biuCode;
 @property (nonatomic, copy) NSString *referenceId;

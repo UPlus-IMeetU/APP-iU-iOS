@@ -335,11 +335,11 @@
 #pragma mark - AppDelegate回调
 #pragma mark 远程通知回
 - (void)appDelegate:(AppDelegate *)appDelegate isEnterFromRemoteNotification:(BOOL)isEnterFromRemoteNotification remoteNotificationUserInfo:(ModelRemoteNotification *)userInfo{
-    if (userInfo.typeNotifi == 0) {
+    if (userInfo.type == 101) {
         //检查超时，只有在不超时的情况下才会跳转页面
         ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:userInfo];
         
-        if (userInfo.biuMatchTime > [NSDate currentTimeMillis]-3600*1000) {
+        if (userInfo.objBiuSend.biuMatchTime > [NSDate currentTimeMillis]-3600*1000) {
             if (isEnterFromRemoteNotification) {
                 ControllerBiuBiuReceive *controller = [ControllerBiuBiuReceive controllerWithFaceStar:faceStar delegate:self];
                 [self.navigationController pushViewController:controller animated:YES];
@@ -355,7 +355,7 @@
     
     //只有在首先显示在当前屏幕上时才处理第一第二种通知
     if (self.isDisplayedInScreen) {
-        if (userInfo.typeNotifi == 1){
+        if (userInfo.type == 102){
             ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:userInfo];
             [UserDefultBiu setBiuUserProfileOfGrab:faceStar.userProfile];
             [self.biuCenterButton receiveMatcheUserWithImageUrl:faceStar.userProfile];

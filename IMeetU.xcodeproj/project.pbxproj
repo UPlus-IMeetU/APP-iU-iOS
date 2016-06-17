@@ -104,7 +104,6 @@
 		044724C11C9A61EC000FD349 /* XMAlertDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 044724C01C9A61EC000FD349 /* XMAlertDialog.m */; };
 		044725E81C9AAE93000FD349 /* EaseUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 044724C51C9AAE93000FD349 /* EaseUI.m */; };
 		044726AC1C9D5CC7000FD349 /* AppDelegateDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 044726AB1C9D5CC7000FD349 /* AppDelegateDelegate.m */; };
-		044726B21C9D60D4000FD349 /* ModelRemoteNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 044726B11C9D60D4000FD349 /* ModelRemoteNotification.m */; };
 		044726D51C9E98C8000FD349 /* ControllerChatMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 044726D41C9E98C8000FD349 /* ControllerChatMsg.m */; };
 		044726FD1C9F9A7F000FD349 /* icon_002.gif in Resources */ = {isa = PBXBuildFile; fileRef = 044726DD1C9F9A7F000FD349 /* icon_002.gif */; };
 		044726FE1C9F9A7F000FD349 /* icon_002_cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 044726DE1C9F9A7F000FD349 /* icon_002_cover.png */; };
@@ -456,6 +455,9 @@
 		049E799C1CC65691009928F0 /* ViewChatMsgImgBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 049E799B1CC65691009928F0 /* ViewChatMsgImgBrowser.m */; };
 		049E799E1CC656A7009928F0 /* ViewChatMsgImgBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049E799D1CC656A7009928F0 /* ViewChatMsgImgBrowser.xib */; };
 		04A0B70F1D139AD700746A4C /* ModelRemoteNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B70E1D139AD700746A4C /* ModelRemoteNotification.m */; };
+		04A0B7121D13A83E00746A4C /* ModelRemoteNotificationGrabBiu.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7111D13A83E00746A4C /* ModelRemoteNotificationGrabBiu.m */; };
+		04A0B7151D13A86700746A4C /* ModelRemoteNotificationSendBiu.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7141D13A86700746A4C /* ModelRemoteNotificationSendBiu.m */; };
+		04A0B7181D13A87D00746A4C /* ModelRemoteNotificationProfileStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7171D13A87D00746A4C /* ModelRemoteNotificationProfileStatus.m */; };
 		04A31D7B1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A31D791C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.m */; };
 		04A31D7C1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A31D7A1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.xib */; };
 		04A31D801C97E0CC00BCBAE0 /* ReusableViewBiuReceiveFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A31D7E1C97E0CC00BCBAE0 /* ReusableViewBiuReceiveFooter.m */; };
@@ -861,8 +863,6 @@
 		044724C51C9AAE93000FD349 /* EaseUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseUI.m; sourceTree = "<group>"; };
 		044726AA1C9D5CC7000FD349 /* AppDelegateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegateDelegate.h; sourceTree = "<group>"; };
 		044726AB1C9D5CC7000FD349 /* AppDelegateDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateDelegate.m; sourceTree = "<group>"; };
-		044726B01C9D60D4000FD349 /* ModelRemoteNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelRemoteNotification.h; sourceTree = "<group>"; };
-		044726B11C9D60D4000FD349 /* ModelRemoteNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelRemoteNotification.m; sourceTree = "<group>"; };
 		044726D31C9E98C8000FD349 /* ControllerChatMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerChatMsg.h; sourceTree = "<group>"; };
 		044726D41C9E98C8000FD349 /* ControllerChatMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerChatMsg.m; sourceTree = "<group>"; };
 		044726DD1C9F9A7F000FD349 /* icon_002.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = icon_002.gif; sourceTree = "<group>"; };
@@ -1393,6 +1393,12 @@
 		049E799D1CC656A7009928F0 /* ViewChatMsgImgBrowser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewChatMsgImgBrowser.xib; sourceTree = "<group>"; };
 		04A0B70D1D139AD700746A4C /* ModelRemoteNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelRemoteNotification.h; sourceTree = "<group>"; };
 		04A0B70E1D139AD700746A4C /* ModelRemoteNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelRemoteNotification.m; sourceTree = "<group>"; };
+		04A0B7101D13A83E00746A4C /* ModelRemoteNotificationGrabBiu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelRemoteNotificationGrabBiu.h; sourceTree = "<group>"; };
+		04A0B7111D13A83E00746A4C /* ModelRemoteNotificationGrabBiu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelRemoteNotificationGrabBiu.m; sourceTree = "<group>"; };
+		04A0B7131D13A86700746A4C /* ModelRemoteNotificationSendBiu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelRemoteNotificationSendBiu.h; sourceTree = "<group>"; };
+		04A0B7141D13A86700746A4C /* ModelRemoteNotificationSendBiu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelRemoteNotificationSendBiu.m; sourceTree = "<group>"; };
+		04A0B7161D13A87D00746A4C /* ModelRemoteNotificationProfileStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelRemoteNotificationProfileStatus.h; sourceTree = "<group>"; };
+		04A0B7171D13A87D00746A4C /* ModelRemoteNotificationProfileStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelRemoteNotificationProfileStatus.m; sourceTree = "<group>"; };
 		04A31D781C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReusableViewBiuReceiveHeader.h; sourceTree = "<group>"; };
 		04A31D791C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReusableViewBiuReceiveHeader.m; sourceTree = "<group>"; };
 		04A31D7A1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReusableViewBiuReceiveHeader.xib; sourceTree = "<group>"; };
@@ -2726,8 +2732,6 @@
 				04151ABC1C96C13C008955C2 /* ModelResponseOSSSecurityToke.m */,
 				04151ABE1C96E620008955C2 /* ModelRequestMineInfoUpdate.h */,
 				04151ABF1C96E620008955C2 /* ModelRequestMineInfoUpdate.m */,
-				044726B01C9D60D4000FD349 /* ModelRemoteNotification.h */,
-				044726B11C9D60D4000FD349 /* ModelRemoteNotification.m */,
 				6F0495AB1CE382F000FB36A9 /* ModelAdvert.h */,
 				6F0495AC1CE382F000FB36A9 /* ModelAdvert.m */,
 				6FF1DEE21CE42DC400A05C54 /* ModelActivity.h */,
@@ -3232,6 +3236,12 @@
 			children = (
 				04A0B70D1D139AD700746A4C /* ModelRemoteNotification.h */,
 				04A0B70E1D139AD700746A4C /* ModelRemoteNotification.m */,
+				04A0B7101D13A83E00746A4C /* ModelRemoteNotificationGrabBiu.h */,
+				04A0B7111D13A83E00746A4C /* ModelRemoteNotificationGrabBiu.m */,
+				04A0B7131D13A86700746A4C /* ModelRemoteNotificationSendBiu.h */,
+				04A0B7141D13A86700746A4C /* ModelRemoteNotificationSendBiu.m */,
+				04A0B7161D13A87D00746A4C /* ModelRemoteNotificationProfileStatus.h */,
+				04A0B7171D13A87D00746A4C /* ModelRemoteNotificationProfileStatus.m */,
 			);
 			path = RemoteNotification;
 			sourceTree = "<group>";
@@ -5005,7 +5015,6 @@
 				04151AB41C969088008955C2 /* ModelResponseRegisterLogin.m in Sources */,
 				04B7D5C21CDB4CB600D74C6D /* MWGridViewController.m in Sources */,
 				04610B181CEDEF0D0033B43E /* ModelBiuAccepts.m in Sources */,
-				044726B21C9D60D4000FD349 /* ModelRemoteNotification.m in Sources */,
 				0450B7F21C91D38B001DD60A /* ControllerMineAlterIdentityProfession.m in Sources */,
 				04610B111CEDB5590033B43E /* CellBiuAccept.m in Sources */,
 				04B7D5E11CDB4CB600D74C6D /* PSTCollectionViewUpdateItem.m in Sources */,
@@ -5090,6 +5099,7 @@
 				044AF7321C8D6E8C009AF59F /* XMAlertDialogRealProfile.m in Sources */,
 				040F4FF01CABD6A400AD8334 /* XMActionSheet.m in Sources */,
 				6FBC68A71CFBF1A300B45657 /* ModelCommunity.m in Sources */,
+				04A0B7181D13A87D00746A4C /* ModelRemoteNotificationProfileStatus.m in Sources */,
 				04B0F42F1CBFF2F600268082 /* ViewNewComerGuide.m in Sources */,
 				0450B7D21C907F6B001DD60A /* ReusableViewMatchSettingFooter.m in Sources */,
 				044727271C9FA63E000FD349 /* MLAnnotation.m in Sources */,
@@ -5134,6 +5144,7 @@
 				047519B21CA631CB009115CE /* BCPayPalVerifyReq.m in Sources */,
 				04A31D7B1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.m in Sources */,
 				044AF73E1C8D878E009AF59F /* ControllerUserRegisterThirdStep.m in Sources */,
+				04A0B7151D13A86700746A4C /* ModelRemoteNotificationSendBiu.m in Sources */,
 				044724C11C9A61EC000FD349 /* XMAlertDialog.m in Sources */,
 				04151AB71C96A5DC008955C2 /* ModelResponseMine.m in Sources */,
 				04B7D5B11CDB4CB600D74C6D /* MJRefreshHeader.m in Sources */,
@@ -5280,6 +5291,7 @@
 				04B7D4BC1CDB4BEB00D74C6D /* EaseEmoji.m in Sources */,
 				04B7D5B41CDB4CB600D74C6D /* MJRefreshAutoStateFooter.m in Sources */,
 				044AF6851C8C85E7009AF59F /* ModelSchools.m in Sources */,
+				04A0B7121D13A83E00746A4C /* ModelRemoteNotificationGrabBiu.m in Sources */,
 				04B7D59F1CDB4CB600D74C6D /* EMAudioRecorderUtil.m in Sources */,
 				044B3F6B1D00292800E9E46F /* UserDefultAppGlobalStatus.m in Sources */,
 				040F4F891CAA896100AD8334 /* CellBiuContact.m in Sources */,

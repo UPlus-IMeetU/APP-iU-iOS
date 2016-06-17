@@ -84,9 +84,9 @@
     if (model.profileState == 1) {
         self.viewProfileState.hidden = NO;
         self.labelProfileState.text = @"审核中";
-    }else if (model.profileState == 2 || model.profileState == 3) {
+    }else if (model.profileState == 3) {
         self.viewProfileState.hidden = YES;
-    }else if (model.profileState == 4 || model.profileState == 5 || model.profileState == 6) {
+    }else if ( model.profileState == 5) {
         self.viewProfileState.hidden = NO;
         self.labelProfileState.text = @"未通过";
     }

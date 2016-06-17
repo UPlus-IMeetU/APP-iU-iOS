@@ -288,7 +288,7 @@
 
 #pragma mark 抢Biu的方法
 - (void)grabBiu:(NSInteger )UMi WithButton:(UIButton *)button{
-    if (self.profileState == 1 || self.profileState == 2 || self.profileState == 3){
+    if (self.profileState == 1 || self.profileState == 3){
         MBProgressHUD *hud = [MBProgressHUD xmShowIndeterminateHUDAddedTo:self.viewMain label:@"收biu中..." animated:YES];
         
         AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];

@@ -13,6 +13,6 @@
 
 - (NSInteger)userProfileState;
 
-- (void)profileStateReaded;
+//- (void)profileStateReaded;
 - (void)setProfileStateOne;
 @end

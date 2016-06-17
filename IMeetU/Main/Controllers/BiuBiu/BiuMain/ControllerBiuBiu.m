@@ -302,7 +302,7 @@
 #pragma mark 发送Biu
 - (void)biuCenterButton:(XMBiuCenterView *)biuCenterButton onClickBtnSenderBiu:(UIButton *)btn isTimeout:(BOOL)timeout{
     if ([UserDefultAccount isLogin]) {
-        if (self.profileState == 1 || self.profileState == 2 || self.profileState == 3 || self.profileState == 0){
+        if (self.profileState == 1 || self.profileState == 3){
             ControllerBiuBiuSend *controller = [ControllerBiuBiuSend shareController];
             controller.delegateBiuSender = self;
             [self.navigationController pushViewController:controller animated:YES];
@@ -689,36 +689,14 @@
 - (void)showAlertProfileState{
     UIAlertController *controller;
     
-    if (self.profileState == 2) {
-        controller = [UIAlertController alertControllerWithTitle:@"头像审核通过" message:@"你的头像审核通过啦，可以愉快的玩耍了" preferredStyle:UIAlertControllerStyleAlert];
-        [controller addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self profileStateReaded];
-        }]];
-    }else if (self.profileState == 4){
-        controller = [UIAlertController alertControllerWithTitle:@"头像审核未通过" message:@"你的头像审核不通过，请上传能体现个人的真实头像哦" preferredStyle:UIAlertControllerStyleAlert];
-        [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self profileStateReaded];
-        }]];
-        [controller addAction:[UIAlertAction actionWithTitle:@"重新上传" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self presentViewController:self.imgPickController animated:YES completion:nil];
-        }]];
-    }else if (self.profileState == 5){
+  if (self.profileState == 5){
         controller = [UIAlertController alertControllerWithTitle:@"头像审核未通过" message:@"你的头像审核不通过，请上传能体现个人的真实头像哦" preferredStyle:UIAlertControllerStyleAlert];
         [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
         [controller addAction:[UIAlertAction actionWithTitle:@"重新上传" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self presentViewController:self.imgPickController animated:YES completion:nil];
         }]];
-    }else if(self.profileState == 6){
-        controller = [UIAlertController alertControllerWithTitle:@"头像审核未通过" message:@"你修改的头像审核未通过，将恢复原头像，点击重新上传更换头像" preferredStyle:UIAlertControllerStyleAlert];
-        [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self profileStateReaded];
-        }]];
-        [controller addAction:[UIAlertAction actionWithTitle:@"重新上传" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self presentViewController:self.imgPickController animated:YES completion:nil];
-        }]];
     }
-    
-    if (self.profileState==2 || self.profileState==4 || self.profileState==5 || self.profileState==6) {
+    if (self.profileState==5) {
         [self presentViewController:controller animated:YES completion:nil];
     }
 }
@@ -784,16 +762,16 @@
     }];
 }
 
-- (void)profileStateReaded{
-    if (self.profileState == 2 || self.profileState == 6) {
-        self.profileState = 3;
-    }else if (self.profileState == 4){
-        self.profileState = 5;
-    }
-    
-    [[XMHttpPersonal http] xmChangeProfileStateReadWithUserCode:[UserDefultAccount userCode] block:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
-    }];
-}
+//- (void)profileStateReaded{
+//    if (self.profileState == 2 || self.profileState == 6) {
+//        self.profileState = 3;
+//    }else if (self.profileState == 4){
+//        self.profileState = 5;
+//    }
+//    
+//    [[XMHttpPersonal http] xmChangeProfileStateReadWithUserCode:[UserDefultAccount userCode] block:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+//    }];
+//}
 
 - (UIImagePickerController *)imgPickController{
     if (!_imgPickController) {

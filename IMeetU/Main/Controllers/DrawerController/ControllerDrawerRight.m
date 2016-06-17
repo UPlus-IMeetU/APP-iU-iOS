@@ -450,10 +450,6 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-
-
-
-
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

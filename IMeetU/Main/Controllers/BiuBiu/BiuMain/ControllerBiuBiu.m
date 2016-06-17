@@ -690,7 +690,6 @@
     return _locationManager;
 }
 
-
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -750,6 +749,17 @@
         }
     }];
 }
+
+//- (void)profileStateReaded{
+//    if (self.profileState == 2 || self.profileState == 6) {
+//        self.profileState = 3;
+//    }else if (self.profileState == 4){
+//        self.profileState = 5;
+//    }
+//    
+//    [[XMHttpPersonal http] xmChangeProfileStateReadWithUserCode:[UserDefultAccount userCode] block:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
+//    }];
+//}
 
 - (UIImagePickerController *)imgPickController{
     if (!_imgPickController) {

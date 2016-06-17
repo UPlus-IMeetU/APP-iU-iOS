@@ -10,4 +10,20 @@
 
 @implementation ModelRemoteNotificationGrabBiu
 
++ (NSDictionary *)modelCustomPropertyMapper{
+
+    return @{
+                @"age":@"age",
+                @"virtualBiuBi":@"biu_vc",
+                @"profileUrl":@"icon_thumbnailUrl",
+                @"nameNick":@"nickname",
+                @"school":@"school",
+                @"gender":@"sex",
+                @"constellation":@"starsign",
+                @"status":@"status",
+                @"time":@"time",
+                @"userCode":@"user_code"
+             };
+}
+
 @end

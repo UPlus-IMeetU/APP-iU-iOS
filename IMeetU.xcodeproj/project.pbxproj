@@ -458,6 +458,8 @@
 		04A0B7121D13A83E00746A4C /* ModelRemoteNotificationGrabBiu.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7111D13A83E00746A4C /* ModelRemoteNotificationGrabBiu.m */; };
 		04A0B7151D13A86700746A4C /* ModelRemoteNotificationSendBiu.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7141D13A86700746A4C /* ModelRemoteNotificationSendBiu.m */; };
 		04A0B7181D13A87D00746A4C /* ModelRemoteNotificationProfileStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B7171D13A87D00746A4C /* ModelRemoteNotificationProfileStatus.m */; };
+		04A0B71B1D13DB6400746A4C /* ModelRemoteNotificationAPNS.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B71A1D13DB6400746A4C /* ModelRemoteNotificationAPNS.m */; };
+		04A0B71E1D13DB7500746A4C /* ModelRemoteNotificationXG.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B71D1D13DB7500746A4C /* ModelRemoteNotificationXG.m */; };
 		04A31D7B1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A31D791C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.m */; };
 		04A31D7C1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A31D7A1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.xib */; };
 		04A31D801C97E0CC00BCBAE0 /* ReusableViewBiuReceiveFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A31D7E1C97E0CC00BCBAE0 /* ReusableViewBiuReceiveFooter.m */; };
@@ -1399,6 +1401,10 @@
 		04A0B7141D13A86700746A4C /* ModelRemoteNotificationSendBiu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelRemoteNotificationSendBiu.m; sourceTree = "<group>"; };
 		04A0B7161D13A87D00746A4C /* ModelRemoteNotificationProfileStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelRemoteNotificationProfileStatus.h; sourceTree = "<group>"; };
 		04A0B7171D13A87D00746A4C /* ModelRemoteNotificationProfileStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelRemoteNotificationProfileStatus.m; sourceTree = "<group>"; };
+		04A0B7191D13DB6400746A4C /* ModelRemoteNotificationAPNS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelRemoteNotificationAPNS.h; sourceTree = "<group>"; };
+		04A0B71A1D13DB6400746A4C /* ModelRemoteNotificationAPNS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelRemoteNotificationAPNS.m; sourceTree = "<group>"; };
+		04A0B71C1D13DB7500746A4C /* ModelRemoteNotificationXG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelRemoteNotificationXG.h; sourceTree = "<group>"; };
+		04A0B71D1D13DB7500746A4C /* ModelRemoteNotificationXG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelRemoteNotificationXG.m; sourceTree = "<group>"; };
 		04A31D781C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReusableViewBiuReceiveHeader.h; sourceTree = "<group>"; };
 		04A31D791C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReusableViewBiuReceiveHeader.m; sourceTree = "<group>"; };
 		04A31D7A1C97E0AD00BCBAE0 /* ReusableViewBiuReceiveHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReusableViewBiuReceiveHeader.xib; sourceTree = "<group>"; };
@@ -3236,6 +3242,10 @@
 			children = (
 				04A0B70D1D139AD700746A4C /* ModelRemoteNotification.h */,
 				04A0B70E1D139AD700746A4C /* ModelRemoteNotification.m */,
+				04A0B71C1D13DB7500746A4C /* ModelRemoteNotificationXG.h */,
+				04A0B71D1D13DB7500746A4C /* ModelRemoteNotificationXG.m */,
+				04A0B7191D13DB6400746A4C /* ModelRemoteNotificationAPNS.h */,
+				04A0B71A1D13DB6400746A4C /* ModelRemoteNotificationAPNS.m */,
 				04A0B7101D13A83E00746A4C /* ModelRemoteNotificationGrabBiu.h */,
 				04A0B7111D13A83E00746A4C /* ModelRemoteNotificationGrabBiu.m */,
 				04A0B7131D13A86700746A4C /* ModelRemoteNotificationSendBiu.h */,
@@ -5047,6 +5057,7 @@
 				044AF7441C8D8887009AF59F /* ControllerUserForgotPassword.m in Sources */,
 				046B497C1CFC6B3A00946987 /* TZPhotoPreviewController.m in Sources */,
 				04B165F71C89D87E00EE6DB8 /* UITabBar+Plug.m in Sources */,
+				04A0B71E1D13DB7500746A4C /* ModelRemoteNotificationXG.m in Sources */,
 				04B7D0DC1CD9AA3200D74C6D /* NSDateFormatter+Category.m in Sources */,
 				04B165E41C89D87E00EE6DB8 /* ControllerDrawerLeft.m in Sources */,
 				044727241C9FA45B000FD349 /* ControllerChatMsgLocation.m in Sources */,
@@ -5085,6 +5096,7 @@
 				0450B7DE1C912FA5001DD60A /* ModelMatchSetting.m in Sources */,
 				0450B7F51C91D3A3001DD60A /* ControllerMineAlterCompany.m in Sources */,
 				044AF7711C8EDD7B009AF59F /* XMTableViewNoHover.m in Sources */,
+				04A0B71B1D13DB6400746A4C /* ModelRemoteNotificationAPNS.m in Sources */,
 				04B7D5A71CDB4CB600D74C6D /* EMVoiceConverter.mm in Sources */,
 				6FBC687C1CFBCE9D00B45657 /* CommunityReplyCell.m in Sources */,
 				04151AD71C979EA8008955C2 /* ControllerBiuBiuSend.m in Sources */,

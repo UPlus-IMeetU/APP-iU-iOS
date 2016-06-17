@@ -123,8 +123,6 @@
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
-
-@property (nonatomic, assign) NSInteger profileState;
 @property (nonatomic, strong) UIImagePickerController *imgPickController;
 
 @property (nonatomic,strong) ModelActivity *modelActivity;
@@ -302,12 +300,18 @@
 #pragma mark 发送Biu
 - (void)biuCenterButton:(XMBiuCenterView *)biuCenterButton onClickBtnSenderBiu:(UIButton *)btn isTimeout:(BOOL)timeout{
     if ([UserDefultAccount isLogin]) {
-        if (self.profileState == 1 || self.profileState == 2 || self.profileState == 3 || self.profileState == 0){
+        if ([UserDefultAccount userProfileStatus] == 5){
+            UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"头像审核未通过" message:@"你的头像审核不通过，请上传能体现个人的真实头像哦" preferredStyle:UIAlertControllerStyleAlert];
+            [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+            [controller addAction:[UIAlertAction actionWithTitle:@"重新上传" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self presentViewController:self.imgPickController animated:YES completion:nil];
+            }]];
+            
+            [self presentViewController:controller animated:YES completion:nil];
+        }else{
             ControllerBiuBiuSend *controller = [ControllerBiuBiuSend shareController];
             controller.delegateBiuSender = self;
             [self.navigationController pushViewController:controller animated:YES];
-        }else{
-            [self showAlertProfileState];
         }
     }else{
         ControllerUserLoginOrRegister *controller = [ControllerUserLoginOrRegister shareController];
@@ -339,7 +343,7 @@
         //检查超时，只有在不超时的情况下才会跳转页面
         ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:userInfo];
         
-        if (userInfo.objBiuSend.biuMatchTime > [NSDate currentTimeMillis]-3600*1000) {
+        if (userInfo.biuSend.biuMatchTime > [NSDate currentTimeMillis]-3600*1000) {
             if (isEnterFromRemoteNotification) {
                 ControllerBiuBiuReceive *controller = [ControllerBiuBiuReceive controllerWithFaceStar:faceStar delegate:self];
                 [self.navigationController pushViewController:controller animated:YES];
@@ -448,13 +452,13 @@
         if (response.state == 200) {
             //登陆成功的情况下，可以进行点击的操作
             ModelBiuMainRefreshData *biuData = [ModelBiuMainRefreshData modelWithDictionary:response.data];
-            self.profileState = biuData.profileState;
+            
+            [UserDefultAccount setUserProfileStatus:biuData.profileState];
             if (biuData.isBiuEnd) {
                 [UserDefultBiu setBiuInMatch:NO];
                 [UserDefultBiu setBiuUserProfileOfGrab:@""];
                 [self.biuCenterButton noReceiveMatchUser];
             }
-            [self showAlertProfileState];
         }else{
             [self.biuCenterButton noReceiveMatchUser];
         }
@@ -686,43 +690,6 @@
     return _locationManager;
 }
 
-- (void)showAlertProfileState{
-    UIAlertController *controller;
-    
-    if (self.profileState == 2) {
-        controller = [UIAlertController alertControllerWithTitle:@"头像审核通过" message:@"你的头像审核通过啦，可以愉快的玩耍了" preferredStyle:UIAlertControllerStyleAlert];
-        [controller addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self profileStateReaded];
-        }]];
-    }else if (self.profileState == 4){
-        controller = [UIAlertController alertControllerWithTitle:@"头像审核未通过" message:@"你的头像审核不通过，请上传能体现个人的真实头像哦" preferredStyle:UIAlertControllerStyleAlert];
-        [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self profileStateReaded];
-        }]];
-        [controller addAction:[UIAlertAction actionWithTitle:@"重新上传" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self presentViewController:self.imgPickController animated:YES completion:nil];
-        }]];
-    }else if (self.profileState == 5){
-        controller = [UIAlertController alertControllerWithTitle:@"头像审核未通过" message:@"你的头像审核不通过，请上传能体现个人的真实头像哦" preferredStyle:UIAlertControllerStyleAlert];
-        [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-        [controller addAction:[UIAlertAction actionWithTitle:@"重新上传" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self presentViewController:self.imgPickController animated:YES completion:nil];
-        }]];
-    }else if(self.profileState == 6){
-        controller = [UIAlertController alertControllerWithTitle:@"头像审核未通过" message:@"你修改的头像审核未通过，将恢复原头像，点击重新上传更换头像" preferredStyle:UIAlertControllerStyleAlert];
-        [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self profileStateReaded];
-        }]];
-        [controller addAction:[UIAlertAction actionWithTitle:@"重新上传" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self presentViewController:self.imgPickController animated:YES completion:nil];
-        }]];
-    }
-    
-    if (self.profileState==2 || self.profileState==4 || self.profileState==5 || self.profileState==6) {
-        [self presentViewController:controller animated:YES completion:nil];
-    }
-}
-
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -760,7 +727,7 @@
                             
                             [UserDefultAccount setUserProfileUrlThumbnail:dicRes[@"icon_thumbnailUrl"]];
                             
-                            self.profileState = 1;
+                            [UserDefultAccount setUserProfileStatus:1];
                             [hud xmSetCustomModeWithResult:YES label:@"上传成功"];
                         }else{
                             [hud xmSetCustomModeWithResult:NO label:@"上传失败"];
@@ -784,17 +751,6 @@
     }];
 }
 
-- (void)profileStateReaded{
-    if (self.profileState == 2 || self.profileState == 6) {
-        self.profileState = 3;
-    }else if (self.profileState == 4){
-        self.profileState = 5;
-    }
-    
-    [[XMHttpPersonal http] xmChangeProfileStateReadWithUserCode:[UserDefultAccount userCode] block:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
-    }];
-}
-
 - (UIImagePickerController *)imgPickController{
     if (!_imgPickController) {
         _imgPickController = [[UIImagePickerController alloc] init];
@@ -804,14 +760,6 @@
     }
     return _imgPickController;
 }
-
-- (void)setProfileStateOne{
-    self.profileState = 1;
-}
-
-//- (void)updateUmiCount:(NSInteger)umiCount{
-//    [UserDefultAccount setCountUmi:umiCount];
-//}
 
 #pragma mark广告相关的操作
 - (IBAction)AdvertCloseButtonClick:(id)sender {
@@ -867,10 +815,6 @@
     matchSettingController.controllerType = ControllerTypeFilter;
     //[matchSettingController setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:matchSettingController animated:YES];
-}
-
-- (NSInteger)userProfileState{
-    return self.profileState;
 }
 
 - (void)timerRefreshLaunch{

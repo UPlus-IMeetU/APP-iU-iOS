@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ModelRemoteNotificationXG.h"
+#import "ModelRemoteNotificationAPNS.h"
+
 #import "ModelRemoteNotificationGrabBiu.h"
 #import "ModelRemoteNotificationSendBiu.h"
 #import "ModelRemoteNotificationProfileStatus.h"
@@ -23,15 +26,15 @@
 
 @interface ModelRemoteNotification : NSObject
 
+@property (nonatomic, strong) ModelRemoteNotificationXG *xg;
+@property (nonatomic, strong) ModelRemoteNotificationAPNS *apns;
+
 @property (nonatomic, assign) int type;
 @property (nonatomic, assign) BOOL shake;
+@property (nonatomic, assign) long long timestamp;
 
-@property (nonatomic, assign) NSString *biuGrab;
-@property (nonatomic, assign) NSString *biuSend;
-@property (nonatomic, assign) NSString *profileStatusChange;
-
-@property (nonatomic, assign) ModelRemoteNotificationGrabBiu *objBiuGrab;
-@property (nonatomic, assign) ModelRemoteNotificationSendBiu *objBiuSend;
-@property (nonatomic, assign) ModelRemoteNotificationProfileStatus *objProfileStatusChange;
+@property (nonatomic, strong) ModelRemoteNotificationGrabBiu *biuGrab;
+@property (nonatomic, strong) ModelRemoteNotificationSendBiu *biuSend;
+@property (nonatomic, strong) ModelRemoteNotificationProfileStatus *profileStatusChange;
 
 @end

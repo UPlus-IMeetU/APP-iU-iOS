@@ -12,7 +12,7 @@
 @interface ModelBiuMainRefreshData : NSObject
 
 @property (nonatomic, assign) NSInteger virtualCurrency;
-@property (nonatomic, assign) NSInteger profileState;
+@property (nonatomic, assign) int profileState;
 @property (nonatomic, copy) NSString *token;
 
 @property (nonatomic, strong) NSArray *faceStars;

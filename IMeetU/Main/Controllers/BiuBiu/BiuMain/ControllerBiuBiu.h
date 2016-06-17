@@ -10,9 +10,4 @@
 
 @interface ControllerBiuBiu : UIViewController
 + (instancetype)shareControllerBiuBiu;
-
-- (NSInteger)userProfileState;
-
-- (void)profileStateReaded;
-- (void)setProfileStateOne;
 @end

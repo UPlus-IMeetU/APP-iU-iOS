@@ -10,4 +10,7 @@
 
 @interface ModelRemoteNotificationProfileStatus : NSObject
 
+@property (nonatomic, assign) int profileStatus;
+@property (nonatomic, assign) long long time;
+
 @end

@@ -14,16 +14,16 @@
 + (instancetype)modelWithRemoteNiti:(ModelRemoteNotification *)model{
     ModelBiuFaceStar *faceStar = [[ModelBiuFaceStar alloc] init];
     
-    faceStar.userCode = model.objBiuSend.biuUserCode;
-    faceStar.userName = model.objBiuSend.biuUserName;
-    faceStar.userAge = model.objBiuSend.biuUserAge;
+    faceStar.userCode = model.biuSend.biuUserCode;
+    faceStar.userName = model.biuSend.biuUserName;
+    faceStar.userAge = model.biuSend.biuUserAge;
     faceStar.haveSee = NO;
-    faceStar.userConstellation = model.objBiuSend.biuUserConstellation;
-    faceStar.schoolId = model.objBiuSend.biuUserSchool;
-    faceStar.company = model.objBiuSend.biuUserCompany;
-    faceStar.profession = model.objBiuSend.biuUserProfession;
-    faceStar.userProfile = model.objBiuSend.biuUserProfile;
-    faceStar.matchTime = model.objBiuSend.biuMatchTime;
+    faceStar.userConstellation = model.biuSend.biuUserConstellation;
+    faceStar.schoolId = model.biuSend.biuUserSchool;
+    faceStar.company = model.biuSend.biuUserCompany;
+    faceStar.profession = model.biuSend.biuUserProfession;
+    faceStar.userProfile = model.biuSend.biuUserProfile;
+    faceStar.matchTime = model.biuSend.biuMatchTime;
     
     return faceStar;
 }

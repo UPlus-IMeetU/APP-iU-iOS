@@ -13,6 +13,7 @@
 #define IM_PASSWD @"imPassword"
 #define USER_NAME @"userName"
 #define USER_CODE @"userCode"
+#define USER_PROFILE_STATUS @"userProfileStatus"
 #define USER_PROFILE_URL_THUMBNAIL @"userProfileUrlThumbnail"
 #define DIALOYURL @"dialogURL"
 #define UPDATEAT @"updateAt"
@@ -90,6 +91,14 @@
 }
 + (void)setUserProfileUrlThumbnail:(NSString *)userProfileUrlThumbnail{
     [[NSUserDefaults standardUserDefaults] setObject:userProfileUrlThumbnail forKey:USER_PROFILE_URL_THUMBNAIL];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (int)userProfileStatus{
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:USER_PROFILE_STATUS] intValue];
+}
++ (void)setUserProfileStatus:(int)status{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:status] forKey:USER_PROFILE_STATUS];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

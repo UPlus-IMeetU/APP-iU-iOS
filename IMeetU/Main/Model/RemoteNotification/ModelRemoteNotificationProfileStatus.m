@@ -10,4 +10,11 @@
 
 @implementation ModelRemoteNotificationProfileStatus
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{
+             @"profileStatus":@"iconStatus",
+             @"time":@"time"
+             };
+}
+
 @end

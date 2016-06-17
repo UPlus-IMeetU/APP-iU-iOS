@@ -31,6 +31,8 @@
 + (NSString *)userProfileUrlThumbnail;
 + (void)setUserProfileUrlThumbnail:(NSString *)userProfileUrlThumbnail;
 
++ (int)userProfileStatus;
++ (void)setUserProfileStatus:(int)status;
 /**
  * 信鸽设备Token
  */

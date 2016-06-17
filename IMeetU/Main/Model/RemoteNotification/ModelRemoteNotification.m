@@ -10,4 +10,19 @@
 
 @implementation ModelRemoteNotification
 
++ (NSDictionary *)modelCustomPropertyMapper{
+    return @{
+             @"xg":@"xg",
+             @"apns":@"aps",
+             
+             @"type":@"messageType",
+             @"shake":@"vibration",
+             @"timestamp":@"ptime",
+             
+             @"biuGrab":@"grabBiu",
+             @"biuSend":@"sendBiu",
+             @"profileStatusChange":@"iconState",
+             };
+}
+
 @end

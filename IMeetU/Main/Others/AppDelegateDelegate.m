@@ -69,10 +69,6 @@
 //    }];
 }
 
-- (void)dealloc{
-
-}
-
 - (void)didReceiveMessages:(NSArray *)aMessages{
     //未读消息数加一
     [UserDefultMsg unreadMsgCountIncrease];

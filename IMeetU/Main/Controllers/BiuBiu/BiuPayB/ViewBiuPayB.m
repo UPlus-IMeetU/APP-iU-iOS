@@ -20,7 +20,9 @@
 #import "ModelResponse.h"
 #import "UserDefultAccount.h"
 
-@interface ViewBiuPayB()<BeeCloudDelegate>
+#define testUserCode @"20012341234"
+
+@interface ViewBiuPayB()<BeeCloudDelegate,UIActionSheetDelegate>
 
 @property (nonatomic, assign) CGFloat viewHeight;
 @property (weak, nonatomic) IBOutlet UILabel *labelUmCountNow;
@@ -237,7 +239,36 @@
 - (IBAction)buyButtonClick:(id)sender {
     NSLog(@"购买的是%ld",(long)_umiCountSelected);
     //进行了购买的操作
-    [self.delegatePayUmi buyUMi:_umiCountSelected];
+    //测试
+    if ([[UserDefultAccount userCode] isEqualToString:testUserCode]) {
+          [self.delegatePayUmi buyUMi:_umiCountSelected];
+    }else{
+        [self showActionSheet];
+    }
 }
 
+- (void)showActionSheet{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:@"选择支付方式"
+                                  delegate:self
+                                  cancelButtonTitle:@"取消"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"支付宝", @"微信",@"苹果内购",nil];
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    [actionSheet showInView:self];
+}
+
+#pragma mark UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        //选择了支付宝
+        [self doPay:PayChannelAliApp];
+    }else if(buttonIndex == 1){
+        //选择了微信
+        [self doPay:PayChannelWxApp];
+    }else if(buttonIndex == 2){
+        //选择了苹果内购
+        [self.delegatePayUmi buyUMi:_umiCountSelected];
+    }
+}
 @end

@@ -20,7 +20,7 @@
 #import "ModelResponse.h"
 #import "UserDefultAccount.h"
 
-#define testUserCode @"20012341234"
+#define testUserCode @"12880"
 
 @interface ViewBiuPayB()<BeeCloudDelegate,UIActionSheetDelegate>
 
@@ -253,7 +253,7 @@
                                   delegate:self
                                   cancelButtonTitle:@"取消"
                                   destructiveButtonTitle:nil
-                                  otherButtonTitles:@"支付宝", @"微信",@"苹果内购",nil];
+                                  otherButtonTitles:@"支付宝", @"微信",@"苹果支付",nil];
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     [actionSheet showInView:self];
 }

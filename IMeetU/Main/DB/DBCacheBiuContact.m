@@ -86,7 +86,6 @@
             block(YES, [ModelContacts modelWithContacts:[self selectAllContact]]);
         }
     }
-    
 }
 
 - (void)updateContactWithArr:(NSArray*)contact{

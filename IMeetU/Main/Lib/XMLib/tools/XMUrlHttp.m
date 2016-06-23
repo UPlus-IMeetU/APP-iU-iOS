@@ -257,13 +257,13 @@
 
 + (NSString *)connectCommWithOperation:(NSString *)operation{
     NSString *host = @"http://app.iu.imeetu.cc/meetu_community";
-    NSString *hostTest = @"http://123.57.26.168:8080/meetu_community";
-    return [NSString stringWithFormat:@"%@%@", hostTest, operation];
+    //NSString *hostTest = @"http://123.57.26.168:8080/meetu_community";
+    return [NSString stringWithFormat:@"%@%@", host, operation];
 }
 
 + (NSString *)connectWithOperation:(NSString *)operation{
    NSString *host = @"http://app.iu.imeetu.cc/meetu_maven_new";
-    NSString *hostTest = @"http://123.57.26.168:8080/meetu_maven_new";
-    return [NSString stringWithFormat:@"%@%@", hostTest, operation];
+    //NSString *hostTest = @"http://123.57.26.168:8080/meetu_maven_new";
+    return [NSString stringWithFormat:@"%@%@", host, operation];
 }
 @end

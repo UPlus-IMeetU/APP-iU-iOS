@@ -357,14 +357,15 @@
         [[DBCacheBiuBiu shareInstance] insertWithModelUserMatch:[faceStar getModelUserMatch]];
     }
     
-    //只有在首先显示在当前屏幕上时才处理第一第二种通知
-    if (self.isDisplayedInScreen) {
-        if (userInfo.type == 102){
-            ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:userInfo];
-            [UserDefultBiu setBiuUserProfileOfGrab:faceStar.userProfile];
+    if (userInfo.type == 102){
+        ModelBiuFaceStar *faceStar = [ModelBiuFaceStar modelWithRemoteNiti:userInfo];
+        [UserDefultBiu setBiuUserProfileOfGrab:faceStar.userProfile];
+        //更新最新头像缓存
+        [UserDefultBiu setBiuUserProfileOfGrab:faceStar.userProfile];
+        
+        //首页显示在当前屏幕上时切换中心按钮状态
+        if (self.isDisplayedInScreen) {
             [self.biuCenterButton receiveMatcheUserWithImageUrl:faceStar.userProfile];
-            //更新最新头像缓存
-            [UserDefultBiu setBiuUserProfileOfGrab:faceStar.userProfile];
         }
     }
 }

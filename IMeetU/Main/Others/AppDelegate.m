@@ -144,12 +144,6 @@
     
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
-    NSString *str = @"{\"icon_thumbnailUrl\":\"http://protect-app.img-cn-beijing.aliyuncs.com/profile/1465902792363728a0c17c41491e52dc52f8121442fc6.jpg@!user_profile_clip_circle\",\"sex\":\"1\",\"matching_score\":70,\"nickname\":\"星火\",\"chat_tags\":\"如果让你选择做一个电影中的角色，你会选择谁呢\",\"career\":\" \",\"user_code\":\"12880\",\"distance\":283,\"time\":1466127241000,\"school\":\"10007\",\"age\":26,\"company\":\" \",\"starsign\":\"巨蟹座\",\"isgraduated\":\"2\"}";
-    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *err;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
-    NSLog(@"=======>%@======>%@", dic, err);
-    
     return YES;
 }
 

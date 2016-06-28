@@ -56,6 +56,9 @@
 + (NSString *)topic;
 + (void)setTopic:(NSString *)topic;
 
++ (NSString *)gender;
++ (void)setGender:(NSString *)gender;
+
 /**
  * 销毁信息
  */

@@ -19,6 +19,7 @@
 #define UPDATEAT @"updateAt"
 #define HAVETOVIEW @"haveToView"
 #define TOPIC @"topic"
+#define GENDER @"gender"
 #define XG_DEVICE_TOKEN @"XGDeviceToken"
 
 @implementation UserDefultAccount
@@ -149,6 +150,13 @@
     [[NSUserDefaults standardUserDefaults] setObject:topic forKey:TOPIC];
 }
 
++ (NSString *)gender{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:GENDER];
+}
++ (void)setGender:(NSString *)gender{
+    [[NSUserDefaults standardUserDefaults] setObject:gender forKey:GENDER];
+}
+
 + (void)cleanAccountCache{
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:TOPIC];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:TOKEN];
@@ -160,6 +168,8 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:DIALOYURL];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:UPDATEAT];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:HAVETOVIEW];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:GENDER];
+    
 }
 
 @end

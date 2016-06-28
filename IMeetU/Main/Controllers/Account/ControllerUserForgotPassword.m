@@ -169,7 +169,7 @@
                             [UserDefultAccount updateToken:responseData.token];
                             [UserDefultAccount setImName:responseData.imName];
                             [UserDefultAccount setImPasswork:responseData.imPasswork];
-                            
+                            [UserDefultAccount setGender:responseData.sex];
                             [UserDefultAccount setUserName:responseData.userName];
                             [UserDefultAccount setUserCode:responseData.userCode];
                             [UserDefultAccount setUserProfileUrlThumbnail:responseData.userProfileUrl];

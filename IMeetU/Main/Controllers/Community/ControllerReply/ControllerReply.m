@@ -27,7 +27,7 @@
 #import "ControllerMineMain.h"
 #import "ControllerSamePostList.h"
 #import "ControllerMineMain.h"
-
+#import "MJIUHeader.h"
 #import "UIFont+Plug.h"
 
 @interface ControllerReply ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
@@ -131,17 +131,14 @@
     _replyTableView.showsVerticalScrollIndicator = NO;
     _replyTableView.showsHorizontalScrollIndicator = NO;
     _replyTableView.contentOffset = CGPointMake(0, 0);
+    _replyTableView.backgroundColor = [UIColor colorWithRed:191/255.0 green:191/255.0 blue:191/255.0 alpha:0.5];
     // 上拉刷新和下拉加载
     __weak typeof (self) weakSelf = self;
-    _replyTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    _replyTableView.mj_header = [MJIUHeader headerWithRefreshingBlock:^{
         [weakSelf loadDataWithTime:0 withRefreshType:Refresh];
     }];
-    MJRefreshNormalHeader *header = (MJRefreshNormalHeader *)_replyTableView.mj_header;
-    header.stateLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
-    header.lastUpdatedTimeLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
-    header.stateLabel.font = [UIFont systemFontOfSize:12];
-    header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
-    
+    [((MJIUHeader *)_replyTableView.mj_header) initGit];
+   
     _replyTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         if (!_isHasNext) {
             [weakSelf.replyTableView.mj_footer endRefreshingWithNoMoreData];

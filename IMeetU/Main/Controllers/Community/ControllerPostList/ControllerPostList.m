@@ -23,7 +23,9 @@
 #import "YYKit/YYKit.h"
 #import "ControllerSamePostList.h"
 #import "ControllerMineMain.h"
+#import "UserDefultAccount.h"
 
+#import "MJIUHeader.h"
 #import "XMNetworkErr.h"
 @interface ControllerPostList ()<UITableViewDelegate,UITableViewDataSource,ZXCycleScrollViewDelegate,ZXCycleScrollViewDatasource>{
     //记录当前的位置
@@ -126,6 +128,7 @@
     _bannerArray = [NSMutableArray array];
     //进行处理
     [self loadDataWithTime:_lastTime withType:Refresh];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 1;
 }
 
 - (void)loadDataWithTime:(long long)time withType:(RefreshType)refreshType{
@@ -133,7 +136,6 @@
     [_cycleScrollView.timer setFireDate:[NSDate distantFuture]];
     __weak typeof (self) weakSelf = self;
     [[XMHttpCommunity http] loadCommunityListWithType:self.postListType withTimeStamp:time withCallBack:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
-        
         [_postListTableView.mj_footer endRefreshing];
         [_postListTableView.mj_header endRefreshing];
 
@@ -168,6 +170,7 @@
 }
 - (void)prepareUI{
      [self.view addSubview:self.postListTableView];
+    self.postListTableView.backgroundColor = [UIColor colorWithRed:191/255.0 green:191/255.0 blue:191/255.0 alpha:0.5];
     _emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 240, self.view.width, 20)];
     _emptyLabel.font = [UIFont systemFontOfSize:13];
     _emptyLabel.textColor = [UIColor often_999999:1];
@@ -194,17 +197,13 @@
         _postListTableView.dataSource = self;
         _postListTableView.showsVerticalScrollIndicator = NO;
         _postListTableView.showsHorizontalScrollIndicator = NO;
+        _postListTableView.backgroundColor = [UIColor often_A0A0A0:1];
         // 上拉刷新和下拉加载
         __weak typeof (self) weakSelf = self;
-        _postListTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _postListTableView.mj_header = [MJIUHeader headerWithRefreshingBlock:^{
             [weakSelf loadDataWithTime:0 withType:Refresh];
         }];
-        MJRefreshNormalHeader *header = (MJRefreshNormalHeader *)_postListTableView.mj_header;
-        header.stateLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
-        header.lastUpdatedTimeLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
-        header.stateLabel.font = [UIFont systemFontOfSize:12];
-        header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
-        
+        [((MJIUHeader *)_postListTableView.mj_header) initGit];
         _postListTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             if (_isHasNext) {
                 [weakSelf loadDataWithTime:_lastTime withType:Loading];
@@ -455,5 +454,4 @@
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
 @end

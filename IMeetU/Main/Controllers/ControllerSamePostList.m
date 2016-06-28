@@ -23,6 +23,8 @@
 #import "XmNetworkErr.h"
 #import "ControllerMineMain.h"
 
+#import "MJIUHeader.h"
+
 @interface ControllerSamePostList ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *postListTableView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -155,16 +157,12 @@
 - (void)prepareUI{
     _postListTableView.delegate = self;
     _postListTableView.dataSource = self;
+    _postListTableView.backgroundColor = [UIColor colorWithRed:191/255.0 green:191/255.0 blue:191/255.0 alpha:0.5];
      __weak typeof (self) weakSelf = self;
-    _postListTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    _postListTableView.mj_header = [MJIUHeader  headerWithRefreshingBlock:^{
         [weakSelf loadDataWithTime:0 withType:Refresh];
     }];
-    MJRefreshNormalHeader *header = (MJRefreshNormalHeader *)_postListTableView.mj_header;
-    header.stateLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
-    header.lastUpdatedTimeLabel.textColor = [UIColor colorWithR:128 G:128 B:128 A:1];
-    header.stateLabel.font = [UIFont systemFontOfSize:12];
-    header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
-    
+     [((MJIUHeader *)_postListTableView.mj_header) initGit];
     _postListTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         if (_isHasNext) {
             [weakSelf loadDataWithTime:_lastTime withType:Loading];

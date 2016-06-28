@@ -16,5 +16,6 @@
 @property (nonatomic, copy) NSString *userName;
 @property (nonatomic, copy) NSString *userCode;
 @property (nonatomic, copy) NSString *userProfileUrl;
+@property (nonatomic, copy) NSString *sex;
 
 @end

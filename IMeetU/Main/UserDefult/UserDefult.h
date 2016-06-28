@@ -20,10 +20,17 @@
 #define MsgNotificationIsVibration @"UserDefultConfigMsgNotificationIsVibration"
 
 //==============UserDefultAppGlobalStatus
-//社区新消息数量
 #define AppGlobalStatusCountOfNiticeComm @"UserDefaultAppGlobalStatusCountOfNiticeComm"
 //个人主页biu我的人的数量
 #define AppGlobalStatusCountOfBiuMe @"UserDefaultAppGlobalStatusCountOfBiuMe"
+
+
+//社区biu我的人
+#define GlobalStatusComBiuCount @"comBiuCount"
+//点赞或者是评论
+#define GlobalStatusNoticeBiuCount @"noticeCount"
+
+
 
 @interface UserDefult : NSObject
 

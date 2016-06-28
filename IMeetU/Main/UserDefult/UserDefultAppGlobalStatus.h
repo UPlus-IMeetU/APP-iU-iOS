@@ -23,4 +23,19 @@
 + (void)setCountOfBiuMe:(NSInteger)count;
 + (void)resetCountOfBiuMe;
 + (NSInteger)countOfBiuMe;
+
+/**
+ *  在社区biu我的人
+ */
++ (void)setComBiuCount:(NSInteger)count;
++ (void)resetComBiuCount;
++ (NSInteger)comBiuCount;
+
+
+/**
+ *  点赞和评论
+ */
++ (void)setNoticeCount:(NSInteger)count;
++ (void)resetNoticeCount;
++ (NSInteger)noticeCount;
 @end

@@ -18,6 +18,7 @@
 #import "XMHttpChat.h"
 #import "MBProgressHUD+plug.h"
 #import "ControllerMineMain.h"
+#import "UserDefultAppGlobalStatus.h"
 
 #define CellReuseIdentifier @"CellBiuMe"
 
@@ -40,6 +41,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //进行Icon的处理
+    [UIApplication sharedApplication].applicationIconBadgeNumber -= [UserDefultAppGlobalStatus comBiuCount];
+    [UserDefultAppGlobalStatus resetComBiuCount];
     
     [self.tableViewBiuMe registerNib:[UINib xmNibFromMainBundleWithName:@"CellBiuMe"] forCellReuseIdentifier:CellReuseIdentifier];
     self.tableViewBiuMe.separatorStyle = UITableViewCellSeparatorStyleNone;

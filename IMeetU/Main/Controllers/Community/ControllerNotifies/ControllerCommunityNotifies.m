@@ -22,6 +22,8 @@
 #import "ControllerReply.h"
 #import "MJRefresh.h"
 
+#import "UserDefultAppGlobalStatus.h"
+
 #import "XMNetworkErr.h"
 
 #define CellReuseIdentifier @"CellCommunityNotifies"
@@ -44,6 +46,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //进行Icon的处理
+    [UIApplication sharedApplication].applicationIconBadgeNumber -= [UserDefultAppGlobalStatus noticeCount];
+    [UserDefultAppGlobalStatus resetNoticeCount];
+
     self.viewEmptyNotice.hidden = YES;
     
     [self.tableViewNotifies registerNib:[UINib xmNibFromMainBundleWithName:@"CellCommunityNotifies"] forCellReuseIdentifier:CellReuseIdentifier];

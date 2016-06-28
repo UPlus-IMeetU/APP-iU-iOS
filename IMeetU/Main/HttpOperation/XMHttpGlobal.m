@@ -21,8 +21,12 @@
     
     [self NormalPOST:url parameters:param callback:^(NSInteger code, id response, NSURLSessionDataTask *task, NSError *error) {
         if (code == 200) {
-            [UserDefultAppGlobalStatus setCountOfNoticeCommunity:[response[@"notifyNum"] integerValue]];
-            [UserDefultAppGlobalStatus setCountOfBiuMe:[response[@"comBiuNum"] integerValue]];
+//            [UserDefultAppGlobalStatus setCountOfNoticeCommunity:[response[@"notifyNum"] integerValue]];
+//            [UserDefultAppGlobalStatus setCountOfBiuMe:[response[@"comBiuNum"] integerValue]];
+            [UserDefultAppGlobalStatus setComBiuCount:[response[@"comBiuCount"] integerValue]];
+            [UserDefultAppGlobalStatus setNoticeCount:[response[@"noticeCount"] integerValue]];
+            [UIApplication sharedApplication].applicationIconBadgeNumber = [response[@"comBiuCount"] integerValue] + [response[@"noticeCount"] integerValue];
+            
         }else{
             
         }

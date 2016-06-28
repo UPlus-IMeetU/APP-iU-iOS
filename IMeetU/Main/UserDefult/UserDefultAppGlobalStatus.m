@@ -36,4 +36,30 @@
     return [[[NSUserDefaults standardUserDefaults] objectForKey:AppGlobalStatusCountOfBiuMe] integerValue];
 }
 
++ (void)setComBiuCount:(NSInteger)count{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:count] forKey:GlobalStatusComBiuCount];
+}
+
++ (void)resetComBiuCount{
+    [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:GlobalStatusComBiuCount];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSInteger)comBiuCount{
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:GlobalStatusComBiuCount] integerValue];
+}
+
++ (void)setNoticeCount:(NSInteger)count{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:count] forKey:GlobalStatusNoticeBiuCount];
+}
+
++ (void)resetNoticeCount{
+    [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:GlobalStatusNoticeBiuCount];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSInteger)noticeCount{
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:GlobalStatusNoticeBiuCount] integerValue];
+}
+
 @end

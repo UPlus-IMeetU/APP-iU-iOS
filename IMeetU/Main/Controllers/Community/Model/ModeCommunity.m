@@ -8,10 +8,10 @@
 
 #import "ModelCommunity.h"
 #import "ModelPost.h"
-#import "ModelBanner.h"
+#import "ModelAdvert.h"
 @implementation ModelCommunity
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"banner":[ModelBanner class],
+    return @{@"banner":[ModelAdvert class],
              @"postList":[ModelPost class]};
 }
 @end

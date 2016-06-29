@@ -676,6 +676,12 @@
 		04C8F22F1D23C6EC007DCF9F /* ControllerSamePostList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C8F22E1D23C6EC007DCF9F /* ControllerSamePostList.m */; };
 		04C8F2341D23C708007DCF9F /* MJIUHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C8F2311D23C708007DCF9F /* MJIUHeader.m */; };
 		04C8F2351D23C708007DCF9F /* YLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C8F2331D23C708007DCF9F /* YLLabel.m */; };
+		04C8F23D1D23CE27007DCF9F /* IMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8F2371D23CE27007DCF9F /* IMCore.framework */; };
+		04C8F23E1D23CE27007DCF9F /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8F2381D23CE27007DCF9F /* ImSDK.framework */; };
+		04C8F23F1D23CE27007DCF9F /* IMSDKBugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8F2391D23CE27007DCF9F /* IMSDKBugly.framework */; };
+		04C8F2401D23CE27007DCF9F /* QALHttpSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8F23A1D23CE27007DCF9F /* QALHttpSDK.framework */; };
+		04C8F2411D23CE27007DCF9F /* QALSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8F23B1D23CE27007DCF9F /* QALSDK.framework */; };
+		04C8F2421D23CE27007DCF9F /* TLSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8F23C1D23CE27007DCF9F /* TLSSDK.framework */; };
 		04DA95CC1CACFFB100A5BF37 /* XMHttpChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA95CB1CACFFB100A5BF37 /* XMHttpChat.m */; };
 		04DA95CF1CAD0EBC00A5BF37 /* XMHttpPersonal.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA95CE1CAD0EBC00A5BF37 /* XMHttpPersonal.m */; };
 		04DA95D61CAD246800A5BF37 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA95D21CAD246800A5BF37 /* libWeChatSDK.a */; };
@@ -1859,6 +1865,12 @@
 		04C8F2311D23C708007DCF9F /* MJIUHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJIUHeader.m; path = Community/MJIUHeader.m; sourceTree = "<group>"; };
 		04C8F2321D23C708007DCF9F /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YLLabel.h; path = Community/YLLabel.h; sourceTree = "<group>"; };
 		04C8F2331D23C708007DCF9F /* YLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YLLabel.m; path = Community/YLLabel.m; sourceTree = "<group>"; };
+		04C8F2371D23CE27007DCF9F /* IMCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IMCore.framework; sourceTree = "<group>"; };
+		04C8F2381D23CE27007DCF9F /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDK.framework; sourceTree = "<group>"; };
+		04C8F2391D23CE27007DCF9F /* IMSDKBugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IMSDKBugly.framework; sourceTree = "<group>"; };
+		04C8F23A1D23CE27007DCF9F /* QALHttpSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QALHttpSDK.framework; sourceTree = "<group>"; };
+		04C8F23B1D23CE27007DCF9F /* QALSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QALSDK.framework; sourceTree = "<group>"; };
+		04C8F23C1D23CE27007DCF9F /* TLSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TLSSDK.framework; sourceTree = "<group>"; };
 		04DA95CA1CACFFB100A5BF37 /* XMHttpChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMHttpChat.h; sourceTree = "<group>"; };
 		04DA95CB1CACFFB100A5BF37 /* XMHttpChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMHttpChat.m; sourceTree = "<group>"; };
 		04DA95CD1CAD0EBC00A5BF37 /* XMHttpPersonal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMHttpPersonal.h; sourceTree = "<group>"; };
@@ -1946,10 +1958,13 @@
 				04DA95E31CAD73DB00A5BF37 /* StoreKit.framework in Frameworks */,
 				044728BE1CA198EA000FD349 /* CoreLocation.framework in Frameworks */,
 				0447281C1C9FD740000FD349 /* CoreTelephony.framework in Frameworks */,
+				04C8F2421D23CE27007DCF9F /* TLSSDK.framework in Frameworks */,
 				04DA95DA1CAD2AEC00A5BF37 /* TencentOpenAPI.framework in Frameworks */,
+				04C8F23F1D23CE27007DCF9F /* IMSDKBugly.framework in Frameworks */,
 				04B7D5A81CDB4CB600D74C6D /* libopencore-amrnb.a in Frameworks */,
 				047519D31CA631CB009115CE /* AlipaySDK.framework in Frameworks */,
 				04B7D5A91CDB4CB600D74C6D /* libopencore-amrwb.a in Frameworks */,
+				04C8F2401D23CE27007DCF9F /* QALHttpSDK.framework in Frameworks */,
 				04B1663C1C8A810E00EE6DB8 /* libsqlite3.tbd in Frameworks */,
 				04B1663A1C8A810200EE6DB8 /* libstdc++.tbd in Frameworks */,
 				04DA95D61CAD246800A5BF37 /* libWeChatSDK.a in Frameworks */,
@@ -1959,12 +1974,15 @@
 				04B166321C8A80AD00EE6DB8 /* SystemConfiguration.framework in Frameworks */,
 				04B7D5E71CDB4CB600D74C6D /* Bolts.framework in Frameworks */,
 				04B166301C8A809F00EE6DB8 /* ImageIO.framework in Frameworks */,
+				04C8F2411D23CE27007DCF9F /* QALSDK.framework in Frameworks */,
 				04B1662E1C8A809300EE6DB8 /* MobileCoreServices.framework in Frameworks */,
+				04C8F23E1D23CE27007DCF9F /* ImSDK.framework in Frameworks */,
 				04B1662C1C8A807500EE6DB8 /* AVFoundation.framework in Frameworks */,
 				04B1662A1C8A806D00EE6DB8 /* AudioToolbox.framework in Frameworks */,
 				04FA88281D11816D00F81A24 /* libXG-SDK.a in Frameworks */,
 				04B166281C8A806300EE6DB8 /* CoreMedia.framework in Frameworks */,
 				04B166261C8A803200EE6DB8 /* libHyphenateSDK.a in Frameworks */,
+				04C8F23D1D23CE27007DCF9F /* IMCore.framework in Frameworks */,
 				04B7D5E81CDB4CB600D74C6D /* Parse.framework in Frameworks */,
 				307DFDCAED0FA4E06183F229 /* Pods.framework in Frameworks */,
 			);
@@ -4302,6 +4320,19 @@
 			path = RemoteNotification;
 			sourceTree = "<group>";
 		};
+		04C8F2361D23CE27007DCF9F /* im */ = {
+			isa = PBXGroup;
+			children = (
+				04C8F2371D23CE27007DCF9F /* IMCore.framework */,
+				04C8F2381D23CE27007DCF9F /* ImSDK.framework */,
+				04C8F2391D23CE27007DCF9F /* IMSDKBugly.framework */,
+				04C8F23A1D23CE27007DCF9F /* QALHttpSDK.framework */,
+				04C8F23B1D23CE27007DCF9F /* QALSDK.framework */,
+				04C8F23C1D23CE27007DCF9F /* TLSSDK.framework */,
+			);
+			path = im;
+			sourceTree = "<group>";
+		};
 		04DA95D01CAD246800A5BF37 /* WeChat */ = {
 			isa = PBXGroup;
 			children = (
@@ -4324,6 +4355,7 @@
 		04DA95D71CAD2AEC00A5BF37 /* TencentOpenAPI */ = {
 			isa = PBXGroup;
 			children = (
+				04C8F2361D23CE27007DCF9F /* im */,
 				04FA88241D11816D00F81A24 /* push */,
 				04DA95D81CAD2AEC00A5BF37 /* TencentOpenAPI.framework */,
 				04DA95D91CAD2AEC00A5BF37 /* TencentOpenApi_IOS_Bundle.bundle */,
@@ -5521,6 +5553,7 @@
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/EMUIKit/3rdparty/Parse",
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/EMUIKit/Parse",
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/3rdparty/Parse",
+					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/TencentOpenAPI/im",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IMeetU/Main/Lib/lib/EaseUI/EaseUI-Prefix.pch";
 				INFOPLIST_FILE = IMeetU/Info.plist;
@@ -5624,6 +5657,7 @@
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/EMUIKit/3rdparty/Parse",
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/EMUIKit/Parse",
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/3rdparty/Parse",
+					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/TencentOpenAPI/im",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IMeetU/Main/Lib/lib/EaseUI/EaseUI-Prefix.pch";
 				INFOPLIST_FILE = IMeetU/Info.plist;

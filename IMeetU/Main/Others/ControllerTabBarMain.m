@@ -19,6 +19,8 @@
 #import "MLToast.h"
 #import "Reachability.h"
 
+#import "UITabBar+badge.h"
+
 @interface ControllerTabBarMain ()
 
 @property (nonatomic, strong) ControllerNavi *controllerNaviBiu;
@@ -134,6 +136,13 @@ controllerNaviCommunity;
         [[MLToast toastInView:self.view content:@"网络连接失败"] show];
     };
     [reach startNotifier];
+}
+
+- (void)showBadgeWithIndex:(NSInteger)index{
+    [self.tabBar showBadgeOnItemIndex:index];
+}
+- (void)hideBadgeWithIndex:(NSInteger)index{
+    [self.tabBar hideBadgeOnItemIndex:index];
 }
 
 - (void)viewDidLoad {

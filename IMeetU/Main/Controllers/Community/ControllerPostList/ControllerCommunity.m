@@ -22,6 +22,7 @@
 #import "ControllerUserRegisterThirdStep.h"
 #import "UserDefultAccount.h"
 #import "ControllerSamePostList.h"
+#import "ControllerTabBarMain.h"
 
 @interface ControllerCommunity ()<ControllerPostListDelegate,SMPagerTabViewDelegate, ControllerPostTagsDelegate,ViewDrawerRightLoginRegisterDelegate>
 @property (strong, nonatomic) SMPagerTabView *titleView;
@@ -55,7 +56,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     
-    if ([UserDefultAppGlobalStatus countOfNoticeCommunity]) {
+    if ([UserDefultAppGlobalStatus noticeCount]) {
         [self.btnNotifies setImage:[UIImage imageNamed:@"btn_activity_light"] forState:UIControlStateNormal];
     }else{
         [self.btnNotifies setImage:[UIImage imageNamed:@"found_btn_activity_nor"] forState:UIControlStateNormal];
@@ -150,9 +151,9 @@
 
 - (IBAction)onClickBtnNotifies:(UIButton*)sender {
     [sender setImage:[UIImage imageNamed:@"biu_btn_activity_nor"] forState:UIControlStateNormal];
-    [UserDefultAppGlobalStatus resetCountOfNoticeCommunity];
     ControllerCommunityNotifies *controller = [ControllerCommunityNotifies controller];
     [self.navigationController pushViewController:controller animated:YES];
+    [[ControllerTabBarMain shareController] hideBadgeWithIndex:1];
 }
 
 - (IBAction)onClickBtnTags:(id)sender {

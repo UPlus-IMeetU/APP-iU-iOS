@@ -127,7 +127,7 @@
     //设置TabBarItem未读消息数
     [ControllerTabBarMain setBadgeMsgWithCount:[UserDefultMsg unreadMsgCount]];
     
-    [self.viewBtnBiu setNumber:[UserDefultAppGlobalStatus countOfBiuMe]];
+    [self.viewBtnBiu setNumber:[UserDefultAppGlobalStatus comBiuCount]];
 }
 
 
@@ -525,8 +525,7 @@
         self.test = 9;
         _viewBtnBiu = [ViewChatMsgBtnBiu viewWithCallback:^{
             [_viewBtnBiu setNumber:0];
-            [UserDefultAppGlobalStatus setCountOfBiuMe:0];
-            
+            [UserDefultAppGlobalStatus setComBiuCount:0];
             ControllerBiuMe *controller = [ControllerBiuMe controller];
             [self.navigationController pushViewController:controller animated:YES];
         }];

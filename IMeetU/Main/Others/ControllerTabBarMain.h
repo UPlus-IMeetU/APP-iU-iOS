@@ -21,5 +21,8 @@
 
 + (void)setBadgeCommunityWithIsShow:(BOOL)isShow;
 
+- (void)showBadgeWithIndex:(NSInteger)index;
+- (void)hideBadgeWithIndex:(NSInteger)index;
+
 - (void)loginOrRegister;
 @end

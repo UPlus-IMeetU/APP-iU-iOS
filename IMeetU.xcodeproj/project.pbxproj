@@ -684,6 +684,7 @@
 		6F0CC15D1D0574E6002B6D9D /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CC15C1D0574E5002B6D9D /* MJPhotoBrowser.bundle */; };
 		6F1588721CEB16BF0007AA9E /* NSDate+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1588701CEB16BF0007AA9E /* NSDate+MJ.m */; };
 		6F18176B1D220C4200114EB2 /* MJIUHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F18176A1D220C4200114EB2 /* MJIUHeader.m */; };
+		6F2AD3251D2364D0002B4338 /* UITabBar+badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AD3241D2364D0002B4338 /* UITabBar+badge.m */; };
 		6F351CDC1D0037D600EB11F8 /* ModelPraise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F351CDB1D0037D600EB11F8 /* ModelPraise.m */; };
 		6F35633A1D06B65B0083AB90 /* banner_fail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F3563391D06B65B0083AB90 /* banner_fail@2x.png */; };
 		6F45F92C1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F45F92B1CED8EBA0011474A /* MLCollectionViewWaterfallLayout.m */; };
@@ -1867,6 +1868,8 @@
 		6F1817691D220C4200114EB2 /* MJIUHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJIUHeader.h; sourceTree = "<group>"; };
 		6F18176A1D220C4200114EB2 /* MJIUHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJIUHeader.m; sourceTree = "<group>"; };
 		6F1B62F01CFD6E4100C84892 /* EnumHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumHeader.h; sourceTree = "<group>"; };
+		6F2AD3231D2364D0002B4338 /* UITabBar+badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+badge.h"; sourceTree = "<group>"; };
+		6F2AD3241D2364D0002B4338 /* UITabBar+badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+badge.m"; sourceTree = "<group>"; };
 		6F351CDA1D0037D600EB11F8 /* ModelPraise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelPraise.h; sourceTree = "<group>"; };
 		6F351CDB1D0037D600EB11F8 /* ModelPraise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelPraise.m; sourceTree = "<group>"; };
 		6F3563391D06B65B0083AB90 /* banner_fail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_fail@2x.png"; sourceTree = "<group>"; };
@@ -3514,6 +3517,8 @@
 				044AF7291C8D3ADD009AF59F /* UIFont+Plug.m */,
 				0491592B1CA3EBD400EE1481 /* CABasicAnimation+plug.h */,
 				0491592C1CA3EBD400EE1481 /* CABasicAnimation+plug.m */,
+				6F2AD3231D2364D0002B4338 /* UITabBar+badge.h */,
+				6F2AD3241D2364D0002B4338 /* UITabBar+badge.m */,
 			);
 			path = plugs;
 			sourceTree = "<group>";
@@ -4992,6 +4997,7 @@
 				04A0B70F1D139AD700746A4C /* ModelRemoteNotification.m in Sources */,
 				047519C71CA631CB009115CE /* BCURLRequestSerialization.m in Sources */,
 				044AF7261C8D390D009AF59F /* MLToolsID.m in Sources */,
+				6F2AD3251D2364D0002B4338 /* UITabBar+badge.m in Sources */,
 				04B7D4C01CDB4BEB00D74C6D /* FixFopen.c in Sources */,
 				04B165F01C89D87E00EE6DB8 /* NSURL+Plug.m in Sources */,
 				047519C61CA631CB009115CE /* BCSecurityPolicy.m in Sources */,

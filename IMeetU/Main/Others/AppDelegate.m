@@ -56,6 +56,8 @@
 #import "XGPush.h"
 #import "XGSetting.h"
 
+#import "UserDefultAppGlobalStatus.h"
+
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
 @property (nonatomic, strong) ControllerFirstLaunch *controllerFirstLaunch;
@@ -126,7 +128,7 @@
             }
         });
     }else{
-
+        
     }
     
     //表情云
@@ -139,6 +141,11 @@
     [XGPush startApp:2200204436 appKey:@"IXMK2751PC1F"];
     [XGPush handleLaunching:launchOptions];
     [AppDelegate registerDeviceToken];
+    
+    //[[TIMManager sharedInstance] setMessageListener:nil];
+    //[[TIMManager sharedInstance] setConnListener:nil];
+    //[[TIMManager sharedInstance] initSdk:1400009724 accountType:@"5119"];
+    
     
     [self changeForeOrBackGround:1];
     
@@ -169,6 +176,10 @@
     [[XMHttpGlobal http] globalGetAppStatusWithCallback:nil];
     
     [AppDelegate registerDeviceToken];
+    
+    if ([UserDefultAppGlobalStatus noticeCount]) {
+         [[ControllerTabBarMain shareController] showBadgeWithIndex:1];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -182,7 +193,15 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     [UserDefultAccount xgSetDeviceToken:[XGPush getDeviceToken:deviceToken]];
     
-    [AppDelegate registerDeviceToken];
+    if ([UserDefultAccount isLogin]) {
+        [XGPush setAccount:[UserDefultAccount userCode]];
+        [XGPush registerDevice:deviceToken successCallback:^{
+            NSLog(@"registerDevice-------------suc");
+        } errorCallback:^{
+            NSLog(@"registerDevice-------------err");
+        }];
+    }
+    
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
@@ -199,6 +218,11 @@
     
     if (model.type == 201) {
         [UserDefultAccount setUserProfileStatus:model.profileStatusChange.profileStatus];
+    }else if(model.type == 301){
+        [UserDefultAppGlobalStatus setNoticeCount:model.noticeCount];
+        [[ControllerTabBarMain shareController] showBadgeWithIndex:1];
+    }else if(model.type == 103){
+        [UserDefultAppGlobalStatus setComBiuCount:model.comBiuCount];
     }
 }
 

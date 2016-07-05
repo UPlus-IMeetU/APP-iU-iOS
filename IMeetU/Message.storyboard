@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--ControllerIM Chat Msg-->
         <scene sceneID="d6j-vV-L6I">
             <objects>
-                <viewController id="u6O-Yd-8oc" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ControllerIMChatMsg" id="u6O-Yd-8oc" customClass="ControllerIMChatMsg" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hfF-lN-a4C"/>
                         <viewControllerLayoutGuide type="bottom" id="nsC-l4-IQ6"/>
@@ -29,6 +29,9 @@
                                                     <constraint firstAttribute="width" constant="60" id="N3x-V2-xQv"/>
                                                 </constraints>
                                                 <state key="normal" title="返回"/>
+                                                <connections>
+                                                    <action selector="onTouchUpInsideBtnBack:" destination="u6O-Yd-8oc" eventType="touchUpInside" id="68g-vl-xrK"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -57,6 +60,9 @@
                                             <constraint firstAttribute="width" constant="60" id="qnN-XZ-CfA"/>
                                         </constraints>
                                         <state key="normal" title="发送"/>
+                                        <connections>
+                                            <action selector="onTouchUpInsideBtnSend:" destination="u6O-Yd-8oc" eventType="touchUpInside" id="3zr-WY-9pE"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OZp-TZ-a64">
                                         <rect key="frame" x="130" y="10" width="380" height="30"/>
@@ -103,6 +109,11 @@
                             <constraint firstAttribute="trailing" secondItem="kyN-ce-tly" secondAttribute="trailing" id="r2a-vP-mSV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="XxH-ta-1Dx" id="hRb-5l-CGb"/>
+                        <outlet property="textFieldContext" destination="OZp-TZ-a64" id="3bW-rd-GDH"/>
+                        <outlet property="textFieldPhone" destination="Uba-mo-bGF" id="MhW-PX-BSe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gd9-bX-mhr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

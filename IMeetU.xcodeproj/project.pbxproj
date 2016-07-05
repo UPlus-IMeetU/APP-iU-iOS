@@ -682,6 +682,7 @@
 		04C8F2401D23CE27007DCF9F /* QALHttpSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8F23A1D23CE27007DCF9F /* QALHttpSDK.framework */; };
 		04C8F2411D23CE27007DCF9F /* QALSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8F23B1D23CE27007DCF9F /* QALSDK.framework */; };
 		04C8F2421D23CE27007DCF9F /* TLSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8F23C1D23CE27007DCF9F /* TLSSDK.framework */; };
+		04C8F2471D23D2EB007DCF9F /* ControllerIMChatMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C8F2461D23D2EB007DCF9F /* ControllerIMChatMsg.m */; };
 		04DA95CC1CACFFB100A5BF37 /* XMHttpChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA95CB1CACFFB100A5BF37 /* XMHttpChat.m */; };
 		04DA95CF1CAD0EBC00A5BF37 /* XMHttpPersonal.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA95CE1CAD0EBC00A5BF37 /* XMHttpPersonal.m */; };
 		04DA95D61CAD246800A5BF37 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA95D21CAD246800A5BF37 /* libWeChatSDK.a */; };
@@ -1352,6 +1353,7 @@
 		0475195A1CA631CB009115CE /* BCAliPayAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCAliPayAdapter.m; sourceTree = "<group>"; };
 		047519A71CA631CB009115CE /* BCWXPayAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCWXPayAdapter.h; sourceTree = "<group>"; };
 		047519A81CA631CB009115CE /* BCWXPayAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCWXPayAdapter.m; sourceTree = "<group>"; };
+		0484ABAB1D251B02004320FE /* libicucore.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.A.tbd; path = usr/lib/libicucore.A.tbd; sourceTree = SDKROOT; };
 		0491592B1CA3EBD400EE1481 /* CABasicAnimation+plug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CABasicAnimation+plug.h"; sourceTree = "<group>"; };
 		0491592C1CA3EBD400EE1481 /* CABasicAnimation+plug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CABasicAnimation+plug.m"; sourceTree = "<group>"; };
 		0492A3EF1CC908F100659FFD /* UserDefultMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefultMsg.h; sourceTree = "<group>"; };
@@ -1871,6 +1873,8 @@
 		04C8F23A1D23CE27007DCF9F /* QALHttpSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QALHttpSDK.framework; sourceTree = "<group>"; };
 		04C8F23B1D23CE27007DCF9F /* QALSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QALSDK.framework; sourceTree = "<group>"; };
 		04C8F23C1D23CE27007DCF9F /* TLSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TLSSDK.framework; sourceTree = "<group>"; };
+		04C8F2451D23D2EB007DCF9F /* ControllerIMChatMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerIMChatMsg.h; sourceTree = "<group>"; };
+		04C8F2461D23D2EB007DCF9F /* ControllerIMChatMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerIMChatMsg.m; sourceTree = "<group>"; };
 		04DA95CA1CACFFB100A5BF37 /* XMHttpChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMHttpChat.h; sourceTree = "<group>"; };
 		04DA95CB1CACFFB100A5BF37 /* XMHttpChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMHttpChat.m; sourceTree = "<group>"; };
 		04DA95CD1CAD0EBC00A5BF37 /* XMHttpPersonal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMHttpPersonal.h; sourceTree = "<group>"; };
@@ -3313,6 +3317,7 @@
 		04B1659B1C89D87E00EE6DB8 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				04C8F2431D23D294007DCF9F /* Module */,
 				04C8F1E01D23C640007DCF9F /* Model */,
 				04E7B9A31CC86FD60047ABE8 /* Factory */,
 				040F4FF81CACFCB700AD8334 /* HttpOperation */,
@@ -4333,6 +4338,23 @@
 			path = im;
 			sourceTree = "<group>";
 		};
+		04C8F2431D23D294007DCF9F /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				04C8F2441D23D2A7007DCF9F /* Message */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		04C8F2441D23D2A7007DCF9F /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				04C8F2451D23D2EB007DCF9F /* ControllerIMChatMsg.h */,
+				04C8F2461D23D2EB007DCF9F /* ControllerIMChatMsg.m */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
 		04DA95D01CAD246800A5BF37 /* WeChat */ = {
 			isa = PBXGroup;
 			children = (
@@ -4500,6 +4522,7 @@
 		8DED88011BE5CD828EC52278 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0484ABAB1D251B02004320FE /* libicucore.A.tbd */,
 				04DA95E21CAD73DB00A5BF37 /* StoreKit.framework */,
 				044728BD1CA198EA000FD349 /* CoreLocation.framework */,
 				0447281B1C9FD740000FD349 /* CoreTelephony.framework */,
@@ -4995,6 +5018,7 @@
 				04C8F1DE1D23C61A007DCF9F /* ModelTagsAll.m in Sources */,
 				049E799C1CC65691009928F0 /* ViewChatMsgImgBrowser.m in Sources */,
 				04B7D0E01CD9AA3200D74C6D /* UIViewController+DismissKeyboard.m in Sources */,
+				04C8F2471D23D2EB007DCF9F /* ControllerIMChatMsg.m in Sources */,
 				6FBC687E1CFBCE9D00B45657 /* ControllerReply.m in Sources */,
 				047519C11CA631CB009115CE /* BCBaseResult.m in Sources */,
 				0492A3F11CC908F100659FFD /* UserDefultMsg.m in Sources */,

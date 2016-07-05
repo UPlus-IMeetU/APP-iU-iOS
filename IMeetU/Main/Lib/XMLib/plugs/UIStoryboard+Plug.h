@@ -15,6 +15,7 @@
 #define xmStoryboardNameBuiBui @"BiuBiu"
 #define xmStoryboardNameSetting @"Setting"
 #define xmStoryboardNameCommunity @"Community"
+#define xmStoryboardNameMessage @"Message"
 
 @interface UIStoryboard(Plug)
 

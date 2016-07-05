@@ -62,7 +62,7 @@
         NSString *sql = [NSString stringWithFormat:@"select *from %@ where is_show=0 order by time_biu_send DESC limit 1", self.tableName];
         FMResultSet *set = [self.db executeQuery:sql];
         if (set.next) {
-            model = [self modelWithSet:set];
+            model = [self modelWithSet:set];  
         }
         [self.db close];
     }

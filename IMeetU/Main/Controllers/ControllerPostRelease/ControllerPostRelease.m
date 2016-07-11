@@ -65,6 +65,7 @@
     UINavigationController *controllerNavi = [[UINavigationController alloc] init];
     controllerNavi.navigationBar.hidden = YES;
     ControllerPostReleaseText *controller = [ControllerPostReleaseText controller];
+    controller.tagModel = self.tagModel;
     controller.delegatePostText = self;
     
     [controllerNavi pushViewController:controller animated:NO];
@@ -193,6 +194,7 @@
         UINavigationController *controllerNavi = [[UINavigationController alloc] init];
         controllerNavi.navigationBar.hidden = YES;
         ControllerPostReleaseImage *controller = [ControllerPostReleaseImage controllerWithPhotos:photos];
+        controller.tagModel = self.tagModel;
         controller.delegatePostImage = self;
         
         [controllerNavi pushViewController:controller animated:NO];

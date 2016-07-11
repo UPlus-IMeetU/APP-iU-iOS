@@ -726,6 +726,8 @@
 		6FBC68871CFBCECA00B45657 /* ZXCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68841CFBCECA00B45657 /* ZXCycleScrollView.m */; };
 		6FBC68891CFBCEE000B45657 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FBC68881CFBCEE000B45657 /* Community.storyboard */; };
 		6FBC68A11CFBE9EA00B45657 /* XMHttpCommunity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC68A01CFBE9EA00B45657 /* XMHttpCommunity.m */; };
+		6FE066341D3332F2001A02A6 /* IMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE066321D3332F2001A02A6 /* IMCore.framework */; };
+		6FE066351D3332F2001A02A6 /* QALSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE066331D3332F2001A02A6 /* QALSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1950,6 +1952,8 @@
 		6FBC68881CFBCEE000B45657 /* Community.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
 		6FBC689F1CFBE9EA00B45657 /* XMHttpCommunity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMHttpCommunity.h; sourceTree = "<group>"; };
 		6FBC68A01CFBE9EA00B45657 /* XMHttpCommunity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMHttpCommunity.m; sourceTree = "<group>"; };
+		6FE066321D3332F2001A02A6 /* IMCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IMCore.framework; sourceTree = "<group>"; };
+		6FE066331D3332F2001A02A6 /* QALSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QALSDK.framework; sourceTree = "<group>"; };
 		74126A2A9FF1D8D3F7A7D4C1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		782115C93935C5E2EF970E47 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1971,6 +1975,8 @@
 				04C8F2401D23CE27007DCF9F /* QALHttpSDK.framework in Frameworks */,
 				04B1663C1C8A810E00EE6DB8 /* libsqlite3.tbd in Frameworks */,
 				04B1663A1C8A810200EE6DB8 /* libstdc++.tbd in Frameworks */,
+				6FE066351D3332F2001A02A6 /* QALSDK.framework in Frameworks */,
+				6FE066341D3332F2001A02A6 /* IMCore.framework in Frameworks */,
 				04DA95D61CAD246800A5BF37 /* libWeChatSDK.a in Frameworks */,
 				04B166381C8A80F900EE6DB8 /* libz.tbd in Frameworks */,
 				04B166361C8A80EC00EE6DB8 /* libresolv.tbd in Frameworks */,
@@ -4522,6 +4528,8 @@
 		8DED88011BE5CD828EC52278 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6FE066321D3332F2001A02A6 /* IMCore.framework */,
+				6FE066331D3332F2001A02A6 /* QALSDK.framework */,
 				0484ABAB1D251B02004320FE /* libicucore.A.tbd */,
 				04DA95E21CAD73DB00A5BF37 /* StoreKit.framework */,
 				044728BD1CA198EA000FD349 /* CoreLocation.framework */,
@@ -5578,6 +5586,7 @@
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/EMUIKit/Parse",
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/3rdparty/Parse",
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/TencentOpenAPI/im",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IMeetU/Main/Lib/lib/EaseUI/EaseUI-Prefix.pch";
 				INFOPLIST_FILE = IMeetU/Info.plist;
@@ -5682,6 +5691,7 @@
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/EMUIKit/Parse",
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/EaseUI/3rdparty/Parse",
 					"$(PROJECT_DIR)/IMeetU/Main/Lib/lib/TencentOpenAPI/im",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IMeetU/Main/Lib/lib/EaseUI/EaseUI-Prefix.pch";
 				INFOPLIST_FILE = IMeetU/Info.plist;

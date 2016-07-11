@@ -12,7 +12,6 @@
 #import "UIStoryboard+Plug.h"
 #import "CellPostReleaseImage.h"
 #import "ControllerPostTags.h"
-#import "ModelTag.h"
 #import "MLToast.h"
 #import "MBProgressHUD+plug.h"
 #import "XMHttpCommunity.h"
@@ -32,7 +31,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionViewImages;
 @property (weak, nonatomic) IBOutlet UIView *viewMain;
 
-@property (nonatomic, strong) ModelTag *tagModel;
 @property (nonatomic, strong) NSArray *photos;
 @property (nonatomic, strong) NSMutableArray *photosModelReq;
 /**
@@ -72,7 +70,9 @@
     self.collectionViewImages.dataSource = self;
     self.collectionViewImages.showsHorizontalScrollIndicator = NO;
     self.collectionViewImages.backgroundColor = [UIColor whiteColor];
-    
+    if (_tagModel) {
+        [self.labelTag setText:[NSString stringWithFormat:@"#%@#", _tagModel.content]];
+    }
     self.btnFinish.layer.cornerRadius = 5;
     self.btnFinish.layer.masksToBounds = YES;
 }

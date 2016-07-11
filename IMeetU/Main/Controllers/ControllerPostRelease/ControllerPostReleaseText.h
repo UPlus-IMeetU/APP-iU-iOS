@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ModelTag.h"
 @protocol ControllerPostReleaseTextDelegate;
 
 @interface ControllerPostReleaseText : UIViewController
 
 + (instancetype)controller;
 @property (nonatomic, weak) id<ControllerPostReleaseTextDelegate> delegatePostText;
-
+@property (nonatomic, strong) ModelTag *tagModel;
 @end
 @protocol ControllerPostReleaseTextDelegate <NSObject>
 @optional

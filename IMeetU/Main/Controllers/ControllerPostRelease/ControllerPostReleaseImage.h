@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ModelTag.h"
 @protocol ControllerPostReleaseImageDelegate;
 
 @interface ControllerPostReleaseImage : UIViewController
@@ -15,7 +15,7 @@
 + (instancetype)controllerWithPhotos:(NSArray*)photos;
 
 @property (nonatomic, weak) id<ControllerPostReleaseImageDelegate> delegatePostImage;
-
+@property (nonatomic, strong) ModelTag *tagModel;
 @end
 @protocol ControllerPostReleaseImageDelegate <NSObject>
 @optional

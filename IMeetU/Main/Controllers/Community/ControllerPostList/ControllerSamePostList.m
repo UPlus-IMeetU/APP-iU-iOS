@@ -22,6 +22,8 @@
 #import "MLToast.h"
 #import "XmNetworkErr.h"
 #import "ControllerMineMain.h"
+#import "ControllerPostRelease.h"
+#import "ModelTag.h"
 
 #import "MJIUHeader.h"
 
@@ -298,6 +300,8 @@
     
 }
 
+
+
 #pragma mark
 - (void)goHomePage:(NSInteger)userCode{
     ControllerMineMain *mineMain = [ControllerMineMain controllerWithUserCode:[NSString stringWithFormat:@"%ld",(long)userCode] getUserCodeFrom:MineMainGetUserCodeFromParam];
@@ -305,6 +309,23 @@
 }
 - (IBAction)backBtnClick:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)onClickBtnPostRelease:(id)sender {
+    
+    ControllerPostRelease *controller = [ControllerPostRelease controller];
+    ModelTag *modelTag = [ModelTag new];
+    modelTag.tagId = self.tagId;
+    modelTag.content = self.titleName;
+    controller.tagModel = modelTag;
+    controller.postReleaseSuccessBlock = ^(BOOL success){
+        if (success) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    };
+    [self addChildViewController:controller];
+    [self.view addSubview:controller.view];
+    self.tabBarController.tabBar.hidden = YES;
+
 }
 
 - (void)dealloc{

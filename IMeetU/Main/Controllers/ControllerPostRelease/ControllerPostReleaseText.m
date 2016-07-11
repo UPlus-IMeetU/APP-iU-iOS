@@ -10,7 +10,6 @@
 #import <YYKit/YYKit.h>
 #import "UIStoryboard+Plug.h"
 #import "ControllerPostTags.h"
-#import "ModelTag.h"
 #import "MLToast.h"
 #import "MBProgressHUD+plug.h"
 #import "XMHttpCommunity.h"
@@ -25,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *textViewContent;
 @property (weak, nonatomic) IBOutlet UILabel *labelCountdown;
 
-@property (nonatomic, strong) ModelTag *tagModel;
 @end
 
 @implementation ControllerPostReleaseText
@@ -46,7 +44,9 @@
     }];
     self.labelTag.userInteractionEnabled = YES;
     [self.labelTag addGestureRecognizer:tapGestureRecognizer];
-    
+    if (_tagModel) {
+        [self.labelTag setText:[NSString stringWithFormat:@"#%@#", _tagModel.content]];
+    }
     self.textViewContent.delegate = self;
     
     self.btnFinish.layer.cornerRadius = 5;

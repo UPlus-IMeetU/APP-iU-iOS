@@ -445,12 +445,25 @@
 - (void)didClickPage:(ZXCycleScrollView *)csView atIndex:(NSInteger)index
 {
     ModelAdvert *modelAdvert = _bannerArray[index];
-    AdvertDetailController *advertController = [AdvertDetailController shareControllerAdvertWithModel:modelAdvert];
-    [advertController setHidesBottomBarWhenPushed:YES];
-    if (self.delegate) {
-        [((UIViewController *)self.delegate).navigationController pushViewController:advertController animated:YES];
+    NSString *coverUrl = modelAdvert.url;
+    //如果包含http跳转页面
+    if ([coverUrl containsString:@"http"]) {
+        AdvertDetailController *advertController = [AdvertDetailController shareControllerAdvertWithModel:modelAdvert];
+        [advertController setHidesBottomBarWhenPushed:YES];
+        if (self.delegate) {
+            [((UIViewController *)self.delegate).navigationController pushViewController:advertController animated:YES];
+        }
+    }else{
+        ControllerSamePostList *samePostListController = [ControllerSamePostList controllerSamePostList];
+        NSArray *array = [coverUrl componentsSeparatedByString:@","];
+        samePostListController.tagId = [[array firstObject] intValue];
+        samePostListController.titleName = [array lastObject];
+        [samePostListController setHidesBottomBarWhenPushed:YES];
+        if (self.delegate) {
+            [((UIViewController *)self.delegate).navigationController pushViewController:samePostListController animated:YES];
+        }
     }
-}
+  }
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

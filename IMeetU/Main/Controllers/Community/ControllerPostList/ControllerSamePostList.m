@@ -34,6 +34,7 @@
 @property (assign,nonatomic) long long lastTime;
 @property (weak, nonatomic) IBOutlet UILabel *emptyLabel;
 @property (nonatomic,strong) XMNetworkErr *xmNetworkErr;
+@property (weak, nonatomic) IBOutlet UIButton *releaseButton;
 
 /**
  *  帖子
@@ -181,6 +182,9 @@
     [_postListTableView registerNib:[UINib xmNibFromMainBundleWithName:@"PostListCell"] forCellReuseIdentifier:@"PostListCell"];
     
     _titleLabel.text = self.titleName;
+    if (self.isMyPostList) {
+        _releaseButton.hidden = YES;
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
